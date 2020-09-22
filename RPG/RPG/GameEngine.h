@@ -14,9 +14,14 @@ class GameEngine
         void free();
         SDL_Window* getMainWindow();
         SDL_Renderer* getMainRenderer();
+        void handleInput();
+        void gameLogic();
+        void gameRendering();
+        void startMainGameLoop();
         
 
     private:
+        bool gameRunning;
         int screenWidth;
         int screenHeight;
         SDL_Window* mainWindow;

@@ -1,5 +1,6 @@
 #include "GameEngine.h"
 #include <stdio.h>
+#include <iostream>
 
 GameEngine::GameEngine(std::string title, int width, int height) {
     windowTitle = title;
@@ -127,4 +128,16 @@ SDL_Window* GameEngine::getMainWindow() {
 
 SDL_Renderer* GameEngine::getMainRenderer() {
     return mainRenderer;
+}
+
+void GameEngine::startMainGameLoop() {
+
+    gameRunning = true;
+
+    while (gameRunning)
+    {
+        handleInput();
+        gameLogic();
+        gameRendering();
+    }
 }
