@@ -1,8 +1,14 @@
 #include "ZoneMap.h"
-#include<iostream>
 
 ZoneMap::ZoneMap(std::vector< std::vector<int> > tiles) {
-	
+	assignNewTileMap(tiles);
+}
+
+ZoneMap::ZoneMap() {
+
+}
+
+void ZoneMap::assignNewTileMap(std::vector< std::vector<int> > tiles) {
 	if (tiles.size() > 0)
 	{
 		tileMap.resize(tiles.size());

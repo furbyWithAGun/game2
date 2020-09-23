@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseGameEngine.h"
+#include "ZoneMap.h"
 
 class RpgGameEngine: public BaseGameEngine
 {
@@ -8,5 +9,7 @@ class RpgGameEngine: public BaseGameEngine
         void handleInput() override;
         void gameLogic() override;
         void gameRendering() override;
+    private:
+        ZoneMap currentZone;
 };
 

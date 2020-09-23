@@ -2,7 +2,14 @@
 #include <stdio.h>
 #include <iostream>
 
+//constants
+const int KEY_R_VALUE = 0;
+const int KEY_G_VALUE = 0xFF;
+const int KEY_B_VALUE = 0xFF;
+
+
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
+    textures.clear();
     windowTitle = title;
     screenWidth = width;
     screenHeight = height;
@@ -32,12 +39,14 @@ void BaseGameEngine::free() {
         TTF_CloseFont(mainFont);
     }
 
+    textures.clear();
     windowTitle = "";
     screenWidth = 0;
     screenHeight = 0;
     mainWindow= NULL;
     mainRenderer = NULL;
     mainFont = NULL;
+    
 
 }
 
@@ -128,6 +137,34 @@ SDL_Window* BaseGameEngine::getMainWindow() {
 
 SDL_Renderer* BaseGameEngine::getMainRenderer() {
     return mainRenderer;
+}
+
+SDL_Texture* BaseGameEngine::loadTextureImageFromFile(std::string path) {
+    SDL_Texture* newTexture = NULL;
+    
+    //load the image from the file
+    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+    if (loadedSurface == NULL)
+    {
+        printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
+        return NULL;
+    }
+
+    //set transparent color
+    SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, KEY_R_VALUE, KEY_G_VALUE, KEY_B_VALUE));
+    
+    //convert to texture
+    newTexture = SDL_CreateTextureFromSurface(mainRenderer, loadedSurface);
+    if (newTexture == NULL)
+    {
+        printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
+        return NULL;
+    }
+
+    //Get rid of old loaded surface
+    SDL_FreeSurface(loadedSurface);
+    
+    return newTexture;
 }
 
 void BaseGameEngine::handleInput() {

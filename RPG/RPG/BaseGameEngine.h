@@ -3,10 +3,13 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 #include <string>
+#include "Texture.h"
+#include <unordered_map>
 
 class BaseGameEngine
 {
     public:
+        std::unordered_map<int, Texture> textures;
         BaseGameEngine(std::string title, int width, int height);
         ~BaseGameEngine();
         bool init();
@@ -18,6 +21,9 @@ class BaseGameEngine
         virtual void gameLogic();
         virtual void gameRendering();
         void startMainGameLoop();
+        int addTexture(Texture texture);
+        SDL_Texture* loadTextureImageFromFile(std::string path);
+        SDL_Texture* loadTextureFromText(std::string text);
 
     protected:
         bool gameRunning;
