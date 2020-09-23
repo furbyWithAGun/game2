@@ -146,13 +146,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="16_true_type_fonts.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="BaseGameEngine.cpp" />
+    <ClCompile Include="RpgGameEngine.cpp" />
+    <ClCompile Include="ZoneMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameEngine.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="BaseGameEngine.h" />
+    <ClInclude Include="RpgGameEngine.h" />
+    <ClInclude Include="ZoneMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
