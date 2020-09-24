@@ -11,6 +11,7 @@ class Texture
         int width;
         SDL_Texture* texture;
         Texture(std::string path);
+        Texture();
         ~Texture();
         void free();
 };

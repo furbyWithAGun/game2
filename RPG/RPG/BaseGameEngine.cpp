@@ -167,6 +167,51 @@ SDL_Texture* BaseGameEngine::loadTextureImageFromFile(std::string path) {
     return newTexture;
 }
 
+bool BaseGameEngine::loadTextureImageFromFile(Texture texture) {
+
+    texture.texture = NULL;
+
+    //load the image from the file
+    SDL_Surface* loadedSurface = IMG_Load(texture.filePath.c_str());
+    if (loadedSurface == NULL)
+    {
+        printf("Unable to load image %s! SDL_image Error: %s\n", texture.filePath.c_str(), IMG_GetError());
+        return false;
+    }
+
+    //set transparent color
+    SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, KEY_R_VALUE, KEY_G_VALUE, KEY_B_VALUE));
+
+    //convert to texture
+    texture.texture = SDL_CreateTextureFromSurface(mainRenderer, loadedSurface);
+    if (texture.texture == NULL)
+    {
+        printf("Unable to create texture from %s! SDL Error: %s\n", texture.filePath.c_str(), SDL_GetError());
+        return false;
+    }
+
+    texture.height = loadedSurface->h;
+    texture.width = loadedSurface->w;
+
+    //Get rid of old loaded surface
+    SDL_FreeSurface(loadedSurface);
+
+    return true;
+}
+
+int BaseGameEngine::addTexture(Texture texture) {
+    int index;
+    loadTextureImageFromFile(texture);
+    index = textures.size();
+    textures[index] = texture;
+    return index;
+}
+
+void BaseGameEngine::renderTexture(Texture texture, int x, int y) {
+    SDL_Rect renderQuad = { x, y, texture.width, texture.height };
+    SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
+}
+
 void BaseGameEngine::handleInput() {
     
 }

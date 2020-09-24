@@ -24,6 +24,7 @@ class BaseGameEngine
         int addTexture(Texture texture);
         SDL_Texture* loadTextureImageFromFile(std::string path);
         SDL_Texture* loadTextureFromText(std::string text);
+        void renderTexture(Texture texture, int x, int y);
 
     protected:
         bool gameRunning;
@@ -37,5 +38,6 @@ class BaseGameEngine
         std::string windowTitle;
         SDL_Window* createWindow(const char* title, int height, int width);
         SDL_Renderer* createRenderer(SDL_Window* window);
+        bool loadTextureImageFromFile(Texture texture);
 };
 

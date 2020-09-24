@@ -7,6 +7,10 @@ Texture::Texture(std::string path) {
     texture = NULL;
 }
 
+Texture::Texture() {
+
+}
+
 Texture::~Texture() {
     free();
 }

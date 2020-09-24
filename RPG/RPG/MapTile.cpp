@@ -1,7 +1,10 @@
 #include "MapTile.h"
 
-MapTile::MapTile(int tileId, bool tileIsPassable, int tileTextureKey) {
-    id = tileId;
+MapTile::MapTile(bool tileIsPassable, int tileTextureKey) {
     passable = tileIsPassable;
     textureKey = tileTextureKey;
+}
+
+MapTile::MapTile() {
+
 }

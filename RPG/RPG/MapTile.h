@@ -2,8 +2,11 @@
 class MapTile
 {
     public:
-        int id;
+        //attributes
         bool passable;
         int textureKey;
-        MapTile(int tileId, bool tileIsPassable, int tileTextureKey);
+
+        //constructor
+        MapTile(bool tileIsPassable, int tileTextureKey);
+        MapTile();
 };
