@@ -9,8 +9,15 @@
 class BaseGameEngine
 {
     public:
+        //attributes
         std::unordered_map<int, Texture> textures;
+        int screenHeight;
+        int screenWidth;
+
+        //constructor
         BaseGameEngine(std::string title, int width, int height);
+
+        //methods
         ~BaseGameEngine();
         bool init();
         void close();
@@ -25,19 +32,24 @@ class BaseGameEngine
         SDL_Texture* loadTextureImageFromFile(std::string path);
         SDL_Texture* loadTextureFromText(std::string text);
         void renderTexture(Texture texture, int x, int y);
+        
+        
+        bool loadTextureImageFromFile(Texture* texture);
 
     protected:
         bool gameRunning;
 
     private:
-        int screenWidth;
-        int screenHeight;
-        SDL_Window* mainWindow;
-        SDL_Renderer* mainRenderer;
+        //attributes
+        int windowWidth;
+        int windowHeight;
         TTF_Font* mainFont;
         std::string windowTitle;
+        SDL_Renderer* mainRenderer;
+        SDL_Window* mainWindow;
+
+        //methods
         SDL_Window* createWindow(const char* title, int height, int width);
         SDL_Renderer* createRenderer(SDL_Window* window);
-        bool loadTextureImageFromFile(Texture texture);
 };
 

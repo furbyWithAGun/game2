@@ -6,13 +6,17 @@
 class Texture
 {
     public:
+        //attributes
         std::string filePath;
         int height;
         int width;
         SDL_Texture* texture;
+
+        //constructors
         Texture(std::string path);
         Texture();
         ~Texture();
         void free();
+
 };
 

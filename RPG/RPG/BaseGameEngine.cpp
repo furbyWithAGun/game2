@@ -10,9 +10,11 @@ const int KEY_B_VALUE = 0xFF;
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
+    screenHeight = 0;
+    screenWidth = 0;
     windowTitle = title;
-    screenWidth = width;
-    screenHeight = height;
+    windowWidth = width;
+    windowHeight = height;
     mainWindow = NULL;
     mainRenderer = NULL;
     mainFont = NULL;
@@ -40,6 +42,8 @@ void BaseGameEngine::free() {
     }
 
     textures.clear();
+    windowHeight = 0;
+    windowWidth = 0;
     windowTitle = "";
     screenWidth = 0;
     screenHeight = 0;
@@ -47,22 +51,10 @@ void BaseGameEngine::free() {
     mainRenderer = NULL;
     mainFont = NULL;
     
-
 }
 
 SDL_Window* BaseGameEngine::createWindow(const char* title, int height, int width) {
     SDL_Window* newWindow = NULL;
-    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, height, width, SDL_WINDOW_SHOWN);
-    if (newWindow == NULL)
-    {
-        printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
-    }
-
-    return newWindow;
-}
-
-SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
-    SDL_Renderer* newRenderer = NULL;
 
     //Set texture filtering to linear
     if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
@@ -70,8 +62,21 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
         printf("Warning: Linear texture filtering not enabled!");
     }
 
+    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+    if (newWindow == NULL)
+    {
+        printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+    }
+
+    
+    return newWindow;
+}
+
+SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
+    SDL_Renderer* newRenderer = NULL;
+
     //Create vsynced renderer for window
-    newRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    newRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (newRenderer == NULL)
     {
         printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
@@ -80,6 +85,8 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
 
     //Initialize renderer color
     SDL_SetRenderDrawColor(newRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_GetRendererOutputSize(newRenderer, &screenWidth, &screenHeight);
+    printf("width: %i height: %i \n%s", windowWidth, windowHeight, SDL_GetError());
 
     return newRenderer;
 }
@@ -94,7 +101,7 @@ bool BaseGameEngine::init() {
     }
 
     //create window
-    mainWindow = createWindow(windowTitle.c_str(), screenHeight, screenWidth);
+    mainWindow = createWindow(windowTitle.c_str(), windowHeight, windowWidth);
     if (mainWindow == NULL)
     {
         return false;
@@ -167,31 +174,32 @@ SDL_Texture* BaseGameEngine::loadTextureImageFromFile(std::string path) {
     return newTexture;
 }
 
-bool BaseGameEngine::loadTextureImageFromFile(Texture texture) {
+bool BaseGameEngine::loadTextureImageFromFile(Texture* texture) {
 
-    texture.texture = NULL;
+    texture->texture = NULL;
 
     //load the image from the file
-    SDL_Surface* loadedSurface = IMG_Load(texture.filePath.c_str());
+    SDL_Surface* loadedSurface = IMG_Load(texture->filePath.c_str());
     if (loadedSurface == NULL)
     {
-        printf("Unable to load image %s! SDL_image Error: %s\n", texture.filePath.c_str(), IMG_GetError());
+        printf("Unable to load image %s! SDL_image Error: %s\n", texture->filePath.c_str(), IMG_GetError());
         return false;
     }
 
     //set transparent color
-    SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, KEY_R_VALUE, KEY_G_VALUE, KEY_B_VALUE));
+    //SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, KEY_R_VALUE, KEY_G_VALUE, KEY_B_VALUE));
 
     //convert to texture
-    texture.texture = SDL_CreateTextureFromSurface(mainRenderer, loadedSurface);
-    if (texture.texture == NULL)
+    texture->texture = SDL_CreateTextureFromSurface(mainRenderer, loadedSurface);
+    if (texture->texture == NULL)
     {
-        printf("Unable to create texture from %s! SDL Error: %s\n", texture.filePath.c_str(), SDL_GetError());
+        printf("Unable to create texture from %s! SDL Error: %s\n", texture->filePath.c_str(), SDL_GetError());
         return false;
     }
 
-    texture.height = loadedSurface->h;
-    texture.width = loadedSurface->w;
+    texture->height = loadedSurface->h;
+    texture->width = loadedSurface->w;
+
 
     //Get rid of old loaded surface
     SDL_FreeSurface(loadedSurface);
@@ -201,7 +209,7 @@ bool BaseGameEngine::loadTextureImageFromFile(Texture texture) {
 
 int BaseGameEngine::addTexture(Texture texture) {
     int index;
-    loadTextureImageFromFile(texture);
+    loadTextureImageFromFile(&texture);
     index = textures.size();
     textures[index] = texture;
     return index;
@@ -209,6 +217,7 @@ int BaseGameEngine::addTexture(Texture texture) {
 
 void BaseGameEngine::renderTexture(Texture texture, int x, int y) {
     SDL_Rect renderQuad = { x, y, texture.width, texture.height };
+    
     SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
 }
 

@@ -19,5 +19,7 @@ class RpgGameEngine: public BaseGameEngine
         void gameRendering() override;
     private:
         ZoneMap currentZone;
+        int tileHeight;
+        int tileWidth;
 };
 
