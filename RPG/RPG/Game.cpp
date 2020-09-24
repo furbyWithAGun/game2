@@ -15,6 +15,9 @@ int main(int argc, char* args[])
     //init game engine
     engine.init();
 
+    //set up the game/load assets
+    engine.setUpGame();
+
     //main game loop
     engine.startMainGameLoop();
 

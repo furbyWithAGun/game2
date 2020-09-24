@@ -146,7 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="16_true_type_fonts.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="BaseGameEngine.cpp" />
     <ClCompile Include="MapTile.cpp" />

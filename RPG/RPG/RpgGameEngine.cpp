@@ -49,5 +49,20 @@ void RpgGameEngine::gameLogic() {
 }
 
 void RpgGameEngine::gameRendering() {
+    SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(getMainRenderer());
+
+    //draw zone
+    for (int i = 0; i < currentZone.tileMap.size(); i++) {
+        for (int j = 0; j < currentZone.tileMap[i].size(); j++) {
+            renderTexture(textures[mapTiles[currentZone.tileMap[i][j]].textureKey], TILE_WIDTH * j, TILE_HEIGHT * i);
+        }
+    }
+
+    //Render texture to screen
+    SDL_RenderCopy(getMainRenderer(), textures[0].texture, NULL, NULL);
+
+    //Update screen
+    SDL_RenderPresent(getMainRenderer());
 
 }
