@@ -25,7 +25,7 @@ BaseGameEngine::~BaseGameEngine() {
 }
 
 void BaseGameEngine::free() {
-
+    
     if (mainWindow!= NULL)
     {
         SDL_DestroyWindow(mainWindow);
@@ -35,7 +35,6 @@ void BaseGameEngine::free() {
     {
         SDL_DestroyRenderer(mainRenderer);
     }
-
     if (mainFont != NULL)
     {
         TTF_CloseFont(mainFont);
@@ -107,6 +106,7 @@ bool BaseGameEngine::init() {
         return false;
     }
 
+    //create main window renderer
     mainRenderer = createRenderer(mainWindow);
     if (mainRenderer == NULL)
     {
@@ -127,6 +127,9 @@ bool BaseGameEngine::init() {
         printf("SDL_ttf could not initialize! SDL_ttf Error: %s\n", TTF_GetError());
         return false;
     }
+
+    //load assets (this method will be overriden in child class)
+    loadAssets();
 
     return true;
 }
@@ -215,20 +218,41 @@ int BaseGameEngine::addTexture(Texture texture) {
     return index;
 }
 
+bool BaseGameEngine::createMultipleTextures(std::unordered_map<int, std::string> texturesToCreate) {
+    for (auto i = texturesToCreate.begin(); i != texturesToCreate.end(); ++i)
+    {
+        textures[i->first] = Texture(i->second);
+        loadTextureImageFromFile(&textures[i->first]);
+    }
+    return true;
+}
+
 void BaseGameEngine::renderTexture(Texture texture, int x, int y) {
     SDL_Rect renderQuad = { x, y, texture.width, texture.height };
     
     SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
 }
 
+void BaseGameEngine::save2DIntVectorToFile(std::vector<std::vector<int>>, std::string path) {
+    SDL_RWops* file = SDL_RWFromFile(path.c_str(), "w+b");
+}
+
+//this method will be ovverridden in child class
+void BaseGameEngine::loadAssets() {
+
+}
+
+//this method will be ovverridden in child class
 void BaseGameEngine::handleInput() {
     
 }
 
+//this method will be ovverridden in child class
 void BaseGameEngine::gameLogic() {
 
 }
 
+//this method will be ovverridden in child class
 void BaseGameEngine::gameRendering() {
 
 }

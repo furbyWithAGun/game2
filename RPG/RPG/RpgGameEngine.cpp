@@ -19,13 +19,46 @@ bool RpgGameEngine::addTile(int key, MapTile tile) {
     return true;
 }
 
+void RpgGameEngine::loadAssets() {
+    std::unordered_map<int, std::string> texturesToCreate = {
+        {GRASS, "images/grass.png"},
+        {TREE, "images/tree.png"},
+        {WATER, "images/water.png"}
+    };
+
+    createMultipleTextures(texturesToCreate);
+}
+
+void RpgGameEngine::createTiles() {
+    //create the different tiles
+    mapTiles[GRASS] = MapTile(true, GRASS);
+    mapTiles[TREE] = MapTile(true, TREE);
+    mapTiles[WATER] = MapTile(true, WATER);
+
+
+    //resize tiles depending on screen size
+    int tilesImpliedWidth = screenWidth / DESIRED_TILES_ACROSS;
+    int tilesImpliedHeight = screenHeight / DESIRED_TILES_DOWN;
+    if (tilesImpliedHeight >= tilesImpliedWidth) {
+        tileHeight = tilesImpliedHeight;
+        tileWidth = tilesImpliedHeight;
+    }
+    else {
+        tileHeight = tilesImpliedWidth;
+        tileWidth = tilesImpliedWidth;
+    }
+
+    for (int i = 0; i < mapTiles.size(); i++) {
+        textures[mapTiles[i].textureKey].resize(tileHeight, tileWidth);
+    }
+}
+
 void RpgGameEngine::setUpGame() {
 
     gameState = LEVEL_DESIGN;
 
-    mapTiles[GRASS] = MapTile(true, addTexture(Texture("images/grass.png")));
-    mapTiles[TREE] = MapTile(true, addTexture(Texture("images/tree.png")));
-    mapTiles[WATER] = MapTile(true, addTexture(Texture("images/water.png")));
+    createTiles();
+    
     ZoneMap zoneOne = ZoneMap({
         {WATER, WATER, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
         {WATER, GRASS, TREE, TREE, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
@@ -50,21 +83,7 @@ void RpgGameEngine::setUpGame() {
         });
     currentZone = zoneOne;
 
-    int tilesImpliedWidth = screenWidth / DESIRED_TILES_ACROSS;
-    int tilesImpliedHeight = screenHeight / DESIRED_TILES_DOWN;
-    printf("%i\n%i", tilesImpliedHeight, tilesImpliedWidth);
-    if (tilesImpliedHeight >= tilesImpliedWidth) {
-        tileHeight = tilesImpliedHeight;
-        tileWidth = tilesImpliedHeight;
-    }
-    else {
-        tileHeight = tilesImpliedWidth;
-        tileWidth = tilesImpliedWidth;
-    }
-
-    for (int i = 0; i < mapTiles.size(); i++) {
-        textures[mapTiles[i].textureKey].resize(tileHeight, tileWidth);
-    }
+    
 }
 
 void RpgGameEngine::handleInput() {
@@ -83,6 +102,7 @@ void RpgGameEngine::handleInput() {
                 int k [2];
                 SDL_GetMouseState(&x, &y);
                 getTileIndexFromScreenCoords(x, y, k);
+                printf("%i %i \n", k[0], k[1]);
                 break;
             default:
                 break;
@@ -128,5 +148,4 @@ void RpgGameEngine::drawMenu() {
 void RpgGameEngine::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]) {
     tileIndices[0] = floor(((x - screenWidth * LEFT_MENU_SIZE)) / tileWidth);
     tileIndices[1] =  floor(y / tileHeight);
-    printf("%i %i \n", tileIndices[0], tileIndices[1]);
 }

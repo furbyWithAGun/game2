@@ -14,13 +14,9 @@ int main(int argc, char* args[])
 
     engine.init();
     engine.setUpGame();
-
     engine.startMainGameLoop();
-
     //terminate the engine
     engine.close();
-
     //std::getchar();
-
     return 0;
 }

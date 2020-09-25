@@ -31,6 +31,7 @@ class RpgGameEngine: public BaseGameEngine
 
         //methods
         void setUpGame();
+        void loadAssets() override;
         void handleInput() override;
         void gameLogic() override;
         void gameRendering() override;
@@ -45,5 +46,6 @@ class RpgGameEngine: public BaseGameEngine
 
         //methods
         void drawMenu();
+        void createTiles();
 };
 
