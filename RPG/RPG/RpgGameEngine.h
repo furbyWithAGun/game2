@@ -11,11 +11,12 @@ enum GAME_STATES {
     COMBAT
 };
 
-enum TILE_TYPES
+enum TEXTURE_NAMES
 {
     GRASS,
     TREE,
-    WATER
+    WATER,
+    NUM_TEXTURES
 };
 
 class RpgGameEngine: public BaseGameEngine

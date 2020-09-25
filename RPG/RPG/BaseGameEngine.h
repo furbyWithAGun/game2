@@ -29,6 +29,7 @@ class BaseGameEngine
         virtual void gameRendering();
         void startMainGameLoop();
         int addTexture(Texture texture);
+        bool addMultipleTextures(std::unordered_map<int, Texture> texturesToAdd);
         SDL_Texture* loadTextureImageFromFile(std::string path);
         SDL_Texture* loadTextureFromText(std::string text);
         void renderTexture(Texture texture, int x, int y);

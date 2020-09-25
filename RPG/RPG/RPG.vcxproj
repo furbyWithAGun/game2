@@ -150,6 +150,7 @@
     <ClCompile Include="BaseGameEngine.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="RpgGameEngine.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
   </ItemGroup>
@@ -157,6 +158,7 @@
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="RpgGameEngine.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="ZoneMap.h" />
   </ItemGroup>

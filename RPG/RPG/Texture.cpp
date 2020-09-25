@@ -19,7 +19,7 @@ void Texture::free() {
     if (texture != NULL)
     {
         //SDL_DestroyTexture(texture);
-        //texture = NULL;
+        texture = NULL;
         width = 0;
         height = 0;
     }
