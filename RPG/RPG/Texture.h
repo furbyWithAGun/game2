@@ -15,8 +15,13 @@ class Texture
         //constructors
         Texture(std::string path);
         Texture();
+
+        //destructor
         ~Texture();
+
+        //methods
         void free();
+        bool resize(int newHeight, int newWidth);
 
 };
 

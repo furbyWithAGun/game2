@@ -9,4 +9,6 @@ class MapTile
         //constructor
         MapTile(bool tileIsPassable, int tileTextureKey);
         MapTile();
+
+        //methods
 };

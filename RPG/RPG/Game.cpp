@@ -4,8 +4,8 @@
 
 // Global Constants
 const std::string GAME_TITLE = "RPG";
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 500;
+const int SCREEN_WIDTH = 1900;
+const int SCREEN_HEIGHT = 1000;
 
 int main(int argc, char* args[])
 {
@@ -20,7 +20,7 @@ int main(int argc, char* args[])
     //terminate the engine
     engine.close();
 
-    std::getchar();
+    //std::getchar();
 
     return 0;
 }

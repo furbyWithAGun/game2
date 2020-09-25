@@ -24,3 +24,9 @@ void Texture::free() {
         height = 0;
     }
 }
+
+bool Texture::resize(int newHeight, int newWidth) {
+    height = newHeight;
+    width = newWidth;
+    return true;
+}
