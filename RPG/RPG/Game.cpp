@@ -11,7 +11,8 @@ int main(int argc, char* args[])
 {
     //local vars
     RpgGameEngine engine = RpgGameEngine(GAME_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT);
-
+    std::string string;
+    printf(string.c_str());
     engine.init();
     engine.setUpGame();
     engine.startMainGameLoop();

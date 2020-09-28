@@ -1,12 +1,43 @@
 #include "BaseGameEngine.h"
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 
 //constants
 const int KEY_R_VALUE = 0;
 const int KEY_G_VALUE = 0xFF;
 const int KEY_B_VALUE = 0xFF;
 
+//static methods
+std::string BaseGameEngine::get2DIntVectorSaveString(std::vector<std::vector<int>> vector) {
+    std::string returnString;
+    for (int i = 0; i < vector.size(); i++)
+    {
+        std::to_string(vector[i].size()) + "\n";
+        for (int j = 0; j < vector[i].size(); j++)
+        {
+            returnString += std::to_string(vector[i][j]) + "\n";
+        }
+    }
+}
+
+
+std::vector<std::vector<int>> BaseGameEngine::get2dIntVectorFromSaveString(std::string saveString) {
+    std::vector<std::vector<int>> returnVector;
+    std::string workingString = "";
+    std::string::size_type index1 = 0, index2 = 0;
+    int outerSize, innerSize;
+    for (std::string::size_type i = 0; i < saveString.size(); i++)
+    {
+        if (saveString[i] == '\n')
+        {
+            index2 = i;
+            break;
+        }
+        workingString += saveString[i];
+    }
+    outerSize = stoi(saveString.substr(index1, index2 - index1));
+}
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
@@ -233,8 +264,28 @@ void BaseGameEngine::renderTexture(Texture texture, int x, int y) {
     SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
 }
 
-void BaseGameEngine::save2DIntVectorToFile(std::vector<std::vector<int>>, std::string path) {
-    SDL_RWops* file = SDL_RWFromFile(path.c_str(), "w+b");
+void BaseGameEngine::saveStringToFile(std::string string, std::string filePath) {
+    std::ofstream file(filePath.c_str());
+    if (file.is_open()) {
+        file << string;
+        file.close();
+    }
+    else {
+        printf("could not save file %s", filePath.c_str());
+    }
+}
+
+std::string BaseGameEngine::loadStringFromFile(std::string filePath){
+    std::string returnString;
+    std::string line;
+    std::ifstream file(filePath.c_str());
+    if (file.is_open()) {
+        while (std::getline(file, line)) {
+            returnString += line + "\n";
+        }
+        file.close();
+    }
+    return returnString;
 }
 
 //this method will be ovverridden in child class

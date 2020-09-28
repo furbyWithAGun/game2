@@ -150,17 +150,23 @@
     <ClCompile Include="BaseGameEngine.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="RpgGameEngine.cpp" />
+    <ClCompile Include="SaveObject.cpp" />
+    <ClCompile Include="SaveFile.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
+    <ClCompile Include="ZonePortal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="RpgGameEngine.h" />
+    <ClInclude Include="SaveObject.h" />
+    <ClInclude Include="SaveFile.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="ZoneMap.h" />
+    <ClInclude Include="ZonePortal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
