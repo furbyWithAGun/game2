@@ -150,6 +150,7 @@
     <ClCompile Include="BaseGameEngine.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="RpgGameEngine.cpp" />
+    <ClCompile Include="SaveAttribute.cpp" />
     <ClCompile Include="SaveObject.cpp" />
     <ClCompile Include="SaveFile.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="RpgGameEngine.h" />
+    <ClInclude Include="SaveAttribute.h" />
     <ClInclude Include="SaveObject.h" />
     <ClInclude Include="SaveFile.h" />
     <ClInclude Include="Sprite.h" />

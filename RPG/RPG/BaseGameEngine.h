@@ -10,10 +10,6 @@
 class BaseGameEngine
 {
     public:
-        //static methods
-        static std::string get2DIntVectorSaveString(std::vector<std::vector<int>> vector);
-        static std::vector<std::vector<int>> get2dIntVectorFromSaveString(std::string saveString);
-
         //attributes
         std::unordered_map<int, Texture> textures;
         int screenHeight;
@@ -39,8 +35,6 @@ class BaseGameEngine
         SDL_Texture* loadTextureImageFromFile(std::string path);
         SDL_Texture* loadTextureFromText(std::string text);
         void renderTexture(Texture texture, int x, int y);
-        void saveStringToFile(std::string string, std::string filePath);
-        std::string loadStringFromFile(std::string filePath);
         
         bool loadTextureImageFromFile(Texture* texture);
 

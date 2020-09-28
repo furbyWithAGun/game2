@@ -2,6 +2,13 @@
 #include <string>
 #include <vector>
 
+enum ATTRIBUTES {
+    ID,
+    TILE_COORDS,
+    EXIT_ZONE_ID,
+    EXIT_TILE_COORDS
+};
+
 class ZonePortal
 {
     public:

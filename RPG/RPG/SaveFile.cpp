@@ -1,14 +1,97 @@
 #include "SaveFile.h"
 #include "SaveObject.h"
+#include <fstream>
 
-SaveFile::SaveFile() {
-    rawString = "";
-    index1 = 0;
-    index2 = 0;
+//static methods
+void SaveFile::saveStringToFile(std::string string, std::string filePath) {
+    std::ofstream file(filePath.c_str());
+    if (file.is_open()) {
+        file << string;
+        file.close();
+    }
+    else {
+        printf("could not save file %s", filePath.c_str());
+    }
 }
 
-SaveFile::SaveFile(std::string saveString) {
-    rawString = saveString;
-    index1 = 0;
-    index2 = 0;
+std::string SaveFile::loadStringFromFile(std::string filePath) {
+    std::string returnString;
+    std::string line;
+    std::ifstream file(filePath.c_str());
+    if (file.is_open()) {
+        while (std::getline(file, line)) {
+            returnString += line + "\n";
+        }
+        file.close();
+    }
+    return returnString;
+}
+
+//contstructos
+SaveFile::SaveFile() {
+    rawString = "";
+    filePath = "";
+    retrievedObjects = 0;
+}
+
+SaveFile::SaveFile(std::string newFilePath) {
+    filePath = newFilePath;
+    rawString = "";
+    retrievedObjects = 0;
+}
+
+
+//public methods
+void SaveFile::reset() {
+    retrievedObjects = 0;
+}
+
+void SaveFile::saveFile() {
+    SaveFile::saveStringToFile(rawString, filePath);
+}
+
+void SaveFile::loadFile() {
+    rawString = SaveFile::loadStringFromFile(filePath);
+    populateAllObjects();
+}
+
+void SaveFile::addSaveObjectString(std::string saveString) {
+    rawString += saveString;
+}
+
+//private methods
+std::string SaveFile::getNextSaveObjectString() {
+    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER, END_OBJECT_IDENTIFIER, retrievedObjects);
+}
+
+SaveObject SaveFile::getNextSaveObject() {
+    std::string objectString = getNextSaveObjectString();
+    SaveObject returnObject;
+
+    if (objectString.compare("") != 0)
+    {
+        returnObject = SaveObject(objectString);
+        retrievedObjects += 1;
+    }
+    else {
+        reset();
+    }
+
+    return returnObject;
+}
+
+void SaveFile::populateAllObjects() {
+    SaveObject saveObject;
+    bool continueLoop = true;
+    while (continueLoop)
+    {
+        saveObject = getNextSaveObject();
+        if (saveObject.rawString.compare("") != 0)
+        {
+            objects.push_back(saveObject);
+        }
+        else {
+            continueLoop = false;
+        }
+    }
 }

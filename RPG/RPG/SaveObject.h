@@ -1,12 +1,18 @@
 #pragma once
 #include <string>
+#include "SaveAttribute.h"
+#include <vector>
+
+const std::string BEGIN_OBJECT_IDENTIFIER = "BEGIN OBJECT ";
+const std::string END_OBJECT_IDENTIFIER = "END OBJECT\n";
 
 class SaveObject
 {
     public:
-        std::string rawString;
-        std::string::size_type index1, index2;
+        //attributes
         int objectClass;
+        std::string rawString;
+        std::vector<SaveAttribute> attributes;
 
         //constructors
         SaveObject();
@@ -14,6 +20,15 @@ class SaveObject
 
         //methods
         void reset();
-        std::string getNextAttributeString();
+        
+
+    private:
+        //attributes
+        int retrievedAttributes;
+
+        //methods
+        std::string getNextSaveAttributeString();
+        void populateAllAttributes();
+        SaveAttribute getNextSaveAttribute();
 };
 

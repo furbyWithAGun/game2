@@ -115,6 +115,7 @@ void RpgGameEngine::gameLogic() {
 }
 
 void RpgGameEngine::gameRendering() {
+    //clear screen
     SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(getMainRenderer());
 

@@ -19,6 +19,11 @@ enum TEXTURE_NAMES
     NUM_TEXTURES
 };
 
+enum CLASS_IDS{
+    ZONE_PORTAL,
+    ZONE_MAP
+};
+
 class RpgGameEngine: public BaseGameEngine
 {
     public:
