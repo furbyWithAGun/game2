@@ -19,6 +19,10 @@ std::string BaseGameEngine::get2DIntVectorSaveString(std::vector<std::vector<int
             returnString += std::to_string(vector[i][j]) + "\n";
         }
     }
+
+
+
+    return returnString;
 }
 
 
@@ -37,6 +41,9 @@ std::vector<std::vector<int>> BaseGameEngine::get2dIntVectorFromSaveString(std::
         workingString += saveString[i];
     }
     outerSize = stoi(saveString.substr(index1, index2 - index1));
+
+
+    return returnVector;
 }
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {

@@ -21,4 +21,6 @@ std::string ZonePortal::toSaveString() {
     std::string saveString;
     saveString = "BEGIN OBJECT ZONEPORTAL\n";
     saveString += "BEGIN ID\n" + std::to_string(id) + "\n";
+
+    return saveString;
 }

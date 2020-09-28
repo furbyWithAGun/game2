@@ -1,4 +1,5 @@
 #include "SaveFile.h"
+#include "SaveObject.h"
 
 SaveFile::SaveFile() {
     rawString = "";
