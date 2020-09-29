@@ -10,7 +10,8 @@ class SaveObject
 {
     public:
         //attributes
-        int objectClass;
+        int objectId;
+        int objectType;        
         std::string rawString;
         std::vector<SaveAttribute> attributes;
 
@@ -24,11 +25,20 @@ class SaveObject
 
     private:
         //attributes
-        int retrievedAttributes;
+        std::string::size_type index;
 
         //methods
+        int getObjectType();
+        std::string getObjectHeaderLine();
+        std::string getObjectFooterLine();
+        int getObjectId();
         std::string getNextSaveAttributeString();
         void populateAllAttributes();
         SaveAttribute getNextSaveAttribute();
 };
+
+//utility functions
+std::vector<SaveObject> getSaveObjectVectorFromSaveString2(std::string saveString);
+SaveObject getNextSaveObject2(std::string saveString, std::string::size_type* index);
+std::string getNextSaveObjectString2(std::string saveString, std::string::size_type* index);
 

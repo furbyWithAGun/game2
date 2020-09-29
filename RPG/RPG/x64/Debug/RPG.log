@@ -1,2 +1,3 @@
-﻿  Game.cpp
-  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  BaseGameEngine.cpp
+D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(215,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe

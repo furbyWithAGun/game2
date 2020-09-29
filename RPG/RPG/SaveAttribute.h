@@ -10,6 +10,7 @@ class SaveAttribute
     public:
         //attributes
         int attributeType;
+        int attributeId;
         std::string valueString;
 
         //constructors
@@ -24,6 +25,9 @@ class SaveAttribute
 
         //methods
         int getAttributeType();
+        std::string getAttributeHeaderLine();
+        std::string getAttributeFooterLine();
+        int getAttributeId();
         std::string getAttributeValueString();
 };
 
@@ -34,6 +38,7 @@ std::string getIntVectorSaveString(std::vector<int> vector);
 std::vector<int> getIntVectorFromSaveString(std::string saveString);
 std::string getSubstrBeginEndWithInclusive(std::string string, std::string beginString, std::string endString, int skip = 0, std::string::size_type* endIndex = NULL);
 std::string getSubstrBeginEndWithExclusive(std::string string, std::string beginString, std::string endString, int skip = 0, std::string::size_type* endIndex = NULL);
-std::string getAttributeString(int id, std::string value);
-std::string getAttributeString(int id, int value);
+std::string getAttributeString(int id,int type, std::string value);
+std::string getAttributeString(int id, int type, int value);
+int getUniqueId();
 

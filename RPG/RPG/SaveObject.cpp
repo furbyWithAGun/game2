@@ -2,19 +2,40 @@
 
 SaveObject::SaveObject() {
     rawString = "";
-    objectClass = -1;
-    retrievedAttributes = 0;
+    objectId = -1;
+    objectType = -1;    
+    index = 0;
 }
 
 SaveObject::SaveObject(std::string saveString) {
     rawString = saveString;
-    objectClass = std::stoi(getSubstrBeginEndWithExclusive(rawString, BEGIN_OBJECT_IDENTIFIER, "\n"));
-    retrievedAttributes = 0;
+    index = 0;
+    objectId = getObjectId();
+    objectType = getObjectType();
+
     populateAllAttributes();
 }
 
 void SaveObject::reset() {
-    retrievedAttributes = 0;
+    index = 0;
+}
+
+int SaveObject::getObjectId() {
+    return std::stoi(getSubstrBeginEndWithExclusive(rawString, BEGIN_OBJECT_IDENTIFIER, "-"));
+}
+
+int SaveObject::getObjectType() {
+    return std::stoi(getSubstrBeginEndWithExclusive(rawString, BEGIN_OBJECT_IDENTIFIER + std::to_string(objectId) + "-", "\n"));
+}
+
+//this method assumes objectType and objectId have already been correctly assigned
+std::string SaveObject::getObjectHeaderLine() {
+    return BEGIN_OBJECT_IDENTIFIER + std::to_string(objectId) + "-" + std::to_string(objectType);
+}
+
+//this method assumes objectType and objectId have already been correctly assigned
+std::string SaveObject::getObjectFooterLine() {
+    return END_ATTRIBUTE_IDENTIFIER + std::to_string(objectId) + "-" + std::to_string(objectType);
 }
 
 SaveAttribute SaveObject::getNextSaveAttribute() {
@@ -24,7 +45,6 @@ SaveAttribute SaveObject::getNextSaveAttribute() {
     if (attributeString.compare("") != 0)
     {
         returnAttribute = SaveAttribute(attributeString);
-        retrievedAttributes += 1;
     }
     else {
         reset();
@@ -34,10 +54,11 @@ SaveAttribute SaveObject::getNextSaveAttribute() {
 }
 
 std::string SaveObject::getNextSaveAttributeString() {
-    std::string nextAttributeId = getSubstrBeginEndWithExclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER, "\n", retrievedAttributes);
+    std::string subString = rawString.substr(index);
+    std::string nextAttributeId = getSubstrBeginEndWithExclusive(subString, BEGIN_ATTRIBUTE_IDENTIFIER, "\n");
     if (nextAttributeId.compare("") != 0)
     {
-        return getSubstrBeginEndWithInclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER + nextAttributeId, END_ATTRIBUTE_IDENTIFIER + nextAttributeId);
+        return getSubstrBeginEndWithInclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER + nextAttributeId + "\n", END_ATTRIBUTE_IDENTIFIER + nextAttributeId + "\n", 0, &index);
     }
     else {
         return "";
@@ -58,4 +79,44 @@ void SaveObject::populateAllAttributes() {
             continueLoop = false;
         }
     }
+}
+
+//utility functions
+std::vector<SaveObject> getSaveObjectVectorFromSaveString2(std::string saveString) {
+    std::vector<SaveObject> returnVector;
+    std::string::size_type index = 0;
+
+    SaveObject saveObject;
+    bool continueLoop = true;
+
+    while (continueLoop)
+    {
+        saveObject = getNextSaveObject2(saveString, &index);
+        if (saveObject.rawString.compare("") != 0)
+        {
+            returnVector.push_back(saveObject);
+        }
+        else {
+            continueLoop = false;
+        }
+    }
+    return returnVector;
+}
+
+SaveObject getNextSaveObject2(std::string saveString, std::string::size_type* index) {
+    std::string objectString = getNextSaveObjectString2(saveString, index);
+    SaveObject returnObject;
+
+    if (objectString.compare("") != 0)
+    {
+        returnObject = SaveObject(objectString);
+    }
+
+    return returnObject;
+}
+
+std::string getNextSaveObjectString2(std::string saveString, std::string::size_type * index) {
+    std::string subString = saveString.substr(*index);
+    std::string nextObjectId = getSubstrBeginEndWithExclusive(subString, BEGIN_OBJECT_IDENTIFIER, "\n");
+    return getSubstrBeginEndWithInclusive(saveString, BEGIN_OBJECT_IDENTIFIER + nextObjectId, END_OBJECT_IDENTIFIER + nextObjectId, 0, index);
 }

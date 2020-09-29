@@ -42,6 +42,7 @@ class RpgGameEngine: public BaseGameEngine
         void gameRendering() override;
         bool addTile(int key, MapTile tile);
         void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
+        std::string getSaveString();
 
     private:
         //attributes

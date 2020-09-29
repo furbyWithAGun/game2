@@ -27,27 +27,26 @@ std::string SaveFile::loadStringFromFile(std::string filePath) {
     return returnString;
 }
 
+
 //contstructos
 SaveFile::SaveFile() {
     rawString = "";
     filePath = "";
-    retrievedObjects = 0;
     index = 0;
 }
 
 SaveFile::SaveFile(std::string newFilePath) {
     filePath = newFilePath;
     rawString = "";
-    retrievedObjects = 0;
     index = 0;
 }
 
 
 //public methods
 void SaveFile::reset() {
-    retrievedObjects = 0;
     index = 0;
 }
+
 
 void SaveFile::saveFile() {
     SaveFile::saveStringToFile(rawString, filePath);
@@ -55,48 +54,48 @@ void SaveFile::saveFile() {
 
 void SaveFile::loadFile() {
     rawString = SaveFile::loadStringFromFile(filePath);
-    populateAllObjects();
+    objects = getSaveObjectVectorFromSaveString2(rawString);
+    //populateAllObjects();
 }
 
 void SaveFile::addSaveObjectString(std::string saveString) {
     rawString += saveString;
 }
 
-//private methods
-std::string SaveFile::getNextSaveObjectString() {
-    std::string subString = rawString.substr(index);
-    std::string nextObjectId = getSubstrBeginEndWithExclusive(subString, BEGIN_OBJECT_IDENTIFIER, "\n");
-    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER + nextObjectId, END_OBJECT_IDENTIFIER + nextObjectId, 0, &index);
-}
-
-SaveObject SaveFile::getNextSaveObject() {
-    std::string objectString = getNextSaveObjectString();
-    SaveObject returnObject;
-
-    if (objectString.compare("") != 0)
-    {
-        returnObject = SaveObject(objectString);
-        retrievedObjects += 1;
-    }
-    else {
-        reset();
-    }
-
-    return returnObject;
-}
-
-void SaveFile::populateAllObjects() {
-    SaveObject saveObject;
-    bool continueLoop = true;
-    while (continueLoop)
-    {
-        saveObject = getNextSaveObject();
-        if (saveObject.rawString.compare("") != 0)
-        {
-            objects.push_back(saveObject);
-        }
-        else {
-            continueLoop = false;
-        }
-    }
-}
+////private methods
+//std::string SaveFile::getNextSaveObjectString() {
+//    std::string subString = rawString.substr(index);
+//    std::string nextObjectId = getSubstrBeginEndWithExclusive(subString, BEGIN_OBJECT_IDENTIFIER, "\n");
+//    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER + nextObjectId, END_OBJECT_IDENTIFIER + nextObjectId, 0, &index);
+//}
+//
+//SaveObject SaveFile::getNextSaveObject() {
+//    std::string objectString = getNextSaveObjectString();
+//    SaveObject returnObject;
+//
+//    if (objectString.compare("") != 0)
+//    {
+//        returnObject = SaveObject(objectString);
+//    }
+//    else {
+//        reset();
+//    }
+//
+//    return returnObject;
+//}
+//
+//void SaveFile::populateAllObjects() {
+//    SaveObject saveObject;
+//    bool continueLoop = true;
+//    while (continueLoop)
+//    {
+//        saveObject = getNextSaveObject();
+//        if (saveObject.rawString.compare("") != 0)
+//        {
+//            objects.push_back(saveObject);
+//        }
+//        else {
+//            continueLoop = false;
+//        }
+//    }
+//}

@@ -1,11 +1,11 @@
 #include "ZonePortal.h"
 #include <string>
-#include "BaseGameEngine.h"
 #include "RpgGameEngine.h"
 #include "SaveFile.h"
 
 ZonePortal::ZonePortal() {
     id = -1;
+    exitZoneId = -1;
 }
 
 ZonePortal::ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords) {
@@ -16,18 +16,37 @@ ZonePortal::ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZo
 }
 
 ZonePortal::ZonePortal(SaveObject saveObject) {
-    id = -1;
+    for (int i = 0; i < saveObject.attributes.size(); i++)
+    {
+        switch (saveObject.attributes[i].attributeType) {
+        case ZONE_PORTAL_ID:
+            id = stoi(saveObject.attributes[i].valueString);
+            break;
+        case TILE_COORDS:
+            tileCoords = getIntVectorFromSaveString(saveObject.attributes[i].valueString);
+            break;
+        case EXIT_ZONE_ID:
+            exitZoneId = stoi(saveObject.attributes[i].valueString);
+            break;
+        case EXIT_TILE_COORDS:
+            exitTileCoords = getIntVectorFromSaveString(saveObject.attributes[i].valueString);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 std::string ZonePortal::toSaveString() {
     std::string saveString;
+    int uniqueObjectId = getUniqueId();
 
-    saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(ZONE_PORTAL) + "\n";
-    saveString += getAttributeString(ZONE_PORTAL_ID, id);
-    saveString += getAttributeString(TILE_COORDS, getIntVectorSaveString(tileCoords));
-    saveString += getAttributeString(EXIT_ZONE_ID, exitZoneId);
-    saveString += getAttributeString(EXIT_TILE_COORDS, getIntVectorSaveString(exitTileCoords));
-    saveString += END_OBJECT_IDENTIFIER + std::to_string(ZONE_PORTAL) + "\n";
+    saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_PORTAL) + "\n";
+    saveString += getAttributeString(getUniqueId(), ZONE_PORTAL_ID, id);
+    saveString += getAttributeString(getUniqueId(), TILE_COORDS, getIntVectorSaveString(tileCoords));
+    saveString += getAttributeString(getUniqueId(), EXIT_ZONE_ID, exitZoneId);
+    saveString += getAttributeString(getUniqueId(), EXIT_TILE_COORDS, getIntVectorSaveString(exitTileCoords));
+    saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_PORTAL) + "\n";
 
     return saveString;
 }

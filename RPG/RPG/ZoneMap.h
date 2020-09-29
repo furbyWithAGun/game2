@@ -20,6 +20,7 @@ class ZoneMap {
         //constructors
         ZoneMap(int newId, std::vector< std::vector<int> > tiles);
         ZoneMap(int newId);
+        ZoneMap(SaveObject saveObject);
         ZoneMap();
 
         //methods
@@ -29,5 +30,6 @@ class ZoneMap {
     private:
         //methods
         std::string getPortalVectorSaveString(std::vector<ZonePortal> vector);
+        std::vector<ZonePortal> getPortalVectorFromSaveString(std::string saveString);
 };
 

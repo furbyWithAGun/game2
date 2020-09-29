@@ -12,7 +12,9 @@ const double LEFT_MENU_SIZE = 0.1;
 
 
 RpgGameEngine::RpgGameEngine(std::string title, int width, int height) : BaseGameEngine( title, width, height) {
-    
+    gameState = 0;
+    tileHeight = TILE_HEIGHT;
+    tileWidth = TILE_WIDTH;
 }
 
 bool RpgGameEngine::addTile(int key, MapTile tile) {
@@ -59,7 +61,7 @@ void RpgGameEngine::setUpGame() {
 
     createTiles();
     
-    ZoneMap zoneOne = ZoneMap(0, {
+    /*ZoneMap zoneOne = ZoneMap(0, {
         {WATER, WATER, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
         {WATER, GRASS, TREE, TREE, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
         {WATER, GRASS, TREE, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
@@ -81,9 +83,21 @@ void RpgGameEngine::setUpGame() {
         {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
         {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
         });
-    currentZone = zoneOne;
+    zoneOne.portals.push_back(ZonePortal(0, { 1,1 }, 1, {1,1}));
+    currentZone = zoneOne;*/
 
+    SaveFile firstZoneFile = SaveFile("zoneOne.txt");
+    //firstZoneFile.addSaveObjectString(engine.getSaveString());
+    //firstZoneFile.saveFile();
+    firstZoneFile.loadFile();
+    currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
     
+}
+
+std::string RpgGameEngine::getSaveString() {
+    std::string returnString = "";
+    returnString += currentZone.toSaveString();
+    return returnString;
 }
 
 void RpgGameEngine::handleInput() {
@@ -102,7 +116,6 @@ void RpgGameEngine::handleInput() {
                 int k [2];
                 SDL_GetMouseState(&x, &y);
                 getTileIndexFromScreenCoords(x, y, k);
-                printf("%i %i \n", k[0], k[1]);
                 break;
             default:
                 break;
@@ -139,6 +152,7 @@ void RpgGameEngine::drawMenu() {
     SDL_RenderFillRect(getMainRenderer(), &fillRect);
 
     if (gameState == LEVEL_DESIGN) {
+        // draw all the different available map tiles
         for (int i = 0; i < mapTiles.size(); i++)
         {
             renderTexture(textures[mapTiles[i].textureKey], tileWidth / 2 + tileWidth * (i % 2) + tileWidth * (i % 2), tileHeight * floor(i / 2) + tileHeight * floor(i / 2));

@@ -85,7 +85,6 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
     //Initialize renderer color
     SDL_SetRenderDrawColor(newRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_GetRendererOutputSize(newRenderer, &screenWidth, &screenHeight);
-    printf("width: %i height: %i \n%s", windowWidth, windowHeight, SDL_GetError());
 
     return newRenderer;
 }

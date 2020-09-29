@@ -2,25 +2,47 @@
 #include <stdio.h>
 #include <vector>
 
+int uniqueId = 0;
+
+
 SaveAttribute::SaveAttribute() {
     attributeType = -1;
+    attributeId = -1;
     rawString = "";
     valueString = "";
 }
 
 SaveAttribute::SaveAttribute(std::string newRawString) {
     rawString = newRawString;
+    attributeId = getAttributeId();
     attributeType = getAttributeType();
     valueString = getAttributeValueString();
 }
 
-int SaveAttribute::getAttributeType() {
-    return std::stoi(getSubstrBeginEndWithExclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER, "\n"));
+int SaveAttribute::getAttributeId() {
+    return std::stoi(getSubstrBeginEndWithExclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER, "-"));
 }
 
+
+int SaveAttribute::getAttributeType() {
+    return std::stoi(getSubstrBeginEndWithExclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(attributeId) + "-", "\n"));
+}
+
+//this method assumes attributeType and attributeId have already been correctly assigned
+std::string SaveAttribute::getAttributeHeaderLine() {
+    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(attributeId) + "-" + std::to_string(attributeType);
+}
+
+//this method assumes attributeType and attributeId have already been correctly assigned
+std::string SaveAttribute::getAttributeFooterLine() {
+    return END_ATTRIBUTE_IDENTIFIER + std::to_string(attributeId) + "-" + std::to_string(attributeType);
+}
+
+//this method assumes attributeType and attributeID have already been correctly assigned
 std::string SaveAttribute::getAttributeValueString() {
-    //this method assumes attributeType attributed as already been correctly assigned
-    return getSubstrBeginEndWithExclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(attributeType) + "\n", END_ATTRIBUTE_IDENTIFIER);
+    std::string tempValueString = getSubstrBeginEndWithExclusive(rawString, getAttributeHeaderLine() + "\n", getAttributeFooterLine() + "\n");
+    int size = tempValueString.size();
+    return tempValueString.substr(0, size - 1);
 }
 
 //utility functions
@@ -228,10 +250,15 @@ std::string getSubstrBeginEndWithExclusive(std::string string, std::string begin
     return returnString;
 }
 
-std::string getAttributeString(int id, std::string value) {
-    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n" + value + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n";
+std::string getAttributeString(int id, int type, std::string value) {
+    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n" + value + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n";
 }
 
-std::string getAttributeString(int id,int value) {
-    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n" + std::to_string(value) + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n";
+std::string getAttributeString(int id,int type,int value) {
+    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n" + std::to_string(value) + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n";
+}
+
+int getUniqueId() {
+    uniqueId += 1;
+    return uniqueId;
 }
