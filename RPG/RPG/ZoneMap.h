@@ -5,12 +5,12 @@
 #include <string>
 
 enum ZONE_MAP_ATTRIBUTES{
-    ID,
+    ZONE_MAP_ID,
     TILE_MAP,
     PORTALS
 };
 
-class ZoneMap{
+class ZoneMap {
     public:
         //attributes
         int id;
@@ -28,6 +28,6 @@ class ZoneMap{
 
     private:
         //methods
-        std::string getPortalVectorSaveString(std::vector<ZonePortal> vector)
+        std::string getPortalVectorSaveString(std::vector<ZonePortal> vector);
 };
 

@@ -4,7 +4,7 @@
 #include "SaveFile.h"
 
 enum ZONE_PORTAL_ATTRIBUTES {
-    ID,
+    ZONE_PORTAL_ID,
     TILE_COORDS,
     EXIT_ZONE_ID,
     EXIT_TILE_COORDS

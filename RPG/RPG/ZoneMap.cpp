@@ -36,7 +36,7 @@ std::string ZoneMap::toSaveString() {
 	std::string saveString;
 
 	saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(ZONE_MAP) + "\n";
-	saveString += getAttributeString(ID, id);
+	saveString += getAttributeString(ZONE_MAP_ID, id);
 	saveString += getAttributeString(TILE_MAP, get2DIntVectorSaveString(tileMap));
 	saveString += getAttributeString(PORTALS, getPortalVectorSaveString(portals));
 	saveString += END_OBJECT_IDENTIFIER + std::to_string(ZONE_MAP) + "\n";

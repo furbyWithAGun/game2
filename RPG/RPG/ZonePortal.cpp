@@ -5,7 +5,7 @@
 #include "SaveFile.h"
 
 ZonePortal::ZonePortal() {
-
+    id = -1;
 }
 
 ZonePortal::ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords) {
@@ -16,14 +16,14 @@ ZonePortal::ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZo
 }
 
 ZonePortal::ZonePortal(SaveObject saveObject) {
-
+    id = -1;
 }
 
 std::string ZonePortal::toSaveString() {
     std::string saveString;
 
     saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(ZONE_PORTAL) + "\n";
-    saveString += getAttributeString(ID, id);
+    saveString += getAttributeString(ZONE_PORTAL_ID, id);
     saveString += getAttributeString(TILE_COORDS, getIntVectorSaveString(tileCoords));
     saveString += getAttributeString(EXIT_ZONE_ID, exitZoneId);
     saveString += getAttributeString(EXIT_TILE_COORDS, getIntVectorSaveString(exitTileCoords));
