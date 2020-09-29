@@ -3,7 +3,7 @@
 #include <vector>
 
 const std::string BEGIN_ATTRIBUTE_IDENTIFIER = "BEGIN ATTRIBUTE ";
-const std::string END_ATTRIBUTE_IDENTIFIER = "END ATTRIBUTE\n";
+const std::string END_ATTRIBUTE_IDENTIFIER = "END ATTRIBUTE ";
 
 class SaveAttribute
 {

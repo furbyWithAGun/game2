@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "SaveFile.h"
 
-enum ATTRIBUTES {
+enum ZONE_PORTAL_ATTRIBUTES {
     ID,
     TILE_COORDS,
     EXIT_ZONE_ID,
@@ -21,7 +22,7 @@ class ZonePortal
         //constructors
         ZonePortal();
         ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
-        ZonePortal(std::string saveString);
+        ZonePortal(SaveObject saveObject);
 
         //methods
         std::string toSaveString();

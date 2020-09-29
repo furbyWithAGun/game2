@@ -4,7 +4,7 @@
 #include <vector>
 
 const std::string BEGIN_OBJECT_IDENTIFIER = "BEGIN OBJECT ";
-const std::string END_OBJECT_IDENTIFIER = "END OBJECT\n";
+const std::string END_OBJECT_IDENTIFIER = "END OBJECT ";
 
 class SaveObject
 {

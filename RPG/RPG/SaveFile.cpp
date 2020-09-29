@@ -61,7 +61,8 @@ void SaveFile::addSaveObjectString(std::string saveString) {
 
 //private methods
 std::string SaveFile::getNextSaveObjectString() {
-    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER, END_OBJECT_IDENTIFIER, retrievedObjects);
+    std::string nextObjectId = getSubstrBeginEndWithExclusive(rawString, BEGIN_OBJECT_IDENTIFIER, "\n", retrievedObjects);
+    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER + nextObjectId, END_OBJECT_IDENTIFIER + nextObjectId, retrievedObjects);
 }
 
 SaveObject SaveFile::getNextSaveObject() {

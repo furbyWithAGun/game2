@@ -34,7 +34,14 @@ SaveAttribute SaveObject::getNextSaveAttribute() {
 }
 
 std::string SaveObject::getNextSaveAttributeString() {
-    return getSubstrBeginEndWithInclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER , END_ATTRIBUTE_IDENTIFIER, retrievedAttributes);
+    std::string nextAttributeId = getSubstrBeginEndWithExclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER, "\n", retrievedAttributes);
+    if (nextAttributeId.compare("") != 0)
+    {
+        return getSubstrBeginEndWithInclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER + nextAttributeId, END_ATTRIBUTE_IDENTIFIER + nextAttributeId);
+    }
+    else {
+        return "";
+    }  
 }
 
 void SaveObject::populateAllAttributes() {

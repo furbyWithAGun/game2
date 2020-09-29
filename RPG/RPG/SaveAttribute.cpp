@@ -148,7 +148,7 @@ std::string getSubstrBeginEndWithInclusive(std::string string, std::string begin
             index1 = i;
             index1Found = true;
         }
-        else if (string.substr(i, endString.size()).compare(endString) == 0) {
+        else if (string.substr(i, endString.size()).compare(endString) == 0 && index1Found) {
             index2 = i + endString.size();
             index2Found = true;
         }
@@ -185,7 +185,7 @@ std::string getSubstrBeginEndWithExclusive(std::string string, std::string begin
             index1 = i + beginString.size();
             index1Found = true;
         }
-        else if (string.substr(i, endString.size()).compare(endString) == 0) {
+        else if (string.substr(i, endString.size()).compare(endString) == 0 && index1Found) {
             index2 = i;
             index2Found = true;
         }
@@ -212,9 +212,9 @@ std::string getSubstrBeginEndWithExclusive(std::string string, std::string begin
 }
 
 std::string getAttributeString(int id, std::string value) {
-    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n" + value + "\n" + END_ATTRIBUTE_IDENTIFIER;
+    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n" + value + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n";
 }
 
 std::string getAttributeString(int id,int value) {
-    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n" + std::to_string(value) + "\n" + END_ATTRIBUTE_IDENTIFIER;
+    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n" + std::to_string(value) + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "\n";
 }
