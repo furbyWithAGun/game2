@@ -14,6 +14,7 @@ class SaveFile
         std::string filePath;
         std::string rawString;
         std::vector<SaveObject> objects;
+        std::string::size_type index;
 
         //constructors
         SaveFile();
@@ -25,6 +26,7 @@ class SaveFile
         void loadFile();
         void addSaveObjectString(std::string saveString);
 
+        void populateAllObjects();
 
     private:
         //attributes
@@ -32,7 +34,7 @@ class SaveFile
 
         //methods
         SaveObject getNextSaveObject();
-        void populateAllObjects();
+        
         std::string getNextSaveObjectString();
         
 };

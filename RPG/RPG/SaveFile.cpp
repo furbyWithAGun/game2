@@ -32,18 +32,21 @@ SaveFile::SaveFile() {
     rawString = "";
     filePath = "";
     retrievedObjects = 0;
+    index = 0;
 }
 
 SaveFile::SaveFile(std::string newFilePath) {
     filePath = newFilePath;
     rawString = "";
     retrievedObjects = 0;
+    index = 0;
 }
 
 
 //public methods
 void SaveFile::reset() {
     retrievedObjects = 0;
+    index = 0;
 }
 
 void SaveFile::saveFile() {
@@ -61,8 +64,9 @@ void SaveFile::addSaveObjectString(std::string saveString) {
 
 //private methods
 std::string SaveFile::getNextSaveObjectString() {
-    std::string nextObjectId = getSubstrBeginEndWithExclusive(rawString, BEGIN_OBJECT_IDENTIFIER, "\n", retrievedObjects);
-    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER + nextObjectId, END_OBJECT_IDENTIFIER + nextObjectId, retrievedObjects);
+    std::string subString = rawString.substr(index);
+    std::string nextObjectId = getSubstrBeginEndWithExclusive(subString, BEGIN_OBJECT_IDENTIFIER, "\n");
+    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER + nextObjectId, END_OBJECT_IDENTIFIER + nextObjectId, 0, &index);
 }
 
 SaveObject SaveFile::getNextSaveObject() {

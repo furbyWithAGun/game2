@@ -32,8 +32,8 @@ std::string get2DIntVectorSaveString(std::vector<std::vector<int>> vector);
 std::vector<std::vector<int>> get2dIntVectorFromSaveString(std::string saveString);
 std::string getIntVectorSaveString(std::vector<int> vector);
 std::vector<int> getIntVectorFromSaveString(std::string saveString);
-std::string getSubstrBeginEndWithInclusive(std::string string, std::string beginString, std::string endString, int skip = 0);
-std::string getSubstrBeginEndWithExclusive(std::string string, std::string beginString, std::string endString, int skip = 0);
+std::string getSubstrBeginEndWithInclusive(std::string string, std::string beginString, std::string endString, int skip = 0, std::string::size_type* endIndex = NULL);
+std::string getSubstrBeginEndWithExclusive(std::string string, std::string beginString, std::string endString, int skip = 0, std::string::size_type* endIndex = NULL);
 std::string getAttributeString(int id, std::string value);
 std::string getAttributeString(int id, int value);
 

@@ -137,8 +137,12 @@ std::vector<int> getIntVectorFromSaveString(std::string saveString) {
     return returnVector;
 }
 
-std::string getSubstrBeginEndWithInclusive(std::string string, std::string beginString, std::string endString, int skip) {
+std::string getSubstrBeginEndWithInclusive(std::string string, std::string beginString, std::string endString, int skip, std::string::size_type * endIndex) {
     std::string::size_type index1 = 0, index2 = 0;
+    if (endIndex != NULL) {
+        index1 = *endIndex;
+        index2 = *endIndex;
+    }
     std::string returnString = "";
     int skipped = 0;
     bool index1Found = false, index2Found = false;
@@ -171,11 +175,19 @@ std::string getSubstrBeginEndWithInclusive(std::string string, std::string begin
     else {
         returnString = "";
     }
+    if (endIndex != NULL)
+    {
+        *endIndex = index2;
+    }
     return returnString;
 }
 
-std::string getSubstrBeginEndWithExclusive(std::string string, std::string beginString, std::string endString, int skip) {
+std::string getSubstrBeginEndWithExclusive(std::string string, std::string beginString, std::string endString, int skip, std::string::size_type* endIndex) {
     std::string::size_type index1 = 0, index2 = 0;
+    if (endIndex != NULL) {
+        index1 = *endIndex;
+        index2 = *endIndex;
+    }
     std::string returnString = "";
     int skipped = 0;
     bool index1Found = false, index2Found = false;
@@ -207,6 +219,11 @@ std::string getSubstrBeginEndWithExclusive(std::string string, std::string begin
     }
     else {
         returnString = "";
+    }
+
+    if (endIndex != NULL)
+    {
+        *endIndex = index2;
     }
     return returnString;
 }
