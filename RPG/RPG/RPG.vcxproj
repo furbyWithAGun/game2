@@ -148,12 +148,16 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="BaseGameEngine.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="MenuButton.cpp" />
+    <ClCompile Include="RpgGameButtons.cpp" />
     <ClCompile Include="RpgGameEngine.cpp" />
+    <ClCompile Include="RpgGameMenus.cpp" />
     <ClCompile Include="SaveAttribute.cpp" />
     <ClCompile Include="SaveObject.cpp" />
     <ClCompile Include="SaveFile.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
@@ -161,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h" />
+    <ClInclude Include="GameMenu.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="RpgGameEngine.h" />

@@ -1,8 +1,7 @@
 #include "RpgGameEngine.h"
-#include "ZoneMap.h"
-#include "MapTile.h"
 #include <cmath>
-#include "MenuButton.h"
+#include "RpgGameButtons.cpp"
+#include "RpgGameMenus.cpp"
 
 //global vars
 const int TILE_HEIGHT = 50;
@@ -11,6 +10,8 @@ const int DESIRED_TILES_DOWN = 20;
 const int DESIRED_TILES_ACROSS = 38;
 const double LEFT_MENU_SIZE = 0.1;
 
+
+//methods
 RpgGameEngine::RpgGameEngine() : BaseGameEngine("", 0, 0) {
     gameState = 0;
     tileHeight = TILE_HEIGHT;
@@ -23,9 +24,7 @@ RpgGameEngine::RpgGameEngine(std::string title, int width, int height) : BaseGam
     tileWidth = TILE_WIDTH;
 }
 
-bool RpgGameEngine::addTile(int key, MapTile tile) {
-    return true;
-}
+
 
 void RpgGameEngine::loadAssets() {
     std::unordered_map<int, std::string> texturesToCreate = {
@@ -89,15 +88,18 @@ void RpgGameEngine::setUpGame() {
         {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
         {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
         });
-    zoneOne.portals.push_back(ZonePortal(0, { 1,1 }, 1, {1,1}));
-    currentZone = zoneOne;*/
+    zoneOne.portals.push_back(ZonePortal(0, { 1,1 }, 1, {1,1}));*/
 
     SaveFile firstZoneFile = SaveFile("zoneOne.txt");
     //firstZoneFile.addSaveObjectString(engine.getSaveString());
     //firstZoneFile.saveFile();
     firstZoneFile.loadFile();
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
-    
+
+    ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, screenWidth * LEFT_MENU_SIZE, screenHeight, 0, 0);
+    zoneBuildMenu->isActive = true;
+
+    menus[BUILD_MENU] = zoneBuildMenu;
 }
 
 std::string RpgGameEngine::getSaveString() {
@@ -114,6 +116,15 @@ void RpgGameEngine::handleInput() {
     //Handle events on queue
     while (SDL_PollEvent(&e) != 0)
     {
+        //pass event to all menus for handling
+        for (auto menu : menus)
+        {
+            if (menu.second->isActive)
+            {
+                menu.second->handleEvent(&e);
+            }
+        }
+
         switch (e.type)
         {
             case SDL_QUIT:
@@ -145,26 +156,17 @@ void RpgGameEngine::gameRendering() {
         }
     }
 
-    //draw menu
-    drawMenu();
+    //draw menus
+    for (auto menu : menus)
+    {
+        if (menu.second->isActive)
+        {
+            menu.second->draw();
+        }
+    }
 
     //Update screen
     SDL_RenderPresent(getMainRenderer());
-}
-
-void RpgGameEngine::drawMenu() {
-    //draw recangle on the left side of the screen
-    SDL_Rect fillRect = { 0, 0, screenWidth * LEFT_MENU_SIZE, screenHeight };
-    SDL_SetRenderDrawColor(getMainRenderer(), 0x00, 0x00, 0x00, 0xFF);
-    SDL_RenderFillRect(getMainRenderer(), &fillRect);
-
-    if (gameState == LEVEL_DESIGN) {
-        // draw all the different available map tiles
-        for (int i = 0; i < mapTiles.size(); i++)
-        {
-            renderTexture(textures[mapTiles[i].textureKey], tileWidth / 2 + tileWidth * (i % 2) + tileWidth * (i % 2), tileHeight * floor(i / 2) + tileHeight * floor(i / 2));
-        }
-    }
 }
 
 void RpgGameEngine::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]) {
@@ -172,17 +174,3 @@ void RpgGameEngine::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2
     tileIndices[1] =  floor(y / tileHeight);
 }
 
-class MapBuilderTileButton : public MenuButton {
-    public:
-        //attributes
-        RpgGameEngine * engine;
-
-        //constructors
-        MapBuilderTileButton() : MenuButton() {
-            engine = NULL;
-       }
-
-        MapBuilderTileButton(Texture spriteTexture, RpgGameEngine * gameEninge) : MenuButton(spriteTexture, (BaseGameEngine *) gameEninge) {
-            engine = gameEninge;
-        }
-};

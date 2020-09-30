@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseGameEngine.h"
 #include "ZoneMap.h"
-#include "MapTile.h"
+#include "GameMenu.h"
 
 enum GAME_STATES {
     MAIN_MENU,
@@ -24,12 +24,20 @@ enum CLASS_IDS{
     ZONE_MAP
 };
 
+enum MENUS {
+    BUILD_MENU
+};
+
 class RpgGameEngine: public BaseGameEngine
 {
     public:
         //attributes
         std::unordered_map<int, MapTile> mapTiles;
         int gameState;
+        std::unordered_map<int, GameMenu*> menus;
+        ZoneMap currentZone;
+        int tileHeight;
+        int tileWidth;
 
         //contructor
         RpgGameEngine();
@@ -41,16 +49,12 @@ class RpgGameEngine: public BaseGameEngine
         void handleInput() override;
         void gameLogic() override;
         void gameRendering() override;
-        bool addTile(int key, MapTile tile);
         void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
         std::string getSaveString();
 
     private:
         //attributes
-        ZoneMap currentZone;
-        int tileHeight;
-        int tileWidth;
-
+        
         //methods
         void drawMenu();
         void createTiles();

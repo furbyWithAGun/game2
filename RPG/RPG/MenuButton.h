@@ -1,7 +1,8 @@
 #pragma once
 #include "Sprite.h"
+#include "BaseGameEngine.h"
 
-class BaseGameEngine;
+//class BaseGameEngine;
 
 class MenuButton: public Sprite
 {
@@ -13,9 +14,10 @@ class MenuButton: public Sprite
         MenuButton();
         MenuButton(Texture spriteTexture, BaseGameEngine * gameEngine);
 
-        //methods
-        void onClick();
-        void draw();
+        //destructor
+        //~MenuButton();
 
+        //methods
+        virtual void onClick() {};
 };
 
