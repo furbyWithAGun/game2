@@ -10,9 +10,10 @@ class Sprite
 
         //constructor
         Sprite(Texture spriteTexture);
+        Sprite();
 
         //deconstructor
-        ~Sprite();
+        //~Sprite();
 
         //methods
         bool pointCollision(int x, int y);

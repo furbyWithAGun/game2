@@ -32,6 +32,7 @@ class RpgGameEngine: public BaseGameEngine
         int gameState;
 
         //contructor
+        RpgGameEngine();
         RpgGameEngine(std::string title, int width, int height);
 
         //methods

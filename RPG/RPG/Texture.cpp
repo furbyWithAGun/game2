@@ -6,8 +6,12 @@ Texture::Texture(std::string path) {
     width = 0;
 }
 
-Texture::Texture() {
 
+Texture::Texture() {
+    filePath = "";
+    height = 0;
+    width = 0;
+    texture = NULL;
 }
 
 Texture::~Texture() {
@@ -20,9 +24,10 @@ void Texture::free() {
     {
         //SDL_DestroyTexture(texture);
         texture = NULL;
-        width = 0;
-        height = 0;
     }
+    width = 0;
+    height = 0;
+    filePath = "";
 }
 
 bool Texture::resize(int newHeight, int newWidth) {

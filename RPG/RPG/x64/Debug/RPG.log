@@ -1,3 +1,8 @@
-﻿  BaseGameEngine.cpp
-D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(215,28): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  RpgGameEngine.cpp
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(144,101): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(157,45): warning C4838: conversion from 'double' to 'int' requires a narrowing conversion
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(157,45): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(165,146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(171,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(172,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe

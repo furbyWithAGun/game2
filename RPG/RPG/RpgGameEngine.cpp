@@ -2,6 +2,7 @@
 #include "ZoneMap.h"
 #include "MapTile.h"
 #include <cmath>
+#include "MenuButton.h"
 
 //global vars
 const int TILE_HEIGHT = 50;
@@ -10,6 +11,11 @@ const int DESIRED_TILES_DOWN = 20;
 const int DESIRED_TILES_ACROSS = 38;
 const double LEFT_MENU_SIZE = 0.1;
 
+RpgGameEngine::RpgGameEngine() : BaseGameEngine("", 0, 0) {
+    gameState = 0;
+    tileHeight = TILE_HEIGHT;
+    tileWidth = TILE_WIDTH;
+}
 
 RpgGameEngine::RpgGameEngine(std::string title, int width, int height) : BaseGameEngine( title, width, height) {
     gameState = 0;
@@ -102,6 +108,8 @@ std::string RpgGameEngine::getSaveString() {
 
 void RpgGameEngine::handleInput() {
     SDL_Event e;
+    int x, y;
+    int k[2];
 
     //Handle events on queue
     while (SDL_PollEvent(&e) != 0)
@@ -112,8 +120,6 @@ void RpgGameEngine::handleInput() {
                 gameRunning = false;
                 break;
             case SDL_MOUSEBUTTONDOWN:
-                int x, y;
-                int k [2];
                 SDL_GetMouseState(&x, &y);
                 getTileIndexFromScreenCoords(x, y, k);
                 break;
@@ -147,6 +153,7 @@ void RpgGameEngine::gameRendering() {
 }
 
 void RpgGameEngine::drawMenu() {
+    //draw recangle on the left side of the screen
     SDL_Rect fillRect = { 0, 0, screenWidth * LEFT_MENU_SIZE, screenHeight };
     SDL_SetRenderDrawColor(getMainRenderer(), 0x00, 0x00, 0x00, 0xFF);
     SDL_RenderFillRect(getMainRenderer(), &fillRect);
@@ -164,3 +171,18 @@ void RpgGameEngine::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2
     tileIndices[0] = floor(((x - screenWidth * LEFT_MENU_SIZE)) / tileWidth);
     tileIndices[1] =  floor(y / tileHeight);
 }
+
+class MapBuilderTileButton : public MenuButton {
+    public:
+        //attributes
+        RpgGameEngine * engine;
+
+        //constructors
+        MapBuilderTileButton() : MenuButton() {
+            engine = NULL;
+       }
+
+        MapBuilderTileButton(Texture spriteTexture, RpgGameEngine * gameEninge) : MenuButton(spriteTexture, (BaseGameEngine *) gameEninge) {
+            engine = gameEninge;
+        }
+};
