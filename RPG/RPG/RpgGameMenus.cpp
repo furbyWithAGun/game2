@@ -13,6 +13,27 @@ class ZoneBuilderMenu : public GameMenu {
             buildButtons();
         }
 
+        //methods
+        void handleEvent(SDL_Event* e) {
+            switch (e->type)
+            {
+            case SDL_MOUSEBUTTONDOWN:
+                switch (e->button.button)
+                {
+                case SDL_BUTTON_LEFT:
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    engine->placingTile = false;
+                    break;
+                default:
+                    break;
+                }
+            default:
+                break;
+            }
+            GameMenu::handleEvent(e);
+        }
+
     private:
         //attributes
         RpgGameEngine* engine;

@@ -16,6 +16,7 @@ enum TEXTURE_NAMES
     GRASS,
     TREE,
     WATER,
+    MOUNTAIN,
     NUM_TEXTURES
 };
 
@@ -38,6 +39,12 @@ class RpgGameEngine: public BaseGameEngine
         ZoneMap currentZone;
         int tileHeight;
         int tileWidth;
+        bool placingTile;
+        MapTile* tileBeingPlaced;
+        int mainCanvasStartX;
+        bool leftButtonClicked;
+        int xOffset;
+        int yOffset;
 
         //contructor
         RpgGameEngine();

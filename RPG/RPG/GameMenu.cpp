@@ -47,7 +47,10 @@ void GameMenu::handleEvent(SDL_Event * e) {
     //handle event based on type
     switch (e->type)
     {
-        case SDL_MOUSEBUTTONDOWN:
+    case SDL_MOUSEBUTTONDOWN:
+        switch (e->button.button) 
+        {
+        case SDL_BUTTON_LEFT:
             int x, y;
             SDL_GetMouseState(&x, &y);
             for (size_t i = 0; i < buttons.size(); i++)
@@ -56,9 +59,11 @@ void GameMenu::handleEvent(SDL_Event * e) {
                     buttons[i]->onClick();
                 }
             }
-            break;
         default:
             break;
+        }
+    default:
+        break;
     }
 }
 

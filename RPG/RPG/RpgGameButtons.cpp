@@ -25,6 +25,7 @@ class MapBuilderTileButton : public MenuButton {
 
         //methods
         void onClick() {
-            printf("clicked");
+            engine->placingTile = true;
+            engine->tileBeingPlaced = tile;
         }
 };
