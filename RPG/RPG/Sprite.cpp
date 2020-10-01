@@ -22,5 +22,5 @@ bool Sprite::pointCollision(int x, int y) {
 }
 
 void Sprite::draw() {
-    engine->renderTexture(texture, xpos, ypos);
+    engine->renderTexture(texture, xpos, ypos, width, height);
 }

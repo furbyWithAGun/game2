@@ -44,8 +44,8 @@ class ZoneBuilderMenu : public GameMenu {
             {
                 MapBuilderTileButton* button;
                 button = new MapBuilderTileButton(&engine->mapTiles[i], engine);
-                button->xpos = engine->tileWidth / 2 + engine->tileWidth * (i % 2) + engine->tileWidth * (i % 2);
-                button->ypos = engine->tileHeight * floor(i / 2) + engine->tileHeight * floor(i / 2);
+                button->xpos = button->width / 2 + button->width * (i % 2) + button->width * (i % 2);
+                button->ypos = (button->height * floor(i / 2) + button->height * floor(i / 2)) + engine->screenHeight * 0.05;                
                 buttons.push_back(button);
             }
         }

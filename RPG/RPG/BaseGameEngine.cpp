@@ -232,6 +232,12 @@ void BaseGameEngine::renderTexture(Texture texture, int x, int y) {
     SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
 }
 
+void BaseGameEngine::renderTexture(Texture texture, int x, int y, int width, int height) {
+    SDL_Rect renderQuad = { x, y, width, height };
+
+    SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
+}
+
 //this method will be ovverridden in child class
 void BaseGameEngine::loadAssets() {
 

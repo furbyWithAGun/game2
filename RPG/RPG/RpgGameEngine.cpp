@@ -6,8 +6,8 @@
 //global vars
 const int TILE_HEIGHT = 50;
 const int TILE_WIDTH = 50;
-const int DESIRED_TILES_DOWN = 20;
-const int DESIRED_TILES_ACROSS = 38;
+const int DESIRED_TILES_DOWN = 10;
+const int DESIRED_TILES_ACROSS = 19;
 const double LEFT_MENU_SIZE = 0.1;
 
 
@@ -166,7 +166,7 @@ void RpgGameEngine::handleInput() {
                     }
                     if (placingTile)
                     {
-                        if (mainCanvasStartX <= x)
+                        if (coordsAreOnDisplayedMapTile(x, y))
                         {
                             getTileIndexFromScreenCoords(x, y, k);
                             currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
@@ -191,7 +191,7 @@ void RpgGameEngine::handleInput() {
                 SDL_GetMouseState(&x, &y);
                 if (placingTile)
                 {
-                    if (mainCanvasStartX <= x && leftButtonClicked)
+                    if (coordsAreOnDisplayedMapTile(x, y) && leftButtonClicked)
                     {
                         getTileIndexFromScreenCoords(x, y, k);
                         currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
@@ -213,6 +213,14 @@ void RpgGameEngine::gameRendering() {
     SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(getMainRenderer());
 
+    //fill screen with water
+    for (size_t i = 0; i * tileHeight <= screenHeight + tileHeight; i++)
+    {
+        for (size_t j = 0; j * tileWidth <= screenWidth + tileWidth; j++) {
+            renderTexture(textures[WATER], ((tileWidth * j) + screenWidth * LEFT_MENU_SIZE) + (xOffset % tileWidth) - tileWidth, tileHeight * i + (yOffset % tileHeight) - tileHeight);
+        }
+    }
+
     //draw zone
     for (int i = 0; i < currentZone.tileMap.size(); i++) {
         for (int j = 0; j < currentZone.tileMap[i].size(); j++) {
@@ -227,13 +235,7 @@ void RpgGameEngine::gameRendering() {
         int k[2];
         SDL_GetMouseState(&x, &y);
         getTileIndexFromScreenCoords(x, y, k);
-        printf("%i %i \n", x, y);
-        printf("%i %i \n", xOffset, yOffset);
-        printf("%i %i \n", k[0], k[1]);
-        int display1 = LEFT_MENU_SIZE * screenWidth + xOffset;
-        int display2 = (currentZone.tileMap[0].size() * tileWidth) + xOffset + (LEFT_MENU_SIZE * screenWidth);
-        printf("%i %i\n", display1, display2);
-        if ((mainCanvasStartX <= x) && (LEFT_MENU_SIZE * screenWidth + xOffset <= x) && (currentZone.tileMap[0].size() * tileWidth + xOffset + LEFT_MENU_SIZE * screenWidth >= x) && (yOffset <= y) && (currentZone.tileMap.size() * tileWidth + yOffset >= y)) {
+        if(coordsAreOnDisplayedMapTile(x, y)){
             renderTexture(textures[tileBeingPlaced->textureKey], (k[0] * tileWidth + LEFT_MENU_SIZE * screenWidth + xOffset), (k[1] * tileHeight) + yOffset);
         }
     }
@@ -256,5 +258,11 @@ void RpgGameEngine::gameRendering() {
 void RpgGameEngine::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]) {
     tileIndices[0] = floor(((x - xOffset - screenWidth * LEFT_MENU_SIZE)) / tileWidth);
     tileIndices[1] =  floor((y - yOffset) / tileHeight);
+}
+
+bool RpgGameEngine::coordsAreOnDisplayedMapTile(int x, int y) {
+    int k[2];
+    getTileIndexFromScreenCoords(x, y, k);
+    return ((mainCanvasStartX <= x) && (k[0] >= 0) && (k[0] < currentZone.tileMap[0].size()) && (k[1] >= 0) && (k[1] < currentZone.tileMap.size()));
 }
 

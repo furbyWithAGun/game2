@@ -1,11 +1,2 @@
-﻿  RpgGameEngine.cpp
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(48,66): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(31,47): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(110,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(219,132): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(233,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(234,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(237,115): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(257,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(258,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  RpgGameButtons.cpp
+  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe

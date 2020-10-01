@@ -35,6 +35,7 @@ class BaseGameEngine
         SDL_Texture* loadTextureImageFromFile(std::string path);
         SDL_Texture* loadTextureFromText(std::string text);
         void renderTexture(Texture texture, int x, int y);
+        void renderTexture(Texture texture, int x, int y, int width, int height);
         
         bool loadTextureImageFromFile(Texture* texture);
 
