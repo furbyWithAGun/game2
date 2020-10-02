@@ -52,6 +52,13 @@ private:
         }
 
         SaveMapBuilderButton* button = new SaveMapBuilderButton(engine->textures[BUTTON_BACKGROUND], engine);
+        button->xpos = width * 0.2;
+        button->ypos = height * 0.7;
         button->setText("Save Map");
+        button->textTexture.height = button->textTexture.height * 0.75;
+        button->textTexture.width = button->textTexture.width * 0.75;
+        button->textXoffset = button->textTexture.width * 0.09;
+        button->textYoffset = button->textTexture.height * 0.11;
+        buttons.push_back(button);
     }
 };

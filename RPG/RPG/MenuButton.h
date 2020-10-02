@@ -11,6 +11,7 @@ class MenuButton: public Sprite
         BaseGameEngine * engine;
         Texture textTexture;
         std::string text;
+        int textXoffset, textYoffset;
 
         //constructors
         MenuButton();
@@ -23,5 +24,6 @@ class MenuButton: public Sprite
         virtual void onClick() {};
         void draw();
         void setText(std::string newText);
+        void setPos(int x, int y);
 };
 

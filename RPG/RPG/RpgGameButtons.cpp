@@ -48,4 +48,10 @@ class SaveMapBuilderButton : public MenuButton {
         SaveMapBuilderButton(Texture buttonTexture, RpgGameEngine* gameEngine) : MenuButton(buttonTexture, (BaseGameEngine*)gameEngine) {
             engine = gameEngine;
         }
+
+        void onClick() {
+            SaveFile firstZoneFile = SaveFile("zoneOne.txt");
+            firstZoneFile.addSaveObjectString(engine->currentZone.toSaveString());
+            firstZoneFile.saveFile();
+        }
 };
