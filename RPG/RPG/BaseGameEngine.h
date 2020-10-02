@@ -14,6 +14,8 @@ class BaseGameEngine
         std::unordered_map<int, Texture> textures;
         int screenHeight;
         int screenWidth;
+        TTF_Font* mainFont;
+        SDL_Color mainFontColor;
 
         //constructor
         BaseGameEngine(std::string title, int width, int height);
@@ -36,7 +38,6 @@ class BaseGameEngine
         SDL_Texture* loadTextureFromText(std::string text);
         void renderTexture(Texture texture, int x, int y);
         void renderTexture(Texture texture, int x, int y, int width, int height);
-        
         bool loadTextureImageFromFile(Texture* texture);
 
     protected:
@@ -46,7 +47,6 @@ class BaseGameEngine
         //attributes
         int windowWidth;
         int windowHeight;
-        TTF_Font* mainFont;
         std::string windowTitle;
         SDL_Renderer* mainRenderer;
         SDL_Window* mainWindow;

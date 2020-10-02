@@ -6,9 +6,10 @@
 //global vars
 const int TILE_HEIGHT = 50;
 const int TILE_WIDTH = 50;
-const int DESIRED_TILES_DOWN = 10;
-const int DESIRED_TILES_ACROSS = 19;
+const int DESIRED_TILES_DOWN = 20;
+const int DESIRED_TILES_ACROSS = 38;
 const double LEFT_MENU_SIZE = 0.1;
+const int DEFAULT_FONT_SIZE = 28;
 
 
 //methods
@@ -16,9 +17,9 @@ RpgGameEngine::RpgGameEngine() : BaseGameEngine("", 0, 0) {
     gameState = 0;
     tileHeight = TILE_HEIGHT;
     tileWidth = TILE_WIDTH;
-    bool placingTile = false;
-    MapTile* tileBeingPlaced = NULL;
-    bool leftButtonClicked = false;
+    placingTile = false;
+    tileBeingPlaced = NULL;
+    leftButtonClicked = false;
     xOffset = yOffset = 0;
 }
 
@@ -26,17 +27,19 @@ RpgGameEngine::RpgGameEngine(std::string title, int width, int height) : BaseGam
     gameState = 0;
     tileHeight = TILE_HEIGHT;
     tileWidth = TILE_WIDTH;
-    bool placingTile = false;
-    MapTile* tileBeingPlaced = NULL;
+    placingTile = false;
+    tileBeingPlaced = NULL;
     mainCanvasStartX = width * LEFT_MENU_SIZE + 1;
-    bool leftButtonClicked = false;
+    leftButtonClicked = false;
     xOffset = yOffset = 0;
 }
 
 
 
 void RpgGameEngine::loadAssets() {
+    //load textures
     std::unordered_map<int, std::string> texturesToCreate = {
+        {BUTTON_BACKGROUND, "images/buttonBackground.png"},
         {GRASS, "images/grass.png"},
         {TREE, "images/tree.png"},
         {WATER, "images/water.png"},
@@ -44,6 +47,9 @@ void RpgGameEngine::loadAssets() {
     };
 
     createMultipleTextures(texturesToCreate);
+
+    //load fonts
+    mainFont = TTF_OpenFont("fonts/OpenSans-Regular.ttf", DEFAULT_FONT_SIZE);
 }
 
 void RpgGameEngine::createTiles() {
@@ -66,8 +72,8 @@ void RpgGameEngine::createTiles() {
         tileWidth = tilesImpliedWidth;
     }
 
-    for (int i = 0; i < mapTiles.size(); i++) {
-        textures[mapTiles[i].textureKey].resize(tileHeight, tileWidth);
+    for (auto i = mapTiles.begin(); i != mapTiles.end(); i++) {
+        textures[i->second.textureKey].resize(tileHeight, tileWidth);
     }
 }
 
@@ -144,9 +150,6 @@ void RpgGameEngine::handleInput() {
     //Handle events on queue
     while (SDL_PollEvent(&e) != 0)
     {
-        //pass event to all menus for handling
-        
-
         switch (e.type)
         {
             case SDL_QUIT:

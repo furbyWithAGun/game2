@@ -34,3 +34,18 @@ class MapBuilderTileButton : public MenuButton {
             engine->tileBeingPlaced = tile;
         }
 };
+
+class SaveMapBuilderButton : public MenuButton {
+    public:
+        //attributes
+        RpgGameEngine* engine;
+
+        //constructors
+        SaveMapBuilderButton() : MenuButton() {
+            engine = NULL;
+        }
+
+        SaveMapBuilderButton(Texture buttonTexture, RpgGameEngine* gameEngine) : MenuButton(buttonTexture, (BaseGameEngine*)gameEngine) {
+            engine = gameEngine;
+        }
+};

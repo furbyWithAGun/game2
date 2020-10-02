@@ -49,6 +49,7 @@ void BaseGameEngine::free() {
     mainWindow= NULL;
     mainRenderer = NULL;
     mainFont = NULL;
+    mainFontColor = {0, 0, 0};
     
 }
 
@@ -207,6 +208,26 @@ bool BaseGameEngine::loadTextureImageFromFile(Texture* texture) {
     SDL_FreeSurface(loadedSurface);
 
     return true;
+}
+
+SDL_Texture* BaseGameEngine::loadTextureFromText(std::string text) {
+    SDL_Texture* textTexture;
+    SDL_Surface* textSurface = TTF_RenderText_Solid(mainFont, text.c_str(), mainFontColor);
+    if (textSurface == NULL)
+    {
+        printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+        return NULL;
+    }
+
+    textTexture = SDL_CreateTextureFromSurface(mainRenderer, textSurface);
+    if (textTexture == NULL)
+    {
+        printf("Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError());
+        return NULL;
+    }
+
+    SDL_FreeSurface(textSurface);
+    return textTexture;
 }
 
 int BaseGameEngine::addTexture(Texture texture) {
