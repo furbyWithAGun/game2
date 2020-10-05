@@ -7,10 +7,10 @@ class Sprite
     public:
         //attributes
         int width, height, xpos, ypos;
-        Texture texture;
+        Texture * texture;
 
         //constructor
-        Sprite(Texture spriteTexture, BaseGameEngine * gameEngine);
+        Sprite(Texture * spriteTexture, BaseGameEngine * gameEngine);
         Sprite();
 
         //deconstructor

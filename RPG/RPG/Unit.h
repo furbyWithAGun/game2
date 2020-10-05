@@ -1,6 +1,8 @@
 #pragma once
 #include "Sprite.h"
 
+//class RpgGameEngine;
+
 enum MOVEMENT {
     MOVE_UP,
     MOVE_DOWN,
@@ -10,6 +12,7 @@ enum MOVEMENT {
 
 class Unit : public Sprite
 {
+public:
     //attributes
     BaseGameEngine* engine;
     std::vector<int> tileLocation;
@@ -21,7 +24,7 @@ class Unit : public Sprite
 
     //constructors
     Unit();
-    Unit(Texture spriteTexture, BaseGameEngine* gameEngine);
+    Unit(Texture * spriteTexture, BaseGameEngine* gameEngine);
 
     //destructor
     ~Unit();

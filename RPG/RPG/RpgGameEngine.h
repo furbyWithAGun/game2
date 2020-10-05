@@ -2,6 +2,7 @@
 #include "BaseGameEngine.h"
 #include "ZoneMap.h"
 #include "GameMenu.h"
+#include "Player.h"
 
 enum GAME_STATES {
     MAIN_MENU,
@@ -48,6 +49,7 @@ class RpgGameEngine: public BaseGameEngine
         int xOffset;
         int yOffset;
         int x = 0;
+        Player player;
 
         //contructor
         RpgGameEngine();

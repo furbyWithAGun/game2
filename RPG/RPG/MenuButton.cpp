@@ -1,6 +1,6 @@
 #include "MenuButton.h"
 
-MenuButton::MenuButton(Texture spriteTexture, BaseGameEngine * gameEngine) : Sprite(spriteTexture, gameEngine){
+MenuButton::MenuButton(Texture * spriteTexture, BaseGameEngine * gameEngine) : Sprite(spriteTexture, gameEngine){
     engine = gameEngine;
     text = "";
     textXoffset = textYoffset = 0;

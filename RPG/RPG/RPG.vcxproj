@@ -151,6 +151,7 @@
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="MenuButton.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RpgGameButtons.cpp" />
     <ClCompile Include="RpgGameEngine.cpp" />
     <ClCompile Include="RpgGameMenus.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="MenuButton.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RpgGameEngine.h" />
     <ClInclude Include="SaveAttribute.h" />
     <ClInclude Include="SaveObject.h" />

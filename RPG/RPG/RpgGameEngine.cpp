@@ -111,8 +111,9 @@ void RpgGameEngine::setUpGame() {
 
     //resize player texture to match tile size
     textures[PLAYER].resize(tileHeight, tileWidth);
-
-
+    player = Player(&textures[PLAYER], this);
+    //Sprite test = Sprite(textures[PLAYER],(BaseGameEngine *) this);
+    printf("test");
 }
 
 std::string RpgGameEngine::getSaveString() {
@@ -253,7 +254,8 @@ void RpgGameEngine::gameRendering() {
         }
     }
 
-    
+    //draw player
+    player.draw();
 
     //Update screen
     SDL_RenderPresent(getMainRenderer());

@@ -8,10 +8,10 @@ D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(60,57): warning C4244: '=': conversi
 D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(61,58): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(33,47): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(107,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(223,182): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(223,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(230,132): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(263,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(264,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(268,68): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(224,182): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(224,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(231,132): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(265,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(266,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgGameEngine.cpp(270,68): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe

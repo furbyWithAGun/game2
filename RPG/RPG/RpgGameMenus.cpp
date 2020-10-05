@@ -51,7 +51,7 @@ private:
             x++;
         }
 
-        SaveMapBuilderButton* button = new SaveMapBuilderButton(engine->textures[BUTTON_BACKGROUND], engine);
+        SaveMapBuilderButton* button = new SaveMapBuilderButton(&engine->textures[BUTTON_BACKGROUND], engine);
         button->xpos = width * 0.2;
         button->ypos = height * 0.7;
         button->setText("Save Map");

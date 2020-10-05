@@ -15,7 +15,7 @@ class MenuButton: public Sprite
 
         //constructors
         MenuButton();
-        MenuButton(Texture spriteTexture, BaseGameEngine * gameEngine);
+        MenuButton(Texture * spriteTexture, BaseGameEngine * gameEngine);
 
         //destructor
         ~MenuButton();

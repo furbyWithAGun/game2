@@ -16,7 +16,7 @@ class MapBuilderTileButton : public MenuButton {
             tile = NULL;
         }
 
-        MapBuilderTileButton(MapTile* newTile, RpgGameEngine* gameEngine) : MenuButton(gameEngine->textures[newTile->textureKey], (BaseGameEngine*) gameEngine) {
+        MapBuilderTileButton(MapTile* newTile, RpgGameEngine* gameEngine) : MenuButton(&gameEngine->textures[newTile->textureKey], (BaseGameEngine*) gameEngine) {
             engine = gameEngine;
             tile = newTile;
             width = engine->screenWidth / WIDTH_ADJUSTOR;
@@ -45,7 +45,7 @@ class SaveMapBuilderButton : public MenuButton {
             engine = NULL;
         }
 
-        SaveMapBuilderButton(Texture buttonTexture, RpgGameEngine* gameEngine) : MenuButton(buttonTexture, (BaseGameEngine*)gameEngine) {
+        SaveMapBuilderButton(Texture * buttonTexture, RpgGameEngine* gameEngine) : MenuButton(buttonTexture, (BaseGameEngine*)gameEngine) {
             engine = gameEngine;
         }
 

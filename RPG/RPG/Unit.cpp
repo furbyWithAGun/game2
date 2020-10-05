@@ -1,4 +1,5 @@
 #include "Unit.h"
+#include"BaseGameEngine.h"
 
 Unit::Unit() : Sprite() {
     tileLocation = {0, 0};
@@ -10,9 +11,11 @@ Unit::Unit() : Sprite() {
     engine = NULL;
 }
 
-Unit::Unit(Texture spriteTexture, BaseGameEngine* gameEngine) : Sprite(spriteTexture, gameEngine) {
+Unit::Unit(Texture * spriteTexture, BaseGameEngine* gameEngine) : Sprite(spriteTexture, gameEngine) {
     tileLocation = {0, 0};
     tileDestination = {0, 0};
+    int coords[2];
+    //engine->coords;
     name = "";
     health = 1;
     speed = 1;
@@ -22,8 +25,8 @@ Unit::Unit(Texture spriteTexture, BaseGameEngine* gameEngine) : Sprite(spriteTex
 
 //destructor
 Unit::~Unit() {
-    delete &tileLocation;
-    delete &tileDestination;
+    //delete &tileLocation;
+    //delete &tileDestination;
     name = "";
     health = 0;
     speed = 0;
