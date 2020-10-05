@@ -12,6 +12,13 @@ MenuButton::MenuButton() : Sprite() {
     textXoffset = textYoffset = 0;
 }
 
+MenuButton::~MenuButton() {
+    engine = NULL;
+    delete &textTexture;
+    text = "";
+    textXoffset = textYoffset = 0;
+}
+
 void MenuButton::draw() {
     Sprite::draw();
     if (!textTexture.texture == NULL)

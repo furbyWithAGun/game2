@@ -17,6 +17,15 @@ Sprite::Sprite() {
     engine = NULL;
 }
 
+Sprite::~Sprite() {
+    delete &texture;
+    width = 0;
+    height = 0;
+    xpos = 0;
+    ypos = 0;
+    engine = NULL;
+}
+
 bool Sprite::pointCollision(int x, int y) {
     return (x >= xpos && x <= (xpos + width) && y >= ypos && y <= (ypos + height));
 }

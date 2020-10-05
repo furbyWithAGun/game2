@@ -18,7 +18,7 @@ class MenuButton: public Sprite
         MenuButton(Texture spriteTexture, BaseGameEngine * gameEngine);
 
         //destructor
-        //~MenuButton();
+        ~MenuButton();
 
         //methods
         virtual void onClick() {};

@@ -34,6 +34,12 @@ ZoneMap::ZoneMap() {
 	id = -1;
 }
 
+ZoneMap::~ZoneMap() {
+	id = 0;
+	tileMap.clear();
+	portals.clear();
+}
+
 void ZoneMap::assignNewTileMap(std::vector< std::vector<int> > tiles) {
 	if (tiles.size() > 0)
 	{

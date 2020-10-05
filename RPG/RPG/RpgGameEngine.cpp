@@ -6,8 +6,8 @@
 //global vars
 const int TILE_HEIGHT = 50;
 const int TILE_WIDTH = 50;
-const int DESIRED_TILES_DOWN = 20;
-const int DESIRED_TILES_ACROSS = 38;
+const int DESIRED_TILES_DOWN = 10;
+const int DESIRED_TILES_ACROSS = 19;
 const double LEFT_MENU_SIZE = 0.1;
 const int DEFAULT_FONT_SIZE = 28;
 
@@ -21,6 +21,7 @@ RpgGameEngine::RpgGameEngine() : BaseGameEngine("", 0, 0) {
     tileBeingPlaced = NULL;
     leftButtonClicked = false;
     xOffset = yOffset = 0;
+    mainCanvasStartX = 0;
 }
 
 RpgGameEngine::RpgGameEngine(std::string title, int width, int height) : BaseGameEngine( title, width, height) {
@@ -34,7 +35,22 @@ RpgGameEngine::RpgGameEngine(std::string title, int width, int height) : BaseGam
     xOffset = yOffset = 0;
 }
 
-
+RpgGameEngine::~RpgGameEngine() {
+    mapTiles.clear();
+    gameState = 0;
+    menus.clear();
+    if (&currentZone != NULL)
+    {
+        delete &currentZone;
+    }
+    tileHeight = 0;
+    tileWidth = 0;
+    tileBeingPlaced = NULL;
+    mainCanvasStartX = 0;
+    leftButtonClicked = false;
+    xOffset = 0;
+    yOffset = 0;
+}
 
 void RpgGameEngine::loadAssets() {
     //load textures
@@ -43,7 +59,8 @@ void RpgGameEngine::loadAssets() {
         {GRASS, "images/grass.png"},
         {TREE, "images/tree.png"},
         {WATER, "images/water.png"},
-        {MOUNTAIN, "images/mountain.png"}
+        {MOUNTAIN, "images/mountain.png"},
+        {PLAYER, "images/player.png"}
     };
 
     createMultipleTextures(texturesToCreate);
@@ -83,33 +100,7 @@ void RpgGameEngine::setUpGame() {
 
     createTiles();
     
-    /*ZoneMap zoneOne = ZoneMap(0, {
-        {WATER, WATER, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {WATER, GRASS, TREE, TREE, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {WATER, GRASS, TREE, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        {GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS, GRASS},
-        });
-    zoneOne.portals.push_back(ZonePortal(0, { 1,1 }, 1, {1,1}));*/
-
     SaveFile firstZoneFile = SaveFile("zoneOne.txt");
-    //firstZoneFile.addSaveObjectString(engine.getSaveString());
-    //firstZoneFile.saveFile();
     firstZoneFile.loadFile();
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 
@@ -117,6 +108,11 @@ void RpgGameEngine::setUpGame() {
     zoneBuildMenu->isActive = true;
 
     menus[BUILD_MENU] = zoneBuildMenu;
+
+    //resize player texture to match tile size
+    textures[PLAYER].resize(tileHeight, tileWidth);
+
+
 }
 
 std::string RpgGameEngine::getSaveString() {
@@ -134,22 +130,29 @@ void RpgGameEngine::handleInput() {
     if (gameState == LEVEL_DESIGN)
     {
         if (x < screenWidth * 0.01) {
-            xOffset += 1;
+            xOffset += 2;
         }
         if (x > screenWidth * 0.99) {
-            xOffset -= 1;
+            xOffset -= 2;
         }
         if (y < screenHeight * 0.01) {
-            yOffset += 1;
+            yOffset += 2;
         }
         if (y > screenHeight * 0.99) {
-            yOffset -= 1;
+            yOffset -= 2;
         }
     }
 
     //Handle events on queue
     while (SDL_PollEvent(&e) != 0)
     {
+        for (auto menu : menus)
+        {
+            if (menu.second->isActive)
+            {
+                menu.second->handleEvent(&e);
+            }
+        }
         switch (e.type)
         {
             case SDL_QUIT:
@@ -160,13 +163,6 @@ void RpgGameEngine::handleInput() {
                 {
                 case SDL_BUTTON_LEFT:
                     leftButtonClicked = true;
-                    for (auto menu : menus)
-                    {
-                        if (menu.second->isActive)
-                        {
-                            menu.second->handleEvent(&e);
-                        }
-                    }
                     if (placingTile)
                     {
                         if (coordsAreOnDisplayedMapTile(x, y))
@@ -175,6 +171,7 @@ void RpgGameEngine::handleInput() {
                             currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
                         }
                     }
+                    break;
                 default:
                     break;
                 }
@@ -208,7 +205,10 @@ void RpgGameEngine::handleInput() {
 }
 
 void RpgGameEngine::gameLogic() {
-
+    x++;
+    //printf("%i\n", x);
+    double rate = SDL_GetTicks() / 1000;
+    printf("%f\n", (double) x / rate);
 }
 
 void RpgGameEngine::gameRendering() {
@@ -235,11 +235,12 @@ void RpgGameEngine::gameRendering() {
     if (placingTile)
     {
         int x, y;
-        int k[2];
+        int k[2], l[2];
         SDL_GetMouseState(&x, &y);
         getTileIndexFromScreenCoords(x, y, k);
+        coordsFromTileIndex(k[0], k[1], l);
         if(coordsAreOnDisplayedMapTile(x, y)){
-            renderTexture(textures[tileBeingPlaced->textureKey], (k[0] * tileWidth + LEFT_MENU_SIZE * screenWidth + xOffset), (k[1] * tileHeight) + yOffset);
+            renderTexture(textures[tileBeingPlaced->textureKey], l[0], l[1]);
         }
     }
 
@@ -261,6 +262,11 @@ void RpgGameEngine::gameRendering() {
 void RpgGameEngine::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]) {
     tileIndices[0] = floor(((x - xOffset - screenWidth * LEFT_MENU_SIZE)) / tileWidth);
     tileIndices[1] =  floor((y - yOffset) / tileHeight);
+}
+
+void RpgGameEngine::coordsFromTileIndex(int x, int y, int returnCoords[2]) {
+    returnCoords[0] = x * tileWidth + LEFT_MENU_SIZE * screenWidth + xOffset;
+    returnCoords[1] = y * tileHeight + yOffset;
 }
 
 bool RpgGameEngine::coordsAreOnDisplayedMapTile(int x, int y) {

@@ -24,6 +24,17 @@ GameMenu::GameMenu(BaseGameEngine* gameEngine, int newId, int newWidth, int newH
     a = 0xFF;
 }
 
+GameMenu::~GameMenu() {
+    buttons.clear();
+    isActive = false;
+    engine = NULL;
+    int width = 0;
+    int height = 0;
+    int xpos = 0;
+    int ypos = 0;
+    id = r = g = b = a = 0;
+}
+
 void GameMenu::setRGBA(int newR, int newG, int newB, int newA) {
     r = newR;
     g = newG;
@@ -59,6 +70,9 @@ void GameMenu::handleEvent(SDL_Event * e) {
                     buttons[i]->onClick();
                 }
             }
+            break;
+        case SDL_BUTTON_RIGHT:
+            break;
         default:
             break;
         }

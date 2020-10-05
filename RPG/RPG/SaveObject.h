@@ -19,6 +19,9 @@ class SaveObject
         SaveObject();
         SaveObject(std::string saveString);
 
+        //destructor
+        ~SaveObject();
+
         //methods
         void reset();
         

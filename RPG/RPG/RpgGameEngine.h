@@ -18,7 +18,8 @@ enum TEXTURE_NAMES
     WATER,
     MOUNTAIN,
     NUM_TEXTURES,
-    BUTTON_BACKGROUND
+    BUTTON_BACKGROUND,
+    PLAYER
 };
 
 enum CLASS_IDS{
@@ -46,10 +47,14 @@ class RpgGameEngine: public BaseGameEngine
         bool leftButtonClicked;
         int xOffset;
         int yOffset;
+        int x = 0;
 
         //contructor
         RpgGameEngine();
         RpgGameEngine(std::string title, int width, int height);
+
+        //deconstructor
+        ~RpgGameEngine();
 
         //methods
         void setUpGame();
@@ -58,6 +63,7 @@ class RpgGameEngine: public BaseGameEngine
         void gameLogic() override;
         void gameRendering() override;
         void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
+        void coordsFromTileIndex(int x, int y, int returnCoords[2]);
         std::string getSaveString();
         bool coordsAreOnDisplayedMapTile(int x, int y);
 

@@ -10,5 +10,8 @@ class MapTile
         MapTile(bool tileIsPassable, int tileTextureKey);
         MapTile();
 
+        // deconstructor
+        ~MapTile();
+
         //methods
 };

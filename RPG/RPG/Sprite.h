@@ -14,7 +14,7 @@ class Sprite
         Sprite();
 
         //deconstructor
-        //~Sprite();
+        ~Sprite();
 
         //methods
         bool pointCollision(int x, int y);

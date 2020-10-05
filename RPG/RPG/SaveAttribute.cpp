@@ -19,6 +19,13 @@ SaveAttribute::SaveAttribute(std::string newRawString) {
     valueString = getAttributeValueString();
 }
 
+SaveAttribute::~SaveAttribute() {
+    attributeType = 0;
+    attributeId = 0;
+    rawString = "";
+    valueString = "";
+}
+
 int SaveAttribute::getAttributeId() {
     return std::stoi(getSubstrBeginEndWithExclusive(rawString, BEGIN_ATTRIBUTE_IDENTIFIER, "-"));
 }

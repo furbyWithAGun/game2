@@ -17,6 +17,9 @@ class SaveAttribute
         SaveAttribute();
         SaveAttribute(std::string newRawString);
 
+        //destructor
+        ~SaveAttribute();
+
         //methods
     
     private:

@@ -24,6 +24,9 @@ class ZonePortal
         ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
         ZonePortal(SaveObject saveObject);
 
+        //destructor
+        ~ZonePortal();
+
         //methods
         std::string toSaveString();
 };

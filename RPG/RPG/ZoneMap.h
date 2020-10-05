@@ -23,6 +23,9 @@ class ZoneMap {
         ZoneMap(SaveObject saveObject);
         ZoneMap();
 
+        //destructor
+        ~ZoneMap();
+
         //methods
         void assignNewTileMap(std::vector< std::vector<int> > tiles);
         std::string toSaveString();

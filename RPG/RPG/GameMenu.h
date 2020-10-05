@@ -15,7 +15,7 @@ public:
     GameMenu(BaseGameEngine* gameEngine, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
 
     //destructor
-    //~GameMenu();
+    ~GameMenu();
 
     //methods
     void setRGBA(int newR, int newG, int newB, int newA);

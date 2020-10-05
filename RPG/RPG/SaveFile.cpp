@@ -41,6 +41,13 @@ SaveFile::SaveFile(std::string newFilePath) {
     index = 0;
 }
 
+//destructor
+SaveFile::~SaveFile() {
+    filePath = "";
+    rawString = "";
+    objects.clear();
+    index = 0;
+}
 
 //public methods
 void SaveFile::reset() {

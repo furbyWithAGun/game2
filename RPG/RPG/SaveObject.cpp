@@ -16,6 +16,15 @@ SaveObject::SaveObject(std::string saveString) {
     populateAllAttributes();
 }
 
+//destructor
+SaveObject::~SaveObject() {
+    int objectId = 0;
+    int objectType = 0;
+    std::string rawString = "";
+    attributes.clear();
+    index = 0;
+}
+
 void SaveObject::reset() {
     index = 0;
 }

@@ -20,6 +20,9 @@ class SaveFile
         SaveFile();
         SaveFile(std::string newFilePath);
 
+        //destructor
+        ~SaveFile();
+
         //methods
         void reset();
         void saveFile();

@@ -4,9 +4,9 @@
 #include <fstream>
 
 //constants
-const int KEY_R_VALUE = 0;
-const int KEY_G_VALUE = 0xFF;
-const int KEY_B_VALUE = 0xFF;
+const int KEY_R_VALUE = 255;
+const int KEY_G_VALUE = 0;
+const int KEY_B_VALUE = 255;
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
@@ -50,7 +50,7 @@ void BaseGameEngine::free() {
     mainRenderer = NULL;
     mainFont = NULL;
     mainFontColor = {0, 0, 0};
-    
+    delete &mainFontColor;    
 }
 
 SDL_Window* BaseGameEngine::createWindow(const char* title, int height, int width) {
@@ -62,7 +62,8 @@ SDL_Window* BaseGameEngine::createWindow(const char* title, int height, int widt
         printf("Warning: Linear texture filtering not enabled!");
     }
 
-    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+    //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP);
     if (newWindow == NULL)
     {
         printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -190,7 +191,7 @@ bool BaseGameEngine::loadTextureImageFromFile(Texture* texture) {
     }
 
     //set transparent color
-    //SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, KEY_R_VALUE, KEY_G_VALUE, KEY_B_VALUE));
+    SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, KEY_R_VALUE, KEY_G_VALUE, KEY_B_VALUE));
 
     //convert to texture
     texture->texture = SDL_CreateTextureFromSurface(mainRenderer, loadedSurface);

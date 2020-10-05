@@ -37,6 +37,13 @@ ZonePortal::ZonePortal(SaveObject saveObject) {
     }
 }
 
+ZonePortal::~ZonePortal() {
+    id = 0;
+    tileCoords.clear();
+    exitZoneId = 0;
+    exitTileCoords.clear();
+}
+
 std::string ZonePortal::toSaveString() {
     std::string saveString;
     int uniqueObjectId = getUniqueId();

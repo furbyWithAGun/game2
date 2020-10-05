@@ -160,6 +160,7 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
     <ClCompile Include="ZonePortal.cpp" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="SaveFile.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Unit.h" />
     <ClInclude Include="ZoneMap.h" />
     <ClInclude Include="ZonePortal.h" />
   </ItemGroup>
