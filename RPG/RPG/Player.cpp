@@ -4,6 +4,6 @@ Player::Player() : Unit() {
 
 }
 
-Player::Player(Texture * spriteTexture, BaseGameEngine* gameEngine) : Unit(spriteTexture, gameEngine) {
+Player::Player(Texture * spriteTexture, RpgGameEngine* gameEngine) : Unit(spriteTexture, gameEngine) {
 
 }

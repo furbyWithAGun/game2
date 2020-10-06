@@ -41,7 +41,7 @@ RpgGameEngine::~RpgGameEngine() {
     menus.clear();
     if (&currentZone != NULL)
     {
-        delete &currentZone;
+        //delete &currentZone;
     }
     tileHeight = 0;
     tileWidth = 0;
@@ -111,9 +111,9 @@ void RpgGameEngine::setUpGame() {
 
     //resize player texture to match tile size
     textures[PLAYER].resize(tileHeight, tileWidth);
+    //printf("%i, %i", textures[PLAYER].height);
     player = Player(&textures[PLAYER], this);
-    //Sprite test = Sprite(textures[PLAYER],(BaseGameEngine *) this);
-    printf("test");
+    player.setTileLocation(DESIRED_TILES_ACROSS / 2, DESIRED_TILES_DOWN / 2);
 }
 
 std::string RpgGameEngine::getSaveString() {

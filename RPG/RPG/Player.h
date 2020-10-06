@@ -1,7 +1,7 @@
 #pragma once
 #include "Unit.h"
 
-//class RpgGameEngine;
+class RpgGameEngine;
 
 class Player : public Unit
 {
@@ -11,6 +11,6 @@ public:
 
     //constructor
     Player();
-    Player(Texture * spriteTexture, BaseGameEngine* gameEngine);
+    Player(Texture * spriteTexture, RpgGameEngine* gameEngine);
 };
 
