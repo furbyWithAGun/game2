@@ -21,7 +21,7 @@ public:
     int health;
     int speed;
     double leftToMove;
-
+    bool isStatic;
     //constructors
     Unit();
     Unit(Texture * spriteTexture, RpgGameEngine* gameEngine);
@@ -33,6 +33,7 @@ public:
     void startMovement(int direction);
     void updateMovement();
     void setTileLocation(int x, int y);
+    void updateCoords();
     //void draw();
 };
 

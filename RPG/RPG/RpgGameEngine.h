@@ -50,6 +50,8 @@ class RpgGameEngine: public BaseGameEngine
         int yOffset;
         int x = 0;
         Player player;
+        bool playerMovingUp, playerMovingDown, playerMovingRight, playerMovingLeft;
+        int playerScreenX, playerScreenY;
 
         //contructor
         RpgGameEngine();
@@ -68,6 +70,7 @@ class RpgGameEngine: public BaseGameEngine
         void coordsFromTileIndex(int x, int y, int returnCoords[2]);
         std::string getSaveString();
         bool coordsAreOnDisplayedMapTile(int x, int y);
+        bool isTilePassable(int x, int y);
 
     private:
         //attributes

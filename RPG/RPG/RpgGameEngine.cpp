@@ -33,6 +33,7 @@ RpgGameEngine::RpgGameEngine(std::string title, int width, int height) : BaseGam
     mainCanvasStartX = width * LEFT_MENU_SIZE + 1;
     leftButtonClicked = false;
     xOffset = yOffset = 0;
+    playerMovingUp = playerMovingDown = playerMovingRight = playerMovingLeft = false;
 }
 
 RpgGameEngine::~RpgGameEngine() {
@@ -50,6 +51,7 @@ RpgGameEngine::~RpgGameEngine() {
     leftButtonClicked = false;
     xOffset = 0;
     yOffset = 0;
+    playerMovingUp = playerMovingDown = playerMovingRight = playerMovingLeft = false;
 }
 
 void RpgGameEngine::loadAssets() {
@@ -72,9 +74,9 @@ void RpgGameEngine::loadAssets() {
 void RpgGameEngine::createTiles() {
     //create the different tiles
     mapTiles[GRASS] = MapTile(true, GRASS);
-    mapTiles[TREE] = MapTile(true, TREE);
-    mapTiles[WATER] = MapTile(true, WATER);
-    mapTiles[MOUNTAIN] = MapTile(true, MOUNTAIN);
+    mapTiles[TREE] = MapTile(false, TREE);
+    mapTiles[WATER] = MapTile(false, WATER);
+    mapTiles[MOUNTAIN] = MapTile(false, MOUNTAIN);
 
 
     //resize tiles depending on screen size
@@ -113,7 +115,11 @@ void RpgGameEngine::setUpGame() {
     textures[PLAYER].resize(tileHeight, tileWidth);
     //printf("%i, %i", textures[PLAYER].height);
     player = Player(&textures[PLAYER], this);
-    player.setTileLocation(DESIRED_TILES_ACROSS / 2, DESIRED_TILES_DOWN / 2);
+    int screenCoords[2];
+    coordsFromTileIndex(DESIRED_TILES_ACROSS / 2, DESIRED_TILES_DOWN / 2, screenCoords);
+    playerScreenX = screenCoords[0];
+    playerScreenY = screenCoords[1];
+    player.setStartLocation(DESIRED_TILES_ACROSS / 2, DESIRED_TILES_DOWN / 2);
 }
 
 std::string RpgGameEngine::getSaveString() {
@@ -156,43 +162,17 @@ void RpgGameEngine::handleInput() {
         }
         switch (e.type)
         {
-            case SDL_QUIT:
-                gameRunning = false;
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                switch (e.button.button)
-                {
-                case SDL_BUTTON_LEFT:
-                    leftButtonClicked = true;
-                    if (placingTile)
-                    {
-                        if (coordsAreOnDisplayedMapTile(x, y))
-                        {
-                            getTileIndexFromScreenCoords(x, y, k);
-                            currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
-                        }
-                    }
-                    break;
-                default:
-                    break;
-                }
-                
-                break;
-            case SDL_MOUSEBUTTONUP:
-                switch (e.button.button)
-                {
-                case SDL_BUTTON_LEFT:
-                    leftButtonClicked = false;
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case SDL_MOUSEMOTION:
-                SDL_GetMouseState(&x, &y);
+        case SDL_QUIT:
+            gameRunning = false;
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            switch (e.button.button)
+            {
+            case SDL_BUTTON_LEFT:
+                leftButtonClicked = true;
                 if (placingTile)
                 {
-                    if (coordsAreOnDisplayedMapTile(x, y) && leftButtonClicked)
+                    if (coordsAreOnDisplayedMapTile(x, y))
                     {
                         getTileIndexFromScreenCoords(x, y, k);
                         currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
@@ -201,6 +181,64 @@ void RpgGameEngine::handleInput() {
                 break;
             default:
                 break;
+            }
+                
+            break;
+        case SDL_MOUSEBUTTONUP:
+            switch (e.button.button)
+            {
+            case SDL_BUTTON_LEFT:
+                leftButtonClicked = false;
+                break;
+            default:
+                break;
+            }
+            break;
+        case SDL_MOUSEMOTION:
+            SDL_GetMouseState(&x, &y);
+            if (placingTile)
+            {
+                if (coordsAreOnDisplayedMapTile(x, y) && leftButtonClicked)
+                {
+                    getTileIndexFromScreenCoords(x, y, k);
+                    currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
+                }
+            }
+            break;
+        case SDL_KEYDOWN:
+            switch (e.key.keysym.sym) {
+            case SDLK_w:
+                playerMovingUp = true;
+                break;
+            case SDLK_s:
+                playerMovingDown = true;
+                break;
+            case SDLK_a:
+                playerMovingLeft = true;
+                break;
+            case SDLK_d:
+                playerMovingRight = true;
+                break;
+            }
+            break;
+        case SDL_KEYUP:
+            switch (e.key.keysym.sym) {
+            case SDLK_w:
+                playerMovingUp = false;
+                break;
+            case SDLK_s:
+                playerMovingDown = false;
+                break;
+            case SDLK_a:
+                playerMovingLeft = false;
+                break;
+            case SDLK_d:
+                playerMovingRight = false;
+                break;
+            }
+            break;
+        default:
+            break;
         }
     }
 }
@@ -210,6 +248,20 @@ void RpgGameEngine::gameLogic() {
     //printf("%i\n", x);
     double rate = SDL_GetTicks() / 1000;
     printf("%f\n", (double) x / rate);
+
+    if (playerMovingUp && !playerMovingDown && isTilePassable(player.tileLocation[0], player.tileLocation[1] - 1)) {
+        player.startMovement(MOVE_UP);
+    }
+    else if (playerMovingDown && !playerMovingUp && isTilePassable(player.tileLocation[0], player.tileLocation[1] + 1)) {
+        player.startMovement(MOVE_DOWN);
+    }
+    else if (playerMovingRight && !playerMovingLeft && isTilePassable(player.tileLocation[0] + 1, player.tileLocation[1])) {
+        player.startMovement(MOVE_RIGHT);
+    }
+    else if (playerMovingLeft && ! playerMovingRight && isTilePassable(player.tileLocation[0] - 1, player.tileLocation[1])) {
+        player.startMovement(MOVE_LEFT);
+    }
+    player.updatePlayer();
 }
 
 void RpgGameEngine::gameRendering() {
@@ -275,5 +327,13 @@ bool RpgGameEngine::coordsAreOnDisplayedMapTile(int x, int y) {
     int k[2];
     getTileIndexFromScreenCoords(x, y, k);
     return ((mainCanvasStartX <= x) && (k[0] >= 0) && (k[0] < currentZone.tileMap[0].size()) && (k[1] >= 0) && (k[1] < currentZone.tileMap.size()));
+}
+
+bool RpgGameEngine::isTilePassable(int x, int y) {
+    if (x < 0 || y < 0 || y >= currentZone.tileMap.size() || x >= currentZone.tileMap[y].size())
+    {
+        return false;
+    }
+    return mapTiles[currentZone.tileMap[y][x]].passable;
 }
 
