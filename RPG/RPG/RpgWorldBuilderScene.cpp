@@ -60,7 +60,42 @@ void RpgWorldBuilderScene::sceneLogic() {
 }
 
 void RpgWorldBuilderScene::renderScene() {
+    //fill screen with water
+    for (size_t i = 0; i * tileHeight <= engine->screenHeight + tileHeight; i++)
+    {
+        for (size_t j = 0; j * tileWidth <= engine->screenWidth + tileWidth; j++) {
+            engine->renderTexture(*textures[WATER], ((tileWidth * j) + engine->screenWidth * LEFT_MENU_SIZE) + (xOffset % tileWidth) - tileWidth, tileHeight * i + (yOffset % tileHeight) - tileHeight);
+        }
+    }
 
+    //draw zone
+    for (int i = 0; i < currentZone.tileMap.size(); i++) {
+        for (int j = 0; j < currentZone.tileMap[i].size(); j++) {
+            engine->renderTexture(*textures[mapTiles[currentZone.tileMap[i][j]].textureKey], (tileWidth * j) + engine->screenWidth * LEFT_MENU_SIZE + xOffset, tileHeight * i + yOffset);
+        }
+    }
+
+    //draw tile being placed
+    if (placingTile)
+    {
+        int x, y;
+        int k[2], l[2];
+        SDL_GetMouseState(&x, &y);
+        engine->getTileIndexFromScreenCoords(x, y, k);
+        engine->coordsFromTileIndex(k[0], k[1], l);
+        if (engine->coordsAreOnDisplayedMapTile(x, y)) {
+            engine->renderTexture(*textures[tileBeingPlaced->textureKey], l[0], l[1]);
+        }
+    }
+
+    //draw menus
+    for (auto menu : menus)
+    {
+        if (menu.second->isActive)
+        {
+            menu.second->draw();
+        }
+    }
 }
 
 //private methods

@@ -315,4 +315,5 @@ bool BaseGameEngine::clearTextures() {
         }
     }
     textures.clear();
+    return true;
 }
