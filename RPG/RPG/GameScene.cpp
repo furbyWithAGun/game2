@@ -5,3 +5,8 @@ GameScene::GameScene() {
     engine = NULL;
 }
 
+GameScene::GameScene(BaseGameEngine * newEngine) {
+    engine = newEngine;
+}
+
+

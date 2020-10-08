@@ -13,6 +13,7 @@ public:
     GameScene(BaseGameEngine * gameEngine);
 
     //methods
+    virtual void loadSceneAssets();
     virtual void setUpScene();
     virtual void handleInput();
     virtual void sceneLogic();

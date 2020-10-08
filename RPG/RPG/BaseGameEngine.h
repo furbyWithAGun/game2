@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include <unordered_map>
 #include "SaveFile.h"
+#include "GameScene.h"
 
 class BaseGameEngine
 {
@@ -16,6 +17,8 @@ class BaseGameEngine
         int screenWidth;
         TTF_Font* mainFont;
         SDL_Color mainFontColor;
+        GameScene * currentScene;
+        std::unordered_map<int, GameScene> scenes;
 
         //constructor
         BaseGameEngine(std::string title, int width, int height);
@@ -39,6 +42,8 @@ class BaseGameEngine
         void renderTexture(Texture texture, int x, int y);
         void renderTexture(Texture texture, int x, int y, int width, int height);
         bool loadTextureImageFromFile(Texture* texture);
+        void addScene(int sceneId, GameScene* sceneToAdd);
+        void changeScene(int sceneId);
 
     protected:
         bool gameRunning;

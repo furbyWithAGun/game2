@@ -18,6 +18,7 @@ BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     mainWindow = NULL;
     mainRenderer = NULL;
     mainFont = NULL;
+    currentScene = NULL;
 }
 
 BaseGameEngine::~BaseGameEngine() {
@@ -50,6 +51,8 @@ void BaseGameEngine::free() {
     mainRenderer = NULL;
     mainFont = NULL;
     mainFontColor = {0, 0, 0};
+    currentScene = NULL;
+    scenes.clear();
 }
 
 SDL_Window* BaseGameEngine::createWindow(const char* title, int height, int width) {

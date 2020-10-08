@@ -156,10 +156,10 @@
     <ClCompile Include="RpgGameButtons.cpp" />
     <ClCompile Include="RpgGameEngine.cpp" />
     <ClCompile Include="RpgGameMenus.cpp" />
+    <ClCompile Include="RpgWorldBuilderScene.cpp" />
     <ClCompile Include="SaveAttribute.cpp" />
     <ClCompile Include="SaveObject.cpp" />
     <ClCompile Include="SaveFile.cpp" />
-    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Unit.cpp" />
@@ -174,6 +174,7 @@
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RpgGameEngine.h" />
+    <ClInclude Include="RpgWorldBuilderScene.h" />
     <ClInclude Include="SaveAttribute.h" />
     <ClInclude Include="SaveObject.h" />
     <ClInclude Include="SaveFile.h" />
