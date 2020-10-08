@@ -8,7 +8,7 @@ const int TILE_HEIGHT = 50;
 const int TILE_WIDTH = 50;
 const int DESIRED_TILES_DOWN = 10;
 const int DESIRED_TILES_ACROSS = 19;
-const double LEFT_MENU_SIZE = 0.1;
+
 const int DEFAULT_FONT_SIZE = 28;
 
 

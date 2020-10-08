@@ -1,6 +1,9 @@
 #pragma once
 #include "RpgGameButtons.cpp"
 
+//constants
+const double LEFT_MENU_SIZE = 0.1;
+
 class ZoneBuilderMenu : public GameMenu {
 public:
     //constructors

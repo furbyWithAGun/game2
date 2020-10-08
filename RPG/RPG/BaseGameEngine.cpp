@@ -293,3 +293,26 @@ void BaseGameEngine::startMainGameLoop() {
         gameRendering();
     }
 }
+
+//private methods
+bool BaseGameEngine::loadSceneTextures(GameScene * newScene) {
+    clearTextures();
+    for (auto i = newScene->texturesToLoad.begin(); i != newScene->texturesToLoad.end(); ++i)
+    {
+        textures[i->first] = Texture(i->second);
+        loadTextureImageFromFile(&textures[i->first]);
+        newScene->textures[i->first] = &textures[i->first];
+    }
+    return true;
+}
+
+bool BaseGameEngine::clearTextures() {
+    for (auto i = textures.begin(); i != textures.end(); ++i) {
+        if (i->second.texture != NULL)
+        {
+            SDL_DestroyTexture(i->second.texture);
+            i->second.texture = NULL;
+        }
+    }
+    textures.clear();
+}

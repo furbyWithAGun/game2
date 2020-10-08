@@ -1,5 +1,7 @@
 #include "RpgWorldBuilderScene.h"
 #include "RpgGameEngine.h"
+#include "RpgGameMenus.cpp"
+
 
 
 //constants
@@ -16,7 +18,14 @@ RpgWorldBuilderScene::RpgWorldBuilderScene(RpgGameEngine * gameEngine) : GameSce
 }
 
 void RpgWorldBuilderScene::loadSceneAssets() {
-
+    texturesToLoad = {
+        {BUTTON_BACKGROUND, "images/buttonBackground.png"},
+        {GRASS, "images/grass.png"},
+        {TREE, "images/tree.png"},
+        {WATER, "images/water.png"},
+        {MOUNTAIN, "images/mountain.png"},
+        {PLAYER, "images/player.png"}
+    };
 }
 
 void RpgWorldBuilderScene::setUpScene() {
@@ -26,17 +35,17 @@ void RpgWorldBuilderScene::setUpScene() {
     firstZoneFile.loadFile();
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 
-    ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, screenWidth * LEFT_MENU_SIZE, screenHeight, 0, 0);
+    ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(engine, BUILD_MENU, engine->screenWidth * LEFT_MENU_SIZE, engine->screenHeight, 0, 0);
     zoneBuildMenu->isActive = true;
 
     menus[BUILD_MENU] = zoneBuildMenu;
 
     //resize player texture to match tile size
-    textures[PLAYER].resize(tileHeight, tileWidth);
+    textures[PLAYER]->resize(tileHeight, tileWidth);
     //printf("%i, %i", textures[PLAYER].height);
-    player = Player(&textures[PLAYER], this);
+    player = Player(textures[PLAYER], engine);
     int screenCoords[2];
-    coordsFromTileIndex(DESIRED_TILES_ACROSS / 2, DESIRED_TILES_DOWN / 2, screenCoords);
+    engine->coordsFromTileIndex(DESIRED_TILES_ACROSS / 2, DESIRED_TILES_DOWN / 2, screenCoords);
     playerScreenX = screenCoords[0];
     playerScreenY = screenCoords[1];
     player.setStartLocation(DESIRED_TILES_ACROSS / 2, DESIRED_TILES_DOWN / 2);

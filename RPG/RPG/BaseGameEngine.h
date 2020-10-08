@@ -59,5 +59,7 @@ class BaseGameEngine
         //methods
         SDL_Window* createWindow(const char* title, int height, int width);
         SDL_Renderer* createRenderer(SDL_Window* window);
+        bool loadSceneTextures(GameScene * newScene);
+        bool clearTextures();
 };
 

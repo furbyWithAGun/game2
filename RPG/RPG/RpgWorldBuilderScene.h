@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "MapTile.h"
 #include <unordered_map>
+#include "Player.h"
 
 class RpgGameEngine;
 
@@ -10,6 +11,7 @@ class RpgWorldBuilderScene : public GameScene
 public:
     //attributes
     RpgGameEngine* engine;
+
     //std::unordered_map<int, MapTile> mapTiles;
 
     //constructor
@@ -26,8 +28,12 @@ public:
 private:
     //attributes
     std::unordered_map<int, MapTile> mapTiles;
+    std::unordered_map<int, GameMenu*> menus;
+    ZoneMap currentZone;
     int tileHeight;
     int tileWidth;
+    int playerScreenX, playerScreenY;
+    Player player;
 
     //methods
     void createTiles();
