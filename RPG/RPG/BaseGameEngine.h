@@ -19,6 +19,7 @@ class BaseGameEngine
         SDL_Color mainFontColor;
         GameScene * currentScene;
         std::unordered_map<int, GameScene> scenes;
+        bool gameRunning;
 
         //constructor
         BaseGameEngine(std::string title, int width, int height);
@@ -46,8 +47,7 @@ class BaseGameEngine
         void changeScene(int sceneId);
 
     protected:
-        bool gameRunning;
-
+        
     private:
         //attributes
         int windowWidth;
