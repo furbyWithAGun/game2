@@ -1,5 +1,5 @@
 #include "Unit.h"
-#include"RpgGameEngine.h"
+#include"GameScene.h"
 
 Unit::Unit() : Sprite() {
     tileLocation = {0, 0};
@@ -8,16 +8,15 @@ Unit::Unit() : Sprite() {
     health = 1;
     speed = 2;
     leftToMove = 0;
-    engine = NULL;
     isStatic = false;
 }
 
-Unit::Unit(Texture * spriteTexture, RpgGameEngine* gameEngine) : Sprite(spriteTexture, gameEngine) {
+Unit::Unit(Texture * spriteTexture, TileGridScene* gameScene) : Sprite(spriteTexture, gameScene) {
+    scene = gameScene;
     name = "";
     health = 1;
     speed = 2;
     leftToMove = 0;
-    engine = gameEngine;
     tileLocation = {0, 0};
     tileDestination = { 0, 0 };
     setTileLocation(0, 0);
@@ -32,7 +31,6 @@ Unit::~Unit() {
     health = 0;
     speed = 0;
     leftToMove = 0;
-    engine = NULL;
 }
 
 void Unit::startMovement(int direction) {
@@ -88,8 +86,8 @@ void Unit::setTileLocation(int x, int y) {
 void Unit::updateCoords() {
     int coords[2];
     int destCoords[2];
-    engine->coordsFromTileIndex(tileLocation[0], tileLocation[1], coords);
-    engine->coordsFromTileIndex(tileDestination[0], tileDestination[1], destCoords);
+    scene->coordsFromTileIndex(tileLocation[0], tileLocation[1], coords);
+    scene->coordsFromTileIndex(tileDestination[0], tileDestination[1], destCoords);
     xpos = coords[0] + (destCoords[0] - coords[0]) * (1 - leftToMove);
     ypos = coords[1] + (destCoords[1] - coords[1]) * (1 - leftToMove);
 }

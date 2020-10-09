@@ -7,6 +7,7 @@
 const int KEY_R_VALUE = 255;
 const int KEY_G_VALUE = 0;
 const int KEY_B_VALUE = 255;
+const int DEFAULT_FONT_SIZE = 28;
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
@@ -19,6 +20,9 @@ BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     mainRenderer = NULL;
     mainFont = NULL;
     currentScene = NULL;
+    nextScene = NULL;
+    sceneRunning = false;
+    gameRunning = false;
 }
 
 BaseGameEngine::~BaseGameEngine() {
@@ -52,6 +56,7 @@ void BaseGameEngine::free() {
     mainFont = NULL;
     mainFontColor = {0, 0, 0};
     currentScene = NULL;
+    nextScene = NULL;
     scenes.clear();
 }
 
@@ -134,6 +139,9 @@ bool BaseGameEngine::init() {
     //load assets (this method will be overriden in child class)
     loadAssets();
 
+    //load fonts
+    mainFont = TTF_OpenFont("fonts/OpenSans-Regular.ttf", DEFAULT_FONT_SIZE);
+
     return true;
 }
 
@@ -213,6 +221,16 @@ bool BaseGameEngine::loadTextureImageFromFile(Texture* texture) {
     return true;
 }
 
+void BaseGameEngine::addScene(int sceneId, GameScene* sceneToAdd)
+{
+    scenes[sceneId] = sceneToAdd;
+}
+
+void BaseGameEngine::setNextScene(int sceneId)
+{
+    nextScene = scenes[sceneId];
+}
+
 SDL_Texture* BaseGameEngine::loadTextureFromText(std::string text) {
     SDL_Texture* textTexture;
     SDL_Surface* textSurface = TTF_RenderText_Solid(mainFont, text.c_str(), mainFontColor);
@@ -250,16 +268,16 @@ bool BaseGameEngine::createMultipleTextures(std::unordered_map<int, std::string>
     return true;
 }
 
-void BaseGameEngine::renderTexture(Texture texture, int x, int y) {
-    SDL_Rect renderQuad = { x, y, texture.width, texture.height };
+void BaseGameEngine::renderTexture(Texture* texture, int x, int y) {
+    SDL_Rect renderQuad = { x, y, texture->width, texture->height };
     
-    SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
+    SDL_RenderCopy(mainRenderer, texture->texture, NULL, &renderQuad);
 }
 
-void BaseGameEngine::renderTexture(Texture texture, int x, int y, int width, int height) {
+void BaseGameEngine::renderTexture(Texture* texture, int x, int y, int width, int height) {
     SDL_Rect renderQuad = { x, y, width, height };
 
-    SDL_RenderCopy(mainRenderer, texture.texture, NULL, &renderQuad);
+    SDL_RenderCopy(mainRenderer, texture->texture, NULL, &renderQuad);
 }
 
 //this method will be ovverridden in child class
@@ -288,13 +306,50 @@ void BaseGameEngine::startMainGameLoop() {
 
     while (gameRunning)
     {
-        handleInput();
-        gameLogic();
-        gameRendering();
+        gameRunning = sceneRunning =  initNextScene();
+        while (sceneRunning)
+        {
+            sceneRunning = currentScene->handleInput();
+            if (!sceneRunning)
+            {
+                continue;
+            }
+            sceneRunning = currentScene->sceneLogic();
+            if (!sceneRunning)
+            {
+                continue;
+            }
+            //clear screen
+            SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+            SDL_RenderClear(getMainRenderer());
+            //call scene rendering
+            sceneRunning = currentScene->renderScene();
+            if (!sceneRunning)
+            {
+                continue;
+            }
+            //Update screen
+            SDL_RenderPresent(getMainRenderer());
+        }
     }
 }
 
 //private methods
+bool BaseGameEngine::initNextScene() {
+    if (nextScene != NULL)
+    {
+        currentScene = nextScene;
+        nextScene = NULL;
+        currentScene->loadSceneAssets();
+        loadSceneTextures(currentScene);
+        currentScene->setUpScene();
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 bool BaseGameEngine::loadSceneTextures(GameScene * newScene) {
     clearTextures();
     for (auto i = newScene->texturesToLoad.begin(); i != newScene->texturesToLoad.end(); ++i)

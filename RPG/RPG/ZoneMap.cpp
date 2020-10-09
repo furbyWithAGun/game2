@@ -1,6 +1,7 @@
 #include "ZoneMap.h"
-#include "RpgGameEngine.h"
+#include "BaseGameEngine.h"
 #include "SaveFile.h"
+#include "RpgGameConstants.h"
 
 ZoneMap::ZoneMap(int newId, std::vector< std::vector<int> > tiles) {
 	id = newId;

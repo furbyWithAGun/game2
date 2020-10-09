@@ -17,11 +17,13 @@ public:
     GameScene(BaseGameEngine * gameEngine);
 
     //methods
+    void renderTexture(Texture* texture, int x, int y);
+    void renderTexture(Texture* texture, int x, int y, int width, int height);
     virtual void loadSceneAssets() {};
     virtual void setUpScene() {};
-    virtual void handleInput() {};
-    virtual void sceneLogic() {};
-    virtual void renderScene() {};
+    virtual bool handleInput() { return true; };
+    virtual bool sceneLogic() { return true; };
+    virtual bool renderScene() { return true; };
 
 };
 

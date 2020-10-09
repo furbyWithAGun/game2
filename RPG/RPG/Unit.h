@@ -1,20 +1,17 @@
 #pragma once
 #include "Sprite.h"
+#include "RpgGameConstants.h"
+#include "TileGridScene.h"
 
-class RpgGameEngine;
+class BaseGameEngine;
 
-enum MOVEMENT {
-    MOVE_UP,
-    MOVE_DOWN,
-    MOVE_LEFT,
-    MOVE_RIGHT
-};
+
 
 class Unit : public Sprite
 {
 public:
     //attributes
-    RpgGameEngine* engine;
+    TileGridScene* scene;
     std::vector<int> tileLocation;
     std::vector<int> tileDestination;
     std::string name;
@@ -24,7 +21,7 @@ public:
     bool isStatic;
     //constructors
     Unit();
-    Unit(Texture * spriteTexture, RpgGameEngine* gameEngine);
+    Unit(Texture * spriteTexture, TileGridScene* gameScene);
 
     //destructor
     ~Unit();

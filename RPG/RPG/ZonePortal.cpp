@@ -1,7 +1,8 @@
 #include "ZonePortal.h"
 #include <string>
-#include "RpgGameEngine.h"
+#include "BaseGameEngine.h"
 #include "SaveFile.h"
+#include "RpgGameConstants.h"
 
 ZonePortal::ZonePortal() {
     id = -1;

@@ -17,9 +17,8 @@ class BaseGameEngine
         int screenWidth;
         TTF_Font* mainFont;
         SDL_Color mainFontColor;
-        GameScene * currentScene;
-        std::unordered_map<int, GameScene> scenes;
         bool gameRunning;
+        bool sceneRunning;
 
         //constructor
         BaseGameEngine(std::string title, int width, int height);
@@ -40,11 +39,11 @@ class BaseGameEngine
         bool createMultipleTextures(std::unordered_map<int, std::string> texturesToCreate);
         SDL_Texture* loadTextureImageFromFile(std::string path);
         SDL_Texture* loadTextureFromText(std::string text);
-        void renderTexture(Texture texture, int x, int y);
-        void renderTexture(Texture texture, int x, int y, int width, int height);
+        void renderTexture(Texture* texture, int x, int y);
+        void renderTexture(Texture* texture, int x, int y, int width, int height);
         bool loadTextureImageFromFile(Texture* texture);
         void addScene(int sceneId, GameScene* sceneToAdd);
-        void changeScene(int sceneId);
+        void setNextScene(int sceneId);
 
     protected:
         
@@ -55,10 +54,14 @@ class BaseGameEngine
         std::string windowTitle;
         SDL_Renderer* mainRenderer;
         SDL_Window* mainWindow;
+        GameScene* currentScene;
+        GameScene* nextScene;
+        std::unordered_map<int, GameScene*> scenes;
 
         //methods
         SDL_Window* createWindow(const char* title, int height, int width);
         SDL_Renderer* createRenderer(SDL_Window* window);
+        bool initNextScene();
         bool loadSceneTextures(GameScene * newScene);
         bool clearTextures();
 };

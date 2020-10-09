@@ -31,7 +31,10 @@ TileGridScene::TileGridScene(BaseGameEngine* gameEngine) : GameScene((BaseGameEn
 
 void TileGridScene::loadSceneAssets()
 {
-
+    texturesToLoad.insert({ WATER, "images/water.png" });
+    texturesToLoad.insert({ TREE, "images/tree.png" });
+    texturesToLoad.insert({ GRASS, "images/grass.png" });
+    texturesToLoad.insert({ MOUNTAIN, "images/mountain.png" });
 }
 
 void TileGridScene::setUpScene()
@@ -39,30 +42,38 @@ void TileGridScene::setUpScene()
     createTiles();
 }
 
-void TileGridScene::handleInput()
+bool TileGridScene::handleInput()
 {
+    return true;
 }
 
-void TileGridScene::sceneLogic()
+bool TileGridScene::sceneLogic()
 {
+    return true;
 }
 
-void TileGridScene::renderScene()
+bool TileGridScene::renderScene()
 {
     //fill screen with backdrop
     for (size_t i = 0; i * tileHeight <= engine->screenHeight + tileHeight; i++)
     {
         for (size_t j = 0; j * tileWidth <= engine->screenWidth + tileWidth; j++) {
-            engine->renderTexture(*textures[backDropTileKey], ((tileWidth * j) + engine->screenWidth * LEFT_MENU_SIZE) + (xOffset % tileWidth) - tileWidth, tileHeight * i + (yOffset % tileHeight) - tileHeight, tileWidth, tileHeight);
+            engine->renderTexture(textures[backDropTileKey], ((tileWidth * j) + mainCanvasStartX) + (xOffset % tileWidth) - tileWidth, tileHeight * i + (yOffset % tileHeight) - tileHeight, tileWidth, tileHeight);
         }
     }
 
     //draw zone
     for (int i = 0; i < currentZone.tileMap.size(); i++) {
         for (int j = 0; j < currentZone.tileMap[i].size(); j++) {
-            engine->renderTexture(*textures[mapTiles[currentZone.tileMap[i][j]].textureKey], (tileWidth * j) + engine->screenWidth * LEFT_MENU_SIZE + xOffset, tileHeight * i + yOffset, tileWidth, tileHeight);
+            engine->renderTexture(textures[mapTiles[currentZone.tileMap[i][j]].textureKey], (tileWidth * j) + mainCanvasStartX + xOffset, tileHeight * i + yOffset, tileWidth, tileHeight);
         }
     }
+    return true;
+}
+
+void TileGridScene::coordsFromTileIndex(int x, int y, int returnCoords[2]) {
+    returnCoords[0] = x * tileWidth + mainCanvasStartX + xOffset;
+    returnCoords[1] = y * tileHeight + yOffset;
 }
 
 //protected methods
@@ -71,10 +82,6 @@ void TileGridScene::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2
     tileIndices[1] = floor((y - yOffset) / tileHeight);
 }
 
-void TileGridScene::coordsFromTileIndex(int x, int y, int returnCoords[2]) {
-    returnCoords[0] = x * tileWidth + mainCanvasStartX + xOffset;
-    returnCoords[1] = y * tileHeight + yOffset;
-}
 
 bool TileGridScene::coordsAreOnDisplayedMapTile(int x, int y) {
     int k[2];

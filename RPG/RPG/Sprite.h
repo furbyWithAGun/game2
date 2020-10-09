@@ -1,5 +1,6 @@
 #pragma once
 #include "Texture.h"
+#include "GameScene.h"
 #include "BaseGameEngine.h"
 
 class Sprite
@@ -10,7 +11,7 @@ class Sprite
         Texture * texture;
 
         //constructor
-        Sprite(Texture * spriteTexture, BaseGameEngine * gameEngine);
+        Sprite(Texture * spriteTexture, GameScene * gameScene);
         Sprite();
 
         //deconstructor
@@ -21,6 +22,6 @@ class Sprite
         void draw();
 
     private:
-        BaseGameEngine* engine;
+       GameScene* scene;
 };
 

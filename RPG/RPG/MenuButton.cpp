@@ -1,19 +1,19 @@
 #include "MenuButton.h"
 
-MenuButton::MenuButton(Texture * spriteTexture, BaseGameEngine * gameEngine) : Sprite(spriteTexture, gameEngine){
-    engine = gameEngine;
+MenuButton::MenuButton(Texture * spriteTexture, GameScene* gameScene) : Sprite(spriteTexture, gameScene){
+    scene = gameScene;
     text = "";
     textXoffset = textYoffset = 0;
 }
 
 MenuButton::MenuButton() : Sprite() {
-    engine = NULL;
+    scene = NULL;
     text = "";
     textXoffset = textYoffset = 0;
 }
 
 MenuButton::~MenuButton() {
-    engine = NULL;
+    scene = NULL;
     delete &textTexture;
     text = "";
     textXoffset = textYoffset = 0;
@@ -23,13 +23,13 @@ void MenuButton::draw() {
     Sprite::draw();
     if (!textTexture.texture == NULL)
     {
-        engine->renderTexture(textTexture, xpos + textXoffset, ypos + textYoffset);
+        scene->renderTexture(&textTexture, xpos + textXoffset, ypos + textYoffset);
     }
 }
 
 void MenuButton::setText(std::string newText) {
     text = newText;
-    textTexture.texture = engine->loadTextureFromText(newText);
+    textTexture.texture = scene->engine->loadTextureFromText(newText);
     SDL_QueryTexture(textTexture.texture, NULL, NULL, &textTexture.width, &textTexture.height);
 }
 

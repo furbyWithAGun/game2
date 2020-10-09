@@ -1,40 +1,35 @@
 #include "RpgWorldBuilderScene.h"
-#include "RpgGameEngine.h"
-#include "RpgGameMenus.cpp"
+#include "BaseGameEngine.h"
+#include "RpgWorldBuilderSceneMenus.cpp"
 
 
 
 //constants
-const int DESIRED_TILES_DOWN = 10;
-const int DESIRED_TILES_ACROSS = 19;
+const int DEFAULT_DESIRED_TILES_DOWN = 10;
+const int DEFAULT_DESIRED_TILES_ACROSS = 19;
 
 //constructor
 RpgWorldBuilderScene::RpgWorldBuilderScene() : TileGridScene(){
     engine = NULL;
+    tileBeingPlaced = NULL;
     leftButtonClicked = false;
     placingTile = false;
-    desiredTilesAcross = DESIRED_TILES_ACROSS;
-    desiredTilesDown = DESIRED_TILES_DOWN;
+    desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
+    desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
 }
 
-RpgWorldBuilderScene::RpgWorldBuilderScene(RpgGameEngine * gameEngine) : TileGridScene((BaseGameEngine *) gameEngine){
+RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : TileGridScene(gameEngine){
     engine = gameEngine;
+    tileBeingPlaced = NULL;
     leftButtonClicked = false;
     placingTile = false;
-    desiredTilesAcross = DESIRED_TILES_ACROSS;
-    desiredTilesDown = DESIRED_TILES_DOWN;
+    desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
+    desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
 }
 
 void RpgWorldBuilderScene::loadSceneAssets() {
     TileGridScene::loadSceneAssets();
-    texturesToLoad.merge(std::unordered_map<int, std::string>{
-        {BUTTON_BACKGROUND, "images/buttonBackground.png"},
-        {GRASS, "images/grass.png"},
-        {TREE, "images/tree.png"},
-        {WATER, "images/water.png"},
-        {MOUNTAIN, "images/mountain.png"},
-        {PLAYER, "images/player.png"}
-    });
+    texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
 }
 
 void RpgWorldBuilderScene::setUpScene() {
@@ -44,13 +39,14 @@ void RpgWorldBuilderScene::setUpScene() {
     firstZoneFile.loadFile();
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 
-    ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(engine, BUILD_MENU, mainCanvasStartX, engine->screenHeight, 0, 0);
+    ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight, 0, 0);
     zoneBuildMenu->isActive = true;
 
     menus[BUILD_MENU] = zoneBuildMenu;
 }
 
-void RpgWorldBuilderScene::handleInput() {
+bool RpgWorldBuilderScene::handleInput() {
+    bool continueScene = true;
     SDL_Event e;
     int x, y;
     int k[2];
@@ -82,7 +78,7 @@ void RpgWorldBuilderScene::handleInput() {
         switch (e.type)
         {
         case SDL_QUIT:
-            engine->gameRunning = false;
+            continueScene = false;
             break;
         case SDL_MOUSEBUTTONDOWN:
             switch (e.button.button)
@@ -152,13 +148,14 @@ void RpgWorldBuilderScene::handleInput() {
             break;
         }
     }
+    return continueScene;
 }
 
-void RpgWorldBuilderScene::sceneLogic() {
-
+bool RpgWorldBuilderScene::sceneLogic() {
+    return true;
 }
 
-void RpgWorldBuilderScene::renderScene() {
+bool RpgWorldBuilderScene::renderScene() {
     TileGridScene::renderScene();
 
     //draw tile being placed
@@ -170,7 +167,7 @@ void RpgWorldBuilderScene::renderScene() {
         getTileIndexFromScreenCoords(x, y, k);
         coordsFromTileIndex(k[0], k[1], l);
         if (coordsAreOnDisplayedMapTile(x, y)) {
-            engine->renderTexture(*textures[tileBeingPlaced->textureKey], l[0], l[1]);
+            engine->renderTexture(textures[tileBeingPlaced->textureKey], l[0], l[1], tileWidth, tileHeight);
         }
     }
 
@@ -182,4 +179,5 @@ void RpgWorldBuilderScene::renderScene() {
             menu.second->draw();
         }
     }
+    return true;
 }

@@ -1,30 +1,11 @@
 ﻿  RpgWorldBuilderScene.cpp
-D:\coding\c++\game\RPG\RPG\RpgGameEngine.h(16,1): error C2011: 'TEXTURE_NAMES': 'enum' type redefinition
-D:\coding\c++\game\RPG\RPG\TileGridScene.h(6): message : see declaration of 'TEXTURE_NAMES'
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(52,92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(58,30): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(59,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(61,65): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(62,63): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(63,57): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\RpgGameMenus.cpp(64,58): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\type_traits(633,41): error C2139: 'TEXTURE_NAMES': an undefined class is not allowed as an argument to compiler intrinsic type trait '__is_constructible'
-D:\coding\c++\game\RPG\RPG\TileGridScene.h(6): message : see declaration of 'TEXTURE_NAMES'
-D:\coding\c++\game\RPG\RPG\RpgWorldBuilderScene.cpp(37): message : see reference to class template instantiation 'std::is_constructible<const int,TEXTURE_NAMES>' being compiled
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\type_traits(633): message : see reference to variable template 'const bool conjunction_v<std::is_constructible<int const ,enum TEXTURE_NAMES>,std::is_constructible<std::basic_string<char,std::char_traits<char>,std::allocator<char> >,char const (&)[28]> >' being compiled
-  SaveAttribute.cpp
-D:\coding\c++\game\RPG\RPG\SaveAttribute.cpp(51,38): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\SaveAttribute.cpp(104,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\SaveAttribute.cpp(153,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  TileGridScene.cpp
-D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(26,61): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(56,232): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(56,144): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(63,149): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(70,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(71,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Unit.cpp
-D:\coding\c++\game\RPG\RPG\Unit.cpp(93,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\Unit.cpp(94,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(54,92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(60,30): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(61,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(63,65): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(64,63): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(65,57): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(66,58): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   ZonePortal.cpp
   Generating Code...
+  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe

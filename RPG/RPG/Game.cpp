@@ -1,18 +1,20 @@
 // Includes
-#include "RpgGameEngine.h"
+#include "BaseGameEngine.h"
+#include "RpgWorldBuilderScene.h"
+#include "RpgGameConstants.h"
 
 // Global Constants
-const std::string GAME_TITLE = "RPG";
-const int SCREEN_WIDTH = 1900;
-const int SCREEN_HEIGHT = 1000;
+
 
 int main(int argc, char* args[])
 {
     //local vars
-    RpgGameEngine engine = RpgGameEngine(GAME_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT);
+    BaseGameEngine engine = BaseGameEngine(GAME_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     engine.init();
-    engine.setUpGame();
+    RpgWorldBuilderScene wbs = RpgWorldBuilderScene(&engine);
+    engine.addScene(WORLD_BUILDER, &wbs);
+    engine.setNextScene(WORLD_BUILDER);
     engine.startMainGameLoop();
 
     //terminate the engine

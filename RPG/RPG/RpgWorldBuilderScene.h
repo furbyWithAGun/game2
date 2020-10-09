@@ -5,32 +5,33 @@
 #include "Player.h"
 #include "GameMenu.h"
 #include "ZoneMap.h"
+#include "RpgGameConstants.h"
 
-class RpgGameEngine;
+class BaseGameEngine;
 
 class RpgWorldBuilderScene : public TileGridScene
 {
 public:
     //attributes
-    RpgGameEngine* engine;
+    BaseGameEngine* engine;
+    bool placingTile;
+    bool leftButtonClicked;
+    MapTile* tileBeingPlaced;
 
     //constructor
     RpgWorldBuilderScene();
-    RpgWorldBuilderScene(RpgGameEngine* gameEngine);
+    RpgWorldBuilderScene(BaseGameEngine* gameEngine);
 
     //methods
     void loadSceneAssets();
-    void setUpScene();
-    void handleInput();
-    void sceneLogic();
-    void renderScene();
+    void setUpScene() override;
+    bool handleInput() override;
+    bool sceneLogic() override;
+    bool renderScene() override;
 
 private:
     //attributes
-    std::unordered_map<int, GameMenu*> menus;
-    bool placingTile;
-    MapTile* tileBeingPlaced;
-    bool leftButtonClicked;
+    
 
     //methods
 };

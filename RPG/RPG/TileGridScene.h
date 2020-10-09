@@ -2,49 +2,43 @@
 #include "GameScene.h"
 #include "MapTile.h"
 #include "ZoneMap.h"
-
-enum TEXTURE_NAMES
-{
-    GRASS,
-    TREE,
-    WATER,
-    MOUNTAIN,
-    BUTTON_BACKGROUND,
-    PLAYER,
-    NUM_TEXTURES
-};
+#include "GameMenu.h"
+#include "RpgGameConstants.h"
 
 class BaseGameEngine;
 
 class TileGridScene : public GameScene
 {
 public:
+    //attributes
+    ZoneMap currentZone;
+    std::unordered_map<int, MapTile> mapTiles;
+
     //constructor
     TileGridScene();
     TileGridScene(BaseGameEngine* gameEngine);
 
     //methods
-    void loadSceneAssets();
-    void setUpScene();
-    void handleInput();
-    void sceneLogic();
-    void renderScene();
+    void coordsFromTileIndex(int x, int y, int returnCoords[2]);
+    virtual void loadSceneAssets() override;
+    virtual void setUpScene() override;
+    bool handleInput() override;
+    bool sceneLogic() override;
+    bool renderScene() override;
 
 protected:
     //attributes
-    std::unordered_map<int, MapTile> mapTiles;
     int tileHeight;
     int tileWidth;
-    ZoneMap currentZone;
     int xOffset, yOffset;
     int mainCanvasStartX;
     int backDropTileKey;
     int desiredTilesAcross;
     int desiredTilesDown;
+    std::unordered_map<int, GameMenu*> menus;
 
     //methods
     void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
-    void coordsFromTileIndex(int x, int y, int returnCoords[2]);
     bool coordsAreOnDisplayedMapTile(int x, int y);
     bool isTilePassable(int x, int y);
 
