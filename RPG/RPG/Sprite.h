@@ -9,10 +9,10 @@ class Sprite
         //attributes
         int width, height, xpos, ypos;
         Texture * texture;
-        bool staticImage;
 
         //constructor
         Sprite(Texture * spriteTexture, GameScene * gameScene);
+        Sprite(GameScene * gameScene);
         Sprite();
 
         //deconstructor
@@ -20,9 +20,9 @@ class Sprite
 
         //methods
         bool pointCollision(int x, int y);
-        void draw();
+        virtual void draw();
 
-    private:
+    protected:
        GameScene* scene;
 };
 

@@ -6,13 +6,14 @@ Player::Player() : Unit() {
     isStatic = true;
 }
 
-Player::Player(Texture * spriteTexture, TileGridScene* gameScene) : Unit(spriteTexture, gameScene) {
+Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
     scene = gameScene;
     //startLocation = { 0, 0 };
     isStatic = true;
 }
 
 void Player::updatePlayer() {
+    Unit::update();
     updateMovement();
     int coords[2];
     int destCoords[2];
@@ -23,14 +24,3 @@ void Player::updatePlayer() {
     scene->xOffset += xpos - x;
     scene->yOffset += ypos - y;
 }
-
-//void Player::setStartLocation(int x, int y) {
-//    tileLocation[0] = x;
-//    tileLocation[1] = y;
-//    tileDestination[0] = x;
-//    tileDestination[1] = y;
-//    int screenCoords[2];
-//    scene->coordsFromTileIndex(x, y, screenCoords);
-//    xpos = screenCoords[0];
-//    ypos = screenCoords[1];
-//}

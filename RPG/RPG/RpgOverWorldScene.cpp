@@ -14,7 +14,8 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene
 void RpgOverWorldScene::loadSceneAssets()
 {
     TileGridScene::loadSceneAssets();
-    texturesToLoad.insert({ PLAYER, "images/player.png" });
+    texturesToLoad.insert({ PLAYER, "images/playerSheet.png" });
+    texturesToLoad.insert({ 22, "images/playerSheet.png" });
     texturesToLoad.insert({ RAT, "images/rat.png" });
 }
 
@@ -23,8 +24,8 @@ void RpgOverWorldScene::setUpScene()
     TileGridScene::setUpScene();
 
     //resize textures to match tile size
-    textures[RAT]->resize(tileHeight, tileWidth);
-    textures[PLAYER]->resize(tileHeight, tileWidth);
+    //textures[RAT]->resize(tileHeight, tileWidth);
+    //textures[PLAYER]->resize(tileHeight, tileWidth);
 
    //set background 
     backDropTileKey = WATER;
@@ -35,15 +36,21 @@ void RpgOverWorldScene::setUpScene()
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 
     //make units
-    player = Player(textures[PLAYER], this);
+    player = Player( this);
+    player.addAnimation(0, 22, 2, 100);
     player.setStartLocation(desiredTilesAcross/ 2, desiredTilesDown/ 2);
+    player.resize(tileWidth, tileHeight);
     player.speed = 5;
-    enemy = AiUnit(textures[RAT], this);
+    enemy = AiUnit( this);
+    enemy.addAnimation(0, RAT, 1, 10);
     enemy.setStartLocation(desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
-    enemy.speed = 3;
-    enemy2 = AiUnit(textures[RAT], this);
+    enemy.resize(tileWidth, tileHeight);
+    enemy.speed = 2;
+    enemy2 = AiUnit(this);
+    enemy2.addAnimation(0, RAT, 1, 10);
     enemy2.setStartLocation(desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
-    enemy2.speed = 3;
+    enemy2.resize(tileWidth, tileHeight);
+    enemy2.speed = 2;
 }
 
 void RpgOverWorldScene::handleInput()
@@ -155,7 +162,7 @@ void RpgOverWorldScene::sceneLogic()
 
 void RpgOverWorldScene::renderScene()
 {
-    printf("frames: %i framerate: %f\n", frames, (double) frames / SDL_GetTicks() * 1000);
+    printf("tickrate: %f\n", (double) frames / SDL_GetTicks() * 1000);
     TileGridScene::renderScene();
     
     //draw player

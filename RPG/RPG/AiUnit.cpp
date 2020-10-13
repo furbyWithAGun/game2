@@ -4,19 +4,20 @@
 AiUnit::AiUnit() : Unit() {
     isStatic = false;
     isHostile = false;
-    chanceToMoveEachTick = .001;
+    chanceToMoveEachTick = .01;
 }
 
-AiUnit::AiUnit(Texture* spriteTexture, TileGridScene* gameScene) : Unit(spriteTexture, gameScene) {
+AiUnit::AiUnit(TileGridScene* gameScene) : Unit(gameScene) {
     scene = gameScene;
     isStatic = false;
     isHostile = false;
-    chanceToMoveEachTick = .1;
+    chanceToMoveEachTick = .01;
 }
 
 void AiUnit::update() {
     updateMovement();
     randomMovement();
+    Unit::update();
 }
 
 void AiUnit::randomMovement() {

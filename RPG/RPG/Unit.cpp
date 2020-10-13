@@ -1,7 +1,7 @@
 #include "Unit.h"
 #include"GameScene.h"
 
-Unit::Unit() : Sprite() {
+Unit::Unit() : AnimatedSprite() {
     tileLocation = {0, 0};
     tileDestination = {0, 0};
     name = "";
@@ -11,7 +11,19 @@ Unit::Unit() : Sprite() {
     isStatic = false;
 }
 
-Unit::Unit(Texture * spriteTexture, TileGridScene* gameScene) : Sprite(spriteTexture, gameScene) {
+Unit::Unit(Texture * spriteTexture, TileGridScene* gameScene) : AnimatedSprite(gameScene) {
+    scene = gameScene;
+    name = "";
+    health = 1;
+    speed = 1;
+    leftToMove = 0;
+    tileLocation = {0, 0};
+    tileDestination = { 0, 0 };
+    setTileLocation(0, 0);
+    isStatic = false;
+}
+
+Unit::Unit(TileGridScene* gameScene) :AnimatedSprite(gameScene) {
     scene = gameScene;
     name = "";
     health = 1;
@@ -117,7 +129,7 @@ void Unit::draw()
     if (!isStatic) {
         updateCoords();
     }
-    Sprite::draw();
+    AnimatedSprite::draw();
 }
 
 void attack() {

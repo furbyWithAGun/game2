@@ -1,18 +1,20 @@
 #pragma once
-#include "Texture.h"
+#include "GameScene.h"
 
 class Animation
 {
 public:
     //attributes
-    Texture * spriteSheet;
-    int numFrames, frameHeight, frameWidth, animationSpeed;
+    GameScene * scene;
+    int spriteSheetKey;
+    int numFrames, frameHeight, frameWidth, ticksBetweenFrames, tickCount, currentFrame;
 
     //constructors
     Animation();
-    Animation(Texture* newSpriteSheet);
+    Animation(GameScene * newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames);
 
     //methods
-    bool play();
+    void tick();
+    void resetAnimation(int startframe = 0);
 };
 

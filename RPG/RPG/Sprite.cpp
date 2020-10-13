@@ -9,6 +9,15 @@ Sprite::Sprite(Texture * spriteTexture, GameScene * gameScene) {
     scene = gameScene;
 }
 
+Sprite::Sprite( GameScene* gameScene) {
+    texture = NULL;
+    width = texture->width;
+    height = texture->height;
+    xpos = 0;
+    ypos = 0;
+    scene = gameScene;
+}
+
 Sprite::Sprite() {
     texture = NULL;
     width = 0;

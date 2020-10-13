@@ -8,7 +8,7 @@ public:
 
     //constructor
     AiUnit();
-    AiUnit(Texture* spriteTexture, TileGridScene* gameScene);
+    AiUnit(TileGridScene* gameScene);
 
     //methods
     void update();

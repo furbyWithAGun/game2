@@ -11,7 +11,7 @@ const int KEY_R_VALUE = 255;
 const int KEY_G_VALUE = 0;
 const int KEY_B_VALUE = 255;
 const int DEFAULT_FONT_SIZE = 28;
-const int DEFAULT_TICK_DELAY = 10;
+const double DEFAULT_TICK_DELAY = 6;
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
@@ -288,6 +288,20 @@ void BaseGameEngine::renderTexture(Texture* texture, int x, int y, int width, in
     SDL_RenderCopy(mainRenderer, texture->texture, NULL, &renderQuad);
 }
 
+void BaseGameEngine::renderAnimation(Animation* animation, int x, int y) {
+    SDL_Rect renderQuad = { x, y, animation->frameWidth, animation->frameHeight };
+    SDL_Rect clipQuad = { 0, animation->currentFrame * animation->frameHeight, animation->frameWidth, animation->frameHeight };
+
+    SDL_RenderCopy(mainRenderer, textures[animation->spriteSheetKey].texture, &clipQuad, &renderQuad);
+}
+
+void BaseGameEngine::renderAnimation(Animation* animation, int x, int y, int width, int height) {
+    SDL_Rect renderQuad = { x, y, width, height };
+    SDL_Rect clipQuad = { 0, animation->currentFrame * animation->frameHeight, animation->frameWidth, animation->frameHeight };
+
+    SDL_RenderCopy(mainRenderer, textures[animation->spriteSheetKey].texture, &clipQuad, &renderQuad);
+}
+
 double BaseGameEngine::randomDouble() {
     return (double) rand() / RAND_MAX;
 }
@@ -390,19 +404,8 @@ bool BaseGameEngine::clearTextures() {
 }
 
 //functions
-int inputThread(void* scene) {
-    while (static_cast <GameScene*> (scene)->sceneRunning)
-    {
-        //printf("test1");
-        SDL_AtomicLock(&static_cast <GameScene*> (scene)->engine->sceneLock);
-        static_cast <GameScene*> (scene)->handleInput();
-        SDL_AtomicUnlock(&static_cast <GameScene*> (scene)->engine->sceneLock);
-    }
-    return 0;
-}
-
 int logicThread(void* scene) {
-    int lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    double lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     int timeToWait = 0;
     while (static_cast <GameScene*> (scene)->sceneRunning)
     {

@@ -1,5 +1,5 @@
 #pragma once
-#include "Sprite.h"
+#include "AnimatedSprite.h"
 #include "RpgGameConstants.h"
 #include "TileGridScene.h"
 
@@ -7,7 +7,7 @@ class BaseGameEngine;
 
 
 
-class Unit : public Sprite
+class Unit : public AnimatedSprite
 {
 public:
     //attributes
@@ -29,6 +29,7 @@ public:
     //constructors
     Unit();
     Unit(Texture * spriteTexture, TileGridScene* gameScene);
+    Unit(TileGridScene* gameScene);
 
     //destructor
     ~Unit();

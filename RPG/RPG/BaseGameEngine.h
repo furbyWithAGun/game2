@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <SDL_thread.h>
+#include "Animation.h"
 
 class BaseGameEngine
 {
@@ -24,7 +25,7 @@ class BaseGameEngine
         bool sceneRunning;
         SDL_SpinLock sceneRunningLock;
         SDL_SpinLock sceneLock;
-        int tickDelay;
+        double tickDelay;
 
         //constructor
         BaseGameEngine(std::string title, int width, int height);
@@ -47,6 +48,8 @@ class BaseGameEngine
         SDL_Texture* loadTextureFromText(std::string text);
         void renderTexture(Texture* texture, int x, int y);
         void renderTexture(Texture* texture, int x, int y, int width, int height);
+        void renderAnimation(Animation* animation, int x, int y);
+        void renderAnimation(Animation* animation, int x, int y, int width, int height);
         bool loadTextureImageFromFile(Texture* texture);
         void addScene(int sceneId, GameScene* sceneToAdd);
         void setNextScene(int sceneId);

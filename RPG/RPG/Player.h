@@ -11,7 +11,7 @@ public:
 
     //constructor
     Player();
-    Player(Texture * spriteTexture, TileGridScene* gameScene);
+    Player(TileGridScene* gameScene);
     
     //methods
     //void setStartLocation(int x, int y);
