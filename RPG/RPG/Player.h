@@ -1,20 +1,20 @@
 #pragma once
 #include "Unit.h"
 
-class RpgGameEngine;
+class TileGridScene;
 
 class Player : public Unit
 {
 public:
     //attributes
-    std::vector<int> startLocation;
+    //std::vector<int> startLocation;
 
     //constructor
     Player();
-    Player(Texture * spriteTexture, RpgGameEngine* gameEngine);
+    Player(Texture * spriteTexture, TileGridScene* gameScene);
     
     //methods
-    void setStartLocation(int x, int y);
+    //void setStartLocation(int x, int y);
     void updatePlayer();
 };
 

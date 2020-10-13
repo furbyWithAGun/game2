@@ -1,6 +1,7 @@
 // Includes
 #include "BaseGameEngine.h"
 #include "RpgWorldBuilderScene.h"
+#include "RpgOverWorldScene.h"
 #include "RpgGameConstants.h"
 
 // Global Constants
@@ -13,8 +14,11 @@ int main(int argc, char* args[])
 
     engine.init();
     RpgWorldBuilderScene wbs = RpgWorldBuilderScene(&engine);
+    RpgOverWorldScene ows = RpgOverWorldScene(&engine);
     engine.addScene(WORLD_BUILDER, &wbs);
-    engine.setNextScene(WORLD_BUILDER);
+    engine.addScene(OVERWORLD, &ows);
+    //engine.setNextScene(WORLD_BUILDER);
+    engine.setNextScene(OVERWORLD);
     engine.startMainGameLoop();
 
     //terminate the engine

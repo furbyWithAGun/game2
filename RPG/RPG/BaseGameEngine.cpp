@@ -2,12 +2,16 @@
 #include <stdio.h>
 #include <iostream>
 #include <fstream>
+#include <chrono>
+#include <thread>
+
 
 //constants
 const int KEY_R_VALUE = 255;
 const int KEY_G_VALUE = 0;
 const int KEY_B_VALUE = 255;
 const int DEFAULT_FONT_SIZE = 28;
+const int DEFAULT_TICK_DELAY = 10;
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
@@ -23,6 +27,8 @@ BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     nextScene = NULL;
     sceneRunning = false;
     gameRunning = false;
+    sceneLock = 0;
+    tickDelay = DEFAULT_TICK_DELAY;
 }
 
 BaseGameEngine::~BaseGameEngine() {
@@ -31,7 +37,7 @@ BaseGameEngine::~BaseGameEngine() {
 
 void BaseGameEngine::free() {
     
-    if (mainWindow!= NULL)
+    if (mainWindow != NULL)
     {
         SDL_DestroyWindow(mainWindow);
     }
@@ -84,7 +90,7 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
     SDL_Renderer* newRenderer = NULL;
 
     //Create vsynced renderer for window
-    newRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    newRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (newRenderer == NULL)
     {
         printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
@@ -99,6 +105,8 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
 }
 
 bool BaseGameEngine::init() {
+    //init rand
+    srand(time(NULL));
 
     //init sdl
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -280,6 +288,18 @@ void BaseGameEngine::renderTexture(Texture* texture, int x, int y, int width, in
     SDL_RenderCopy(mainRenderer, texture->texture, NULL, &renderQuad);
 }
 
+double BaseGameEngine::randomDouble() {
+    return (double) rand() / RAND_MAX;
+}
+
+int BaseGameEngine::randomInt(int maxValue) {
+    return rand() % (maxValue + 1);
+}
+
+int BaseGameEngine::randomInt(int minValue, int maxValue) {
+    return rand() % (maxValue - minValue + 1) + minValue;
+}
+
 //this method will be ovverridden in child class
 void BaseGameEngine::loadAssets() {
 
@@ -306,28 +326,21 @@ void BaseGameEngine::startMainGameLoop() {
 
     while (gameRunning)
     {
-        gameRunning = sceneRunning =  initNextScene();
-        while (sceneRunning)
+        gameRunning = currentScene->sceneRunning =  initNextScene();
+        while (currentScene->sceneRunning)
         {
-            sceneRunning = currentScene->handleInput();
-            if (!sceneRunning)
-            {
-                continue;
-            }
-            sceneRunning = currentScene->sceneLogic();
-            if (!sceneRunning)
-            {
-                continue;
-            }
+            //handle input
+            SDL_AtomicLock(&sceneLock);
+            currentScene->handleInput();
+            SDL_AtomicUnlock(&sceneLock);
+
             //clear screen
             SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
             SDL_RenderClear(getMainRenderer());
             //call scene rendering
-            sceneRunning = currentScene->renderScene();
-            if (!sceneRunning)
-            {
-                continue;
-            }
+            SDL_AtomicLock(&sceneLock);
+            currentScene->renderScene();
+            SDL_AtomicUnlock(&sceneLock);
             //Update screen
             SDL_RenderPresent(getMainRenderer());
         }
@@ -336,6 +349,7 @@ void BaseGameEngine::startMainGameLoop() {
 
 //private methods
 bool BaseGameEngine::initNextScene() {
+    SDL_AtomicLock(&sceneRunningLock);
     if (nextScene != NULL)
     {
         currentScene = nextScene;
@@ -343,9 +357,11 @@ bool BaseGameEngine::initNextScene() {
         currentScene->loadSceneAssets();
         loadSceneTextures(currentScene);
         currentScene->setUpScene();
+        SDL_CreateThread(logicThread, "logicThread", (void*)currentScene);
         return true;
     }
     else {
+        SDL_AtomicUnlock(&sceneRunningLock);
         return false;
     }
 }
@@ -371,4 +387,34 @@ bool BaseGameEngine::clearTextures() {
     }
     textures.clear();
     return true;
+}
+
+//functions
+int inputThread(void* scene) {
+    while (static_cast <GameScene*> (scene)->sceneRunning)
+    {
+        //printf("test1");
+        SDL_AtomicLock(&static_cast <GameScene*> (scene)->engine->sceneLock);
+        static_cast <GameScene*> (scene)->handleInput();
+        SDL_AtomicUnlock(&static_cast <GameScene*> (scene)->engine->sceneLock);
+    }
+    return 0;
+}
+
+int logicThread(void* scene) {
+    int lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    int timeToWait = 0;
+    while (static_cast <GameScene*> (scene)->sceneRunning)
+    {
+        timeToWait = static_cast <GameScene*> (scene)->engine->tickDelay - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastLogicTickStamp);
+        if (timeToWait > 0)
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(timeToWait));
+        }
+        lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        SDL_AtomicLock(&static_cast <GameScene*> (scene)->engine->sceneLock);
+        static_cast <GameScene*> (scene)->sceneLogic();
+        SDL_AtomicUnlock(&static_cast <GameScene*> (scene)->engine->sceneLock);
+    }
+    return 0;
 }

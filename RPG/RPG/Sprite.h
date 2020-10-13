@@ -9,6 +9,7 @@ class Sprite
         //attributes
         int width, height, xpos, ypos;
         Texture * texture;
+        bool staticImage;
 
         //constructor
         Sprite(Texture * spriteTexture, GameScene * gameScene);

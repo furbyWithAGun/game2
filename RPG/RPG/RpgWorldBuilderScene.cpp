@@ -45,8 +45,7 @@ void RpgWorldBuilderScene::setUpScene() {
     menus[BUILD_MENU] = zoneBuildMenu;
 }
 
-bool RpgWorldBuilderScene::handleInput() {
-    bool continueScene = true;
+void RpgWorldBuilderScene::handleInput() {
     SDL_Event e;
     int x, y;
     int k[2];
@@ -78,7 +77,7 @@ bool RpgWorldBuilderScene::handleInput() {
         switch (e.type)
         {
         case SDL_QUIT:
-            continueScene = false;
+            endScene();
             break;
         case SDL_MOUSEBUTTONDOWN:
             switch (e.button.button)
@@ -148,14 +147,12 @@ bool RpgWorldBuilderScene::handleInput() {
             break;
         }
     }
-    return continueScene;
 }
 
-bool RpgWorldBuilderScene::sceneLogic() {
-    return true;
+void RpgWorldBuilderScene::sceneLogic() {
 }
 
-bool RpgWorldBuilderScene::renderScene() {
+void RpgWorldBuilderScene::renderScene() {
     TileGridScene::renderScene();
 
     //draw tile being placed
@@ -179,5 +176,4 @@ bool RpgWorldBuilderScene::renderScene() {
             menu.second->draw();
         }
     }
-    return true;
 }

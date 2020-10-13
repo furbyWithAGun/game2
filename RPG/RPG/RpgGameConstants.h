@@ -23,16 +23,19 @@ enum TEXTURE_NAMES
     MOUNTAIN,
     BUTTON_BACKGROUND,
     PLAYER,
+    RAT,
     NUM_TEXTURES
 };
 
-enum MOVEMENT {
-    MOVE_UP,
-    MOVE_DOWN,
-    MOVE_LEFT,
-    MOVE_RIGHT
+enum DIRECTIONS {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+    NUM_DIRECTIONS
 };
 
 enum SCENES {
-    WORLD_BUILDER
+    WORLD_BUILDER,
+    OVERWORLD
 };

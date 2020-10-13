@@ -7,6 +7,9 @@
 #include <unordered_map>
 #include "SaveFile.h"
 #include "GameScene.h"
+#include <stdlib.h>
+#include <time.h>
+#include <SDL_thread.h>
 
 class BaseGameEngine
 {
@@ -19,6 +22,9 @@ class BaseGameEngine
         SDL_Color mainFontColor;
         bool gameRunning;
         bool sceneRunning;
+        SDL_SpinLock sceneRunningLock;
+        SDL_SpinLock sceneLock;
+        int tickDelay;
 
         //constructor
         BaseGameEngine(std::string title, int width, int height);
@@ -44,6 +50,9 @@ class BaseGameEngine
         bool loadTextureImageFromFile(Texture* texture);
         void addScene(int sceneId, GameScene* sceneToAdd);
         void setNextScene(int sceneId);
+        double randomDouble();
+        int randomInt(int maxValue);
+        int randomInt(int minValue, int maxValue);
 
     protected:
         
@@ -57,6 +66,7 @@ class BaseGameEngine
         GameScene* currentScene;
         GameScene* nextScene;
         std::unordered_map<int, GameScene*> scenes;
+        
 
         //methods
         SDL_Window* createWindow(const char* title, int height, int width);
@@ -66,3 +76,4 @@ class BaseGameEngine
         bool clearTextures();
 };
 
+int logicThread(void* scene);

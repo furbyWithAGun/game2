@@ -13,7 +13,7 @@ TileGridScene::TileGridScene() : GameScene() {
     xOffset = 0;
     yOffset = 0;
     mainCanvasStartX = 0;
-    backDropTileKey = 0;
+    backDropTileKey = WATER;
     desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
 }
@@ -24,7 +24,7 @@ TileGridScene::TileGridScene(BaseGameEngine* gameEngine) : GameScene((BaseGameEn
     xOffset = 0;
     yOffset = 0;
     mainCanvasStartX = engine->screenWidth * LEFT_MENU_SIZE + 1;
-    backDropTileKey = 0;
+    backDropTileKey = WATER;
     desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
 }
@@ -42,17 +42,17 @@ void TileGridScene::setUpScene()
     createTiles();
 }
 
-bool TileGridScene::handleInput()
+void TileGridScene::handleInput()
 {
-    return true;
+
 }
 
-bool TileGridScene::sceneLogic()
+void TileGridScene::sceneLogic()
 {
-    return true;
+
 }
 
-bool TileGridScene::renderScene()
+void TileGridScene::renderScene()
 {
     //fill screen with backdrop
     for (size_t i = 0; i * tileHeight <= engine->screenHeight + tileHeight; i++)
@@ -68,7 +68,11 @@ bool TileGridScene::renderScene()
             engine->renderTexture(textures[mapTiles[currentZone.tileMap[i][j]].textureKey], (tileWidth * j) + mainCanvasStartX + xOffset, tileHeight * i + yOffset, tileWidth, tileHeight);
         }
     }
-    return true;
+    
+    //cover Left side
+    SDL_Rect fillRect = { 0, 0, mainCanvasStartX, engine->screenHeight };
+    SDL_SetRenderDrawColor(engine->getMainRenderer(), 0, 0, 0, 0);
+    SDL_RenderFillRect(engine->getMainRenderer(), &fillRect);
 }
 
 void TileGridScene::coordsFromTileIndex(int x, int y, int returnCoords[2]) {
@@ -117,8 +121,4 @@ void TileGridScene::createTiles() {
         tileHeight = tilesImpliedWidth;
         tileWidth = tilesImpliedWidth;
     }
-
-    //for (auto i = mapTiles.begin(); i != mapTiles.end(); i++) {
-        //engine->textures[i->second.textureKey].resize(tileHeight, tileWidth);
-    //}
 }

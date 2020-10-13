@@ -11,6 +11,7 @@ class TileGridScene : public GameScene
 {
 public:
     //attributes
+    int xOffset, yOffset;
     ZoneMap currentZone;
     std::unordered_map<int, MapTile> mapTiles;
 
@@ -22,15 +23,16 @@ public:
     void coordsFromTileIndex(int x, int y, int returnCoords[2]);
     virtual void loadSceneAssets() override;
     virtual void setUpScene() override;
-    bool handleInput() override;
-    bool sceneLogic() override;
-    bool renderScene() override;
+    void handleInput() override;
+    void sceneLogic() override;
+    void renderScene() override;
+    bool isTilePassable(int x, int y);
+    
 
 protected:
     //attributes
     int tileHeight;
     int tileWidth;
-    int xOffset, yOffset;
     int mainCanvasStartX;
     int backDropTileKey;
     int desiredTilesAcross;
@@ -40,7 +42,7 @@ protected:
     //methods
     void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
     bool coordsAreOnDisplayedMapTile(int x, int y);
-    bool isTilePassable(int x, int y);
+    
 
 private:
     //attributes

@@ -6,24 +6,39 @@ class BaseGameEngine;
 
 class GameScene
 {
+    friend class BaseGameEngine;
 public:
     //attributes
-    BaseGameEngine* engine;
     std::unordered_map<int, Texture *> textures;
-    std::unordered_map<int, std::string> texturesToLoad;
-
+    BaseGameEngine* engine;
+    bool sceneRunning;
+    
     //constructor
     GameScene();
     GameScene(BaseGameEngine * gameEngine);
 
     //methods
+    virtual void handleInput() {};
+    virtual void sceneLogic() {};
+    virtual void renderScene() {};
     void renderTexture(Texture* texture, int x, int y);
     void renderTexture(Texture* texture, int x, int y, int width, int height);
+    void renderTexture(int textureKey, int x, int y);
+    void renderTexture(int textureKey, int x, int y, int width, int height);
+
+protected:
+    //attributes
+    std::unordered_map<int, std::string> texturesToLoad;
+
+    //methods
+    void endScene();
     virtual void loadSceneAssets() {};
     virtual void setUpScene() {};
-    virtual bool handleInput() { return true; };
-    virtual bool sceneLogic() { return true; };
-    virtual bool renderScene() { return true; };
+    
+
+private:
+    //attributes
+    
 
 };
 

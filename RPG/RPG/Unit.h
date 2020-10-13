@@ -15,10 +15,17 @@ public:
     std::vector<int> tileLocation;
     std::vector<int> tileDestination;
     std::string name;
-    int health;
-    int speed;
     double leftToMove;
     bool isStatic;
+    int directionFacing;
+
+    //character stats
+    int health;
+    int speed;
+    int dex;
+    int str;
+    int agi;
+
     //constructors
     Unit();
     Unit(Texture * spriteTexture, TileGridScene* gameScene);
@@ -31,6 +38,8 @@ public:
     void updateMovement();
     void setTileLocation(int x, int y);
     void updateCoords();
-    //void draw();
+    void setStartLocation(int x, int y);
+    void draw();
+    void attack();
 };
 

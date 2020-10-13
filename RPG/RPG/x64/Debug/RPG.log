@@ -1,11 +1,3 @@
-﻿  RpgWorldBuilderScene.cpp
-D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(54,92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(60,30): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(61,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(63,65): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(64,63): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(65,57): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(66,58): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  ZonePortal.cpp
-  Generating Code...
-  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  RpgOverWorldScene.cpp
+D:\coding\c++\game\RPG\RPG\RpgOverWorldScene.cpp(53,13): warning C4101: 'k': unreferenced local variable
+  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe

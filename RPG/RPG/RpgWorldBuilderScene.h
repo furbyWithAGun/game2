@@ -25,13 +25,12 @@ public:
     //methods
     void loadSceneAssets();
     void setUpScene() override;
-    bool handleInput() override;
-    bool sceneLogic() override;
-    bool renderScene() override;
+    void handleInput() override;
+    void sceneLogic() override;
+    void renderScene() override;
 
 private:
     //attributes
-    
 
     //methods
 };
