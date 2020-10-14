@@ -17,7 +17,7 @@ public:
     void addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames);
     void startAnimation(int animationKey);
     void init();
-    void update();
+    virtual void update();
     void draw();
     void resize(int x , int y);
 };

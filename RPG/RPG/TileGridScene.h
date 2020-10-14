@@ -14,6 +14,8 @@ public:
     int xOffset, yOffset;
     ZoneMap currentZone;
     std::unordered_map<int, MapTile> mapTiles;
+    int tileHeight;
+    int tileWidth;
 
     //constructor
     TileGridScene();
@@ -31,8 +33,6 @@ public:
 
 protected:
     //attributes
-    int tileHeight;
-    int tileWidth;
     int mainCanvasStartX;
     int backDropTileKey;
     int desiredTilesAcross;

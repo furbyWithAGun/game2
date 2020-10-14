@@ -16,5 +16,11 @@ public:
     //methods
     //void setStartLocation(int x, int y);
     void updatePlayer();
+
+private:
+    //attributes
+
+    //methods
+    void createAnimations();
 };
 

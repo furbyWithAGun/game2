@@ -41,7 +41,6 @@ void AnimatedSprite::init()
 
 void AnimatedSprite::update()
 {
-    printf("tick");
     currentAnimation->tick();
 }
 

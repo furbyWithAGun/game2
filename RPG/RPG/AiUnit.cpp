@@ -1,21 +1,22 @@
 #include "AiUnit.h"
+//constants
+const double RANDOM_MOVE_CHANCE = 0.005;
 
 //constructors
 AiUnit::AiUnit() : Unit() {
     isStatic = false;
     isHostile = false;
-    chanceToMoveEachTick = .01;
+    chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
 }
 
 AiUnit::AiUnit(TileGridScene* gameScene) : Unit(gameScene) {
     scene = gameScene;
     isStatic = false;
     isHostile = false;
-    chanceToMoveEachTick = .01;
+    chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
 }
 
 void AiUnit::update() {
-    updateMovement();
     randomMovement();
     Unit::update();
 }
@@ -23,6 +24,6 @@ void AiUnit::update() {
 void AiUnit::randomMovement() {
     if (leftToMove == 0 && scene->engine->randomDouble() <= chanceToMoveEachTick)
     {
-        startMovement(scene->engine->randomInt(NUM_DIRECTIONS - 1));
+        startMovement(scene->engine->randomInt(UP, RIGHT));
     }
 }

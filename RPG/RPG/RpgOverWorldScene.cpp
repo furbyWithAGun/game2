@@ -14,18 +14,14 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene
 void RpgOverWorldScene::loadSceneAssets()
 {
     TileGridScene::loadSceneAssets();
-    texturesToLoad.insert({ PLAYER, "images/playerSheet.png" });
-    texturesToLoad.insert({ 22, "images/playerSheet.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_SHEET, "images/player.png" });
+    texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerSheet.png" });
     texturesToLoad.insert({ RAT, "images/rat.png" });
 }
 
 void RpgOverWorldScene::setUpScene()
 {
     TileGridScene::setUpScene();
-
-    //resize textures to match tile size
-    //textures[RAT]->resize(tileHeight, tileWidth);
-    //textures[PLAYER]->resize(tileHeight, tileWidth);
 
    //set background 
     backDropTileKey = WATER;
@@ -37,10 +33,7 @@ void RpgOverWorldScene::setUpScene()
 
     //make units
     player = Player( this);
-    player.addAnimation(0, 22, 2, 100);
     player.setStartLocation(desiredTilesAcross/ 2, desiredTilesDown/ 2);
-    player.resize(tileWidth, tileHeight);
-    player.speed = 5;
     enemy = AiUnit( this);
     enemy.addAnimation(0, RAT, 1, 10);
     enemy.setStartLocation(desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
@@ -139,21 +132,21 @@ void RpgOverWorldScene::sceneLogic()
 {
 
     frames++;
-    //if (playerMovingUp && !playerMovingDown && isTilePassable(player.tileLocation[0], player.tileLocation[1] - 1)) {
     if (playerMovingUp && !playerMovingDown) {
         player.startMovement(UP);
     }
-    //else if (playerMovingDown && !playerMovingUp && isTilePassable(player.tileLocation[0], player.tileLocation[1] + 1)) {
     if (playerMovingDown && !playerMovingUp) {
         player.startMovement(DOWN);
     }
-    //else if (playerMovingRight && !playerMovingLeft && isTilePassable(player.tileLocation[0] + 1, player.tileLocation[1])) {
     if (playerMovingRight && !playerMovingLeft) {
         player.startMovement(RIGHT);
     }
-    //else if (playerMovingLeft && !playerMovingRight && isTilePassable(player.tileLocation[0] - 1, player.tileLocation[1])) {
     if (playerMovingLeft && !playerMovingRight) {
         player.startMovement(LEFT);
+    }
+    if (!playerMovingUp && !playerMovingDown && !playerMovingRight && ! playerMovingLeft)
+    {
+        //player.currentAnimation = &player.animations[IDLE];
     }
     player.updatePlayer();
     enemy.update();

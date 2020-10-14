@@ -16,7 +16,7 @@ public:
     std::vector<int> tileDestination;
     std::string name;
     double leftToMove;
-    bool isStatic;
+    bool isStatic, isPlayerControlled;
     int directionFacing;
 
     //character stats
@@ -41,6 +41,7 @@ public:
     void updateCoords();
     void setStartLocation(int x, int y);
     void draw();
+    virtual void update();
     void attack();
 };
 
