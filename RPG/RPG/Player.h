@@ -16,6 +16,7 @@ public:
     //methods
     //void setStartLocation(int x, int y);
     void updatePlayer();
+    void faceMouseDirection(int x, int y);
 
 private:
     //attributes

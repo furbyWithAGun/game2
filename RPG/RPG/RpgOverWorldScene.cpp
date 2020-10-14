@@ -53,6 +53,7 @@ void RpgOverWorldScene::handleInput()
         int k[2];
     
         SDL_GetMouseState(&x, &y);
+        player.faceMouseDirection(x, y);
     
         //Handle events on queue
         while (SDL_PollEvent(&e) != 0)
@@ -73,6 +74,7 @@ void RpgOverWorldScene::handleInput()
                 switch (e.button.button)
                 {
                 case SDL_BUTTON_LEFT:
+                    printf("%i\n", player.directionFacing);
                     break;
                 default:
                     break;
@@ -155,7 +157,7 @@ void RpgOverWorldScene::sceneLogic()
 
 void RpgOverWorldScene::renderScene()
 {
-    printf("tickrate: %f\n", (double) frames / SDL_GetTicks() * 1000);
+    //printf("tickrate: %f\n", (double) frames / SDL_GetTicks() * 1000);
     TileGridScene::renderScene();
     
     //draw player
