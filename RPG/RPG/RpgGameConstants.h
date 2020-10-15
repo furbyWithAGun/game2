@@ -18,7 +18,14 @@ enum MENUS {
 };
 
 enum ANIMATIONS {
-    IDLE,
+    IDLE_UP_LEFT,
+    IDLE_UP,
+    IDLE_UP_RIGHT,
+    IDLE_RIGHT,
+    IDLE_DOWN_RIGHT,
+    IDLE_DOWN,
+    IDLE_DOWN_LEFT,
+    IDLE_LEFT,
     MOVE_UP,
     MOVE_DOWN,
     MOVE_RIGHT,
@@ -27,13 +34,27 @@ enum ANIMATIONS {
 
 enum TEXTURE_NAMES
 {
+    //-------------tiles-------------
     GRASS,
     TREE,
     WATER,
     MOUNTAIN,
+    //------------button----------------------
     BUTTON_BACKGROUND,
-    PLAYER_IDLE_SHEET,
+    //------------player---------------------
+    PLAYER_IDLE_UP_LEFT_SHEET,
+    PLAYER_IDLE_UP_SHEET,
+    PLAYER_IDLE_UP_RIGHT_SHEET,
+    PLAYER_IDLE_RIGHT_SHEET,
+    PLAYER_IDLE_DOWN_RIGHT_SHEET,
+    PLAYER_IDLE_DOWN_SHEET,
+    PLAYER_IDLE_DOWN_LEFT_SHEET,
+    PLAYER_IDLE_LEFT_SHEET,
+    PLAYER_MOVE_UP_SHEET,
     PLAYER_MOVE_DOWN_SHEET,
+    PLAYER_MOVE_RIGHT_SHEET,
+    PLAYER_MOVE_LEFT_SHEET,
+    //------------enemies---------------
     RAT,
     NUM_TEXTURES
 };

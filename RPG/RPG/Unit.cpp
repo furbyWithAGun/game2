@@ -26,6 +26,7 @@ Unit::Unit(Texture * spriteTexture, TileGridScene* gameScene) : AnimatedSprite(g
     isStatic = false;
     isPlayerControlled = false;
     directionFacing = DOWN;
+    movingUp = movingDown = movingRight = movingLeft = false;
 }
 
 Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
@@ -40,6 +41,7 @@ Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
     isStatic = false;
     isPlayerControlled = false;
     directionFacing = DOWN;
+    movingUp = movingDown = movingRight = movingLeft = false;
 }
 
 //destructor
@@ -56,10 +58,8 @@ void Unit::startMovement(int direction) {
     if (leftToMove == 0)
     {
         leftToMove = 1;
-        if (!isPlayerControlled)
-        {
-            directionFacing = direction;
-        }
+        directionFacing = direction;
+
         switch (direction)
         {
         case UP:
@@ -98,6 +98,7 @@ void Unit::update() {
     if (!isStatic) {
         updateCoords();
     }
+    updateAnimation();
 }
 
 void Unit::updateMovement() {
@@ -108,8 +109,21 @@ void Unit::updateMovement() {
         leftToMove = 0;
         if (tileDestination[0] != tileLocation[0] || tileDestination[1] != tileLocation[1]) {
             setTileLocation(tileDestination[0], tileDestination[1]);
-        } 
+        }
+        if (movingUp && !movingDown) {
+            startMovement(UP);
+        }
+        if (movingDown && !movingUp) {
+            startMovement(DOWN);
+        }
+        if (movingRight && !movingLeft) {
+            startMovement(RIGHT);
+        }
+        if (movingLeft && !movingRight) {
+            startMovement(LEFT);
+        }
     }
+
 }
 
 void Unit::setTileLocation(int x, int y) {
@@ -137,6 +151,69 @@ void Unit::setStartLocation(int x, int y) {
     scene->coordsFromTileIndex(x, y, screenCoords);
     xpos = screenCoords[0];
     ypos = screenCoords[1];
+}
+
+void Unit::setAnimation(int animationKey) {
+    if (currentAnimation != &animations[animationKey])
+    {
+        currentAnimation = &animations[animationKey];
+    }
+}
+
+void Unit::updateAnimation() {
+    if (isMoving())
+    {
+        switch (directionFacing) {
+        case UP:
+            setAnimation(MOVE_UP);
+            break;
+        case DOWN:
+            setAnimation(MOVE_DOWN);
+            break;
+        case RIGHT:
+            setAnimation(MOVE_RIGHT);
+            break;
+        case LEFT:
+            setAnimation(MOVE_LEFT);
+            break;
+        default:
+            break;
+        }
+    }
+    else {
+        switch (directionFacing){
+        case UP_LEFT:
+            setAnimation(IDLE_UP_LEFT);
+            break;
+        case UP:
+            setAnimation(IDLE_UP);
+            break;
+        case UP_RIGHT:
+            setAnimation(IDLE_UP_RIGHT);
+            break;
+        case RIGHT:
+            setAnimation(IDLE_RIGHT);
+            break;
+        case DOWN_RIGHT:
+            setAnimation(IDLE_DOWN_RIGHT);
+            break;
+        case DOWN:
+            setAnimation(IDLE_DOWN);
+            break;
+        case DOWN_LEFT:
+            setAnimation(IDLE_DOWN_LEFT);
+            break;
+        case LEFT:
+            setAnimation(IDLE_LEFT);
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+bool Unit::isMoving() {
+    return leftToMove != 0 || movingDown || movingUp || movingRight || movingLeft;
 }
 
 void Unit::draw()

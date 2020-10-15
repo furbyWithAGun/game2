@@ -17,6 +17,7 @@ public:
     std::string name;
     double leftToMove;
     bool isStatic, isPlayerControlled;
+    bool movingUp, movingDown, movingRight, movingLeft;
     int directionFacing;
 
     //character stats
@@ -40,6 +41,9 @@ public:
     void setTileLocation(int x, int y);
     void updateCoords();
     void setStartLocation(int x, int y);
+    void setAnimation(int animationKey);
+    void updateAnimation();
+    bool isMoving();
     void draw();
     virtual void update();
     void attack();

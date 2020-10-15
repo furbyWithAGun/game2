@@ -15,15 +15,9 @@ Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
 }
 
 void Player::updatePlayer() {
-    if (leftToMove != 0 && currentAnimation != &animations[MOVE_DOWN])
-    {
-        currentAnimation = &animations[MOVE_DOWN];
-        currentAnimation->resetAnimation(1);
-    }
-    else if(leftToMove == 0) {
-        currentAnimation = &animations[IDLE];
-    }
     Unit::update();
+
+    //centre on screen by changing scene x and y offsets
     int coords[2];
     int destCoords[2];
     scene->coordsFromTileIndex(tileLocation[0], tileLocation[1], coords);
@@ -35,36 +29,50 @@ void Player::updatePlayer() {
 }
 
 void Player::faceMouseDirection(int x, int y) {
-    if (x < xpos && y < ypos)
+    if (!isMoving())
     {
-        directionFacing = UP_LEFT;
-    }
-    else if (x >= xpos && x <= xpos + width && y < ypos) {
-        directionFacing = UP;
-    }
-    else if (x > xpos + width && y < ypos) {
-        directionFacing = UP_RIGHT;
-    }
-    else if (x > xpos + width && y > ypos && y < ypos + height) {
-        directionFacing = RIGHT;
-    }
-    else if (x > xpos + width && y > ypos + height) {
-        directionFacing = DOWN_RIGHT;
-    }
-    else if (x >= xpos && x <= xpos + width && y > ypos + height) {
-        directionFacing = DOWN;
-    }
-    else if (x < xpos && y > ypos + height) {
-        directionFacing = DOWN_LEFT;
-    }
-    else if (x < xpos && y > ypos && y < ypos + height) {
-        directionFacing = LEFT;
+        if (x < xpos && y < ypos)
+        {
+            directionFacing = UP_LEFT;
+        }
+        else if (x >= xpos && x <= xpos + width && y < ypos) {
+            directionFacing = UP;
+        }
+        else if (x > xpos + width && y < ypos) {
+            directionFacing = UP_RIGHT;
+        }
+        else if (x > xpos + width && y > ypos && y < ypos + height) {
+            directionFacing = RIGHT;
+        }
+        else if (x > xpos + width && y > ypos + height) {
+            directionFacing = DOWN_RIGHT;
+        }
+        else if (x >= xpos && x <= xpos + width && y > ypos + height) {
+            directionFacing = DOWN;
+        }
+        else if (x < xpos && y > ypos + height) {
+            directionFacing = DOWN_LEFT;
+        }
+        else if (x < xpos && y > ypos && y < ypos + height) {
+            directionFacing = LEFT;
+        }
     }
 }
 
 //private methods
 void Player::createAnimations() {
-    addAnimation(IDLE, PLAYER_IDLE_SHEET, 1, 10);
+    addAnimation(IDLE_UP_LEFT, PLAYER_IDLE_UP_LEFT_SHEET, 1, 10);
+    addAnimation(IDLE_UP, PLAYER_IDLE_UP_SHEET, 1, 10);
+    addAnimation(IDLE_UP_RIGHT, PLAYER_IDLE_UP_RIGHT_SHEET, 1, 10);
+    addAnimation(IDLE_RIGHT, PLAYER_IDLE_RIGHT_SHEET, 1, 10);
+    addAnimation(IDLE_DOWN_RIGHT, PLAYER_IDLE_DOWN_RIGHT_SHEET, 1, 10);
+    addAnimation(IDLE_DOWN, PLAYER_IDLE_DOWN_SHEET, 1, 10);
+    addAnimation(IDLE_DOWN_LEFT, PLAYER_IDLE_DOWN_LEFT_SHEET, 1, 10);
+    addAnimation(IDLE_LEFT, PLAYER_IDLE_LEFT_SHEET, 1, 10);
+
     addAnimation(MOVE_DOWN, PLAYER_MOVE_DOWN_SHEET, 2, 20);
+    addAnimation(MOVE_UP, PLAYER_MOVE_DOWN_SHEET, 2, 20);
+    addAnimation(MOVE_RIGHT, PLAYER_MOVE_DOWN_SHEET, 2, 20);
+    addAnimation(MOVE_LEFT, PLAYER_MOVE_DOWN_SHEET, 2, 20);
 }
 

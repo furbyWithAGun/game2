@@ -24,7 +24,7 @@ private:
     Player player;
     AiUnit enemy;
     AiUnit enemy2;
-    bool playerMovingUp, playerMovingDown, playerMovingRight, playerMovingLeft;;
+    bool wKeyDown, sKeyDown, dKeyDown, aKeyDown;
 
 
 };

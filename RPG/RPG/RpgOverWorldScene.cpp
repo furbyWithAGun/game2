@@ -3,18 +3,25 @@
 
 RpgOverWorldScene::RpgOverWorldScene() : TileGridScene()
 {
-    playerMovingUp = playerMovingDown = playerMovingRight = playerMovingLeft = false;
+    wKeyDown = sKeyDown = dKeyDown = aKeyDown = false;
 }
 
 RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene(gameEngine)
 {
-    playerMovingUp = playerMovingDown = playerMovingRight = playerMovingLeft = false;
+    wKeyDown = sKeyDown = dKeyDown = aKeyDown = false;
 }
 
 void RpgOverWorldScene::loadSceneAssets()
 {
     TileGridScene::loadSceneAssets();
-    texturesToLoad.insert({ PLAYER_IDLE_SHEET, "images/player.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUpLeft.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_SHEET, "images/playerIdleUp.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/playerIdleUpRight.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_RIGHT_SHEET, "images/playerIdleRight.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_RIGHT_SHEET, "images/playerIdleDownRight.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_SHEET, "images/playerIdleDown.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/playerIdleDownLeft.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_LEFT_SHEET, "images/playerIdleLeft.png" });
     texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerSheet.png" });
     texturesToLoad.insert({ RAT, "images/rat.png" });
 }
@@ -95,32 +102,32 @@ void RpgOverWorldScene::handleInput()
             case SDL_KEYDOWN:
                 switch (e.key.keysym.sym) {
                 case SDLK_w:
-                    playerMovingUp = true;
+                    wKeyDown = true;
                     break;
                 case SDLK_s:
-                    playerMovingDown = true;
+                    sKeyDown = true;
                     break;
                 case SDLK_a:
-                    playerMovingLeft = true;
+                    aKeyDown = true;
                     break;
                 case SDLK_d:
-                    playerMovingRight = true;
+                    dKeyDown = true;
                     break;
                 }
                 break;
             case SDL_KEYUP:
                 switch (e.key.keysym.sym) {
                 case SDLK_w:
-                    playerMovingUp = false;
+                    wKeyDown = false;
                     break;
                 case SDLK_s:
-                    playerMovingDown = false;
+                    sKeyDown = false;
                     break;
                 case SDLK_a:
-                    playerMovingLeft = false;
+                    aKeyDown = false;
                     break;
                 case SDLK_d:
-                    playerMovingRight = false;
+                    dKeyDown = false;
                     break;
                 }
                 break;
@@ -134,22 +141,11 @@ void RpgOverWorldScene::sceneLogic()
 {
 
     frames++;
-    if (playerMovingUp && !playerMovingDown) {
-        player.startMovement(UP);
-    }
-    if (playerMovingDown && !playerMovingUp) {
-        player.startMovement(DOWN);
-    }
-    if (playerMovingRight && !playerMovingLeft) {
-        player.startMovement(RIGHT);
-    }
-    if (playerMovingLeft && !playerMovingRight) {
-        player.startMovement(LEFT);
-    }
-    if (!playerMovingUp && !playerMovingDown && !playerMovingRight && ! playerMovingLeft)
-    {
-        //player.currentAnimation = &player.animations[IDLE];
-    }
+    player.movingUp = wKeyDown && !sKeyDown;
+    player.movingDown = sKeyDown && !wKeyDown;
+    player.movingRight = dKeyDown && !aKeyDown;
+    player.movingLeft = aKeyDown && !dKeyDown;
+
     player.updatePlayer();
     enemy.update();
     enemy2.update();
