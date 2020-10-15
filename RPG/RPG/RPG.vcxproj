@@ -157,7 +157,7 @@
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RpgGameEngineOldCode.cpp" />
+    <ClCompile Include="Rat.cpp" />
     <ClCompile Include="RpgOverWorldScene.cpp" />
     <ClCompile Include="RpgWorldBuilderScene.cpp" />
     <ClCompile Include="RpgWorldBuilderSceneMenus.cpp" />
@@ -182,8 +182,8 @@
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rat.h" />
     <ClInclude Include="RpgGameConstants.h" />
-    <ClInclude Include="RpgGameEngineOldCode.h" />
     <ClInclude Include="RpgOverWorldScene.h" />
     <ClInclude Include="RpgWorldBuilderScene.h" />
     <ClInclude Include="SaveAttribute.h" />

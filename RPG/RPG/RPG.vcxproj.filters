@@ -19,47 +19,62 @@
     <Filter Include="Source Files\gameEngine">
       <UniqueIdentifier>{e7959a16-2487-47bf-ab19-1a7f429dd4aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\RpgGame">
+      <UniqueIdentifier>{7719a6e3-4488-402a-ab46-cf1752fbec47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame">
+      <UniqueIdentifier>{da263785-5055-49c8-bcba-2e7c71361727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units">
+      <UniqueIdentifier>{1b795d93-9f9d-4dd7-a837-2a70789ef8aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units">
+      <UniqueIdentifier>{ab36d5cb-d392-4665-890f-5cb25e597f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes">
+      <UniqueIdentifier>{02fbcb61-b971-49e3-a0c6-9ce22bad0cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes">
+      <UniqueIdentifier>{a3dec4ed-7dad-4d33-b51e-58e340a07ec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\overWorldScene">
+      <UniqueIdentifier>{91131c00-8a4e-4090-88e6-d36ef9494871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene">
+      <UniqueIdentifier>{76212309-c45d-4388-87c8-93b3d28d5963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\tileGridScene">
+      <UniqueIdentifier>{2f89c1b0-de4c-4ae1-af25-b51416fe50c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\tileGridScene">
+      <UniqueIdentifier>{558278cb-c147-4c38-81fd-b99e6a6ae13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene">
+      <UniqueIdentifier>{d8e2d543-0af6-4281-908c-70d065772ecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\overWorldScene">
+      <UniqueIdentifier>{4e5be56e-5391-416f-a1fa-d0edc026e158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\map">
+      <UniqueIdentifier>{6fd703a7-98d6-4bef-b50f-c9244ecda4b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\map">
+      <UniqueIdentifier>{7dd709da-510f-4375-ae9a-c61d88e4f0c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\player">
+      <UniqueIdentifier>{669e8e98-67a0-4421-bd23-c945d704e069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\rat">
+      <UniqueIdentifier>{1c74d8b7-38a0-484b-9f55-d893f3c1b98d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\player">
+      <UniqueIdentifier>{7feb7873-ea49-4288-b808-9ae8419cee58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\rat">
+      <UniqueIdentifier>{831dde75-867e-47ff-874d-c5b3edaa187d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MapTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ZonePortal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Unit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RpgWorldBuilderScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TileGridScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RpgWorldBuilderSceneButtons.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RpgWorldBuilderSceneMenus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RpgGameEngineOldCode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RpgOverWorldScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AiUnit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AnimatedSprite.cpp">
       <Filter>Source Files\gameEngine</Filter>
     </ClCompile>
@@ -93,41 +108,47 @@
     <ClCompile Include="SaveObject.cpp">
       <Filter>Source Files\gameEngine</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\RpgGame</Filter>
+    </ClCompile>
+    <ClCompile Include="AiUnit.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="TileGridScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\tileGridScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgWorldBuilderScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgWorldBuilderSceneButtons.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgWorldBuilderSceneMenus.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgOverWorldScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTile.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneMap.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="ZonePortal.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\RpgGame\units\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Rat.cpp">
+      <Filter>Source Files\RpgGame\units\rat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ZoneMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapTile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZonePortal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Unit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RpgWorldBuilderScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TileGridScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RpgGameConstants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RpgGameEngineOldCode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RpgOverWorldScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AiUnit.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BaseGameEngine.h">
       <Filter>Header Files\gameEngine</Filter>
     </ClInclude>
@@ -160,6 +181,39 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgGameConstants.h">
+      <Filter>Header Files\RpgGame</Filter>
+    </ClInclude>
+    <ClInclude Include="AiUnit.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgOverWorldScene.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgWorldBuilderScene.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClInclude>
+    <ClInclude Include="TileGridScene.h">
+      <Filter>Header Files\RpgGame\scenes\tileGridScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTile.h">
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneMap.h">
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="ZonePortal.h">
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\RpgGame\units\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Rat.h">
+      <Filter>Header Files\RpgGame\units\rat</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

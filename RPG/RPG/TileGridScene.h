@@ -6,6 +6,7 @@
 #include "RpgGameConstants.h"
 
 class BaseGameEngine;
+class Unit;
 
 class TileGridScene : public GameScene
 {
@@ -38,6 +39,7 @@ protected:
     int desiredTilesAcross;
     int desiredTilesDown;
     std::unordered_map<int, GameMenu*> menus;
+    std::vector<Unit *> units;
 
     //methods
     void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);

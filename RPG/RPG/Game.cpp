@@ -4,8 +4,13 @@
 #include "RpgOverWorldScene.h"
 #include "RpgGameConstants.h"
 
-// Global Constants
-
+//TODO:
+//attack animation
+//attack functionality
+//unit collision
+//pathfinding
+//rework user input system
+//rework asset loading strategy
 
 int main(int argc, char* args[])
 {
@@ -23,6 +28,5 @@ int main(int argc, char* args[])
 
     //terminate the engine
     engine.close();
-    //std::getchar();
     return 0;
 }

@@ -1,5 +1,6 @@
 #include "TileGridScene.h"
 #include "BaseGameEngine.h"
+#include "Unit.h"
 
 //constants
 const double LEFT_MENU_SIZE = 0.1;
@@ -49,7 +50,9 @@ void TileGridScene::handleInput()
 
 void TileGridScene::sceneLogic()
 {
-
+    for (auto unit : units) {
+        unit->update();
+    }
 }
 
 void TileGridScene::renderScene()
@@ -68,11 +71,25 @@ void TileGridScene::renderScene()
             engine->renderTexture(textures[mapTiles[currentZone.tileMap[i][j]].textureKey], (tileWidth * j) + mainCanvasStartX + xOffset, tileHeight * i + yOffset, tileWidth, tileHeight);
         }
     }
+
+    //draw units
+    for (auto unit : units) {
+        unit->draw();
+    }
     
     //cover Left side
     SDL_Rect fillRect = { 0, 0, mainCanvasStartX, engine->screenHeight };
     SDL_SetRenderDrawColor(engine->getMainRenderer(), 0, 0, 0, 0);
     SDL_RenderFillRect(engine->getMainRenderer(), &fillRect);
+
+    //draw menus
+    for (auto menu : menus)
+    {
+        if (menu.second->isActive)
+        {
+            menu.second->draw();
+        }
+    }
 }
 
 void TileGridScene::coordsFromTileIndex(int x, int y, int returnCoords[2]) {

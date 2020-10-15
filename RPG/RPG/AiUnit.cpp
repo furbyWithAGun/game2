@@ -1,4 +1,5 @@
 #include "AiUnit.h"
+
 //constants
 const double RANDOM_MOVE_CHANCE = 0.005;
 

@@ -1,4 +1,5 @@
 #include "RpgOverWorldScene.h"
+#include "Rat.h"
 
 
 RpgOverWorldScene::RpgOverWorldScene() : TileGridScene()
@@ -14,6 +15,7 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene
 void RpgOverWorldScene::loadSceneAssets()
 {
     TileGridScene::loadSceneAssets();
+    //player textures
     texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUpLeft.png" });
     texturesToLoad.insert({ PLAYER_IDLE_UP_SHEET, "images/playerIdleUp.png" });
     texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/playerIdleUpRight.png" });
@@ -23,6 +25,7 @@ void RpgOverWorldScene::loadSceneAssets()
     texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/playerIdleDownLeft.png" });
     texturesToLoad.insert({ PLAYER_IDLE_LEFT_SHEET, "images/playerIdleLeft.png" });
     texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerSheet.png" });
+    //enemy textures
     texturesToLoad.insert({ RAT, "images/rat.png" });
 }
 
@@ -39,18 +42,15 @@ void RpgOverWorldScene::setUpScene()
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 
     //make units
-    player = Player( this);
+    player = Player(this);
     player.setStartLocation(desiredTilesAcross/ 2, desiredTilesDown/ 2);
-    enemy = AiUnit( this);
-    enemy.addAnimation(0, RAT, 1, 10);
+    units.push_back(&player);
+    enemy = Rat(this);
     enemy.setStartLocation(desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
-    enemy.resize(tileWidth, tileHeight);
-    enemy.speed = 2;
-    enemy2 = AiUnit(this);
-    enemy2.addAnimation(0, RAT, 1, 10);
+    units.push_back(&enemy);
+    enemy2 = Rat(this);
     enemy2.setStartLocation(desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
-    enemy2.resize(tileWidth, tileHeight);
-    enemy2.speed = 2;
+    units.push_back(&enemy2);
 }
 
 void RpgOverWorldScene::handleInput()
@@ -139,35 +139,17 @@ void RpgOverWorldScene::handleInput()
 
 void RpgOverWorldScene::sceneLogic()
 {
+    //call base class logic
+    TileGridScene::sceneLogic();
 
-    frames++;
+    //frames++;
     player.movingUp = wKeyDown && !sKeyDown;
     player.movingDown = sKeyDown && !wKeyDown;
     player.movingRight = dKeyDown && !aKeyDown;
     player.movingLeft = aKeyDown && !dKeyDown;
-
-    player.updatePlayer();
-    enemy.update();
-    enemy2.update();
 }
 
 void RpgOverWorldScene::renderScene()
 {
-    //printf("tickrate: %f\n", (double) frames / SDL_GetTicks() * 1000);
     TileGridScene::renderScene();
-    
-    //draw player
-    player.draw();
-
-    //draw other units
-    enemy.draw();
-    enemy2.draw();
-    //draw menus
-    for (auto menu : menus)
-    {
-        if (menu.second->isActive)
-        {
-            menu.second->draw();
-        }
-    }
 }

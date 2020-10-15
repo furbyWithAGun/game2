@@ -5,8 +5,6 @@
 
 class BaseGameEngine;
 
-
-
 class Unit : public AnimatedSprite
 {
 public:
@@ -43,6 +41,7 @@ public:
     void setStartLocation(int x, int y);
     void setAnimation(int animationKey);
     void updateAnimation();
+    virtual void createAnimations() {};
     bool isMoving();
     void draw();
     virtual void update();

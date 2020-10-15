@@ -14,7 +14,7 @@ Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
     resize(scene->tileWidth, scene->tileWidth);
 }
 
-void Player::updatePlayer() {
+void Player::update() {
     Unit::update();
 
     //centre on screen by changing scene x and y offsets

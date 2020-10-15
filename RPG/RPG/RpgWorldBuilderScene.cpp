@@ -167,13 +167,4 @@ void RpgWorldBuilderScene::renderScene() {
             engine->renderTexture(textures[tileBeingPlaced->textureKey], l[0], l[1], tileWidth, tileHeight);
         }
     }
-
-    //draw menus
-    for (auto menu : menus)
-    {
-        if (menu.second->isActive)
-        {
-            menu.second->draw();
-        }
-    }
 }
