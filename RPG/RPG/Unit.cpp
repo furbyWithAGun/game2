@@ -153,15 +153,15 @@ void Unit::setStartLocation(int x, int y) {
     ypos = screenCoords[1];
 }
 
-void Unit::setAnimation(int animationKey) {
-    if (currentAnimation != &animations[animationKey])
-    {
-        currentAnimation = &animations[animationKey];
-    }
-}
-
 void Unit::updateAnimation() {
+    animations[ATTACK_UP_LEFT].tick();
     animations[ATTACK_UP].tick();
+    animations[ATTACK_UP_RIGHT].tick();
+    animations[ATTACK_RIGHT].tick();
+    animations[ATTACK_DOWN_RIGHT].tick();
+    animations[ATTACK_DOWN].tick();
+    animations[ATTACK_DOWN_LEFT].tick();
+    animations[ATTACK_LEFT].tick();
     if (isMoving())
     {
         switch (directionFacing) {
@@ -220,14 +220,86 @@ bool Unit::isMoving() {
 void Unit::draw()
 {
     AnimatedSprite::draw();
+    if (animations[ATTACK_UP_LEFT].active)
+    {
+        int k[2];
+        scene->coordsFromTileIndex(tileLocation[0] - 1, tileLocation[1] - 1, k);
+        scene->engine->renderAnimation(&animations[ATTACK_UP_LEFT], k[0], k[1], width, height);
+    }
     if (animations[ATTACK_UP].active)
     {
         int k[2];
         scene->coordsFromTileIndex(tileLocation[0], tileLocation[1] - 1, k);
         scene->engine->renderAnimation(&animations[ATTACK_UP], k[0], k[1], width, height);
     }
+    if (animations[ATTACK_UP_RIGHT].active)
+    {
+        int k[2];
+        scene->coordsFromTileIndex(tileLocation[0] + 1, tileLocation[1] - 1, k);
+        scene->engine->renderAnimation(&animations[ATTACK_UP_RIGHT], k[0], k[1], width, height);
+    }
+    if (animations[ATTACK_RIGHT].active)
+    {
+        int k[2];
+        scene->coordsFromTileIndex(tileLocation[0] + 1, tileLocation[1], k);
+        scene->engine->renderAnimation(&animations[ATTACK_RIGHT], k[0], k[1], width, height);
+    }
+    if (animations[ATTACK_DOWN_RIGHT].active)
+    {
+        int k[2];
+        scene->coordsFromTileIndex(tileLocation[0] + 1, tileLocation[1] + 1, k);
+        scene->engine->renderAnimation(&animations[ATTACK_DOWN_RIGHT], k[0], k[1], width, height);
+    }
+    //if (animations[ATTACK_DOWN].active)
+    //{
+    //    int k[2];
+    //    scene->coordsFromTileIndex(tileLocation[0], tileLocation[1] + 1, k);
+    //    scene->engine->renderAnimation(&animations[ATTACK_DOWN], k[0], k[1], width, height);
+    // }
+    if (animations[ATTACK_DOWN_LEFT].active)
+    {
+        int k[2];
+        scene->coordsFromTileIndex(tileLocation[0] - 1, tileLocation[1] + 1, k);
+        scene->engine->renderAnimation(&animations[ATTACK_DOWN_LEFT], k[0], k[1], width, height);
+    }
+    if (animations[ATTACK_LEFT].active)
+    {
+        int k[2];
+        scene->coordsFromTileIndex(tileLocation[0] - 1, tileLocation[1], k);
+        scene->engine->renderAnimation(&animations[ATTACK_LEFT], k[0], k[1], width, height);
+    }
 }
 
 void Unit::attack() {
-    animations[ATTACK_UP].resetAnimation();
+    switch (directionFacing)
+    {
+    case UP_LEFT:
+        animations[ATTACK_UP_LEFT].resetAnimation();
+        break;
+    case UP:
+        animations[ATTACK_UP].resetAnimation();
+        break;
+    case UP_RIGHT:
+        animations[ATTACK_UP_RIGHT].resetAnimation();
+        break;
+    case RIGHT:
+        animations[ATTACK_RIGHT].resetAnimation();
+        break;
+    case DOWN_RIGHT:
+        animations[ATTACK_DOWN_RIGHT].resetAnimation();
+        break;
+    case DOWN:
+        //animations[ATTACK_DOWN].resetAnimation();
+        playAnimation(ATTACK_DOWN);
+        break;
+    case DOWN_LEFT:
+        animations[ATTACK_DOWN_LEFT].resetAnimation();
+        break;
+    case LEFT:
+        animations[ATTACK_LEFT].resetAnimation();
+        break;
+    default:
+        break;
+    }
+    
 }

@@ -32,7 +32,7 @@ Animation::Animation(GameScene* newScene, int newSpriteSheetKey, int newNumFrame
     frameWidth = newScene->textures[newSpriteSheetKey]->width;
     ticksBetweenFrames = newTicksBetweenFrames;
     currentFrame = tickCount = 0;
-    active = true;
+    active = isLoop;
     loop = isLoop;
 }
 
@@ -60,8 +60,4 @@ void Animation::resetAnimation(int startframe) {
     active = true;
     tickCount = 0;
     currentFrame = startframe;
-}
-
-void resize(int x, int y) {
-
 }

@@ -40,7 +40,7 @@ public:
     void setTileLocation(int x, int y);
     void updateCoords();
     void setStartLocation(int x, int y);
-    void setAnimation(int animationKey);
+    
     void updateAnimation();
     virtual void createAnimations() {};
     bool isMoving();

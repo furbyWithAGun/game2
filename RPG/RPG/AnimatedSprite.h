@@ -8,6 +8,7 @@ public:
     //attributes
     std::unordered_map<int, Animation> animations;
     Animation* currentAnimation;
+    Animation* tempAnimation;
 
     //constructors
     AnimatedSprite();
@@ -15,6 +16,8 @@ public:
 
     //methods
     void addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames, bool isLoop = true);
+    void setAnimation(int animationKey);
+    void playAnimation(int animationKey);
     void startAnimation(int animationKey);
     void init();
     virtual void update();

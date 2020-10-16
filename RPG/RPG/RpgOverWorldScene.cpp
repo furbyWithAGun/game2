@@ -28,6 +28,7 @@ void RpgOverWorldScene::loadSceneAssets()
     texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerSheet.png" });
     //attack
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/basicMeleeAttack.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_SHEET, "images/basicMeleeAttackDown.png" });
     //enemy textures
     texturesToLoad.insert({ RAT, "images/rat.png" });
 }
