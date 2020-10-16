@@ -25,7 +25,5 @@ private:
     AiUnit enemy;
     AiUnit enemy2;
     bool wKeyDown, sKeyDown, dKeyDown, aKeyDown;
-
-
 };
 

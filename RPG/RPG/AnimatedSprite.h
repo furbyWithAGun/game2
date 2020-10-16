@@ -14,7 +14,7 @@ public:
     AnimatedSprite(GameScene* gameScene);
 
     //methods
-    void addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames);
+    void addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames, bool isLoop = true);
     void startAnimation(int animationKey);
     void init();
     virtual void update();

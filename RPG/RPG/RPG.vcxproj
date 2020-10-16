@@ -150,6 +150,8 @@
     <ClCompile Include="AiUnit.cpp" />
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="BasicMeleeAttack.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="BaseGameEngine.cpp" />
     <ClCompile Include="GameMenu.cpp" />
@@ -176,7 +178,9 @@
     <ClInclude Include="AiUnit.h" />
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Attack.h" />
     <ClInclude Include="BaseGameEngine.h" />
+    <ClInclude Include="BasicMeleeAttack.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="MapTile.h" />

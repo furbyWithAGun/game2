@@ -16,6 +16,7 @@ void RpgOverWorldScene::loadSceneAssets()
 {
     TileGridScene::loadSceneAssets();
     //player textures
+    //movement
     texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUpLeft.png" });
     texturesToLoad.insert({ PLAYER_IDLE_UP_SHEET, "images/playerIdleUp.png" });
     texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/playerIdleUpRight.png" });
@@ -25,6 +26,8 @@ void RpgOverWorldScene::loadSceneAssets()
     texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/playerIdleDownLeft.png" });
     texturesToLoad.insert({ PLAYER_IDLE_LEFT_SHEET, "images/playerIdleLeft.png" });
     texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerSheet.png" });
+    //attack
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/basicMeleeAttack.png" });
     //enemy textures
     texturesToLoad.insert({ RAT, "images/rat.png" });
 }
@@ -82,6 +85,7 @@ void RpgOverWorldScene::handleInput()
                 {
                 case SDL_BUTTON_LEFT:
                     printf("%i\n", player.directionFacing);
+                    player.attack();
                     break;
                 default:
                     break;

@@ -6,6 +6,8 @@ Animation::Animation()
     spriteSheetKey = 0;
     numFrames = frameHeight = frameWidth = ticksBetweenFrames = 1;
     currentFrame = tickCount = 0;
+    active = true;
+    loop = true;
 }
 
 Animation::Animation(GameScene * newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames)
@@ -17,6 +19,21 @@ Animation::Animation(GameScene * newScene, int newSpriteSheetKey, int newNumFram
     frameWidth = newScene->textures[newSpriteSheetKey]->width;
     ticksBetweenFrames = newTicksBetweenFrames;
     currentFrame = tickCount = 0;
+    active = true;
+    loop = true;
+}
+
+Animation::Animation(GameScene* newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames, bool isLoop)
+{
+    scene = newScene;
+    spriteSheetKey = newSpriteSheetKey;
+    numFrames = newNumFrames;
+    frameHeight = newScene->textures[newSpriteSheetKey]->height / newNumFrames;
+    frameWidth = newScene->textures[newSpriteSheetKey]->width;
+    ticksBetweenFrames = newTicksBetweenFrames;
+    currentFrame = tickCount = 0;
+    active = true;
+    loop = isLoop;
 }
 
 void Animation::tick()
@@ -25,8 +42,12 @@ void Animation::tick()
     if (tickCount >= ticksBetweenFrames)
     {
         if (currentFrame == numFrames - 1) {
-            tickCount = 0;
-            currentFrame = 0;
+            if (loop)
+            {
+                resetAnimation();
+            } else{
+                active = false;
+            }
         }
         else {
             tickCount = 0;
@@ -36,6 +57,7 @@ void Animation::tick()
 }
 
 void Animation::resetAnimation(int startframe) {
+    active = true;
     tickCount = 0;
     currentFrame = startframe;
 }

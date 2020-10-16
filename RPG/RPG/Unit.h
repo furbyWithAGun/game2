@@ -17,6 +17,7 @@ public:
     bool isStatic, isPlayerControlled;
     bool movingUp, movingDown, movingRight, movingLeft;
     int directionFacing;
+    Animation * mainAttackAnimation;
 
     //character stats
     int health;

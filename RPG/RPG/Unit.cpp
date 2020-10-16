@@ -161,6 +161,7 @@ void Unit::setAnimation(int animationKey) {
 }
 
 void Unit::updateAnimation() {
+    animations[ATTACK_UP].tick();
     if (isMoving())
     {
         switch (directionFacing) {
@@ -219,8 +220,14 @@ bool Unit::isMoving() {
 void Unit::draw()
 {
     AnimatedSprite::draw();
+    if (animations[ATTACK_UP].active)
+    {
+        int k[2];
+        scene->coordsFromTileIndex(tileLocation[0], tileLocation[1] - 1, k);
+        scene->engine->renderAnimation(&animations[ATTACK_UP], k[0], k[1], width, height);
+    }
 }
 
-void attack() {
-
+void Unit::attack() {
+    animations[ATTACK_UP].resetAnimation();
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 //constants
 const std::string GAME_TITLE = "RPG";
@@ -12,6 +13,12 @@ const int PLAYER_SPEED = 4;
 const int RAT_SPEED = 2;
 
 //enums
+enum ATTCK_TYPES {
+    MELEE,
+    RANGED,
+    MAGIC
+};
+
 enum OBJECTS {
     ZONE_MAP,
     ZONE_PORTAL
@@ -33,7 +40,15 @@ enum ANIMATIONS {
     MOVE_UP,
     MOVE_DOWN,
     MOVE_RIGHT,
-    MOVE_LEFT
+    MOVE_LEFT,
+    ATTACK_UP_LEFT,
+    ATTACK_UP,
+    ATTACK_UP_RIGHT,
+    ATTACK_RIGHT,
+    ATTACK_DOWN_RIGHT,
+    ATTACK_DOWN,
+    ATTACK_DOWN_LEFT,
+    ATTACK_LEFT
 };
 
 enum TEXTURE_NAMES
@@ -58,6 +73,7 @@ enum TEXTURE_NAMES
     PLAYER_MOVE_DOWN_SHEET,
     PLAYER_MOVE_RIGHT_SHEET,
     PLAYER_MOVE_LEFT_SHEET,
+    BASIC_MELEE_ATTACK_SHEET,
     //------------enemies---------------
     RAT,
     NUM_TEXTURES

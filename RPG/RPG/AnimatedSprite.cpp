@@ -11,11 +11,11 @@ AnimatedSprite::AnimatedSprite(GameScene* gameScene) : Sprite()
     scene = gameScene;
 }
 
-void AnimatedSprite::addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames)
+void AnimatedSprite::addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames, bool isLoop)
 {
     if (!animations.count(animationKey))
     {
-        animations[animationKey] = Animation(scene, spriteSheetKey, numFrames, ticksBetweenFrames);
+        animations[animationKey] = Animation(scene, spriteSheetKey, numFrames, ticksBetweenFrames, isLoop);
     }
     if (currentAnimation == NULL)
     {
@@ -27,8 +27,6 @@ void AnimatedSprite::startAnimation(int animationKey)
 {
     currentAnimation = &animations[animationKey];
     currentAnimation->resetAnimation();
-    //width = currentAnimation->frameWidth;
-    //height = currentAnimation->frameHeight;
 }
 
 void AnimatedSprite::init()

@@ -147,6 +147,12 @@
     <ClCompile Include="Rat.cpp">
       <Filter>Source Files\RpgGame\units\rat</Filter>
     </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicMeleeAttack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -214,6 +220,12 @@
     </ClInclude>
     <ClInclude Include="Rat.h">
       <Filter>Header Files\RpgGame\units\rat</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicMeleeAttack.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

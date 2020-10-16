@@ -8,10 +8,12 @@ public:
     GameScene * scene;
     int spriteSheetKey;
     int numFrames, frameHeight, frameWidth, ticksBetweenFrames, tickCount, currentFrame;
+    bool active, loop;
 
     //constructors
     Animation();
     Animation(GameScene * newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames);
+    Animation(GameScene * newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames, bool isLoop);
 
     //methods
     void tick();
