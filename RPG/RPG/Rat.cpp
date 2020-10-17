@@ -25,6 +25,15 @@ void Rat::createAnimations() {
     addAnimation(MOVE_UP, RAT, 1, 20);
     addAnimation(MOVE_RIGHT, RAT, 1, 20);
     addAnimation(MOVE_LEFT, RAT, 1, 20);
+
+    addAnimation(ATTACK_UP_LEFT, RAT, 1, 10, false);
+    addAnimation(ATTACK_UP, RAT, 1, 10, false);
+    addAnimation(ATTACK_UP_RIGHT, RAT, 1, 10, false);
+    addAnimation(ATTACK_RIGHT, RAT, 1, 10, false);
+    addAnimation(ATTACK_DOWN_RIGHT, RAT, 1, 10, false);
+    addAnimation(ATTACK_DOWN, RAT, 1, 20, false);
+    addAnimation(ATTACK_DOWN_LEFT, RAT, 1, 10, false);
+    addAnimation(ATTACK_LEFT, RAT, 1, 10, false);
     
     /*addAnimation(IDLE_UP_LEFT, RAT_IDLE_UP_LEFT_SHEET, 1, 10);
     addAnimation(IDLE_UP, RAT_IDLE_UP_SHEET, 1, 10);

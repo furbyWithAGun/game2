@@ -17,15 +17,15 @@ void RpgOverWorldScene::loadSceneAssets()
     TileGridScene::loadSceneAssets();
     //player textures
     //movement
-    texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUpLeft.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_UP_SHEET, "images/playerIdleUp.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/playerIdleUpRight.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_RIGHT_SHEET, "images/playerIdleRight.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_RIGHT_SHEET, "images/playerIdleDownRight.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_SHEET, "images/playerIdleDown.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/playerIdleDownLeft.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_LEFT_SHEET, "images/playerIdleLeft.png" });
-    texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerSheet.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_RIGHT_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_RIGHT_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_LEFT_SHEET, "images/newPlayer.png" });
+    texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerMoveDown.png" });
     //attack
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/basicMeleeAttack.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_SHEET, "images/basicMeleeAttackDown.png" });

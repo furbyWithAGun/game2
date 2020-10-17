@@ -11,6 +11,7 @@
 //pathfinding
 //rework user input system
 //rework asset loading strategy
+//make semi-not-terrible player animations ***DO IT YOU SLACKER***
 
 int main(int argc, char* args[])
 {
