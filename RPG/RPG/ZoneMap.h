@@ -15,6 +15,8 @@ class ZoneMap {
         //attributes
         int id;
         std::vector< std::vector<int> > tileMap;
+        std::vector< int > doodads;
+        std::vector< int > structures;
         std::vector<ZonePortal> portals;
 
         //constructors

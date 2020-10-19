@@ -8,7 +8,8 @@ class Sprite
     public:
         //attributes
         int width, height, xpos, ypos;
-        Texture * texture;
+        Texture* texture;
+        bool active;
 
         //constructor
         Sprite(Texture * spriteTexture, GameScene * gameScene);

@@ -76,7 +76,7 @@ enum TEXTURE_NAMES
     BASIC_MELEE_ATTACK_SHEET,
     BASIC_MELEE_ATTACK_DOWN_SHEET,
     //------------enemies---------------
-    RAT,
+    RAT_IDLE_DOWN,
     NUM_TEXTURES
 };
 
@@ -95,4 +95,9 @@ enum DIRECTIONS {
 enum SCENES {
     WORLD_BUILDER,
     OVERWORLD
+};
+
+enum UNIT_TYPES {
+    PLAYER,
+    RAT
 };

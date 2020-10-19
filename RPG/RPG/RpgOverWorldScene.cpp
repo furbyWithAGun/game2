@@ -30,7 +30,7 @@ void RpgOverWorldScene::loadSceneAssets()
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/basicMeleeAttack.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_SHEET, "images/basicMeleeAttackDown.png" });
     //enemy textures
-    texturesToLoad.insert({ RAT, "images/rat.png" });
+    texturesToLoad.insert({ RAT_IDLE_DOWN, "images/rat.png" });
 }
 
 void RpgOverWorldScene::setUpScene()
@@ -46,15 +46,10 @@ void RpgOverWorldScene::setUpScene()
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 
     //make units
-    player = Player(this);
-    player.setStartLocation(desiredTilesAcross/ 2, desiredTilesDown/ 2);
+    createUnitAtLocation(RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
+    createUnitAtLocation(RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
+    player = Player(this, desiredTilesAcross / 2, desiredTilesDown / 2);
     units.push_back(&player);
-    enemy = Rat(this);
-    enemy.setStartLocation(desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
-    units.push_back(&enemy);
-    enemy2 = Rat(this);
-    enemy2.setStartLocation(desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
-    units.push_back(&enemy2);
 }
 
 void RpgOverWorldScene::handleInput()
@@ -85,8 +80,7 @@ void RpgOverWorldScene::handleInput()
                 switch (e.button.button)
                 {
                 case SDL_BUTTON_LEFT:
-                    printf("%i\n", player.directionFacing);
-                    player.attack();
+                    player.performMainAttack();
                     break;
                 default:
                     break;

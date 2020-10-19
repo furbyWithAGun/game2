@@ -7,6 +7,7 @@ Sprite::Sprite(Texture * spriteTexture, GameScene * gameScene) {
     xpos = 0;
     ypos = 0;
     scene = gameScene;
+    active = true;
 }
 
 Sprite::Sprite( GameScene* gameScene) {
@@ -16,6 +17,7 @@ Sprite::Sprite( GameScene* gameScene) {
     xpos = 0;
     ypos = 0;
     scene = gameScene;
+    active = true;
 }
 
 Sprite::Sprite() {
@@ -25,6 +27,7 @@ Sprite::Sprite() {
     xpos = 0;
     ypos = 0;
     scene = NULL;
+    active = true;
 }
 
 Sprite::~Sprite() {
@@ -34,6 +37,7 @@ Sprite::~Sprite() {
     xpos = 0;
     ypos = 0;
     scene = NULL;
+    active = false;
 }
 
 bool Sprite::pointCollision(int x, int y) {

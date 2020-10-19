@@ -7,9 +7,12 @@
 //TODO:
 //attack animation
 //attack functionality
-//unit collision
+//text feedback for combat
+//display health
+//enemies fight back
 //pathfinding
 //rework user input system
+//make the game client/server
 //rework asset loading strategy
 //make semi-not-terrible player animations ***DO IT YOU SLACKER***
 

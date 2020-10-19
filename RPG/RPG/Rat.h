@@ -11,6 +11,7 @@ public:
     //constructors
     Rat();
     Rat(TileGridScene* gameScene);
+    Rat(TileGridScene* gameScene, int startX, int startY);
 
     //methods
     void createAnimations();

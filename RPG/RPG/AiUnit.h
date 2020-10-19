@@ -9,6 +9,7 @@ public:
     //constructor
     AiUnit();
     AiUnit(TileGridScene* gameScene);
+    AiUnit(TileGridScene* gameScene, int startX, int startY);
 
     //methods
     void update();

@@ -2,18 +2,22 @@
 #include "Attack.h"
 #include "Animation.h"
 
+
 class GameScene;
+class Unit;
 
 class BasicMeleeAttack : public Attack
 {
 public:
     //attribues
-    Animation animation;
+    int animationKey;
 
     //constructors
     BasicMeleeAttack();
-    BasicMeleeAttack(int newType);
+    BasicMeleeAttack(int newType, Unit* newOwningUnit);
 
     //methods
+    void startAttack(int xTile, int yTile);
+    void processHit(Unit* targetUnit);
 };
 

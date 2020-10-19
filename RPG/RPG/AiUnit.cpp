@@ -17,6 +17,13 @@ AiUnit::AiUnit(TileGridScene* gameScene) : Unit(gameScene) {
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
 }
 
+AiUnit::AiUnit(TileGridScene* gameScene, int startX, int startY) : Unit(gameScene, startX, startY) {
+    scene = gameScene;
+    isStatic = false;
+    isHostile = false;
+    chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
+}
+
 void AiUnit::update() {
     randomMovement();
     Unit::update();

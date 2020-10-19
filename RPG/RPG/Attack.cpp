@@ -7,8 +7,9 @@ Attack::Attack() {
     cooldownTime = 1;
 }
 
-Attack::Attack(int newType){
+Attack::Attack(int newType, Unit* newOwningUnit){
     type = newType;
+    owningUnit = newOwningUnit;
     range = 1;
     cooldown = 0;
     cooldownTime = 1;

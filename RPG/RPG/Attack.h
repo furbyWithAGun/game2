@@ -1,18 +1,22 @@
 #pragma once
 #include "RpgGameConstants.h"
 
+class Unit;
+
 class Attack
 {
 public:
     //attributes
     int type, range, cooldownTime, cooldown;
+    Unit* owningUnit;
 
     //constructors
     Attack();
-    Attack(int newType);
+    Attack(int newType, Unit* newOwningUnit);
 
     //methods
-    virtual void startAttack(int direction, int xTile, int yTile) {};
-    virtual void startAttack(int xTileStart, int yTileStart, int xTileEnd, int yTileEnd) {};
+    virtual void startAttack();
+    virtual void processHit(Unit* targetUnit) {};
+    virtual void update() {};
 };
 

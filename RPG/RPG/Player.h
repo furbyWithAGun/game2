@@ -12,6 +12,7 @@ public:
     //constructor
     Player();
     Player(TileGridScene* gameScene);
+    Player(TileGridScene* gameScene, int startX, int startY);
     
     //methods
     //void setStartLocation(int x, int y);

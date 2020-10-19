@@ -2,6 +2,8 @@
 #include "AnimatedSprite.h"
 #include "RpgGameConstants.h"
 #include "TileGridScene.h"
+#include "Attack.h"
+
 
 class BaseGameEngine;
 
@@ -20,16 +22,24 @@ public:
     Animation * mainAttackAnimation;
 
     //character stats
+    int maxHealth;
     int health;
     int speed;
     int dex;
     int str;
     int agi;
+    int end;
+    int intl;
+
+    //actions
+    Attack* mainAttack;
+
 
     //constructors
     Unit();
     Unit(Texture * spriteTexture, TileGridScene* gameScene);
     Unit(TileGridScene* gameScene);
+    Unit(TileGridScene* gameScene, int startX, int startY);
 
     //destructor
     ~Unit();
@@ -46,6 +56,7 @@ public:
     bool isMoving();
     void draw();
     virtual void update();
-    void attack();
+    void performMainAttack();
+    int assignDamage(int damageTaken);
 };
 

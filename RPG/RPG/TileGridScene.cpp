@@ -1,6 +1,8 @@
 #include "TileGridScene.h"
 #include "BaseGameEngine.h"
 #include "Unit.h"
+#include "Player.h"
+#include "Rat.h"
 
 //constants
 const double LEFT_MENU_SIZE = 0.1;
@@ -51,7 +53,10 @@ void TileGridScene::handleInput()
 void TileGridScene::sceneLogic()
 {
     for (auto unit : units) {
-        unit->update();
+        if (unit->active)
+        {
+            unit->update();
+        }
     }
 }
 
@@ -74,7 +79,10 @@ void TileGridScene::renderScene()
 
     //draw units
     for (auto unit : units) {
-        unit->draw();
+        if (unit->active)
+        {
+            unit->draw();
+        }
     }
     
     //cover Left side
@@ -110,12 +118,37 @@ bool TileGridScene::coordsAreOnDisplayedMapTile(int x, int y) {
     return ((mainCanvasStartX <= x) && (k[0] >= 0) && (k[0] < currentZone.tileMap[0].size()) && (k[1] >= 0) && (k[1] < currentZone.tileMap.size()));
 }
 
+Unit* TileGridScene::getUnitAtLocation(int x, int y)
+{
+    for (auto unit : units )
+    {
+        if ( unit->active && ((unit->tileLocation[0] == x && unit->tileLocation[1] == y) || unit->tileDestination[0] == x && unit->tileDestination[1] == y)) {
+            return unit;
+        }
+    }
+    return nullptr;
+}
+
+void TileGridScene::createUnitAtLocation(int unitType, int x, int y)
+{
+    switch (unitType)
+    {
+    case PLAYER:
+        units.push_back(new Player(this, x, y));
+        break;
+    case RAT:
+        units.push_back(new Rat(this, x, y));
+    default:
+        break;
+    }
+}
+
 bool TileGridScene::isTilePassable(int x, int y) {
     if (x < 0 || y < 0 || y >= currentZone.tileMap.size() || x >= currentZone.tileMap[y].size())
     {
         return false;
     }
-    return mapTiles[currentZone.tileMap[y][x]].passable;
+    return mapTiles[currentZone.tileMap[y][x]].passable && getUnitAtLocation(x, y) == NULL;
 }
 
 //private methods

@@ -1,6 +1,7 @@
 #include "Unit.h"
 #include"GameScene.h"
 
+
 //constructors
 Unit::Unit() : AnimatedSprite() {
     tileLocation = {0, 0};
@@ -38,6 +39,21 @@ Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
     tileLocation = {0, 0};
     tileDestination = { 0, 0 };
     setTileLocation(0, 0);
+    isStatic = false;
+    isPlayerControlled = false;
+    directionFacing = DOWN;
+    movingUp = movingDown = movingRight = movingLeft = false;
+}
+
+Unit::Unit(TileGridScene* gameScene, int startX, int startY) : AnimatedSprite(gameScene) {
+    scene = gameScene;
+    name = "";
+    health = 1;
+    speed = 1;
+    leftToMove = 0;
+    tileLocation = { 0, 0 };
+    tileDestination = { 0, 0 };
+    setStartLocation(startX, startY);
     isStatic = false;
     isPlayerControlled = false;
     directionFacing = DOWN;
@@ -99,6 +115,7 @@ void Unit::update() {
         updateCoords();
     }
     updateAnimation();
+    mainAttack->update();
 }
 
 void Unit::updateMovement() {
@@ -220,86 +237,78 @@ bool Unit::isMoving() {
 void Unit::draw()
 {
     AnimatedSprite::draw();
-    if (animations[ATTACK_UP_LEFT].active)
-    {
-        int k[2];
-        scene->coordsFromTileIndex(tileLocation[0] - 1, tileLocation[1] - 1, k);
-        scene->engine->renderAnimation(&animations[ATTACK_UP_LEFT], k[0], k[1], width, height);
-    }
-    if (animations[ATTACK_UP].active)
-    {
-        int k[2];
-        scene->coordsFromTileIndex(tileLocation[0], tileLocation[1] - 1, k);
-        scene->engine->renderAnimation(&animations[ATTACK_UP], k[0], k[1], width, height);
-    }
-    if (animations[ATTACK_UP_RIGHT].active)
-    {
-        int k[2];
-        scene->coordsFromTileIndex(tileLocation[0] + 1, tileLocation[1] - 1, k);
-        scene->engine->renderAnimation(&animations[ATTACK_UP_RIGHT], k[0], k[1], width, height);
-    }
-    if (animations[ATTACK_RIGHT].active)
-    {
-        int k[2];
-        scene->coordsFromTileIndex(tileLocation[0] + 1, tileLocation[1], k);
-        scene->engine->renderAnimation(&animations[ATTACK_RIGHT], k[0], k[1], width, height);
-    }
-    if (animations[ATTACK_DOWN_RIGHT].active)
-    {
-        int k[2];
-        scene->coordsFromTileIndex(tileLocation[0] + 1, tileLocation[1] + 1, k);
-        scene->engine->renderAnimation(&animations[ATTACK_DOWN_RIGHT], k[0], k[1], width, height);
-    }
-    //if (animations[ATTACK_DOWN].active)
-    //{
-    //    int k[2];
-    //    scene->coordsFromTileIndex(tileLocation[0], tileLocation[1] + 1, k);
-    //    scene->engine->renderAnimation(&animations[ATTACK_DOWN], k[0], k[1], width, height);
-    // }
-    if (animations[ATTACK_DOWN_LEFT].active)
-    {
-        int k[2];
-        scene->coordsFromTileIndex(tileLocation[0] - 1, tileLocation[1] + 1, k);
-        scene->engine->renderAnimation(&animations[ATTACK_DOWN_LEFT], k[0], k[1], width, height);
-    }
-    if (animations[ATTACK_LEFT].active)
-    {
-        int k[2];
-        scene->coordsFromTileIndex(tileLocation[0] - 1, tileLocation[1], k);
-        scene->engine->renderAnimation(&animations[ATTACK_LEFT], k[0], k[1], width, height);
-    }
 }
 
-void Unit::attack() {
+void Unit::performMainAttack() {
+    Unit* targetUnit;
     switch (directionFacing)
     {
     case UP_LEFT:
-        animations[ATTACK_UP_LEFT].resetAnimation();
+        playAnimation(ATTACK_UP_LEFT);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0] - 1, tileLocation[1] - 1);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     case UP:
-        animations[ATTACK_UP].resetAnimation();
+        playAnimation(ATTACK_UP);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0], tileLocation[1] - 1);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     case UP_RIGHT:
-        animations[ATTACK_UP_RIGHT].resetAnimation();
+        playAnimation(ATTACK_UP_RIGHT);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0] + 1, tileLocation[1] - 1);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     case RIGHT:
-        animations[ATTACK_RIGHT].resetAnimation();
+        playAnimation(ATTACK_RIGHT);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0] + 1, tileLocation[1]);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     case DOWN_RIGHT:
-        animations[ATTACK_DOWN_RIGHT].resetAnimation();
+        playAnimation(ATTACK_DOWN_RIGHT);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0] + 1, tileLocation[1] + 1);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     case DOWN:
-        //animations[ATTACK_DOWN].resetAnimation();
         playAnimation(ATTACK_DOWN);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0], tileLocation[1] + 1);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     case DOWN_LEFT:
-        animations[ATTACK_DOWN_LEFT].resetAnimation();
+        playAnimation(ATTACK_DOWN_LEFT);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0] - 1, tileLocation[1] + 1);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     case LEFT:
-        animations[ATTACK_LEFT].resetAnimation();
+        playAnimation(ATTACK_LEFT);
+        targetUnit = scene->getUnitAtLocation(tileLocation[0] - 1, tileLocation[1]);
+        if (targetUnit != NULL and targetUnit != this) {
+            mainAttack->processHit(targetUnit);
+        }
         break;
     default:
         break;
     }
-    
+}
+
+int Unit::assignDamage(int damageTaken) {
+    health -= damageTaken;
+    if (health <= 0)
+    {
+        active = false;
+        return health;
+    }
 }

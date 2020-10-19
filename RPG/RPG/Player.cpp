@@ -1,9 +1,11 @@
 #include "Player.h"
 #include "TileGridScene.h"
+#include "BasicMeleeAttack.h"
 
 Player::Player() : Unit() {
     isStatic = true;
     speed = PLAYER_SPEED;
+    mainAttack = new BasicMeleeAttack(MELEE, this);
 }
 
 Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
@@ -12,6 +14,15 @@ Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
     speed = PLAYER_SPEED;
     createAnimations();
     resize(scene->tileWidth, scene->tileWidth);
+    mainAttack = new BasicMeleeAttack(MELEE, this);
+}
+
+Player::Player(TileGridScene* gameScene, int startX, int startY) : Unit(gameScene, startX, startY) {
+    scene = gameScene;
+    isStatic = true;
+    speed = PLAYER_SPEED;
+    createAnimations();
+    resize(scene->tileWidth, scene->tileWidth); mainAttack = new BasicMeleeAttack(MELEE, this);
 }
 
 void Player::update() {
