@@ -18,6 +18,7 @@ public:
 
     //methods
     void startAttack(int xTile, int yTile);
+    void update();
     void processHit(Unit* targetUnit);
 };
 

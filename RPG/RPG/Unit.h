@@ -58,5 +58,6 @@ public:
     virtual void update();
     void performMainAttack();
     int assignDamage(int damageTaken);
+    int getUnitState();
 };
 

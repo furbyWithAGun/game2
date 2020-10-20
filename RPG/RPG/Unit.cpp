@@ -171,63 +171,12 @@ void Unit::setStartLocation(int x, int y) {
 }
 
 void Unit::updateAnimation() {
-    animations[ATTACK_UP_LEFT].tick();
-    animations[ATTACK_UP].tick();
-    animations[ATTACK_UP_RIGHT].tick();
-    animations[ATTACK_RIGHT].tick();
-    animations[ATTACK_DOWN_RIGHT].tick();
-    animations[ATTACK_DOWN].tick();
-    animations[ATTACK_DOWN_LEFT].tick();
-    animations[ATTACK_LEFT].tick();
-    if (isMoving())
+    if (tempAnimation != NULL && tempAnimation->active)
     {
-        switch (directionFacing) {
-        case UP:
-            setAnimation(MOVE_UP);
-            break;
-        case DOWN:
-            setAnimation(MOVE_DOWN);
-            break;
-        case RIGHT:
-            setAnimation(MOVE_RIGHT);
-            break;
-        case LEFT:
-            setAnimation(MOVE_LEFT);
-            break;
-        default:
-            break;
-        }
+        tempAnimation->tick();
     }
-    else {
-        switch (directionFacing){
-        case UP_LEFT:
-            setAnimation(IDLE_UP_LEFT);
-            break;
-        case UP:
-            setAnimation(IDLE_UP);
-            break;
-        case UP_RIGHT:
-            setAnimation(IDLE_UP_RIGHT);
-            break;
-        case RIGHT:
-            setAnimation(IDLE_RIGHT);
-            break;
-        case DOWN_RIGHT:
-            setAnimation(IDLE_DOWN_RIGHT);
-            break;
-        case DOWN:
-            setAnimation(IDLE_DOWN);
-            break;
-        case DOWN_LEFT:
-            setAnimation(IDLE_DOWN_LEFT);
-            break;
-        case LEFT:
-            setAnimation(IDLE_LEFT);
-            break;
-        default:
-            break;
-        }
-    }
+
+    setAnimation(getUnitState());
 }
 
 bool Unit::isMoving() {
@@ -310,5 +259,59 @@ int Unit::assignDamage(int damageTaken) {
     {
         active = false;
         return health;
+    }
+}
+
+int Unit::getUnitState() {
+    if (isMoving())
+    {
+        switch (directionFacing) {
+        case UP:
+            return MOVE_UP;
+            break;
+        case DOWN:
+            return MOVE_DOWN;
+            break;
+        case RIGHT:
+            return MOVE_RIGHT;
+            break;
+        case LEFT:
+            return MOVE_LEFT;
+            break;
+        default:
+            return MOVE_DOWN;
+            break;
+        }
+    }
+    else {
+        switch (directionFacing) {
+        case UP_LEFT:
+            return IDLE_UP_LEFT;
+            break;
+        case UP:
+            return IDLE_UP;
+            break;
+        case UP_RIGHT:
+            return IDLE_UP_RIGHT;
+            break;
+        case RIGHT:
+            return IDLE_RIGHT;
+            break;
+        case DOWN_RIGHT:
+            return IDLE_DOWN_RIGHT;
+            break;
+        case DOWN:
+            return IDLE_DOWN;
+            break;
+        case DOWN_LEFT:
+            return IDLE_DOWN_LEFT;
+            break;
+        case LEFT:
+            return IDLE_LEFT;
+            break;
+        default:
+            return IDLE_DOWN;
+            break;
+        }
     }
 }

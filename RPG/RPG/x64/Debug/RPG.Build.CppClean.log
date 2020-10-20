@@ -1,6 +1,5 @@
 d:\coding\c++\game\rpg\rpg\x64\debug\vc142.pdb
 d:\coding\c++\game\rpg\rpg\x64\debug\vc142.idb
-d:\coding\c++\game\rpg\rpg\x64\debug\zoneportal.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\zonemap.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\unit.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\tilegridscene.obj
@@ -12,6 +11,8 @@ d:\coding\c++\game\rpg\rpg\x64\debug\saveobject.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\saveattribute.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\rpgworldbuilderscenemenus.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\rpgworldbuilderscene.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\rpgoverworldscene.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\rpggameengineoldcode.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\player.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\menubutton.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\maptile.obj
@@ -19,8 +20,13 @@ d:\coding\c++\game\rpg\rpg\x64\debug\gamescene.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\gamemenu.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\basegameengine.obj
 d:\coding\c++\game\rpg\rpg\x64\debug\game.obj
-d:\coding\c++\game\rpg\rpg\x64\debug\rpggameengineoldcode.obj
-d:\coding\c++\game\rpg\rpg\x64\debug\rpgoverworldscene.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\zoneportal.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\aiunit.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\animation.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\animatedsprite.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\rat.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\basicmeleeattack.obj
+d:\coding\c++\game\rpg\rpg\x64\debug\attack.obj
 d:\coding\c++\game\rpg\x64\debug\rpg.exe
 d:\coding\c++\game\rpg\x64\debug\rpg.ilk
 d:\coding\c++\game\rpg\x64\debug\rpg.pdb
