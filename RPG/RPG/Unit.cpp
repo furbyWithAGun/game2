@@ -189,67 +189,9 @@ void Unit::draw()
 }
 
 void Unit::performMainAttack() {
-    Unit* targetUnit;
-    switch (directionFacing)
+    if (mainAttack->cooldownTimeLeft <= 0)
     {
-    case UP_LEFT:
-        playAnimation(ATTACK_UP_LEFT);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0] - 1, tileLocation[1] - 1);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    case UP:
-        playAnimation(ATTACK_UP);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0], tileLocation[1] - 1);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    case UP_RIGHT:
-        playAnimation(ATTACK_UP_RIGHT);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0] + 1, tileLocation[1] - 1);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    case RIGHT:
-        playAnimation(ATTACK_RIGHT);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0] + 1, tileLocation[1]);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    case DOWN_RIGHT:
-        playAnimation(ATTACK_DOWN_RIGHT);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0] + 1, tileLocation[1] + 1);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    case DOWN:
-        playAnimation(ATTACK_DOWN);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0], tileLocation[1] + 1);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    case DOWN_LEFT:
-        playAnimation(ATTACK_DOWN_LEFT);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0] - 1, tileLocation[1] + 1);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    case LEFT:
-        playAnimation(ATTACK_LEFT);
-        targetUnit = scene->getUnitAtLocation(tileLocation[0] - 1, tileLocation[1]);
-        if (targetUnit != NULL and targetUnit != this) {
-            mainAttack->processHit(targetUnit);
-        }
-        break;
-    default:
-        break;
+        mainAttack->startAttack();
     }
 }
 
@@ -314,4 +256,47 @@ int Unit::getUnitState() {
             break;
         }
     }
+}
+
+void Unit::getLocationUnitIsFacing(int tileXY[2]) {
+    switch (directionFacing)
+    {
+    case UP_LEFT:
+        tileXY[0] = tileLocation[0] -1;
+        tileXY[1] = tileLocation[1] - 1;
+        break;
+    case UP:
+        tileXY[0] = tileLocation[0];
+        tileXY[1] = tileLocation[1] - 1;
+        break;
+    case UP_RIGHT:
+        tileXY[0] = tileLocation[0] + 1;
+        tileXY[1] = tileLocation[1] - 1;
+        break;
+    case RIGHT:
+        tileXY[0] = tileLocation[0] + 1;
+        tileXY[1] = tileLocation[1];
+        break;
+    case DOWN_RIGHT:
+        tileXY[0] = tileLocation[0] + 1;
+        tileXY[1] = tileLocation[1] + 1;
+        break;
+    case DOWN:
+        tileXY[0] = tileLocation[0];
+        tileXY[1] = tileLocation[1] + 1;
+        break;
+    case DOWN_LEFT:
+        tileXY[0] = tileLocation[0] - 1;
+        tileXY[1] = tileLocation[1] + 1;
+        break;
+    case LEFT:
+        tileXY[0] = tileLocation[0] - 1;
+        tileXY[1] = tileLocation[1];
+        break;
+    default:
+        tileXY[0] = tileLocation[0];
+        tileXY[1] = tileLocation[1];
+        break;
+    }
+    tileXY;
 }

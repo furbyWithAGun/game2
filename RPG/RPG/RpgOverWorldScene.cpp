@@ -48,7 +48,7 @@ void RpgOverWorldScene::setUpScene()
     //make units
     createUnitAtLocation(RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     createUnitAtLocation(RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
-    player = Player(this, desiredTilesAcross / 2, desiredTilesDown / 2);
+    player = *(new Player(this, desiredTilesAcross / 2, desiredTilesDown / 2));
     units.push_back(&player);
 }
 

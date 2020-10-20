@@ -5,6 +5,7 @@ Attack::Attack() {
     range = 1;
     cooldown = 1;
     cooldownTimeLeft = 0;
+    attackDelay = 0;
 }
 
 Attack::Attack(int newType, Unit* newOwningUnit){
@@ -13,4 +14,5 @@ Attack::Attack(int newType, Unit* newOwningUnit){
     range = 1;
     cooldown = 1;
     cooldownTimeLeft = 0;
+
 }

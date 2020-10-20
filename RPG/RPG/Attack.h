@@ -7,7 +7,7 @@ class Attack
 {
 public:
     //attributes
-    int type, range, cooldownTimeLeft, cooldown;
+    int type, range, cooldownTimeLeft, cooldown, attackDelay;
     Unit* owningUnit;
 
     //constructors
@@ -15,7 +15,7 @@ public:
     Attack(int newType, Unit* newOwningUnit);
 
     //methods
-    virtual int startAttack() { return IDLE_DOWN; };
+    virtual void startAttack() {};
     virtual void processHit(Unit* targetUnit) {};
     virtual void update() {};
 };

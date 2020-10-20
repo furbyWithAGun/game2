@@ -59,5 +59,5 @@ public:
     void performMainAttack();
     int assignDamage(int damageTaken);
     int getUnitState();
+    void getLocationUnitIsFacing(int tileXY[2]);
 };
-

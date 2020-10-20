@@ -23,6 +23,7 @@ Player::Player(TileGridScene* gameScene, int startX, int startY) : Unit(gameScen
     speed = PLAYER_SPEED;
     createAnimations();
     resize(scene->tileWidth, scene->tileWidth); mainAttack = new BasicMeleeAttack(MELEE, this);
+    mainAttack = new BasicMeleeAttack(MELEE, this);
 }
 
 void Player::update() {
@@ -37,6 +38,8 @@ void Player::update() {
     int y = coords[1] + (destCoords[1] - coords[1]) * (1 - leftToMove);
     scene->xOffset += xpos - x;
     scene->yOffset += ypos - y;
+
+
 }
 
 void Player::faceMouseDirection(int x, int y) {
