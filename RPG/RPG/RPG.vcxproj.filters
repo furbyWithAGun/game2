@@ -151,7 +151,7 @@
       <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
     <ClCompile Include="BasicMeleeAttack.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,7 +225,7 @@
       <Filter>Header Files\RpgGame\units</Filter>
     </ClInclude>
     <ClInclude Include="BasicMeleeAttack.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RpgGame\units</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

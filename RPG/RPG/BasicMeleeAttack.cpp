@@ -9,7 +9,7 @@ BasicMeleeAttack::BasicMeleeAttack(int newType, Unit* newOwningUnit) : Attack(ne
 
 }
 
-void BasicMeleeAttack::startAttack(int xTile, int yTile) {
+void BasicMeleeAttack::startAttack() {
     if (cooldownTimeLeft <= 0){
         cooldownTimeLeft = cooldown;
         switch (owningUnit->directionFacing)

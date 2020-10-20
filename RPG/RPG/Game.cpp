@@ -6,7 +6,7 @@
 
 //TODO:
 //attack animation
-//attack functionality
+//improve attack functionality
 //text feedback for combat
 //display health
 //enemies fight back
@@ -14,6 +14,7 @@
 //rework user input system
 //make the game client/server
 //rework asset loading strategy
+//add a cleanup method to GameScene and have the engine call it when scene is over
 //make semi-not-terrible player animations ***DO IT YOU SLACKER***
 
 int main(int argc, char* args[])

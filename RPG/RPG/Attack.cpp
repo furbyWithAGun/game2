@@ -1,6 +1,7 @@
 #include "Attack.h"
 
 Attack::Attack() {
+    owningUnit = NULL;
     type = 0;
     range = 1;
     cooldown = 1;
@@ -14,5 +15,6 @@ Attack::Attack(int newType, Unit* newOwningUnit){
     range = 1;
     cooldown = 1;
     cooldownTimeLeft = 0;
+    attackDelay = 0;
 
 }

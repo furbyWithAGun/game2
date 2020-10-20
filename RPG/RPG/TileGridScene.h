@@ -46,7 +46,7 @@ protected:
     //methods
     void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
     bool coordsAreOnDisplayedMapTile(int x, int y);
-    void createUnitAtLocation(int unitType, int x, int y);
+    Unit* createUnitAtLocation(int unitType, int x, int y);
     
 
 private:

@@ -61,3 +61,8 @@ void Animation::resetAnimation(int startframe) {
     tickCount = 0;
     currentFrame = startframe;
 }
+
+void Animation::setAnimationLength(int lengthInGameTicks)
+{
+    ticksBetweenFrames = lengthInGameTicks / numFrames;
+}

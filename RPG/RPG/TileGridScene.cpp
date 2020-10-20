@@ -6,8 +6,8 @@
 
 //constants
 const double LEFT_MENU_SIZE = 0.1;
-const int DEFAULT_DESIRED_TILES_DOWN = 10;
-const int DEFAULT_DESIRED_TILES_ACROSS = 19;
+const int DEFAULT_DESIRED_TILES_DOWN = 12;
+const int DEFAULT_DESIRED_TILES_ACROSS = 20;
 
 //constructors
 TileGridScene::TileGridScene() : GameScene() {
@@ -63,7 +63,7 @@ void TileGridScene::sceneLogic()
 void TileGridScene::renderScene()
 {
     //fill screen with backdrop
-    for (size_t i = 0; i * tileHeight <= engine->screenHeight + tileHeight; i++)
+    for (size_t i = 0; i * tileHeight <= (engine->screenHeight + tileHeight) + tileHeight; i++)
     {
         for (size_t j = 0; j * tileWidth <= engine->screenWidth + tileWidth; j++) {
             engine->renderTexture(textures[backDropTileKey], ((tileWidth * j) + mainCanvasStartX) + (xOffset % tileWidth) - tileWidth, tileHeight * i + (yOffset % tileHeight) - tileHeight, tileWidth, tileHeight);
@@ -129,18 +129,25 @@ Unit* TileGridScene::getUnitAtLocation(int x, int y)
     return nullptr;
 }
 
-void TileGridScene::createUnitAtLocation(int unitType, int x, int y)
+Unit* TileGridScene::createUnitAtLocation(int unitType, int x, int y)
 {
+    Unit* createdUnit;
     switch (unitType)
     {
     case PLAYER:
-        units.push_back(new Player(this, x, y));
+        createdUnit = new Player(this, x, y);
+        //units.push_back(new Player(this, x, y));
         break;
     case RAT:
-        units.push_back(new Rat(this, x, y));
+        createdUnit = new Rat(this, x, y);
+        //units.push_back(new Rat(this, x, y));
+        break;
     default:
+        createdUnit = NULL;
         break;
     }
+    units.push_back(createdUnit);
+    return createdUnit;
 }
 
 bool TileGridScene::isTilePassable(int x, int y) {

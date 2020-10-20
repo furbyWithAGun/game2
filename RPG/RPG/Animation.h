@@ -18,5 +18,6 @@ public:
     //methods
     void tick();
     void resetAnimation(int startframe = 0);
+    void setAnimationLength(int lengthInGameTicks);
 };
 

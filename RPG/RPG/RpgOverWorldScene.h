@@ -21,7 +21,7 @@ public:
 
 private:
     //attributes
-    Player player;
+    Player* player;
     AiUnit enemy;
     AiUnit enemy2;
     bool wKeyDown, sKeyDown, dKeyDown, aKeyDown;

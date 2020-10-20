@@ -34,8 +34,8 @@ void Player::update() {
     int destCoords[2];
     scene->coordsFromTileIndex(tileLocation[0], tileLocation[1], coords);
     scene->coordsFromTileIndex(tileDestination[0], tileDestination[1], destCoords);
-    int x = coords[0] + (destCoords[0] - coords[0]) * (1 - leftToMove);
-    int y = coords[1] + (destCoords[1] - coords[1]) * (1 - leftToMove);
+    int x = coords[0] + ((double)destCoords[0] - (double)coords[0]) * (1 - leftToMove);
+    int y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
     scene->xOffset += xpos - x;
     scene->yOffset += ypos - y;
 

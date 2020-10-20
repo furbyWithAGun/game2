@@ -48,8 +48,7 @@ void RpgOverWorldScene::setUpScene()
     //make units
     createUnitAtLocation(RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     createUnitAtLocation(RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
-    player = *(new Player(this, desiredTilesAcross / 2, desiredTilesDown / 2));
-    units.push_back(&player);
+    player = (Player*) createUnitAtLocation(PLAYER, desiredTilesAcross / 2, desiredTilesDown / 2);
 }
 
 void RpgOverWorldScene::handleInput()
@@ -59,7 +58,7 @@ void RpgOverWorldScene::handleInput()
         int k[2];
     
         SDL_GetMouseState(&x, &y);
-        player.faceMouseDirection(x, y);
+        player->faceMouseDirection(x, y);
     
         //Handle events on queue
         while (SDL_PollEvent(&e) != 0)
@@ -80,7 +79,7 @@ void RpgOverWorldScene::handleInput()
                 switch (e.button.button)
                 {
                 case SDL_BUTTON_LEFT:
-                    player.performMainAttack();
+                    player->performMainAttack();
                     break;
                 default:
                     break;
@@ -142,10 +141,10 @@ void RpgOverWorldScene::sceneLogic()
     TileGridScene::sceneLogic();
 
     //frames++;
-    player.movingUp = wKeyDown && !sKeyDown;
-    player.movingDown = sKeyDown && !wKeyDown;
-    player.movingRight = dKeyDown && !aKeyDown;
-    player.movingLeft = aKeyDown && !dKeyDown;
+    player->movingUp = wKeyDown && !sKeyDown;
+    player->movingDown = sKeyDown && !wKeyDown;
+    player->movingRight = dKeyDown && !aKeyDown;
+    player->movingLeft = aKeyDown && !dKeyDown;
 }
 
 void RpgOverWorldScene::renderScene()
