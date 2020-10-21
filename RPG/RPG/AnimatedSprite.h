@@ -18,7 +18,7 @@ public:
     void addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames, bool isLoop = true);
     void setAnimation(int animationKey);
     void playAnimation(int animationKey);
-    void startAnimation(int animationKey);
+    void playAnimation(int animationKey, int duration);
     void init();
     virtual void update();
     void draw();

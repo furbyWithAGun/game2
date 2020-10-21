@@ -40,6 +40,15 @@ void AnimatedSprite::playAnimation(int animationKey) {
     tempAnimation->resetAnimation();
 }
 
+void AnimatedSprite::playAnimation(int animationKey, int duration) {
+    if (tempAnimation != &animations[animationKey])
+    {
+        tempAnimation = &animations[animationKey];
+    }
+    tempAnimation->setAnimationLength(duration);
+    tempAnimation->resetAnimation();
+}
+
 //void AnimatedSprite::startAnimation(int animationKey)
 //{
     //currentAnimation = &animations[animationKey];

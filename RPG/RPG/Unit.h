@@ -19,6 +19,7 @@ public:
     bool isStatic, isPlayerControlled;
     bool movingUp, movingDown, movingRight, movingLeft;
     int directionFacing;
+    bool attacking;
     Animation * mainAttackAnimation;
 
     //character stats
@@ -60,4 +61,5 @@ public:
     int assignDamage(int damageTaken);
     int getUnitState();
     void getLocationUnitIsFacing(int tileXY[2]);
+    bool freeToAct();
 };

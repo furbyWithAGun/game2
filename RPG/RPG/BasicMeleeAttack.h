@@ -18,7 +18,7 @@ public:
 
     //methods
     void startAttack() override;
-    void update();
     void processHit(Unit* targetUnit);
+    void processAttack();
 };
 

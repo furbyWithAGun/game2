@@ -13,6 +13,7 @@ Unit::Unit() : AnimatedSprite() {
     isStatic = false;
     isPlayerControlled = false;
     directionFacing = DOWN;
+    attacking = false;
 }
 
 Unit::Unit(Texture * spriteTexture, TileGridScene* gameScene) : AnimatedSprite(gameScene) {
@@ -28,6 +29,7 @@ Unit::Unit(Texture * spriteTexture, TileGridScene* gameScene) : AnimatedSprite(g
     isPlayerControlled = false;
     directionFacing = DOWN;
     movingUp = movingDown = movingRight = movingLeft = false;
+    attacking = false;
 }
 
 Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
@@ -43,6 +45,7 @@ Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
     isPlayerControlled = false;
     directionFacing = DOWN;
     movingUp = movingDown = movingRight = movingLeft = false;
+    attacking = false;
 }
 
 Unit::Unit(TileGridScene* gameScene, int startX, int startY) : AnimatedSprite(gameScene) {
@@ -58,6 +61,7 @@ Unit::Unit(TileGridScene* gameScene, int startX, int startY) : AnimatedSprite(ga
     isPlayerControlled = false;
     directionFacing = DOWN;
     movingUp = movingDown = movingRight = movingLeft = false;
+    attacking = false;
 }
 
 //destructor
@@ -71,7 +75,7 @@ Unit::~Unit() {
 }
 
 void Unit::startMovement(int direction) {
-    if (leftToMove == 0)
+    if (leftToMove == 0 && !attacking)
     {
         leftToMove = 1;
         directionFacing = direction;
@@ -189,7 +193,7 @@ void Unit::draw()
 }
 
 void Unit::performMainAttack() {
-    if (mainAttack->cooldownTimeLeft <= 0)
+    if (freeToAct())
     {
         mainAttack->startAttack();
     }
@@ -299,4 +303,8 @@ void Unit::getLocationUnitIsFacing(int tileXY[2]) {
         break;
     }
     tileXY;
+}
+
+bool Unit::freeToAct() {
+    return !isMoving() && !attacking;
 }

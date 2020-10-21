@@ -5,6 +5,7 @@
 #include "RpgGameConstants.h"
 
 //TODO:
+//fix 'free to act/move' logic (need to add a check when changing movement bools)
 //attack animation
 //improve attack functionality
 //text feedback for combat
