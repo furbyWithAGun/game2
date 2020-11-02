@@ -15,5 +15,9 @@ public:
 
     //methods
     void createAnimations();
+
+private:
+    void init();
+    void init(TileGridScene* gameScene);
 };
 

@@ -2,31 +2,32 @@
 #include "BasicMeleeAttack.h"
 
 Rat::Rat() : AiUnit() {
-    speed = RAT_SPEED;
-    health = 100;
-    maxHealth = 100;
-    mainAttack = new BasicMeleeAttack(MELEE, this);
+    init();
 }
 
 Rat::Rat(TileGridScene* gameScene) : AiUnit(gameScene) {
-    speed = RAT_SPEED;
-    scene = gameScene;
-    createAnimations();
-    resize(scene->tileWidth, scene->tileWidth);
-    health = 100;
-    maxHealth = 100;
-    mainAttack = new BasicMeleeAttack(MELEE, this);
+    init(gameScene);
 }
 
 Rat::Rat(TileGridScene* gameScene, int startX, int startY) : AiUnit(gameScene, startX, startY) {
+    init(gameScene);
+}
+
+void Rat::init() {
     speed = RAT_SPEED;
-    scene = gameScene;
-    createAnimations();
-    resize(scene->tileWidth, scene->tileWidth);
     health = 100;
     maxHealth = 100;
     mainAttack = new BasicMeleeAttack(MELEE, this);
+    scene = NULL;
 }
+
+void Rat::init(TileGridScene* gameScene) {
+    init();
+    scene = gameScene;
+    createAnimations();
+    resize(scene->tileWidth, scene->tileWidth);
+}
+
 
 void Rat::createAnimations() {
     addAnimation(IDLE_UP_LEFT,RAT_IDLE_DOWN, 1, 10);

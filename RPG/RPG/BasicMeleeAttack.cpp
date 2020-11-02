@@ -2,13 +2,14 @@
 #include "Unit.h"
 
 BasicMeleeAttack::BasicMeleeAttack() : Attack() {
-    cooldown = 30;
-    attackTime = 30;
-    cooldownTimeLeft = 0;
-    attackDelay = 0;
+    init();
 }
 
 BasicMeleeAttack::BasicMeleeAttack(int newType, Unit* newOwningUnit) : Attack(newType, newOwningUnit){
+    init();
+}
+
+void BasicMeleeAttack::init() {
     cooldown = 30;
     attackTime = 30;
     cooldownTimeLeft = 0;

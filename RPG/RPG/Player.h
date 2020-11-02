@@ -24,5 +24,7 @@ private:
 
     //methods
     void createAnimations();
+    void init();
+    void init(TileGridScene * gameScene);
 };
 

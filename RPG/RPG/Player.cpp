@@ -3,33 +3,31 @@
 #include "BasicMeleeAttack.h"
 
 Player::Player() : Unit() {
-    isStatic = true;
-    speed = PLAYER_SPEED;
-    mainAttack = new BasicMeleeAttack(MELEE, this);
-    maxHealth = 1;
-    health = 1;
+    init();
 }
 
 Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
-    scene = gameScene;
-    isStatic = true;
-    speed = PLAYER_SPEED;
-    createAnimations();
-    resize(scene->tileWidth, scene->tileWidth);
-    mainAttack = new BasicMeleeAttack(MELEE, this);
-    maxHealth = 1;
-    health = 1;
+    init(gameScene);
 }
 
 Player::Player(TileGridScene* gameScene, int startX, int startY) : Unit(gameScene, startX, startY) {
-    scene = gameScene;
+    init(gameScene);
+}
+
+void Player::init() {
     isStatic = true;
     speed = PLAYER_SPEED;
-    createAnimations();
-    resize(scene->tileWidth, scene->tileWidth); mainAttack = new BasicMeleeAttack(MELEE, this);
     mainAttack = new BasicMeleeAttack(MELEE, this);
     maxHealth = 1;
     health = 1;
+    scene = NULL;
+}
+
+void Player::init(TileGridScene* gameScene) {
+    init();
+    scene = gameScene;
+    createAnimations();
+    resize(scene->tileWidth, scene->tileWidth);
 }
 
 void Player::update() {

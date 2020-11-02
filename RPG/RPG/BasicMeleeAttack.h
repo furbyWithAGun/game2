@@ -20,5 +20,9 @@ public:
     bool startAttack() override;
     void processHit(Unit* targetUnit);
     void processAttack();
+
+private:
+    //methods
+    void init();
 };
 
