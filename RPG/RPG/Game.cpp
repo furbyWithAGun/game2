@@ -5,17 +5,19 @@
 #include "RpgGameConstants.h"
 
 //TODO:
-//fix 'free to act/move' logic (need to add a check when changing movement bools)
+//fix 'free to act/move' logic (need to add a check when changing movement bools). Unit startMovement method doesn't use freeToAct method because the logic is faulty, it would not allow movement.
+//      best fix will to be to hide the movement bools behind a setter method that checks for freeToAct. then the startMovementMethod will not need to perform this check and will not be blocked. <- would only work if keys were checked everyloop
 //attack animation
+//refactor constructors
 //improve attack functionality
 //text feedback for combat
-//display health
+//display player health in menu
 //enemies fight back
 //pathfinding
 //rework user input system
 //make the game client/server
 //rework asset loading strategy
-//add a cleanup method to GameScene and have the engine call it when scene is over
+//add a cleanup method to GameScene and have the engine call it when scene is over (units are a memory leak when changing scenes)
 //make semi-not-terrible player animations ***DO IT YOU SLACKER***
 
 int main(int argc, char* args[])

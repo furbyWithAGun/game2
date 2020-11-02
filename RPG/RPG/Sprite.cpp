@@ -1,26 +1,21 @@
 #include "Sprite.h"
 
+Sprite::Sprite() {
+    init();
+}
+
+Sprite::Sprite(GameScene* gameScene) {
+    init(gameScene);
+}
+
 Sprite::Sprite(Texture * spriteTexture, GameScene * gameScene) {
+    init(gameScene);
     texture = spriteTexture;
     width = texture->width;
     height = texture->height;
-    xpos = 0;
-    ypos = 0;
-    scene = gameScene;
-    active = true;
 }
 
-Sprite::Sprite( GameScene* gameScene) {
-    texture = NULL;
-    width = texture->width;
-    height = texture->height;
-    xpos = 0;
-    ypos = 0;
-    scene = gameScene;
-    active = true;
-}
-
-Sprite::Sprite() {
+void Sprite::init() {
     texture = NULL;
     width = 0;
     height = 0;
@@ -28,6 +23,11 @@ Sprite::Sprite() {
     ypos = 0;
     scene = NULL;
     active = true;
+}
+
+void Sprite::init(GameScene* gameScene) {
+    init();
+    scene = gameScene;
 }
 
 Sprite::~Sprite() {

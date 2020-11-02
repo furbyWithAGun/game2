@@ -3,12 +3,16 @@
 
 //constructors
 GameScene::GameScene() {
-    engine = NULL;
-    sceneRunning = true;
+    init();
 }
 
 GameScene::GameScene(BaseGameEngine * newEngine) {
+    init();
     engine = newEngine;
+}
+
+void GameScene::init() {
+    engine = NULL;
     sceneRunning = true;
 }
 

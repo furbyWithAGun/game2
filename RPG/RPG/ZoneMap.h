@@ -34,6 +34,8 @@ class ZoneMap {
 
     private:
         //methods
+        void init();
+        void init(int newId);
         std::string getPortalVectorSaveString(std::vector<ZonePortal> vector);
         std::vector<ZonePortal> getPortalVectorFromSaveString(std::string saveString);
 };

@@ -1,6 +1,20 @@
 #include "GameMenu.h"
 
 GameMenu::GameMenu() {
+    init();
+}
+
+GameMenu::GameMenu(BaseGameEngine* gameEngine, int newId, int newWidth, int newHeight, int newXPos, int newYPos) {
+    init();
+    engine = gameEngine;
+    width = newWidth;
+    height = newHeight;
+    xpos = newXPos;
+    ypos = newYPos;
+    id = newId;
+}
+
+void GameMenu::init() {
     engine = NULL;
     width = 0;
     height = 0;
@@ -8,18 +22,6 @@ GameMenu::GameMenu() {
     ypos = 0;
     isActive = false;
     id = -1;
-    r = g = b = 0x00;
-    a = 0xFF;
-}
-
-GameMenu::GameMenu(BaseGameEngine* gameEngine, int newId, int newWidth, int newHeight, int newXPos, int newYPos) {
-    engine = gameEngine;
-    width = newWidth;
-    height = newHeight;
-    xpos = newXPos;
-    ypos = newYPos;
-    isActive = false;
-    id = newId;
     r = g = b = 0x00;
     a = 0xFF;
 }

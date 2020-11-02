@@ -302,6 +302,13 @@ void BaseGameEngine::renderAnimation(Animation* animation, int x, int y, int wid
     SDL_RenderCopy(mainRenderer, textures[animation->spriteSheetKey].texture, &clipQuad, &renderQuad);
 }
 
+void BaseGameEngine::renderRectangle(int x, int y, int width, int height, int r, int g, int b)
+{
+    SDL_Rect fillRect = { x, y, width, height };
+    SDL_SetRenderDrawColor(getMainRenderer(), r, g, b, 0xFF);
+    SDL_RenderFillRect(getMainRenderer(), &fillRect);
+}
+
 double BaseGameEngine::randomDouble() {
     return (double) rand() / RAND_MAX;
 }

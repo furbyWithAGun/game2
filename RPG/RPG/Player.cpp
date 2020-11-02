@@ -6,6 +6,8 @@ Player::Player() : Unit() {
     isStatic = true;
     speed = PLAYER_SPEED;
     mainAttack = new BasicMeleeAttack(MELEE, this);
+    maxHealth = 1;
+    health = 1;
 }
 
 Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
@@ -15,6 +17,8 @@ Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
     createAnimations();
     resize(scene->tileWidth, scene->tileWidth);
     mainAttack = new BasicMeleeAttack(MELEE, this);
+    maxHealth = 1;
+    health = 1;
 }
 
 Player::Player(TileGridScene* gameScene, int startX, int startY) : Unit(gameScene, startX, startY) {
@@ -24,6 +28,8 @@ Player::Player(TileGridScene* gameScene, int startX, int startY) : Unit(gameScen
     createAnimations();
     resize(scene->tileWidth, scene->tileWidth); mainAttack = new BasicMeleeAttack(MELEE, this);
     mainAttack = new BasicMeleeAttack(MELEE, this);
+    maxHealth = 1;
+    health = 1;
 }
 
 void Player::update() {
@@ -85,9 +91,9 @@ void Player::createAnimations() {
     addAnimation(IDLE_LEFT, PLAYER_IDLE_LEFT_SHEET, 1, 10);
 
     addAnimation(MOVE_DOWN, PLAYER_MOVE_DOWN_SHEET, 2, 20);
-    addAnimation(MOVE_UP, PLAYER_MOVE_DOWN_SHEET, 2, 20);
-    addAnimation(MOVE_RIGHT, PLAYER_MOVE_DOWN_SHEET, 2, 20);
-    addAnimation(MOVE_LEFT, PLAYER_MOVE_DOWN_SHEET, 2, 20);
+    addAnimation(MOVE_UP, PLAYER_MOVE_UP_SHEET, 2, 20);
+    addAnimation(MOVE_RIGHT, PLAYER_MOVE_RIGHT_SHEET, 2, 20);
+    addAnimation(MOVE_LEFT, PLAYER_MOVE_LEFT_SHEET, 2, 20);
 
     addAnimation(ATTACK_UP_LEFT, BASIC_MELEE_ATTACK_SHEET, 2, 10, false);
     addAnimation(ATTACK_UP, BASIC_MELEE_ATTACK_SHEET, 2, 10, false);

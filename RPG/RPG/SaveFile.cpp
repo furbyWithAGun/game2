@@ -30,14 +30,17 @@ std::string SaveFile::loadStringFromFile(std::string filePath) {
 
 //contstructos
 SaveFile::SaveFile() {
-    rawString = "";
-    filePath = "";
-    index = 0;
+    init();
 }
 
 SaveFile::SaveFile(std::string newFilePath) {
+    init();
     filePath = newFilePath;
+}
+
+void SaveFile::init() {
     rawString = "";
+    filePath = "";
     index = 0;
 }
 
@@ -68,41 +71,3 @@ void SaveFile::loadFile() {
 void SaveFile::addSaveObjectString(std::string saveString) {
     rawString += saveString;
 }
-
-////private methods
-//std::string SaveFile::getNextSaveObjectString() {
-//    std::string subString = rawString.substr(index);
-//    std::string nextObjectId = getSubstrBeginEndWithExclusive(subString, BEGIN_OBJECT_IDENTIFIER, "\n");
-//    return getSubstrBeginEndWithInclusive(rawString, BEGIN_OBJECT_IDENTIFIER + nextObjectId, END_OBJECT_IDENTIFIER + nextObjectId, 0, &index);
-//}
-//
-//SaveObject SaveFile::getNextSaveObject() {
-//    std::string objectString = getNextSaveObjectString();
-//    SaveObject returnObject;
-//
-//    if (objectString.compare("") != 0)
-//    {
-//        returnObject = SaveObject(objectString);
-//    }
-//    else {
-//        reset();
-//    }
-//
-//    return returnObject;
-//}
-//
-//void SaveFile::populateAllObjects() {
-//    SaveObject saveObject;
-//    bool continueLoop = true;
-//    while (continueLoop)
-//    {
-//        saveObject = getNextSaveObject();
-//        if (saveObject.rawString.compare("") != 0)
-//        {
-//            objects.push_back(saveObject);
-//        }
-//        else {
-//            continueLoop = false;
-//        }
-//    }
-//}

@@ -12,22 +12,26 @@ enum ZONE_PORTAL_ATTRIBUTES {
 
 class ZonePortal
 {
-    public:
-        //attributes
-        int id;
-        std::vector <int> tileCoords;
-        int exitZoneId;
-        std::vector <int> exitTileCoords;
+public:
+    //attributes
+    int id;
+    std::vector <int> tileCoords;
+    int exitZoneId;
+    std::vector <int> exitTileCoords;
 
-        //constructors
-        ZonePortal();
-        ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
-        ZonePortal(SaveObject saveObject);
+    //constructors
+    ZonePortal();
+    ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
+    ZonePortal(SaveObject saveObject);
 
-        //destructor
-        ~ZonePortal();
+    //destructor
+    ~ZonePortal();
 
-        //methods
-        std::string toSaveString();
+    //methods
+    std::string toSaveString();
+
+private:
+    //methods
+    void init();
 };
 

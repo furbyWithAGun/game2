@@ -4,64 +4,38 @@
 
 //constructors
 Unit::Unit() : AnimatedSprite() {
-    tileLocation = {0, 0};
-    tileDestination = {0, 0};
-    name = "";
-    health = 1;
-    speed = 1;
-    leftToMove = 0;
-    isStatic = false;
-    isPlayerControlled = false;
-    directionFacing = DOWN;
-    attacking = false;
+    init();
 }
 
-Unit::Unit(Texture * spriteTexture, TileGridScene* gameScene) : AnimatedSprite(gameScene) {
-    scene = gameScene;
-    name = "";
-    health = 1;
-    speed = 1;
-    leftToMove = 0;
-    tileLocation = {0, 0};
-    tileDestination = { 0, 0 };
-    setTileLocation(0, 0);
-    isStatic = false;
-    isPlayerControlled = false;
-    directionFacing = DOWN;
-    movingUp = movingDown = movingRight = movingLeft = false;
-    attacking = false;
-}
 
 Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
-    scene = gameScene;
-    name = "";
-    health = 1;
-    speed = 1;
-    leftToMove = 0;
-    tileLocation = {0, 0};
-    tileDestination = { 0, 0 };
-    setTileLocation(0, 0);
-    isStatic = false;
-    isPlayerControlled = false;
-    directionFacing = DOWN;
-    movingUp = movingDown = movingRight = movingLeft = false;
-    attacking = false;
+    init(gameScene);
 }
 
 Unit::Unit(TileGridScene* gameScene, int startX, int startY) : AnimatedSprite(gameScene) {
-    scene = gameScene;
+    init(gameScene);
+    setStartLocation(startX, startY);
+}
+
+void Unit::init() {
     name = "";
+    tileLocation = { 0, 0 };
+    tileDestination = { 0, 0 };
+    maxHealth = 1;
     health = 1;
     speed = 1;
     leftToMove = 0;
-    tileLocation = { 0, 0 };
-    tileDestination = { 0, 0 };
-    setStartLocation(startX, startY);
     isStatic = false;
     isPlayerControlled = false;
     directionFacing = DOWN;
-    movingUp = movingDown = movingRight = movingLeft = false;
     attacking = false;
+    movingUp = movingDown = movingRight = movingLeft = false;
+    setTileLocation(0, 0);
+}
+
+void Unit::init(TileGridScene* gameScene) {
+    init();
+    scene = gameScene;
 }
 
 //destructor
@@ -175,11 +149,6 @@ void Unit::setStartLocation(int x, int y) {
 }
 
 void Unit::updateAnimation() {
-    if (tempAnimation != NULL && tempAnimation->active)
-    {
-        tempAnimation->tick();
-    }
-
     setAnimation(getUnitState());
 }
 
@@ -190,6 +159,7 @@ bool Unit::isMoving() {
 void Unit::draw()
 {
     AnimatedSprite::draw();
+    drawHealth();
 }
 
 void Unit::performMainAttack() {
@@ -303,6 +273,13 @@ void Unit::getLocationUnitIsFacing(int tileXY[2]) {
         break;
     }
     tileXY;
+}
+
+void Unit::drawHealth()
+{
+    double healthPercent = (double)health / (double)maxHealth;
+    printf("%f %i\n", healthPercent, scene->tileWidth);
+    scene->engine->renderRectangle(xpos, ypos, (double)scene->tileWidth * healthPercent, (double)scene->tileHeight * 0.05, 0xff, 0, 0);
 }
 
 bool Unit::freeToAct() {

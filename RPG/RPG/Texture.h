@@ -5,23 +5,26 @@
 
 class Texture
 {
-    public:
-        //attributes
-        std::string filePath;
-        int height;
-        int width;
-        SDL_Texture* texture;
+public:
+    //attributes
+    std::string filePath;
+    int height;
+    int width;
+    SDL_Texture* texture;
 
-        //constructors
-        Texture(std::string path);
-        Texture();
+    //constructors
+    Texture(std::string path);
+    Texture();
 
-        //destructor
-        ~Texture();
+    //destructor
+    ~Texture();
 
-        //methods
-        void free();
-        bool resize(int newHeight, int newWidth);
+    //methods
+    void free();
+    bool resize(int newHeight, int newWidth);
 
+private:
+    //methods
+    void init();
 };
 

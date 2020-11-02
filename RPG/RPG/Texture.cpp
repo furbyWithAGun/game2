@@ -1,13 +1,15 @@
 #include "Texture.h"
 
-Texture::Texture(std::string path) {
-    filePath = path;
-    height = 0;
-    width = 0;
+Texture::Texture() {
+    init();
 }
 
+Texture::Texture(std::string path) {
+    init();
+    filePath = path;
+}
 
-Texture::Texture() {
+void Texture::init() {
     filePath = "";
     height = 0;
     width = 0;

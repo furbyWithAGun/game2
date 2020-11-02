@@ -2,6 +2,21 @@
 
 Animation::Animation()
 {
+    init();
+}
+
+Animation::Animation(GameScene * newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames)
+{
+    init(newScene, newSpriteSheetKey, newNumFrames, newTicksBetweenFrames);
+}
+
+Animation::Animation(GameScene* newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames, bool isLoop)
+{
+    init(newScene, newSpriteSheetKey, newNumFrames, newTicksBetweenFrames);
+    active = loop = isLoop;
+}
+
+void Animation::init() {
     scene = NULL;
     spriteSheetKey = 0;
     numFrames = frameHeight = frameWidth = ticksBetweenFrames = 1;
@@ -10,30 +25,14 @@ Animation::Animation()
     loop = true;
 }
 
-Animation::Animation(GameScene * newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames)
-{
+void Animation::init(GameScene* newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames) {
+    init();
     scene = newScene;
     spriteSheetKey = newSpriteSheetKey;
     numFrames = newNumFrames;
     frameHeight = newScene->textures[newSpriteSheetKey]->height / newNumFrames;
     frameWidth = newScene->textures[newSpriteSheetKey]->width;
     ticksBetweenFrames = newTicksBetweenFrames;
-    currentFrame = tickCount = 0;
-    active = true;
-    loop = true;
-}
-
-Animation::Animation(GameScene* newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames, bool isLoop)
-{
-    scene = newScene;
-    spriteSheetKey = newSpriteSheetKey;
-    numFrames = newNumFrames;
-    frameHeight = newScene->textures[newSpriteSheetKey]->height / newNumFrames;
-    frameWidth = newScene->textures[newSpriteSheetKey]->width;
-    ticksBetweenFrames = newTicksBetweenFrames;
-    currentFrame = tickCount = 0;
-    active = isLoop;
-    loop = isLoop;
 }
 
 void Animation::tick()

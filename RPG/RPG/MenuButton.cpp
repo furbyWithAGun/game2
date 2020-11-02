@@ -1,12 +1,15 @@
 #include "MenuButton.h"
 
-MenuButton::MenuButton(Texture * spriteTexture, GameScene* gameScene) : Sprite(spriteTexture, gameScene){
-    scene = gameScene;
-    text = "";
-    textXoffset = textYoffset = 0;
+MenuButton::MenuButton() : Sprite() {
+    init();
 }
 
-MenuButton::MenuButton() : Sprite() {
+MenuButton::MenuButton(Texture * spriteTexture, GameScene* gameScene) : Sprite(spriteTexture, gameScene){
+    init();
+    scene = gameScene;
+}
+
+void MenuButton::init() {
     scene = NULL;
     text = "";
     textXoffset = textYoffset = 0;

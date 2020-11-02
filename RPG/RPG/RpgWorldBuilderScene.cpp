@@ -10,21 +10,19 @@ const int DEFAULT_DESIRED_TILES_ACROSS = 19;
 
 //constructor
 RpgWorldBuilderScene::RpgWorldBuilderScene() : TileGridScene(){
+    init();
+}
+
+RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : TileGridScene(gameEngine){
+    init();
+    engine = gameEngine;
+}
+
+void RpgWorldBuilderScene::init() {
     engine = NULL;
     tileBeingPlaced = NULL;
     leftButtonClicked = false;
     placingTile = false;
-    desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
-    desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
-}
-
-RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : TileGridScene(gameEngine){
-    engine = gameEngine;
-    tileBeingPlaced = NULL;
-    leftButtonClicked = false;
-    placingTile = false;
-    desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
-    desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
 }
 
 void RpgWorldBuilderScene::loadSceneAssets() {

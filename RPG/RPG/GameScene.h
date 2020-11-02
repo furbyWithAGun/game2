@@ -39,6 +39,7 @@ protected:
 private:
     //attributes
     
-
+    //methods
+    void init();
 };
 

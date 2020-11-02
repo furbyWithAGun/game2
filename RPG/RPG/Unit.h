@@ -59,7 +59,15 @@ public:
     virtual void update();
     void performMainAttack();
     int assignDamage(int damageTaken);
-    int getUnitState();
     void getLocationUnitIsFacing(int tileXY[2]);
+    void drawHealth();
+
+private:
+    //attributes
+
+    //methods
+    int getUnitState();
+    void init();
+    void init(TileGridScene* gameScene);
     bool freeToAct();
 };

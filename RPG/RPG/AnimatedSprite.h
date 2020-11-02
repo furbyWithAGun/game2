@@ -19,9 +19,13 @@ public:
     void setAnimation(int animationKey);
     void playAnimation(int animationKey);
     void playAnimation(int animationKey, int duration);
-    void init();
+    void setup();
     virtual void update();
     void draw();
     void resize(int x , int y);
+
+private:
+    //methods
+    void init();
 };
 

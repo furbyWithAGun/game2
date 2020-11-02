@@ -11,22 +11,19 @@ const int DEFAULT_DESIRED_TILES_ACROSS = 20;
 
 //constructors
 TileGridScene::TileGridScene() : GameScene() {
+    init();
+}
+
+TileGridScene::TileGridScene(BaseGameEngine* gameEngine) : GameScene((BaseGameEngine*) gameEngine) {
+    init();
+}
+
+void TileGridScene::init() {
     tileHeight = 50;
     tileWidth = 50;
     xOffset = 0;
     yOffset = 0;
     mainCanvasStartX = 0;
-    backDropTileKey = WATER;
-    desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
-    desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
-}
-
-TileGridScene::TileGridScene(BaseGameEngine* gameEngine) : GameScene((BaseGameEngine*) gameEngine) {
-    tileHeight = 50;
-    tileWidth = 50;
-    xOffset = 0;
-    yOffset = 0;
-    mainCanvasStartX = engine->screenWidth * LEFT_MENU_SIZE + 1;
     backDropTileKey = WATER;
     desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;

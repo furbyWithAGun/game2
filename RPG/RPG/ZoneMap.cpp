@@ -3,16 +3,21 @@
 #include "SaveFile.h"
 #include "RpgGameConstants.h"
 
-ZoneMap::ZoneMap(int newId, std::vector< std::vector<int> > tiles) {
-	id = newId;
-	assignNewTileMap(tiles);
+ZoneMap::ZoneMap() {
+	init();
 }
 
 ZoneMap::ZoneMap(int newId) {
-	id = newId;
+	init(newId);
+}
+
+ZoneMap::ZoneMap(int newId, std::vector< std::vector<int> > tiles) {
+	init(newId);
+	assignNewTileMap(tiles);
 }
 
 ZoneMap::ZoneMap(SaveObject saveObject) {
+	init();
 	for (int i = 0; i < saveObject.attributes.size(); i++)
 	{
 		switch (saveObject.attributes[i].attributeType) {
@@ -31,8 +36,13 @@ ZoneMap::ZoneMap(SaveObject saveObject) {
 	}
 }
 
-ZoneMap::ZoneMap() {
+void ZoneMap::init() {
 	id = -1;
+}
+
+void ZoneMap::init(int newId) {
+	init();
+	id = newId;
 }
 
 ZoneMap::~ZoneMap() {

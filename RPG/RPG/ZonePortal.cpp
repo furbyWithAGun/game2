@@ -5,11 +5,11 @@
 #include "RpgGameConstants.h"
 
 ZonePortal::ZonePortal() {
-    id = -1;
-    exitZoneId = -1;
+    init();
 }
 
 ZonePortal::ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords) {
+    init();
     id = newId;
     tileCoords = newTileCoords;
     exitZoneId = newExitZoneId;
@@ -17,6 +17,7 @@ ZonePortal::ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZo
 }
 
 ZonePortal::ZonePortal(SaveObject saveObject) {
+    init();
     for (int i = 0; i < saveObject.attributes.size(); i++)
     {
         switch (saveObject.attributes[i].attributeType) {
@@ -36,6 +37,11 @@ ZonePortal::ZonePortal(SaveObject saveObject) {
             break;
         }
     }
+}
+
+void ZonePortal::init() {
+    id = -1;
+    exitZoneId = -1;
 }
 
 ZonePortal::~ZonePortal() {

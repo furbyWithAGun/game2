@@ -19,5 +19,12 @@ public:
     void tick();
     void resetAnimation(int startframe = 0);
     void setAnimationLength(int lengthInGameTicks);
+
+private:
+    //attributes
+
+    //methods
+    void init();
+    void init(GameScene* newScene, int newSpriteSheetKey, int newNumFrames, int newTicksBetweenFrames);
 };
 

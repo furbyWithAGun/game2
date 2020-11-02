@@ -1,19 +1,22 @@
 #include "SaveObject.h"
 
 SaveObject::SaveObject() {
-    rawString = "";
-    objectId = -1;
-    objectType = -1;    
-    index = 0;
+    init();
 }
 
 SaveObject::SaveObject(std::string saveString) {
+    init();
     rawString = saveString;
-    index = 0;
     objectId = getObjectId();
     objectType = getObjectType();
-
     populateAllAttributes();
+}
+
+void SaveObject::init() {
+    rawString = "";
+    objectId = -1;
+    objectType = -1;
+    index = 0;
 }
 
 //destructor

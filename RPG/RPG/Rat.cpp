@@ -4,6 +4,7 @@
 Rat::Rat() : AiUnit() {
     speed = RAT_SPEED;
     health = 100;
+    maxHealth = 100;
     mainAttack = new BasicMeleeAttack(MELEE, this);
 }
 
@@ -13,6 +14,7 @@ Rat::Rat(TileGridScene* gameScene) : AiUnit(gameScene) {
     createAnimations();
     resize(scene->tileWidth, scene->tileWidth);
     health = 100;
+    maxHealth = 100;
     mainAttack = new BasicMeleeAttack(MELEE, this);
 }
 
@@ -22,6 +24,7 @@ Rat::Rat(TileGridScene* gameScene, int startX, int startY) : AiUnit(gameScene, s
     createAnimations();
     resize(scene->tileWidth, scene->tileWidth);
     health = 100;
+    maxHealth = 100;
     mainAttack = new BasicMeleeAttack(MELEE, this);
 }
 

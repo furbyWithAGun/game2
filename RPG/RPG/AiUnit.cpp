@@ -5,20 +5,18 @@ const double RANDOM_MOVE_CHANCE = 0.005;
 
 //constructors
 AiUnit::AiUnit() : Unit() {
-    isStatic = false;
-    isHostile = false;
-    chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
+    init();
 }
 
 AiUnit::AiUnit(TileGridScene* gameScene) : Unit(gameScene) {
-    scene = gameScene;
-    isStatic = false;
-    isHostile = false;
-    chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
+    init();
 }
 
 AiUnit::AiUnit(TileGridScene* gameScene, int startX, int startY) : Unit(gameScene, startX, startY) {
-    scene = gameScene;
+    init();
+}
+
+void AiUnit::init() {
     isStatic = false;
     isHostile = false;
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;

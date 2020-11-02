@@ -33,5 +33,6 @@ private:
     //attributes
 
     //methods
+    void init();
 };
 

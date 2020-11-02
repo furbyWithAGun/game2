@@ -17,7 +17,7 @@ public:
     BasicMeleeAttack(int newType, Unit* newOwningUnit);
 
     //methods
-    void startAttack() override;
+    bool startAttack() override;
     void processHit(Unit* targetUnit);
     void processAttack();
 };

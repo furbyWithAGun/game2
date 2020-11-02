@@ -50,6 +50,7 @@ class BaseGameEngine
         void renderTexture(Texture* texture, int x, int y, int width, int height);
         void renderAnimation(Animation* animation, int x, int y);
         void renderAnimation(Animation* animation, int x, int y, int width, int height);
+        void renderRectangle(int x, int y, int width, int height, int r, int g, int b);
         bool loadTextureImageFromFile(Texture* texture);
         void addScene(int sceneId, GameScene* sceneToAdd);
         void setNextScene(int sceneId);

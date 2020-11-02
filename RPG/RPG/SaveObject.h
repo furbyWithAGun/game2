@@ -31,6 +31,7 @@ class SaveObject
         std::string::size_type index;
 
         //methods
+        void init();
         int getObjectType();
         std::string getObjectHeaderLine();
         std::string getObjectFooterLine();

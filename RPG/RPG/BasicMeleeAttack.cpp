@@ -2,50 +2,53 @@
 #include "Unit.h"
 
 BasicMeleeAttack::BasicMeleeAttack() : Attack() {
-    cooldown = 200;
-    attackTime = 200;
+    cooldown = 30;
+    attackTime = 30;
     cooldownTimeLeft = 0;
     attackDelay = 0;
 }
 
 BasicMeleeAttack::BasicMeleeAttack(int newType, Unit* newOwningUnit) : Attack(newType, newOwningUnit){
-    cooldown = 200;
-    attackTime = 200;
+    cooldown = 30;
+    attackTime = 30;
     cooldownTimeLeft = 0;
     attackDelay = 0;
 }
 
-void BasicMeleeAttack::startAttack() {
-    Attack::startAttack();
-    switch (owningUnit->directionFacing)
-    {
-    case UP_LEFT:
-        owningUnit->playAnimation(ATTACK_UP_LEFT, attackTime);
-        break;
-    case UP:
-        owningUnit->playAnimation(ATTACK_UP, attackTime);
-        break;
-    case UP_RIGHT:
-        owningUnit->playAnimation(ATTACK_UP_RIGHT, attackTime);
-        break;
-    case RIGHT:
-        owningUnit->playAnimation(ATTACK_RIGHT, attackTime);
-        break;
-    case DOWN_RIGHT:
-        owningUnit->playAnimation(ATTACK_DOWN_RIGHT, attackTime);
-        break;
-    case DOWN:
-        owningUnit->playAnimation(ATTACK_DOWN, attackTime);
-        break;
-    case DOWN_LEFT:
-        owningUnit->playAnimation(ATTACK_DOWN_LEFT, attackTime);
-        break;
-    case LEFT:
-        owningUnit->playAnimation(ATTACK_LEFT, attackTime);
-        break;
-    default:
-        break;
+bool BasicMeleeAttack::startAttack() {
+    if (Attack::startAttack()) {
+        switch (owningUnit->directionFacing)
+        {
+        case UP_LEFT:
+            owningUnit->playAnimation(ATTACK_UP_LEFT, attackTime);
+                break;
+        case UP:
+            owningUnit->playAnimation(ATTACK_UP, attackTime);
+                break;
+        case UP_RIGHT:
+            owningUnit->playAnimation(ATTACK_UP_RIGHT, attackTime);
+                break;
+        case RIGHT:
+            owningUnit->playAnimation(ATTACK_RIGHT, attackTime);
+            break;
+        case DOWN_RIGHT:
+            owningUnit->playAnimation(ATTACK_DOWN_RIGHT, attackTime);
+            break;
+        case DOWN:
+            owningUnit->playAnimation(ATTACK_DOWN, attackTime);
+            break;
+        case DOWN_LEFT:
+            owningUnit->playAnimation(ATTACK_DOWN_LEFT, attackTime);
+            break;
+        case LEFT:
+            owningUnit->playAnimation(ATTACK_LEFT, attackTime);
+            break;
+        default:
+            break;
+        }
+        return true;
     }
+    return false;
 }
 
 

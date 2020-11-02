@@ -28,8 +28,6 @@ class SaveFile
         void saveFile();
         void loadFile();
         void addSaveObjectString(std::string saveString);
-        
-
         void populateAllObjects();
 
     private:
@@ -38,9 +36,8 @@ class SaveFile
         
 
         //methods
-        SaveObject getNextSaveObject();
-        
+        void init();
+        SaveObject getNextSaveObject();        
         std::string getNextSaveObjectString();
-        
 };
 

@@ -20,5 +20,6 @@ private:
 
     //methods
     void randomMovement();
+    void init();
 };
 

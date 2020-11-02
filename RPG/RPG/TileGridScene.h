@@ -54,5 +54,6 @@ private:
 
     //methods
     void createTiles();
+    void init();
 };
 

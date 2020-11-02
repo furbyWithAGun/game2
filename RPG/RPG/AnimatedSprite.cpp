@@ -2,15 +2,19 @@
 
 AnimatedSprite::AnimatedSprite() : Sprite()
 {
-    currentAnimation = NULL;
-    tempAnimation = NULL;
+    init();
 }
 
 AnimatedSprite::AnimatedSprite(GameScene* gameScene) : Sprite()
 {
+    init();
+    scene = gameScene;
+}
+
+void AnimatedSprite::init() {
     currentAnimation = NULL;
     tempAnimation = NULL;
-    scene = gameScene;
+    scene = NULL;
 }
 
 void AnimatedSprite::addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames, bool isLoop)
@@ -21,7 +25,7 @@ void AnimatedSprite::addAnimation(int animationKey, int spriteSheetKey, int numF
     }
     if (currentAnimation == NULL)
     {
-        init();
+        setup();
     }
 }
 
@@ -49,13 +53,7 @@ void AnimatedSprite::playAnimation(int animationKey, int duration) {
     tempAnimation->resetAnimation();
 }
 
-//void AnimatedSprite::startAnimation(int animationKey)
-//{
-    //currentAnimation = &animations[animationKey];
-    //currentAnimation->resetAnimation();
-//}
-
-void AnimatedSprite::init()
+void AnimatedSprite::setup()
 {
     currentAnimation = &animations.begin()->second;
     width = currentAnimation->frameWidth;

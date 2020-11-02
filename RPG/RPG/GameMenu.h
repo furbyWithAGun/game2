@@ -30,5 +30,9 @@ protected:
     int xpos;
     int ypos;
     int id, r, g, b, a;
+
+private:
+    //methods
+    void init();
 };
 
