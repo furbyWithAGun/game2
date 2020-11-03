@@ -25,8 +25,8 @@ void RpgWorldBuilderScene::init() {
     placingTile = false;
 }
 
-void RpgWorldBuilderScene::loadSceneAssets() {
-    TileGridScene::loadSceneAssets();
+void RpgWorldBuilderScene::declareSceneAssets() {
+    TileGridScene::declareSceneAssets();
     texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
 }
 

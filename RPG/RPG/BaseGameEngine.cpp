@@ -24,6 +24,7 @@ BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     mainWindow = NULL;
     mainRenderer = NULL;
     mainFont = NULL;
+    mainFontColor = { 0, 0, 0 };
     currentScene = NULL;
     nextScene = NULL;
     sceneRunning = false;
@@ -303,6 +304,14 @@ void BaseGameEngine::renderRectangle(int x, int y, int width, int height, int r,
     SDL_RenderFillRect(getMainRenderer(), &fillRect);
 }
 
+int BaseGameEngine::getTextureWidth(int textureKey) {
+    return textures[textureKey].width;
+}
+
+int BaseGameEngine::getTextureHeight(int textureKey) {
+    return textures[textureKey].height;
+}
+
 void BaseGameEngine::addScene(int sceneId, GameScene* sceneToAdd)
 {
     scenes[sceneId] = sceneToAdd;
@@ -379,7 +388,6 @@ bool BaseGameEngine::initNextScene() {
     {
         currentScene = nextScene;
         nextScene = NULL;
-        currentScene->loadSceneAssets();
         loadSceneTextures(currentScene);
         currentScene->setUpScene();
         SDL_CreateThread(logicThread, "logicThread", (void*)currentScene);
@@ -392,6 +400,7 @@ bool BaseGameEngine::initNextScene() {
 }
 
 bool BaseGameEngine::loadSceneTextures(GameScene * newScene) {
+    currentScene->declareSceneAssets();
     clearTextures();
     createMultipleTextures(newScene->texturesToLoad);
     return true;

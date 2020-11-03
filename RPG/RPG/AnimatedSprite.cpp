@@ -5,16 +5,14 @@ AnimatedSprite::AnimatedSprite() : Sprite()
     init();
 }
 
-AnimatedSprite::AnimatedSprite(GameScene* gameScene) : Sprite()
+AnimatedSprite::AnimatedSprite(GameScene* gameScene) : Sprite(gameScene)
 {
     init();
-    scene = gameScene;
 }
 
 void AnimatedSprite::init() {
     currentAnimation = NULL;
     tempAnimation = NULL;
-    scene = NULL;
 }
 
 void AnimatedSprite::addAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames, bool isLoop)

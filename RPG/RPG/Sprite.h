@@ -8,16 +8,16 @@ class Sprite
 public:
     //attributes
     int width, height, xpos, ypos;
-    Texture* texture;
+    int textureKey;
     bool active;
 
     //constructor
-    Sprite(Texture * spriteTexture, GameScene * gameScene);
-    Sprite(GameScene * gameScene);
     Sprite();
+    Sprite(GameScene* gameScene);
+    Sprite(int spriteTextureKey, GameScene* gameScene);
 
     //deconstructor
-    ~Sprite();
+    //~Sprite();
 
     //methods
     bool pointCollision(int x, int y);

@@ -5,6 +5,8 @@
 #include "Rat.h"
 
 //constants
+const int DEFAULT_TILE_HEIGHT = 50;
+const int DEFAULT_TILE_WIDTH = 50;
 const double LEFT_MENU_SIZE = 0.1;
 const int DEFAULT_DESIRED_TILES_DOWN = 12;
 const int DEFAULT_DESIRED_TILES_ACROSS = 20;
@@ -19,8 +21,8 @@ TileGridScene::TileGridScene(BaseGameEngine* gameEngine) : GameScene((BaseGameEn
 }
 
 void TileGridScene::init() {
-    tileHeight = 50;
-    tileWidth = 50;
+    tileHeight = DEFAULT_TILE_HEIGHT;
+    tileWidth = DEFAULT_TILE_WIDTH;
     xOffset = 0;
     yOffset = 0;
     mainCanvasStartX = engine->screenWidth * LEFT_MENU_SIZE;
@@ -29,7 +31,7 @@ void TileGridScene::init() {
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
 }
 
-void TileGridScene::loadSceneAssets()
+void TileGridScene::declareSceneAssets()
 {
     texturesToLoad.insert({ WATER, "images/water.png" });
     texturesToLoad.insert({ TREE, "images/tree.png" });
@@ -131,11 +133,9 @@ Unit* TileGridScene::createUnitAtLocation(int unitType, int x, int y)
     {
     case PLAYER:
         createdUnit = new Player(this, x, y);
-        //units.push_back(new Player(this, x, y));
         break;
     case RAT:
         createdUnit = new Rat(this, x, y);
-        //units.push_back(new Rat(this, x, y));
         break;
     default:
         createdUnit = NULL;

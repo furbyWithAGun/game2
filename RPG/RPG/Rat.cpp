@@ -1,6 +1,9 @@
 #include "Rat.h"
 #include "BasicMeleeAttack.h"
 
+const int RAT_MAX_HEALTH = 100;
+const int RAT_SPEED = 2;
+
 Rat::Rat() : AiUnit() {
     init();
 }
@@ -15,15 +18,13 @@ Rat::Rat(TileGridScene* gameScene, int startX, int startY) : AiUnit(gameScene, s
 
 void Rat::init() {
     speed = RAT_SPEED;
-    health = 100;
-    maxHealth = 100;
-    mainAttack = new BasicMeleeAttack(MELEE, this);
-    scene = NULL;
+    health = RAT_MAX_HEALTH;
+    maxHealth = RAT_MAX_HEALTH;
+    mainAttack = new BasicMeleeAttack(MELEE, this); //potential memory leak
 }
 
 void Rat::init(TileGridScene* gameScene) {
     init();
-    scene = gameScene;
     createAnimations();
     resize(scene->tileWidth, scene->tileWidth);
 }
@@ -49,7 +50,7 @@ void Rat::createAnimations() {
     addAnimation(ATTACK_UP_RIGHT,RAT_IDLE_DOWN, 1, 10, false);
     addAnimation(ATTACK_RIGHT,RAT_IDLE_DOWN, 1, 10, false);
     addAnimation(ATTACK_DOWN_RIGHT,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_DOWN,RAT_IDLE_DOWN, 1, 20, false);
+    addAnimation(ATTACK_DOWN,RAT_IDLE_DOWN, 1, 10, false);
     addAnimation(ATTACK_DOWN_LEFT,RAT_IDLE_DOWN, 1, 10, false);
     addAnimation(ATTACK_LEFT,RAT_IDLE_DOWN, 1, 10, false);
 }

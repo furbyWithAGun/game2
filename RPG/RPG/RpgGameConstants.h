@@ -5,12 +5,6 @@
 const std::string GAME_TITLE = "RPG";
 const int SCREEN_WIDTH = 1900;
 const int SCREEN_HEIGHT = 1000;
-//player stats
-const int PLAYER_SPEED = 4;
-
-//enemy stats
-//rat
-const int RAT_SPEED = 2;
 
 //enums
 enum ATTCK_TYPES {

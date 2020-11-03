@@ -8,15 +8,15 @@ Sprite::Sprite(GameScene* gameScene) {
     init(gameScene);
 }
 
-Sprite::Sprite(Texture * spriteTexture, GameScene * gameScene) {
+Sprite::Sprite(int spriteTextureKey, GameScene * gameScene) {
     init(gameScene);
-    texture = spriteTexture;
-    width = texture->width;
-    height = texture->height;
+    textureKey = spriteTextureKey;
+    width = scene->engine->getTextureWidth(spriteTextureKey);
+    height = scene->engine->getTextureHeight(spriteTextureKey);
 }
 
 void Sprite::init() {
-    texture = NULL;
+    textureKey = -1;
     width = 0;
     height = 0;
     xpos = 0;
@@ -30,20 +30,23 @@ void Sprite::init(GameScene* gameScene) {
     scene = gameScene;
 }
 
-Sprite::~Sprite() {
-    texture = NULL;
-    width = 0;
-    height = 0;
-    xpos = 0;
-    ypos = 0;
-    scene = NULL;
-    active = false;
-}
+//Sprite::~Sprite() {
+//    texture = NULL;
+//    width = 0;
+//    height = 0;
+//    xpos = 0;
+//    ypos = 0;
+//    scene = NULL;
+//    active = false;
+//}
 
 bool Sprite::pointCollision(int x, int y) {
     return (x >= xpos && x <= (xpos + width) && y >= ypos && y <= (ypos + height));
 }
 
 void Sprite::draw() {
-    scene->renderTexture(texture, xpos, ypos, width, height);
+    if (textureKey != -1)
+    {
+        scene->renderTexture(textureKey, xpos, ypos, width, height);
+    }
 }

@@ -16,9 +16,9 @@ void RpgOverWorldScene::init() {
     wKeyDown = sKeyDown = dKeyDown = aKeyDown = false;
 }
 
-void RpgOverWorldScene::loadSceneAssets()
+void RpgOverWorldScene::declareSceneAssets()
 {
-    TileGridScene::loadSceneAssets();
+    TileGridScene::declareSceneAssets();
     //player textures
     //movement
     texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/player.png" });

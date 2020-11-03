@@ -4,7 +4,7 @@ MenuButton::MenuButton() : Sprite() {
     init();
 }
 
-MenuButton::MenuButton(Texture * spriteTexture, GameScene* gameScene) : Sprite(spriteTexture, gameScene){
+MenuButton::MenuButton(int spriteTextureKey, GameScene* gameScene) : Sprite(spriteTextureKey, gameScene){
     init();
     scene = gameScene;
 }

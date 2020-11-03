@@ -13,7 +13,7 @@ public:
     RpgOverWorldScene();
     RpgOverWorldScene(BaseGameEngine* gameEngine);
 
-    void loadSceneAssets();
+    void declareSceneAssets();
     void setUpScene() override;
     void handleInput() override;
     void sceneLogic() override;

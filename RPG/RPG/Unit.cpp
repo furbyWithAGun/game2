@@ -7,7 +7,6 @@ Unit::Unit() : AnimatedSprite() {
     init();
 }
 
-
 Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
     init(gameScene);
 }

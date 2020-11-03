@@ -62,6 +62,8 @@ class BaseGameEngine
         double randomDouble();
         int randomInt(int maxValue);
         int randomInt(int minValue, int maxValue);
+        int getTextureWidth(int textureKey);
+        int getTextureHeight(int textureKey);
 
     protected:
         

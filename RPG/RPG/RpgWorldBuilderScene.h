@@ -23,7 +23,7 @@ public:
     RpgWorldBuilderScene(BaseGameEngine* gameEngine);
 
     //methods
-    void loadSceneAssets();
+    void declareSceneAssets();
     void setUpScene() override;
     void handleInput() override;
     void sceneLogic() override;

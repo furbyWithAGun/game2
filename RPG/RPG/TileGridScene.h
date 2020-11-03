@@ -25,7 +25,7 @@ public:
 
     //methods
     void coordsFromTileIndex(int x, int y, int returnCoords[2]);
-    virtual void loadSceneAssets() override;
+    virtual void declareSceneAssets() override;
     virtual void setUpScene() override;
     void handleInput() override;
     void sceneLogic() override;

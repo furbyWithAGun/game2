@@ -1,7 +1,6 @@
 #pragma once
 #include "Texture.h"
 #include <unordered_map>
-
 class BaseGameEngine;
 
 class GameScene
@@ -31,7 +30,7 @@ protected:
 
     //methods
     void endScene();
-    virtual void loadSceneAssets() {};
+    virtual void declareSceneAssets() {};
     virtual void setUpScene() {};
     
 

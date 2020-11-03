@@ -38,7 +38,6 @@ public:
 
     //constructors
     Unit();
-    Unit(Texture * spriteTexture, TileGridScene* gameScene);
     Unit(TileGridScene* gameScene);
     Unit(TileGridScene* gameScene, int startX, int startY);
 

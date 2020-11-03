@@ -15,7 +15,7 @@ public:
 
     //constructors
     MenuButton();
-    MenuButton(Texture * spriteTexture, GameScene* gamescene);
+    MenuButton(int spriteTextureKey, GameScene* gamescene);
 
     //destructor
     //~MenuButton();

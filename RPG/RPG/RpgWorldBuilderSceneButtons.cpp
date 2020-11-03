@@ -19,7 +19,7 @@ public:
         scene = NULL;
     }
 
-    MapBuilderTileButton(MapTile* newTile, RpgWorldBuilderScene* gameScene) : MenuButton(&gameScene->engine->textures[newTile->textureKey], gameScene) {
+    MapBuilderTileButton(MapTile* newTile, RpgWorldBuilderScene* gameScene) : MenuButton(newTile->textureKey, gameScene) {
         scene = gameScene;
         engine = gameScene->engine;
         tile = newTile;
@@ -51,7 +51,7 @@ public:
         scene = NULL;
     }
 
-    SaveMapBuilderButton(Texture* buttonTexture, RpgWorldBuilderScene* gameScene) : MenuButton(buttonTexture, gameScene) {
+    SaveMapBuilderButton(int buttonTextureKey, RpgWorldBuilderScene* gameScene) : MenuButton(buttonTextureKey, gameScene) {
         scene = gameScene;
         engine = gameScene->engine;
     }
