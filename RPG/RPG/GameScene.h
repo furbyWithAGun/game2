@@ -9,7 +9,6 @@ class GameScene
     friend class BaseGameEngine;
 public:
     //attributes
-    std::unordered_map<int, Texture *> textures;
     BaseGameEngine* engine;
     bool sceneRunning;
     

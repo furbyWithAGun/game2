@@ -42,16 +42,21 @@ class BaseGameEngine
         virtual void gameLogic();
         virtual void gameRendering();
         void startMainGameLoop();
-        int addTexture(Texture texture);
+        int createImageTexture(int textureKey, std::string imagePath);
+        int createImageTexture(std::string imagePath);
+        int createTextTexture(int textureKey, std::string text);
+        int createTextTexture(std::string text);
         bool createMultipleTextures(std::unordered_map<int, std::string> texturesToCreate);
         SDL_Texture* loadTextureImageFromFile(std::string path);
+        bool loadTextureImage(Texture* texture);
         SDL_Texture* loadTextureFromText(std::string text);
         void renderTexture(Texture* texture, int x, int y);
         void renderTexture(Texture* texture, int x, int y, int width, int height);
+        void renderTexture(int textureKey, int x, int y);
+        void renderTexture(int textureKey, int x, int y, int width, int height);
         void renderAnimation(Animation* animation, int x, int y);
         void renderAnimation(Animation* animation, int x, int y, int width, int height);
         void renderRectangle(int x, int y, int width, int height, int r, int g, int b);
-        bool loadTextureImageFromFile(Texture* texture);
         void addScene(int sceneId, GameScene* sceneToAdd);
         void setNextScene(int sceneId);
         double randomDouble();
@@ -70,6 +75,7 @@ class BaseGameEngine
         GameScene* currentScene;
         GameScene* nextScene;
         std::unordered_map<int, GameScene*> scenes;
+        int auto_texturekey;
         
 
         //methods

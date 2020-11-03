@@ -29,12 +29,12 @@ void GameScene::renderTexture(Texture*  texture, int x, int y, int width, int he
 
 void GameScene::renderTexture(int textureKey, int x, int y)
 {
-    engine->renderTexture(textures[textureKey], x, y);
+    engine->renderTexture(textureKey, x, y);
 }
 
 void GameScene::renderTexture(int textureKey, int x, int y, int width, int height)
 {
-    engine->renderTexture(textures[textureKey], x, y, width, height);
+    engine->renderTexture(textureKey, x, y, width, height);
 }
 
 void GameScene::endScene() {

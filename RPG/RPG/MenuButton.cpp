@@ -12,28 +12,31 @@ MenuButton::MenuButton(Texture * spriteTexture, GameScene* gameScene) : Sprite(s
 void MenuButton::init() {
     scene = NULL;
     text = "";
-    textXoffset = textYoffset = 0;
+    textXoffset = textYoffset = textWidth = textHeight = 0;
+    textTextureKey = -1;
 }
 
-MenuButton::~MenuButton() {
-    scene = NULL;
-    delete &textTexture;
-    text = "";
-    textXoffset = textYoffset = 0;
-}
+//MenuButton::~MenuButton() {
+//    scene = NULL;
+//    text = "";
+//    textXoffset = textYoffset = 0;
+//}
 
 void MenuButton::draw() {
     Sprite::draw();
-    if (!textTexture.texture == NULL)
+    if (!textTextureKey != -1)
     {
-        scene->renderTexture(&textTexture, xpos + textXoffset, ypos + textYoffset);
+        scene->renderTexture(textTextureKey, xpos + textXoffset, ypos + textYoffset, textWidth, textHeight);
     }
 }
 
 void MenuButton::setText(std::string newText) {
     text = newText;
-    textTexture.texture = scene->engine->loadTextureFromText(newText);
-    SDL_QueryTexture(textTexture.texture, NULL, NULL, &textTexture.width, &textTexture.height);
+    textTextureKey = scene->engine->createTextTexture(newText);
+    textHeight = height * 0.75;
+    textWidth = width * 0.75;
+    textXoffset = width * 0.09;
+    textYoffset = height * 0.11;
 }
 
 void MenuButton::setPos(int x, int y) {

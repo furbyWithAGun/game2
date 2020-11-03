@@ -12,6 +12,7 @@ const int KEY_G_VALUE = 0;
 const int KEY_B_VALUE = 255;
 const int DEFAULT_FONT_SIZE = 28;
 const double DEFAULT_TICK_DELAY = 6;
+const int AUTO_TEXTURE_KEY_START = 30000;
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
@@ -29,6 +30,7 @@ BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     gameRunning = false;
     sceneLock = 0;
     tickDelay = DEFAULT_TICK_DELAY;
+    auto_texturekey = AUTO_TEXTURE_KEY_START;
 }
 
 BaseGameEngine::~BaseGameEngine() {
@@ -196,47 +198,11 @@ SDL_Texture* BaseGameEngine::loadTextureImageFromFile(std::string path) {
     return newTexture;
 }
 
-bool BaseGameEngine::loadTextureImageFromFile(Texture* texture) {
+bool BaseGameEngine::loadTextureImage(Texture* texture) {
 
-    texture->texture = NULL;
-
-    //load the image from the file
-    SDL_Surface* loadedSurface = IMG_Load(texture->filePath.c_str());
-    if (loadedSurface == NULL)
-    {
-        printf("Unable to load image %s! SDL_image Error: %s\n", texture->filePath.c_str(), IMG_GetError());
-        return false;
-    }
-
-    //set transparent color
-    SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, KEY_R_VALUE, KEY_G_VALUE, KEY_B_VALUE));
-
-    //convert to texture
-    texture->texture = SDL_CreateTextureFromSurface(mainRenderer, loadedSurface);
-    if (texture->texture == NULL)
-    {
-        printf("Unable to create texture from %s! SDL Error: %s\n", texture->filePath.c_str(), SDL_GetError());
-        return false;
-    }
-
-    texture->height = loadedSurface->h;
-    texture->width = loadedSurface->w;
-
-
-    //Get rid of old loaded surface
-    SDL_FreeSurface(loadedSurface);
-
+    texture->texture = loadTextureImageFromFile(texture->filePath);
+    SDL_QueryTexture(texture->texture, NULL, NULL, &texture->width, &texture->height);
     return true;
-}
-
-void BaseGameEngine::addScene(int sceneId, GameScene* sceneToAdd)
-{
-    scenes[sceneId] = sceneToAdd;
-}
-
-void BaseGameEngine::setNextScene(int sceneId)
-{
-    nextScene = scenes[sceneId];
 }
 
 SDL_Texture* BaseGameEngine::loadTextureFromText(std::string text) {
@@ -259,19 +225,38 @@ SDL_Texture* BaseGameEngine::loadTextureFromText(std::string text) {
     return textTexture;
 }
 
-int BaseGameEngine::addTexture(Texture texture) {
-    int index;
-    loadTextureImageFromFile(&texture);
-    index = textures.size();
-    textures[index] = texture;
-    return index;
+int BaseGameEngine::createImageTexture(std::string imagePath) {
+    int textureKey = auto_texturekey;
+    textures[textureKey] = Texture(imagePath);
+    loadTextureImage(&textures[textureKey]);
+    auto_texturekey++;
+    return textureKey;
+}
+
+int BaseGameEngine::createImageTexture(int textureKey, std::string imagePath) {
+    textures[textureKey] = Texture(imagePath);
+    loadTextureImage(&textures[textureKey]);
+    return textureKey;
+}
+
+int BaseGameEngine::createTextTexture(std::string text) {
+    int textureKey = auto_texturekey;
+    textures[textureKey] = Texture();
+    textures[textureKey].texture = loadTextureFromText(text);
+    auto_texturekey++;
+    return textureKey;
+}
+
+int BaseGameEngine::createTextTexture(int textureKey, std::string text) {
+    textures[textureKey] = Texture();
+    textures[textureKey].texture = loadTextureFromText(text);
+    return textureKey;
 }
 
 bool BaseGameEngine::createMultipleTextures(std::unordered_map<int, std::string> texturesToCreate) {
     for (auto i = texturesToCreate.begin(); i != texturesToCreate.end(); ++i)
     {
-        textures[i->first] = Texture(i->second);
-        loadTextureImageFromFile(&textures[i->first]);
+        createImageTexture(i->first, i->second);
     }
     return true;
 }
@@ -287,6 +272,15 @@ void BaseGameEngine::renderTexture(Texture* texture, int x, int y, int width, in
 
     SDL_RenderCopy(mainRenderer, texture->texture, NULL, &renderQuad);
 }
+
+void BaseGameEngine::renderTexture(int textureKey, int x, int y) {
+    renderTexture(&textures[textureKey], x, y);
+}
+
+void BaseGameEngine::renderTexture(int textureKey, int x, int y, int width, int height) {
+    renderTexture(&textures[textureKey], x, y, width, height);
+}
+
 
 void BaseGameEngine::renderAnimation(Animation* animation, int x, int y) {
     SDL_Rect renderQuad = { x, y, animation->frameWidth, animation->frameHeight };
@@ -307,6 +301,16 @@ void BaseGameEngine::renderRectangle(int x, int y, int width, int height, int r,
     SDL_Rect fillRect = { x, y, width, height };
     SDL_SetRenderDrawColor(getMainRenderer(), r, g, b, 0xFF);
     SDL_RenderFillRect(getMainRenderer(), &fillRect);
+}
+
+void BaseGameEngine::addScene(int sceneId, GameScene* sceneToAdd)
+{
+    scenes[sceneId] = sceneToAdd;
+}
+
+void BaseGameEngine::setNextScene(int sceneId)
+{
+    nextScene = scenes[sceneId];
 }
 
 double BaseGameEngine::randomDouble() {
@@ -389,12 +393,7 @@ bool BaseGameEngine::initNextScene() {
 
 bool BaseGameEngine::loadSceneTextures(GameScene * newScene) {
     clearTextures();
-    for (auto i = newScene->texturesToLoad.begin(); i != newScene->texturesToLoad.end(); ++i)
-    {
-        textures[i->first] = Texture(i->second);
-        loadTextureImageFromFile(&textures[i->first]);
-        newScene->textures[i->first] = &textures[i->first];
-    }
+    createMultipleTextures(newScene->texturesToLoad);
     return true;
 }
 
@@ -407,6 +406,7 @@ bool BaseGameEngine::clearTextures() {
         }
     }
     textures.clear();
+    auto_texturekey = AUTO_TEXTURE_KEY_START;
     return true;
 }
 

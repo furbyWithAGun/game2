@@ -278,7 +278,6 @@ void Unit::getLocationUnitIsFacing(int tileXY[2]) {
 void Unit::drawHealth()
 {
     double healthPercent = (double)health / (double)maxHealth;
-    printf("%f %i\n", healthPercent, scene->tileWidth);
     scene->engine->renderRectangle(xpos, ypos, (double)scene->tileWidth * healthPercent, (double)scene->tileHeight * 0.05, 0xff, 0, 0);
 }
 

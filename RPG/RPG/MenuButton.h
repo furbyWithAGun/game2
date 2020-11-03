@@ -9,16 +9,16 @@ class MenuButton: public Sprite
 public:
     //attributes
     GameScene* scene;
-    Texture textTexture;
+    int textTextureKey;
     std::string text;
-    int textXoffset, textYoffset;
+    int textXoffset, textYoffset, textWidth, textHeight;
 
     //constructors
     MenuButton();
     MenuButton(Texture * spriteTexture, GameScene* gamescene);
 
     //destructor
-    ~MenuButton();
+    //~MenuButton();
 
     //methods
     virtual void onClick() {};

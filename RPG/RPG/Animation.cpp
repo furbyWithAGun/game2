@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include "BaseGameEngine.h"
 
 Animation::Animation()
 {
@@ -30,8 +31,8 @@ void Animation::init(GameScene* newScene, int newSpriteSheetKey, int newNumFrame
     scene = newScene;
     spriteSheetKey = newSpriteSheetKey;
     numFrames = newNumFrames;
-    frameHeight = newScene->textures[newSpriteSheetKey]->height / newNumFrames;
-    frameWidth = newScene->textures[newSpriteSheetKey]->width;
+    frameHeight = scene->engine->textures[newSpriteSheetKey].height / newNumFrames;
+    frameWidth = newScene->engine->textures[newSpriteSheetKey].width;
     ticksBetweenFrames = newTicksBetweenFrames;
 }
 

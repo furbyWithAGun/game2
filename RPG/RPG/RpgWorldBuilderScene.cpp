@@ -162,7 +162,7 @@ void RpgWorldBuilderScene::renderScene() {
         getTileIndexFromScreenCoords(x, y, k);
         coordsFromTileIndex(k[0], k[1], l);
         if (coordsAreOnDisplayedMapTile(x, y)) {
-            engine->renderTexture(textures[tileBeingPlaced->textureKey], l[0], l[1], tileWidth, tileHeight);
+            renderTexture(tileBeingPlaced->textureKey, l[0], l[1], tileWidth, tileHeight);
         }
     }
 }

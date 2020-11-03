@@ -23,7 +23,7 @@ void TileGridScene::init() {
     tileWidth = 50;
     xOffset = 0;
     yOffset = 0;
-    mainCanvasStartX = 0;
+    mainCanvasStartX = engine->screenWidth * LEFT_MENU_SIZE;
     backDropTileKey = WATER;
     desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
@@ -63,14 +63,14 @@ void TileGridScene::renderScene()
     for (size_t i = 0; i * tileHeight <= (engine->screenHeight + tileHeight) + tileHeight; i++)
     {
         for (size_t j = 0; j * tileWidth <= engine->screenWidth + tileWidth; j++) {
-            engine->renderTexture(textures[backDropTileKey], ((tileWidth * j) + mainCanvasStartX) + (xOffset % tileWidth) - tileWidth, tileHeight * i + (yOffset % tileHeight) - tileHeight, tileWidth, tileHeight);
+            renderTexture(backDropTileKey, ((tileWidth * j) + mainCanvasStartX) + (xOffset % tileWidth) - tileWidth, tileHeight * i + (yOffset % tileHeight) - tileHeight, tileWidth, tileHeight);
         }
     }
 
     //draw zone
     for (int i = 0; i < currentZone.tileMap.size(); i++) {
         for (int j = 0; j < currentZone.tileMap[i].size(); j++) {
-            engine->renderTexture(textures[mapTiles[currentZone.tileMap[i][j]].textureKey], (tileWidth * j) + mainCanvasStartX + xOffset, tileHeight * i + yOffset, tileWidth, tileHeight);
+            renderTexture(mapTiles[currentZone.tileMap[i][j]].textureKey, (tileWidth * j) + mainCanvasStartX + xOffset, tileHeight * i + yOffset, tileWidth, tileHeight);
         }
     }
 
@@ -83,9 +83,7 @@ void TileGridScene::renderScene()
     }
     
     //cover Left side
-    SDL_Rect fillRect = { 0, 0, mainCanvasStartX, engine->screenHeight };
-    SDL_SetRenderDrawColor(engine->getMainRenderer(), 0, 0, 0, 0);
-    SDL_RenderFillRect(engine->getMainRenderer(), &fillRect);
+    engine->renderRectangle(0, 0, mainCanvasStartX, engine->screenHeight, 0, 0, 0);
 
     //draw menus
     for (auto menu : menus)

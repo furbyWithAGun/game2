@@ -1,4 +1,2 @@
-﻿  Player.cpp
-D:\Coding\c++\game\RPG\RPG\Player.cpp(42,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\Player.cpp(43,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  Game.cpp
+  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe
