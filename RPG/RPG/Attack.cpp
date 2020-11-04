@@ -32,12 +32,15 @@ bool Attack::startAttack() {
 }
 
 void Attack::update() {
-    if (cooldown - cooldownTimeLeft == attackDelay) {
-        processAttack();
-    }
-    if (cooldown - cooldownTimeLeft >= attackTime)
+    if (cooldown > 0)
     {
-        owningUnit->attacking = false;
+        if (cooldown - cooldownTimeLeft == attackDelay) {
+            processAttack();
+        }
+        if (cooldown - cooldownTimeLeft >= attackTime)
+        {
+            owningUnit->attacking = false;
+        }
+        cooldownTimeLeft -= 1;
     }
-    cooldownTimeLeft -= 1;
 }

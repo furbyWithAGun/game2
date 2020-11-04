@@ -10,12 +10,11 @@ public:
     IdleState(int id, Unit* controlledUnit);
 
     //methods
-    virtual int update();
-    virtual int handleInput();
+    int update() override;
+    int handleInput() override;
 
 protected:
     //attributes
-    int id;
 
 private:
     //methods

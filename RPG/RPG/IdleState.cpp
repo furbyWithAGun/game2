@@ -1,4 +1,5 @@
 #include "IdleState.h"
+#include "Unit.h"
 
 //constructors
 IdleState::IdleState() : UnitState() {
@@ -11,7 +12,14 @@ IdleState::IdleState(int newId, Unit* controlledUnit) : UnitState(newId, control
 
 //public methods
 int IdleState::update() {
-    return id;
+    UnitState::update();
+    if (unit->isMoving())
+    {
+        return UNIT_MOVING;
+    }
+    else {
+        return id;
+    }
 }
 
 int IdleState::handleInput() {

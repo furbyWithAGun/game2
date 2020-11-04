@@ -15,7 +15,6 @@ public:
 
 protected:
     //attributes
-    int id;
 
 private:
     //methods

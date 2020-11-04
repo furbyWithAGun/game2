@@ -8,7 +8,7 @@ UnitState::UnitState() {
 
 UnitState::UnitState(int newId, Unit* controlledUnit) {
     init();
-    id = id;
+    id = newId;
     unit = controlledUnit;
 }
 
@@ -16,4 +16,9 @@ UnitState::UnitState(int newId, Unit* controlledUnit) {
 void UnitState::init() {
     id = -1;
     unit = NULL;
+}
+
+int UnitState::update() {
+    unit->mainAttack->update();
+    return id;
 }

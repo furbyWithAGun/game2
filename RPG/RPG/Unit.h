@@ -4,6 +4,9 @@
 #include "TileGridScene.h"
 #include "Attack.h"
 #include "UnitState.h"
+#include "IdleState.h"
+#include "MovingState.h"
+#include "AttackingState.h"
 
 
 class BaseGameEngine;

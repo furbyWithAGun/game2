@@ -168,6 +168,9 @@
     <ClCompile Include="MovingState.cpp">
       <Filter>Source Files\RpgGame\units\unitStates</Filter>
     </ClCompile>
+    <ClCompile Include="AttackingState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -249,6 +252,9 @@
       <Filter>Header Files\RpgGame\units\unitStates</Filter>
     </ClInclude>
     <ClInclude Include="MovingState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackingState.h">
       <Filter>Header Files\RpgGame\units\unitStates</Filter>
     </ClInclude>
   </ItemGroup>

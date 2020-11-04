@@ -12,7 +12,7 @@ public:
     UnitState(int id, Unit* controlledUnit);
 
     //methods
-    virtual int update() { return id; };
+    virtual int update();
     virtual int handleInput() { return id; };
 
 protected:
