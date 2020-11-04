@@ -3,6 +3,7 @@
 #include "RpgGameConstants.h"
 #include "TileGridScene.h"
 #include "Attack.h"
+#include "UnitState.h"
 
 
 class BaseGameEngine;
@@ -63,8 +64,11 @@ public:
 
 private:
     //attributes
+    UnitState* currentState;
+    std::unordered_map<int, UnitState> unitStates;
 
     //methods
+    void setUnitState(int newState);
     int getUnitState();
     void init();
     void init(TileGridScene* gameScene);

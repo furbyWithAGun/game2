@@ -22,6 +22,12 @@ enum MENUS {
     BUILD_MENU
 };
 
+enum UNIT_STATES {
+    UNIT_IDLE,
+    UNIT_MOVING,
+    UNIT_ATTACKING
+};
+
 enum ANIMATIONS {
     IDLE_UP_LEFT,
     IDLE_UP,

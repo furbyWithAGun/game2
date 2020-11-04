@@ -73,6 +73,12 @@
     <Filter Include="Header Files\RpgGame\units\rat">
       <UniqueIdentifier>{831dde75-867e-47ff-874d-c5b3edaa187d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\RpgGame\units\unitStates">
+      <UniqueIdentifier>{a776d08a-68ea-4ef0-9823-9f7e21b80d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\unitStates">
+      <UniqueIdentifier>{aaf20559-a89f-4907-88e1-bacc48f9bd48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -153,6 +159,15 @@
     <ClCompile Include="BasicMeleeAttack.cpp">
       <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
+    <ClCompile Include="UnitState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -226,6 +241,15 @@
     </ClInclude>
     <ClInclude Include="BasicMeleeAttack.h">
       <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

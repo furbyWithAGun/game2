@@ -156,8 +156,10 @@
     <ClCompile Include="BaseGameEngine.cpp" />
     <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="MenuButton.cpp" />
+    <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rat.cpp" />
     <ClCompile Include="RpgOverWorldScene.cpp" />
@@ -171,6 +173,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileGridScene.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="UnitState.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
     <ClCompile Include="ZonePortal.cpp" />
   </ItemGroup>
@@ -183,8 +186,10 @@
     <ClInclude Include="BasicMeleeAttack.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="IdleState.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="MenuButton.h" />
+    <ClInclude Include="MovingState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rat.h" />
     <ClInclude Include="RpgGameConstants.h" />
@@ -197,6 +202,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileGridScene.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="UnitState.h" />
     <ClInclude Include="ZoneMap.h" />
     <ClInclude Include="ZonePortal.h" />
   </ItemGroup>

@@ -87,6 +87,7 @@ void Unit::startMovement(int direction) {
 
 void Unit::update() {
     AnimatedSprite::update();
+    currentState->update();
     updateMovement();
     if (!isStatic) {
         updateCoords();
@@ -282,4 +283,8 @@ void Unit::drawHealth()
 
 bool Unit::freeToAct() {
     return !isMoving() && !attacking;
+}
+
+void Unit::setUnitState(int newState) {
+    currentState = &unitStates[newState];
 }
