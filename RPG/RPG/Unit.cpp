@@ -53,40 +53,37 @@ Unit::~Unit() {
 }
 
 void Unit::startMovement(int direction) {
-    if (leftToMove == 0 && !attacking)
-    {
-        leftToMove = 1;
-        directionFacing = direction;
+    leftToMove = 1;
+    directionFacing = direction;
 
-        switch (direction)
+    switch (direction)
+    {
+    case UP:
+        if (scene->isTilePassable(tileLocation[0], tileLocation[1] - 1))
         {
-        case UP:
-            if (scene->isTilePassable(tileLocation[0], tileLocation[1] - 1))
-            {
-                tileDestination[1] = tileLocation[1] - 1;
-            }
-            break;
-        case DOWN:
-            if (scene->isTilePassable(tileLocation[0], tileLocation[1] + 1))
-            {
-                tileDestination[1] = tileLocation[1] + 1;
-            }            
-            break;
-        case RIGHT:
-            if (scene->isTilePassable(tileLocation[0] + 1, tileLocation[1]))
-            {
-                tileDestination[0] = tileLocation[0] + 1;
-            }
-            break;
-        case LEFT:
-            if (scene->isTilePassable(tileLocation[0] - 1, tileLocation[1]))
-            {
-                tileDestination[0] = tileLocation[0] - 1;
-            }
-            break;
-        default:
-            break;
+            tileDestination[1] = tileLocation[1] - 1;
         }
+        break;
+    case DOWN:
+        if (scene->isTilePassable(tileLocation[0], tileLocation[1] + 1))
+        {
+            tileDestination[1] = tileLocation[1] + 1;
+        }            
+        break;
+    case RIGHT:
+        if (scene->isTilePassable(tileLocation[0] + 1, tileLocation[1]))
+        {
+            tileDestination[0] = tileLocation[0] + 1;
+        }
+        break;
+    case LEFT:
+        if (scene->isTilePassable(tileLocation[0] - 1, tileLocation[1]))
+        {
+            tileDestination[0] = tileLocation[0] - 1;
+        }
+        break;
+    default:
+        break;
     }
 }
 
@@ -94,15 +91,10 @@ void Unit::update() {
     AnimatedSprite::update();
     updateCoords();
     setUnitState(currentState->update());
-    /*updateMovement();
-    if (!isStatic) {
-        updateCoords();
-    }*/
-    updateAnimation();
-    //mainAttack->update();
 }
 
-void Unit::updateMovement() {
+bool Unit::updateMovement() {
+    //return true if unit still moving, else, return false
     if (leftToMove > 0) {
         leftToMove = leftToMove - (double)speed / 100;
     }
@@ -113,18 +105,23 @@ void Unit::updateMovement() {
         }
         if (movingUp && !movingDown) {
             startMovement(UP);
+            return true;
         }
         if (movingDown && !movingUp) {
             startMovement(DOWN);
+            return true;
         }
         if (movingRight && !movingLeft) {
             startMovement(RIGHT);
+            return true;
         }
         if (movingLeft && !movingRight) {
             startMovement(LEFT);
+            return true;
         }
+        return false;
     }
-
+    return true;
 }
 
 void Unit::setTileLocation(int x, int y) {
@@ -154,13 +151,13 @@ void Unit::setStartLocation(int x, int y) {
     ypos = screenCoords[1];
 }
 
-void Unit::updateAnimation() {
-    setAnimation(getUnitState());
-}
+//void Unit::updateAnimation() {
+//    setAnimation(getUnitState());
+//}
 
-bool Unit::isMoving() {
-    return leftToMove != 0 || movingDown || movingUp || movingRight || movingLeft;
-}
+//bool Unit::isMoving() {
+//    return leftToMove != 0 || movingDown || movingUp || movingRight || movingLeft;
+//}
 
 void Unit::draw()
 {
@@ -169,10 +166,7 @@ void Unit::draw()
 }
 
 void Unit::performMainAttack() {
-    if (freeToAct())
-    {
-        mainAttack->startAttack();
-    }
+    mainAttack->startAttack();
 }
 
 int Unit::assignDamage(int damageTaken) {
@@ -184,59 +178,59 @@ int Unit::assignDamage(int damageTaken) {
     }
 }
 
-int Unit::getUnitState() {
-    if (isMoving())
-    {
-        switch (directionFacing) {
-        case UP:
-            return MOVE_UP;
-            break;
-        case DOWN:
-            return MOVE_DOWN;
-            break;
-        case RIGHT:
-            return MOVE_RIGHT;
-            break;
-        case LEFT:
-            return MOVE_LEFT;
-            break;
-        default:
-            return MOVE_DOWN;
-            break;
-        }
-    }
-    else {
-        switch (directionFacing) {
-        case UP_LEFT:
-            return IDLE_UP_LEFT;
-            break;
-        case UP:
-            return IDLE_UP;
-            break;
-        case UP_RIGHT:
-            return IDLE_UP_RIGHT;
-            break;
-        case RIGHT:
-            return IDLE_RIGHT;
-            break;
-        case DOWN_RIGHT:
-            return IDLE_DOWN_RIGHT;
-            break;
-        case DOWN:
-            return IDLE_DOWN;
-            break;
-        case DOWN_LEFT:
-            return IDLE_DOWN_LEFT;
-            break;
-        case LEFT:
-            return IDLE_LEFT;
-            break;
-        default:
-            return IDLE_DOWN;
-            break;
-        }
-    }
-}
+//int Unit::getUnitState() {
+//    if (isMoving())
+//    {
+//        switch (directionFacing) {
+//        case UP:
+//            return MOVE_UP;
+//            break;
+//        case DOWN:
+//            return MOVE_DOWN;
+//            break;
+//        case RIGHT:
+//            return MOVE_RIGHT;
+//            break;
+//        case LEFT:
+//            return MOVE_LEFT;
+//            break;
+//        default:
+//            return MOVE_DOWN;
+//            break;
+//        }
+//    }
+//    else {
+//        switch (directionFacing) {
+//        case UP_LEFT:
+//            return IDLE_UP_LEFT;
+//            break;
+//        case UP:
+//            return IDLE_UP;
+//            break;
+//        case UP_RIGHT:
+//            return IDLE_UP_RIGHT;
+//            break;
+//        case RIGHT:
+//            return IDLE_RIGHT;
+//            break;
+//        case DOWN_RIGHT:
+//            return IDLE_DOWN_RIGHT;
+//            break;
+//        case DOWN:
+//            return IDLE_DOWN;
+//            break;
+//        case DOWN_LEFT:
+//            return IDLE_DOWN_LEFT;
+//            break;
+//        case LEFT:
+//            return IDLE_LEFT;
+//            break;
+//        default:
+//            return IDLE_DOWN;
+//            break;
+//        }
+//    }
+//}
 
 void Unit::getLocationUnitIsFacing(int tileXY[2]) {
     switch (directionFacing)
@@ -287,10 +281,9 @@ void Unit::drawHealth()
     scene->engine->renderRectangle(xpos, ypos, (double)scene->tileWidth * healthPercent, (double)scene->tileHeight * 0.05, 0xff, 0, 0);
 }
 
-bool Unit::freeToAct() {
-    return !isMoving() && !attacking;
+void Unit::handleInput(InputMessage* message) {
+    setUnitState(currentState->handleInput(message));
 }
-
 void Unit::setUnitState(int newState) {
     currentState = unitStates[newState];
 }

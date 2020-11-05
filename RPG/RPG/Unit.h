@@ -10,6 +10,7 @@
 
 
 class BaseGameEngine;
+class InputMessage;
 
 class Unit : public AnimatedSprite
 {
@@ -50,11 +51,10 @@ public:
 
     //methods
     void startMovement(int direction);
-    void updateMovement();
+    bool updateMovement();
     void setTileLocation(int x, int y);
     void updateCoords();
     void setStartLocation(int x, int y);
-    
     void updateAnimation();
     virtual void createAnimations() {};
     bool isMoving();
@@ -64,6 +64,7 @@ public:
     int assignDamage(int damageTaken);
     void getLocationUnitIsFacing(int tileXY[2]);
     void drawHealth();
+    void handleInput(InputMessage* message);
 
 private:
     //attributes
@@ -72,8 +73,6 @@ private:
 
     //methods
     void setUnitState(int newState);
-    int getUnitState();
     void init();
     void init(TileGridScene* gameScene);
-    bool freeToAct();
 };

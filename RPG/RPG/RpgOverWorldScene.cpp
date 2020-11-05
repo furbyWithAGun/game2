@@ -14,6 +14,7 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene
 
 void RpgOverWorldScene::init() {
     wKeyDown = sKeyDown = dKeyDown = aKeyDown = false;
+    controllerInterface = new RpgOverWorldSceneKeysMouseController();
 }
 
 void RpgOverWorldScene::declareSceneAssets()
@@ -60,98 +61,26 @@ void RpgOverWorldScene::setUpScene()
 
 void RpgOverWorldScene::handleInput()
 {
-    SDL_Event e;
-        int x, y;
-        int k[2];
-    
-        SDL_GetMouseState(&x, &y);
-        player->faceMouseDirection(x, y);
-    
-        //Handle events on queue
-        while (SDL_PollEvent(&e) != 0)
+    InputMessage* message = new InputMessage();
+    controllerInterface->populateMessageQueue();
+    while (controllerInterface->getNextMessage(message)) {
+        switch (message->id)
         {
-            for (auto menu : menus)
-            {
-                if (menu.second->isActive)
-                {
-                    menu.second->handleEvent(&e);
-                }
-            }
-            switch (e.type)
-            {
-            case SDL_QUIT:
-                endScene();
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                switch (e.button.button)
-                {
-                case SDL_BUTTON_LEFT:
-                    player->performMainAttack();
-                    break;
-                default:
-                    break;
-                }
-    
-                break;
-            case SDL_MOUSEBUTTONUP:
-                switch (e.button.button)
-                {
-                case SDL_BUTTON_LEFT:
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case SDL_MOUSEMOTION:
-                break;
-            case SDL_KEYDOWN:
-                switch (e.key.keysym.sym) {
-                case SDLK_w:
-                    wKeyDown = true;
-                    break;
-                case SDLK_s:
-                    sKeyDown = true;
-                    break;
-                case SDLK_a:
-                    aKeyDown = true;
-                    break;
-                case SDLK_d:
-                    dKeyDown = true;
-                    break;
-                }
-                break;
-            case SDL_KEYUP:
-                switch (e.key.keysym.sym) {
-                case SDLK_w:
-                    wKeyDown = false;
-                    break;
-                case SDLK_s:
-                    sKeyDown = false;
-                    break;
-                case SDLK_a:
-                    aKeyDown = false;
-                    break;
-                case SDLK_d:
-                    dKeyDown = false;
-                    break;
-                }
-                break;
-            default:
-                break;
-            }
+        case END_SCENE:
+            endScene();
+            break;
+        default:
+            player->handleInput(message);
+            break;
         }
+    }
+    //delete message;
 }
 
 void RpgOverWorldScene::sceneLogic()
 {
     //call base class logic
     TileGridScene::sceneLogic();
-
-    //frames++;
-    player->movingUp = wKeyDown && !sKeyDown;
-    player->movingDown = sKeyDown && !wKeyDown;
-    player->movingRight = dKeyDown && !aKeyDown;
-    player->movingLeft = aKeyDown && !dKeyDown;
 }
 
 void RpgOverWorldScene::renderScene()

@@ -19,6 +19,7 @@ void UnitState::init() {
 }
 
 int UnitState::update() {
+    updateAnimation();
     unit->mainAttack->update();
     return id;
 }

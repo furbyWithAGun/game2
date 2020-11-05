@@ -2,6 +2,20 @@
 #include "TileGridScene.h"
 #include "Player.h"
 #include "AiUnit.h"
+#include "RpgOverWorldSceneKeysMouseController.h"
+
+enum OVERWORLD_INPUT_MESSAGES {
+    END_SCENE,
+    MAIN_ATTACK,
+    START_MOVE_UP,
+    START_MOVE_DOWN,
+    START_MOVE_RIGHT,
+    START_MOVE_LEFT,
+    STOP_MOVE_UP,
+    STOP_MOVE_DOWN,
+    STOP_MOVE_RIGHT,
+    STOP_MOVE_LEFT
+};
 
 class RpgOverWorldScene : public TileGridScene
 {

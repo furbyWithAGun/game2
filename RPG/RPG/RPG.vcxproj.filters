@@ -171,6 +171,15 @@
     <ClCompile Include="AttackingState.cpp">
       <Filter>Source Files\RpgGame\units\unitStates</Filter>
     </ClCompile>
+    <ClCompile Include="InputMessage.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerInterface.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgOverWorldSceneKeysMouseController.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -256,6 +265,15 @@
     </ClInclude>
     <ClInclude Include="AttackingState.h">
       <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMessage.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerInterface.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgOverWorldSceneKeysMouseController.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

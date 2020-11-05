@@ -11,10 +11,13 @@ public:
 
     //methods
     int update() override;
-    int handleInput() override;
+    int handleInput(InputMessage* message) override;
 
 protected:
     //attributes
+
+    //methods
+    void updateAnimation() override;
 
 private:
     //methods

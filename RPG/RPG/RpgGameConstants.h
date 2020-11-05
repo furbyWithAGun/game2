@@ -7,6 +7,7 @@ const int SCREEN_WIDTH = 1900;
 const int SCREEN_HEIGHT = 1000;
 
 //enums
+
 enum ATTCK_TYPES {
     MELEE,
     RANGED,

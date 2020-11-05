@@ -1,7 +1,2 @@
-﻿  Unit.cpp
-D:\coding\c++\game\RPG\RPG\Unit.cpp(145,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\Unit.cpp(146,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\Unit.cpp(290,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\Unit.cpp(290,73): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\Unit.cpp(188): warning C4715: 'Unit::assignDamage': not all control paths return a value
-  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  ControllerInterface.cpp
+  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe

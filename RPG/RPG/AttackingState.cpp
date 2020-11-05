@@ -2,6 +2,7 @@
 #include "MovingState.h"
 #include "IdleState.h"
 #include "Unit.h"
+#include "RpgOverWorldScene.h"
 
 //constructors
 AttackingState::AttackingState() : UnitState() {
@@ -21,6 +22,6 @@ int AttackingState::update() {
     }
 }
 
-int AttackingState::handleInput() {
+int AttackingState::handleInput(InputMessage* message) {
     return id;
 }

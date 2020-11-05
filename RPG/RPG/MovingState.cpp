@@ -1,6 +1,7 @@
 #include "MovingState.h"
 #include "IdleState.h"
 #include "Unit.h"
+#include "RpgOverWorldScene.h"
 
 //constructors
 MovingState::MovingState() : UnitState() {
@@ -14,18 +15,76 @@ MovingState::MovingState(int newId, Unit* controlledUnit) : UnitState(newId, con
 //public methods
 int MovingState::update() {
     UnitState::update();
-    unit->updateMovement();
-    
-    if (unit->isMoving())
-    {
+    if (unit->updateMovement()) {
         return id;
     }
     else {
         return UNIT_IDLE;
     }
+}
+
+int MovingState::handleInput(InputMessage* message) {
+    switch (message->id)
+    {
+    case START_MOVE_UP:
+        unit->movingUp = true;
+        unit->movingDown = false;
+        unit->movingLeft = false;
+        unit->movingRight = false;
+        break;
+    case START_MOVE_DOWN:
+        unit->movingUp = false;
+        unit->movingDown = true;
+        unit->movingLeft = false;
+        unit->movingRight = false;
+        break;
+    case START_MOVE_LEFT:
+        unit->movingUp = false;
+        unit->movingDown = false;
+        unit->movingLeft = true;
+        unit->movingRight = false;
+        break;
+    case START_MOVE_RIGHT:
+        unit->movingUp = false;
+        unit->movingDown = false;
+        unit->movingLeft = false;
+        unit->movingRight = true;
+        break;
+    case STOP_MOVE_UP:
+        unit->movingUp = false;
+        break;
+    case STOP_MOVE_DOWN:
+        unit->movingDown = false;
+        break;
+    case STOP_MOVE_LEFT:
+        unit->movingLeft = false;
+        break;
+    case STOP_MOVE_RIGHT:
+        unit->movingRight = false;
+        break;
+    default:
+        break;
+    }
     return id;
 }
 
-int MovingState::handleInput() {
-    return id;
+//protected methods
+void MovingState::updateAnimation() {
+    switch (unit->directionFacing) {
+    case UP:
+        unit->setAnimation(MOVE_UP);
+        break;
+    case DOWN:
+        unit->setAnimation(MOVE_DOWN);
+        break;
+    case RIGHT:
+        unit->setAnimation(MOVE_RIGHT);
+        break;
+    case LEFT:
+        unit->setAnimation(MOVE_LEFT);
+        break;
+    default:
+        unit->setAnimation(MOVE_DOWN);
+        break;
+    }
 }

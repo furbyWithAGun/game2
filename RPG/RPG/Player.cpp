@@ -57,33 +57,30 @@ void Player::update() {
 }
 
 void Player::faceMouseDirection(int x, int y) {
-    if (!isMoving())
+    if (x < xpos && y < ypos)
     {
-        if (x < xpos && y < ypos)
-        {
-            directionFacing = UP_LEFT;
-        }
-        else if (x >= xpos && x <= xpos + width && y < ypos) {
-            directionFacing = UP;
-        }
-        else if (x > xpos + width && y < ypos) {
-            directionFacing = UP_RIGHT;
-        }
-        else if (x > xpos + width && y > ypos && y < ypos + height) {
-            directionFacing = RIGHT;
-        }
-        else if (x > xpos + width && y > ypos + height) {
-            directionFacing = DOWN_RIGHT;
-        }
-        else if (x >= xpos && x <= xpos + width && y > ypos + height) {
-            directionFacing = DOWN;
-        }
-        else if (x < xpos && y > ypos + height) {
-            directionFacing = DOWN_LEFT;
-        }
-        else if (x < xpos && y > ypos && y < ypos + height) {
-            directionFacing = LEFT;
-        }
+        directionFacing = UP_LEFT;
+    }
+    else if (x >= xpos && x <= xpos + width && y < ypos) {
+        directionFacing = UP;
+    }
+    else if (x > xpos + width && y < ypos) {
+        directionFacing = UP_RIGHT;
+    }
+    else if (x > xpos + width && y > ypos && y < ypos + height) {
+        directionFacing = RIGHT;
+    }
+    else if (x > xpos + width && y > ypos + height) {
+        directionFacing = DOWN_RIGHT;
+    }
+    else if (x >= xpos && x <= xpos + width && y > ypos + height) {
+        directionFacing = DOWN;
+    }
+    else if (x < xpos && y > ypos + height) {
+        directionFacing = DOWN_LEFT;
+    }
+    else if (x < xpos && y > ypos && y < ypos + height) {
+        directionFacing = LEFT;
     }
 }
 

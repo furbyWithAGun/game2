@@ -1,5 +1,6 @@
 #pragma once
 #include "Texture.h"
+#include "ControllerInterface.h"
 #include <unordered_map>
 class BaseGameEngine;
 
@@ -27,6 +28,7 @@ public:
 protected:
     //attributes
     std::unordered_map<int, std::string> texturesToLoad;
+    ControllerInterface* controllerInterface;
 
     //methods
     void endScene();

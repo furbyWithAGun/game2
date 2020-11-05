@@ -11,10 +11,13 @@ public:
 
     //methods
     virtual int update();
-    virtual int handleInput();
+    virtual int handleInput(InputMessage* message);
 
 protected:
     //attributes
+
+    //methods
+    void updateAnimation() override;
 
 private:
     //methods

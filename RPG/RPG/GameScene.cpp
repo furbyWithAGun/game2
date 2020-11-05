@@ -14,6 +14,7 @@ GameScene::GameScene(BaseGameEngine * newEngine) {
 void GameScene::init() {
     engine = NULL;
     sceneRunning = true;
+    controllerInterface = NULL;
 }
 
 //public methods
