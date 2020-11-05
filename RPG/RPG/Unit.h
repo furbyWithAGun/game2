@@ -68,7 +68,7 @@ public:
 private:
     //attributes
     UnitState* currentState;
-    std::unordered_map<int, UnitState> unitStates;
+    std::unordered_map<int, UnitState*> unitStates;
 
     //methods
     void setUnitState(int newState);

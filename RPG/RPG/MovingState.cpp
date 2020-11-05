@@ -15,9 +15,7 @@ MovingState::MovingState(int newId, Unit* controlledUnit) : UnitState(newId, con
 int MovingState::update() {
     UnitState::update();
     unit->updateMovement();
-    if (!unit->isStatic) {
-        unit->updateCoords();
-    }
+    
     if (unit->isMoving())
     {
         return id;

@@ -31,9 +31,9 @@ void Unit::init() {
     movingUp = movingDown = movingRight = movingLeft = false;
     setTileLocation(0, 0);
     unitStates.clear();
-    unitStates.insert({ UNIT_IDLE, IdleState(UNIT_IDLE, this) });
-    unitStates.insert({ UNIT_MOVING, MovingState(UNIT_MOVING, this) });
-    unitStates.insert({ UNIT_ATTACKING, AttackingState(UNIT_ATTACKING, this) });
+    unitStates.insert({ UNIT_IDLE, new IdleState(UNIT_IDLE, this) });
+    unitStates.insert({ UNIT_MOVING, new MovingState(UNIT_MOVING, this) });
+    unitStates.insert({ UNIT_ATTACKING, new AttackingState(UNIT_ATTACKING, this) });
     setUnitState(UNIT_IDLE);
 }
 
@@ -92,13 +92,14 @@ void Unit::startMovement(int direction) {
 
 void Unit::update() {
     AnimatedSprite::update();
+    updateCoords();
     setUnitState(currentState->update());
     /*updateMovement();
     if (!isStatic) {
         updateCoords();
-    }
+    }*/
     updateAnimation();
-    mainAttack->update();*/
+    //mainAttack->update();
 }
 
 void Unit::updateMovement() {
@@ -291,5 +292,5 @@ bool Unit::freeToAct() {
 }
 
 void Unit::setUnitState(int newState) {
-    currentState = &unitStates[newState];
+    currentState = unitStates[newState];
 }
