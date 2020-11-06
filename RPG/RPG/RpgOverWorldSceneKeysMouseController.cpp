@@ -11,6 +11,7 @@ RpgOverWorldSceneKeysMouseController::RpgOverWorldSceneKeysMouseController() :  
 //methods
 void RpgOverWorldSceneKeysMouseController::populateMessageQueue() {
     SDL_Event e;
+    int xpos, ypos;
     while (SDL_PollEvent(&e) != 0) {
         switch (e.type)
         {
@@ -21,7 +22,8 @@ void RpgOverWorldSceneKeysMouseController::populateMessageQueue() {
             switch (e.button.button)
             {
             case SDL_BUTTON_LEFT:
-                addMessage(InputMessage(MAIN_ATTACK));
+                SDL_GetMouseState(&xpos, &ypos);
+                addMessage(InputMessage(PERFORM_MAIN_ATTACK,xpos, ypos));
                 break;
             default:
                 break;

@@ -20,7 +20,7 @@
 //make the game client/server
 //rework asset loading strategy
 //add a cleanup method to GameScene and have the engine call it when scene is over (units are a memory leak when changing scenes)
-//create destructors for units (main attack is a memory leak)
+//create destructors for units (Attack pointers are a memory leak, as are the unit states)
 //make semi-not-terrible player animations ***DO IT YOU SLACKER***
 //game message system
 //inventory system

@@ -20,8 +20,9 @@ int IdleState::update() {
 int IdleState::handleInput(InputMessage* message) {
     switch (message->id)
     {
-    case MAIN_ATTACK:
-        if (unit->performMainAttack())
+    case PERFORM_MAIN_ATTACK:
+        unit->faceCoords(message->x, message->y);
+        if (unit->performAttack(MAIN_ATTACK))
         {
             return UNIT_ATTACKING;
         }

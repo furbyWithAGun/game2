@@ -74,7 +74,7 @@ void RpgOverWorldScene::handleInput()
             break;
         }
     }
-    //delete message;
+    delete message;
 }
 
 void RpgOverWorldScene::sceneLogic()

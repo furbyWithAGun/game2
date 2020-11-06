@@ -29,7 +29,8 @@ Player::Player(TileGridScene* gameScene, int startX, int startY) : Unit(gameScen
 void Player::init() {
     isStatic = true;
     speed = PLAYER_SPEED;
-    mainAttack = new BasicMeleeAttack(MELEE, this); //potential memory leak
+    equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
+    activeAttack = equipedAttacks[MAIN_ATTACK];
     maxHealth = PLAYER_MAX_HEALTH;
     health = PLAYER_MAX_HEALTH;
 }

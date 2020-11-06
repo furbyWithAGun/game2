@@ -27,7 +27,6 @@ void Unit::init() {
     isStatic = false;
     isPlayerControlled = false;
     directionFacing = DOWN;
-    attacking = false;
     movingUp = movingDown = movingRight = movingLeft = false;
     setTileLocation(0, 0);
     unitStates.clear();
@@ -89,7 +88,6 @@ void Unit::startMovement(int direction) {
 
 void Unit::update() {
     AnimatedSprite::update();
-    updateCoords();
     setUnitState(currentState->update());
 }
 
@@ -151,22 +149,15 @@ void Unit::setStartLocation(int x, int y) {
     ypos = screenCoords[1];
 }
 
-//void Unit::updateAnimation() {
-//    setAnimation(getUnitState());
-//}
-
-//bool Unit::isMoving() {
-//    return leftToMove != 0 || movingDown || movingUp || movingRight || movingLeft;
-//}
-
 void Unit::draw()
 {
     AnimatedSprite::draw();
     drawHealth();
 }
 
-bool Unit::performMainAttack() {
-    return mainAttack->startAttack();
+bool Unit::performAttack(int attackId) {
+    activeAttack = equipedAttacks[attackId];
+    return activeAttack->startAttack();
 }
 
 int Unit::assignDamage(int damageTaken) {
@@ -177,60 +168,6 @@ int Unit::assignDamage(int damageTaken) {
         return health;
     }
 }
-
-//int Unit::getUnitState() {
-//    if (isMoving())
-//    {
-//        switch (directionFacing) {
-//        case UP:
-//            return MOVE_UP;
-//            break;
-//        case DOWN:
-//            return MOVE_DOWN;
-//            break;
-//        case RIGHT:
-//            return MOVE_RIGHT;
-//            break;
-//        case LEFT:
-//            return MOVE_LEFT;
-//            break;
-//        default:
-//            return MOVE_DOWN;
-//            break;
-//        }
-//    }
-//    else {
-//        switch (directionFacing) {
-//        case UP_LEFT:
-//            return IDLE_UP_LEFT;
-//            break;
-//        case UP:
-//            return IDLE_UP;
-//            break;
-//        case UP_RIGHT:
-//            return IDLE_UP_RIGHT;
-//            break;
-//        case RIGHT:
-//            return IDLE_RIGHT;
-//            break;
-//        case DOWN_RIGHT:
-//            return IDLE_DOWN_RIGHT;
-//            break;
-//        case DOWN:
-//            return IDLE_DOWN;
-//            break;
-//        case DOWN_LEFT:
-//            return IDLE_DOWN_LEFT;
-//            break;
-//        case LEFT:
-//            return IDLE_LEFT;
-//            break;
-//        default:
-//            return IDLE_DOWN;
-//            break;
-//        }
-//    }
-//}
 
 void Unit::getLocationUnitIsFacing(int tileXY[2]) {
     switch (directionFacing)
@@ -286,4 +223,39 @@ void Unit::handleInput(InputMessage* message) {
 }
 void Unit::setUnitState(int newState) {
     currentState = unitStates[newState];
+}
+
+void Unit::updateAttacks() {
+    for (auto attack : equipedAttacks)
+    {
+        attack.second->update();
+    }
+}
+
+void Unit::faceCoords(int x, int y) {
+    if (x < xpos && y < ypos)
+    {
+        directionFacing = UP_LEFT;
+    }
+    else if (x >= xpos && x <= xpos + width && y < ypos) {
+        directionFacing = UP;
+    }
+    else if (x > xpos + width && y < ypos) {
+        directionFacing = UP_RIGHT;
+    }
+    else if (x > xpos + width && y > ypos && y < ypos + height) {
+        directionFacing = RIGHT;
+    }
+    else if (x > xpos + width && y > ypos + height) {
+        directionFacing = DOWN_RIGHT;
+    }
+    else if (x >= xpos && x <= xpos + width && y > ypos + height) {
+        directionFacing = DOWN;
+    }
+    else if (x < xpos && y > ypos + height) {
+        directionFacing = DOWN_LEFT;
+    }
+    else if (x < xpos && y > ypos && y < ypos + height) {
+        directionFacing = LEFT;
+    }
 }

@@ -16,10 +16,10 @@ AttackingState::AttackingState(int newId, Unit* controlledUnit) : UnitState(newI
 //public methods
 int AttackingState::update() {
     UnitState::update();
-    if (!unit->attacking)
-    {
+    if (unit->activeAttack->cooldown - unit->activeAttack->cooldownTimeLeft >= unit->activeAttack->attackTime) {
         return UNIT_IDLE;
     }
+    return id;
 }
 
 int AttackingState::handleInput(InputMessage* message) {

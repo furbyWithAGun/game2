@@ -24,8 +24,7 @@ public:
     bool isStatic, isPlayerControlled;
     bool movingUp, movingDown, movingRight, movingLeft;
     int directionFacing;
-    bool attacking;
-    Animation * mainAttackAnimation;
+    //Animation * mainAttackAnimation;
 
     //character stats
     int maxHealth;
@@ -38,7 +37,8 @@ public:
     int intl;
 
     //actions
-    Attack* mainAttack;
+    std::unordered_map<int, Attack*> equipedAttacks;
+    Attack* activeAttack;
 
 
     //constructors
@@ -55,16 +55,16 @@ public:
     void setTileLocation(int x, int y);
     void updateCoords();
     void setStartLocation(int x, int y);
-    void updateAnimation();
     virtual void createAnimations() {};
-    bool isMoving();
     void draw();
     virtual void update();
-    bool performMainAttack();
+    bool performAttack(int attackId);
     int assignDamage(int damageTaken);
     void getLocationUnitIsFacing(int tileXY[2]);
     void drawHealth();
     void handleInput(InputMessage* message);
+    void updateAttacks();
+    void faceCoords(int x, int y);
 
 protected:
     void setUnitState(int newState);

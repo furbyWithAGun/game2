@@ -7,6 +7,12 @@ const int SCREEN_WIDTH = 1900;
 const int SCREEN_HEIGHT = 1000;
 
 //enums
+enum ATTACK_EQUIP_SLOTS {
+    MAIN_ATTACK,
+    SECONDARY_ATTACK,
+    SPECIAL_ATTACK,
+    SPECIAL_ATTACK_TWO
+};
 
 enum ATTCK_TYPES {
     MELEE,

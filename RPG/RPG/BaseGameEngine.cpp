@@ -423,6 +423,7 @@ bool BaseGameEngine::clearTextures() {
 
 //functions
 int logicThread(void* scene) {
+    srand(time(NULL));
     double lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     int timeToWait = 0;
     while (static_cast <GameScene*> (scene)->sceneRunning)

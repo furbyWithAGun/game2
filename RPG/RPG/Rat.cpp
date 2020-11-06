@@ -20,7 +20,8 @@ void Rat::init() {
     speed = RAT_SPEED;
     health = RAT_MAX_HEALTH;
     maxHealth = RAT_MAX_HEALTH;
-    mainAttack = new BasicMeleeAttack(MELEE, this); //potential memory leak
+    equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
+    activeAttack = equipedAttacks[MAIN_ATTACK];
 }
 
 void Rat::init(TileGridScene* gameScene) {

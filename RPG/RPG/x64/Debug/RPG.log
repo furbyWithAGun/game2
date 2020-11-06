@@ -1,17 +1,32 @@
-﻿  BaseGameEngine.cpp
-D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(112,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(426,31): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(430,74): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(435,142): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-  ControllerInterface.cpp
+﻿  AiUnit.cpp
+  Attack.cpp
+  AttackingState.cpp
+  BasicMeleeAttack.cpp
+  Game.cpp
+  IdleState.cpp
+  MovingState.cpp
+  Player.cpp
+D:\Coding\c++\game\RPG\RPG\Player.cpp(52,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\Player.cpp(53,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Rat.cpp
+  RpgOverWorldScene.cpp
+  RpgOverWorldSceneKeysMouseController.cpp
+  RpgWorldBuilderScene.cpp
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(54,92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(60,30): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(61,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  RpgWorldBuilderSceneButtons.cpp
+  TileGridScene.cpp
+D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(28,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(68,193): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(107,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(108,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Unit.cpp
+D:\Coding\c++\game\RPG\RPG\Unit.cpp(137,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\Unit.cpp(138,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\Unit.cpp(218,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\Unit.cpp(218,73): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  UnitState.cpp
   Generating Code...
-  LINK : D:\Coding\c++\game\RPG\x64\Debug\RPG.exe not found or not built by the last incremental link; performing full link
+D:\Coding\c++\game\RPG\RPG\Unit.cpp(170): warning C4715: 'Unit::assignDamage': not all control paths return a value
   RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
