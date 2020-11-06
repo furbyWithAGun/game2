@@ -60,11 +60,14 @@ public:
     bool isMoving();
     void draw();
     virtual void update();
-    void performMainAttack();
+    bool performMainAttack();
     int assignDamage(int damageTaken);
     void getLocationUnitIsFacing(int tileXY[2]);
     void drawHealth();
     void handleInput(InputMessage* message);
+
+protected:
+    void setUnitState(int newState);
 
 private:
     //attributes
@@ -72,7 +75,6 @@ private:
     std::unordered_map<int, UnitState*> unitStates;
 
     //methods
-    void setUnitState(int newState);
     void init();
     void init(TileGridScene* gameScene);
 };

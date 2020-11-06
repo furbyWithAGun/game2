@@ -21,6 +21,10 @@ int IdleState::handleInput(InputMessage* message) {
     switch (message->id)
     {
     case MAIN_ATTACK:
+        if (unit->performMainAttack())
+        {
+            return UNIT_ATTACKING;
+        }
         break;
     case START_MOVE_UP:
         unit->movingUp = true;

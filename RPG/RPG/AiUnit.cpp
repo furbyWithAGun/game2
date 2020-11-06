@@ -31,5 +31,6 @@ void AiUnit::randomMovement() {
     if (leftToMove == 0 && scene->engine->randomDouble() <= chanceToMoveEachTick)
     {
         startMovement(scene->engine->randomInt(UP, RIGHT));
+        setUnitState(UNIT_MOVING);
     }
 }

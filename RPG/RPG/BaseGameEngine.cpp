@@ -4,7 +4,7 @@
 #include <fstream>
 #include <chrono>
 #include <thread>
-
+#include <stdlib.h>
 
 //constants
 const int KEY_R_VALUE = 255;
@@ -331,7 +331,9 @@ int BaseGameEngine::randomInt(int maxValue) {
 }
 
 int BaseGameEngine::randomInt(int minValue, int maxValue) {
-    return rand() % (maxValue - minValue + 1) + minValue;
+    int returnInt = rand() % (maxValue - minValue + 1) + minValue;
+    printf("\n%i", returnInt);
+    return returnInt;
 }
 
 //this method will be ovverridden in child class

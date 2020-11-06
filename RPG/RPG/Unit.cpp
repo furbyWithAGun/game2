@@ -165,8 +165,8 @@ void Unit::draw()
     drawHealth();
 }
 
-void Unit::performMainAttack() {
-    mainAttack->startAttack();
+bool Unit::performMainAttack() {
+    return mainAttack->startAttack();
 }
 
 int Unit::assignDamage(int damageTaken) {
