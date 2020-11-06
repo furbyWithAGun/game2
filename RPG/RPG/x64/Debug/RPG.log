@@ -1,2 +1,17 @@
-﻿  BasicMeleeAttack.cpp
-  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  BaseGameEngine.cpp
+D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(112,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(426,31): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(430,74): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\game\RPG\RPG\BaseGameEngine.cpp(435,142): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+  ControllerInterface.cpp
+  Generating Code...
+  LINK : D:\Coding\c++\game\RPG\x64\Debug\RPG.exe not found or not built by the last incremental link; performing full link
+  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
