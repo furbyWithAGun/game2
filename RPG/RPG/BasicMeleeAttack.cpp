@@ -1,6 +1,8 @@
 #include "BasicMeleeAttack.h"
 #include "Unit.h"
 
+const int BASIC_MELEE_ATTACK_BASE_DMG = 1;
+
 BasicMeleeAttack::BasicMeleeAttack() : Attack() {
     init();
 }
@@ -54,7 +56,14 @@ bool BasicMeleeAttack::startAttack() {
 
 
 void BasicMeleeAttack::processHit(Unit* targetUnit) {
-    targetUnit->assignDamage(10);
+    if (owningUnit->scene->engine->getProbFromSigmoid(owningUnit->dex, targetUnit->agi) > owningUnit->scene->engine->randomDouble())
+    {
+        targetUnit->assignDamage(BASIC_MELEE_ATTACK_BASE_DMG);
+        owningUnit->scene->addCombatMessage(std::to_string(BASIC_MELEE_ATTACK_BASE_DMG), targetUnit->tileLocation[0], targetUnit->tileLocation[1]);
+    }
+    else {
+        owningUnit->scene->addCombatMessage("MISS", targetUnit->tileLocation[0], targetUnit->tileLocation[1]);
+    }
 }
 
 void BasicMeleeAttack::processAttack() {

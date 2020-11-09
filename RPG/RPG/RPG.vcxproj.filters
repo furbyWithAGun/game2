@@ -180,6 +180,9 @@
     <ClCompile Include="RpgOverWorldSceneKeysMouseController.cpp">
       <Filter>Source Files\RpgGame\scenes\overWorldScene</Filter>
     </ClCompile>
+    <ClCompile Include="CombatText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="RpgOverWorldSceneKeysMouseController.h">
       <Filter>Header Files\RpgGame\scenes\overWorldScene</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatText.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

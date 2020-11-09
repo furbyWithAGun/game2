@@ -153,6 +153,7 @@
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="AttackingState.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="ControllerInterface.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="BaseGameEngine.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="AttackingState.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="CombatText.h" />
     <ClInclude Include="ControllerInterface.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameScene.h" />

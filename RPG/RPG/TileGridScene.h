@@ -4,6 +4,7 @@
 #include "ZoneMap.h"
 #include "GameMenu.h"
 #include "RpgGameConstants.h"
+#include "CombatText.h"
 
 
 class BaseGameEngine;
@@ -34,6 +35,8 @@ public:
     void renderScene() override;
     Unit* getUnitAtLocation(int x, int y);
     bool isTilePassable(int x, int y);
+    void addCombatMessage(std::string text, int tileX, int tileY);
+    void addCombatMessage(std::string text, int tileX, int tileY, int duration);
     
 
 protected:
@@ -53,9 +56,12 @@ protected:
 
 private:
     //attributes
+    std::vector<CombatText> combatMessages;
 
     //methods
     void createTiles();
     void init();
+    void drawCombatMessages();
+    void updateCombatMessages();
 };
 

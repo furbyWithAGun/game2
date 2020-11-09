@@ -4,7 +4,9 @@
 
 //stat constants
 const int PLAYER_SPEED = 3;
-const int PLAYER_MAX_HEALTH = 100;
+const int PLAYER_DEX = 5;
+const int PLAYER_AGI = 3;
+const int PLAYER_MAX_HEALTH = 20;
 
 //animation constants
 const int NUM_PLAYER_IDLE_FRAMES = 1;
@@ -37,6 +39,8 @@ void Player::init() {
     activeAttack = equipedAttacks[MAIN_ATTACK];
     maxHealth = PLAYER_MAX_HEALTH;
     health = PLAYER_MAX_HEALTH;
+    dex = PLAYER_DEX;
+    agi = PLAYER_AGI;
 }
 
 void Player::init(TileGridScene* gameScene) {

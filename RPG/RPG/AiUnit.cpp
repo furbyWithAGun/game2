@@ -35,6 +35,7 @@ void AiUnit::update() {
     Unit::update();
 }
 
+
 void AiUnit::randomMovement() {
     if (leftToMove == 0 && scene->engine->randomDouble() <= chanceToMoveEachTick)
     {

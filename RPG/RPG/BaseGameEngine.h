@@ -11,12 +11,14 @@
 #include <time.h>
 #include <SDL_thread.h>
 #include "Animation.h"
+#include <cmath>
 
 class BaseGameEngine
 {
     public:
         //attributes
         std::unordered_map<int, Texture> textures;
+        std::unordered_map<std::string, int> textTextures;
         int screenHeight;
         int screenWidth;
         TTF_Font* mainFont;
@@ -54,6 +56,8 @@ class BaseGameEngine
         void renderTexture(Texture* texture, int x, int y, int width, int height);
         void renderTexture(int textureKey, int x, int y);
         void renderTexture(int textureKey, int x, int y, int width, int height);
+        void renderText(std::string textToRender, int x, int y);
+        void renderText(std::string textToRender, int x, int y, int width, int height);
         void renderAnimation(Animation* animation, int x, int y);
         void renderAnimation(Animation* animation, int x, int y, int width, int height);
         void renderRectangle(int x, int y, int width, int height, int r, int g, int b);
@@ -64,6 +68,9 @@ class BaseGameEngine
         int randomInt(int minValue, int maxValue);
         int getTextureWidth(int textureKey);
         int getTextureHeight(int textureKey);
+        double getProbFromSigmoid(double skill, double difficulty);
+        void setSigmoidFunction(double omega, double alpha);
+        double sigmoid(double x);
 
     protected:
         
@@ -78,6 +85,7 @@ class BaseGameEngine
         GameScene* nextScene;
         std::unordered_map<int, GameScene*> scenes;
         int auto_texturekey;
+        double sigmoidOmega, sigmoidAlpha;
         
 
         //methods
@@ -86,6 +94,7 @@ class BaseGameEngine
         bool initNextScene();
         bool loadSceneTextures(GameScene * newScene);
         bool clearTextures();
+        
 };
 
 int logicThread(void* scene);

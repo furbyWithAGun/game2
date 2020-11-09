@@ -1,8 +1,10 @@
 #include "Rat.h"
 #include "BasicMeleeAttack.h"
 
-const int RAT_MAX_HEALTH = 100;
+const int RAT_MAX_HEALTH = 10;
 const int RAT_SPEED = 2;
+const int RAT_DEX = 1;
+const int RAT_AGI = 2;
 
 Rat::Rat() : AiUnit() {
     init();

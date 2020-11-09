@@ -57,6 +57,7 @@ void TileGridScene::sceneLogic()
             unit->update();
         }
     }
+    updateCombatMessages();
 }
 
 void TileGridScene::renderScene()
@@ -95,11 +96,21 @@ void TileGridScene::renderScene()
             menu.second->draw();
         }
     }
+
+    drawCombatMessages();
 }
 
 void TileGridScene::coordsFromTileIndex(int x, int y, int returnCoords[2]) {
     returnCoords[0] = x * tileWidth + mainCanvasStartX + xOffset;
     returnCoords[1] = y * tileHeight + yOffset;
+}
+
+void TileGridScene::addCombatMessage(std::string text, int tileX, int tileY) {
+    combatMessages.push_back(CombatText(text, tileX, tileY));
+}
+
+void TileGridScene::addCombatMessage(std::string text, int tileX, int tileY, int duration) {
+    combatMessages.push_back(CombatText(text, tileX, tileY, duration));
 }
 
 //protected methods
@@ -173,4 +184,26 @@ void TileGridScene::createTiles() {
         tileHeight = tilesImpliedWidth;
         tileWidth = tilesImpliedWidth;
     }
+}
+
+
+void TileGridScene::drawCombatMessages()
+{
+    int displayCoords[2];
+    for (CombatText combatText : combatMessages)
+    {
+        coordsFromTileIndex(combatText.tileX, combatText.tileY, displayCoords);
+        engine->renderText(combatText.text, displayCoords[0], displayCoords[1]);
+    }
+}
+
+void TileGridScene::updateCombatMessages() {
+    for (size_t i = 0; i < combatMessages.size(); i++)
+    {
+        combatMessages[i].tickCount++;
+    }
+    combatMessages.erase(std::remove_if(begin(combatMessages), end(combatMessages), [](CombatText const& u)
+        {
+            return u.tickCount == u.duration;
+        }), end(combatMessages));
 }

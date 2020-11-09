@@ -28,6 +28,11 @@ void Unit::init() {
     maxHealth = 1;
     health = 1;
     speed = 1;
+    dex = 1;
+    str = 1;
+    agi = 1;
+    end = 1;
+    intl = 1;
     leftToMove = 0;
     isStatic = false;
     isPlayerControlled = false;

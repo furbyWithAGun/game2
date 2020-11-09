@@ -13,6 +13,8 @@ const int KEY_B_VALUE = 255;
 const int DEFAULT_FONT_SIZE = 28;
 const double DEFAULT_TICK_DELAY = 6;
 const int AUTO_TEXTURE_KEY_START = 30000;
+const double DEFAULT_SIGMOID_OMEGA = 1;
+const double DEFAULT_SIGMOID_ALPHA = 1.1;
 
 BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     textures.clear();
@@ -108,6 +110,9 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
 }
 
 bool BaseGameEngine::init() {
+    //init sigmoid function
+    setSigmoidFunction(DEFAULT_SIGMOID_OMEGA, DEFAULT_SIGMOID_ALPHA);
+
     //init rand
     srand(time(NULL));
 
@@ -244,6 +249,7 @@ int BaseGameEngine::createTextTexture(std::string text) {
     int textureKey = auto_texturekey;
     textures[textureKey] = Texture();
     textures[textureKey].texture = loadTextureFromText(text);
+    SDL_QueryTexture(textures[textureKey].texture, NULL, NULL, &textures[textureKey].width, &textures[textureKey].height);
     auto_texturekey++;
     return textureKey;
 }
@@ -251,6 +257,7 @@ int BaseGameEngine::createTextTexture(std::string text) {
 int BaseGameEngine::createTextTexture(int textureKey, std::string text) {
     textures[textureKey] = Texture();
     textures[textureKey].texture = loadTextureFromText(text);
+    SDL_QueryTexture(textures[textureKey].texture, NULL, NULL, &textures[textureKey].width, &textures[textureKey].height);
     return textureKey;
 }
 
@@ -282,6 +289,26 @@ void BaseGameEngine::renderTexture(int textureKey, int x, int y, int width, int 
     renderTexture(&textures[textureKey], x, y, width, height);
 }
 
+void BaseGameEngine::renderText(std::string textToRender, int x, int y)
+{
+    if (textTextures.find(textToRender) == textTextures.end())
+    {
+        textTextures[textToRender] = createTextTexture(textToRender);
+    }
+
+    renderTexture(&textures[textTextures[textToRender]], x, y);
+}
+
+void BaseGameEngine::renderText(std::string textToRender, int x, int y, int width, int height)
+{
+    if (textTextures.find(textToRender) == textTextures.end())
+    {
+        textTextures[textToRender] = createTextTexture(textToRender);
+    }
+
+    renderTexture(&textures[textTextures[textToRender]], x, y, width, height);
+}
+
 
 void BaseGameEngine::renderAnimation(Animation* animation, int x, int y) {
     SDL_Rect renderQuad = { x, y, animation->frameWidth, animation->frameHeight };
@@ -310,6 +337,22 @@ int BaseGameEngine::getTextureWidth(int textureKey) {
 
 int BaseGameEngine::getTextureHeight(int textureKey) {
     return textures[textureKey].height;
+}
+
+double BaseGameEngine::getProbFromSigmoid(double skill, double difficulty)
+{
+    return sigmoid(skill / difficulty);
+}
+
+void BaseGameEngine::setSigmoidFunction(double omega, double alpha)
+{
+    sigmoidOmega = omega;
+    sigmoidAlpha = alpha;
+}
+
+double BaseGameEngine::sigmoid(double x)
+{
+    return pow(x, sigmoidAlpha) / (pow(x, sigmoidAlpha) + pow(sigmoidOmega, sigmoidAlpha));
 }
 
 void BaseGameEngine::addScene(int sceneId, GameScene* sceneToAdd)
@@ -417,6 +460,7 @@ bool BaseGameEngine::clearTextures() {
         }
     }
     textures.clear();
+    textTextures.clear();
     auto_texturekey = AUTO_TEXTURE_KEY_START;
     return true;
 }
