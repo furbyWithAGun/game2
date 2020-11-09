@@ -7,12 +7,15 @@ const int RAT_SPEED = 2;
 Rat::Rat() : AiUnit() {
     init();
 }
+Rat::Rat(int unitType) : AiUnit(unitType) {
+    init();
+}
 
-Rat::Rat(TileGridScene* gameScene) : AiUnit(gameScene) {
+Rat::Rat(int unitType, TileGridScene* gameScene) : AiUnit(unitType, gameScene) {
     init(gameScene);
 }
 
-Rat::Rat(TileGridScene* gameScene, int startX, int startY) : AiUnit(gameScene, startX, startY) {
+Rat::Rat(int unitType, TileGridScene* gameScene, int startX, int startY) : AiUnit(unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 

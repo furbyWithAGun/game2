@@ -8,6 +8,7 @@
 
 class BaseGameEngine;
 class Unit;
+class Player;
 
 class TileGridScene : public GameScene
 {
@@ -18,6 +19,7 @@ public:
     std::unordered_map<int, MapTile> mapTiles;
     int tileHeight;
     int tileWidth;
+    Player* player;
 
     //constructor
     TileGridScene();

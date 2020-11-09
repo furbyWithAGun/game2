@@ -26,6 +26,16 @@ int MovingState::update() {
 int MovingState::handleInput(InputMessage* message) {
     switch (message->id)
     {
+    case PERFORM_MAIN_ATTACK:
+        if (unit->leftToMove <= 0)
+        {
+            unit->faceCoords(message->x, message->y);
+            if (unit->performAttack(MAIN_ATTACK))
+            {
+                return UNIT_ATTACKING;
+            }
+        }
+        break;
     case START_MOVE_UP:
         unit->movingUp = true;
         unit->movingDown = false;

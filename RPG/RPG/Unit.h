@@ -16,6 +16,7 @@ class Unit : public AnimatedSprite
 {
 public:
     //attributes
+    int type;
     TileGridScene* scene;
     std::vector<int> tileLocation;
     std::vector<int> tileDestination;
@@ -43,8 +44,9 @@ public:
 
     //constructors
     Unit();
-    Unit(TileGridScene* gameScene);
-    Unit(TileGridScene* gameScene, int startX, int startY);
+    Unit(int unitType);
+    Unit(int unitType, TileGridScene* gameScene);
+    Unit(int unitType, TileGridScene* gameScene, int startX, int startY);
 
     //destructor
     ~Unit();
@@ -76,5 +78,6 @@ private:
 
     //methods
     void init();
-    void init(TileGridScene* gameScene);
+    void init(int unitType);
+    void init(int unitType, TileGridScene* gameScene);
 };

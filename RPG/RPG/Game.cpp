@@ -6,17 +6,13 @@
 
 //TODO:
 //attack animation
-//move setting animations to the unit states
-//move input to the units to the unit states
 //make button accept call back functions
 //improve attack functionality
 //text feedback for combat
 //display player health in menu
 //enemies fight back
 //pathfinding
-//rework user input system
-//      -- command objects
-//      -- interface class    RpgKeyboardMouseInterface()
+//make "teams" to determine hostile / neutral / friendly
 //make the game client/server
 //rework asset loading strategy
 //add a cleanup method to GameScene and have the engine call it when scene is over (units are a memory leak when changing scenes)

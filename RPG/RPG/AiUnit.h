@@ -1,5 +1,8 @@
 #pragma once
 #include "Unit.h"
+
+class RpgOverWorldScene;
+
 class AiUnit : public Unit
 {
 public:
@@ -8,8 +11,9 @@ public:
 
     //constructor
     AiUnit();
-    AiUnit(TileGridScene* gameScene);
-    AiUnit(TileGridScene* gameScene, int startX, int startY);
+    AiUnit(int unitType);
+    AiUnit(int unitType, TileGridScene* gameScene);
+    AiUnit(int unitType, TileGridScene* gameScene, int startX, int startY);
 
     //methods
     void update();
@@ -20,6 +24,8 @@ private:
 
     //methods
     void randomMovement();
+    bool attackNearbyUnit();
+    bool meleeAttackUnitInDirection(int direction);
     void init();
 };
 

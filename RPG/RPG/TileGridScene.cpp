@@ -132,10 +132,10 @@ Unit* TileGridScene::createUnitAtLocation(int unitType, int x, int y)
     switch (unitType)
     {
     case PLAYER:
-        createdUnit = new Player(this, x, y);
+        createdUnit = new Player(PLAYER, this, x, y);
         break;
     case RAT:
-        createdUnit = new Rat(this, x, y);
+        createdUnit = new Rat(RAT, this, x, y);
         break;
     default:
         createdUnit = NULL;

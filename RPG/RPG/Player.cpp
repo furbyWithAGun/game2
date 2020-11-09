@@ -18,11 +18,15 @@ Player::Player() : Unit() {
     init();
 }
 
-Player::Player(TileGridScene* gameScene) : Unit(gameScene) {
+Player::Player(int unitType) : Unit(unitType) {
+    init();
+}
+
+Player::Player(int unitType, TileGridScene* gameScene) : Unit(unitType, gameScene) {
     init(gameScene);
 }
 
-Player::Player(TileGridScene* gameScene, int startX, int startY) : Unit(gameScene, startX, startY) {
+Player::Player(int unitType, TileGridScene* gameScene, int startX, int startY) : Unit(unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 

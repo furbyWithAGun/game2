@@ -7,16 +7,21 @@ Unit::Unit() : AnimatedSprite() {
     init();
 }
 
-Unit::Unit(TileGridScene* gameScene) : AnimatedSprite(gameScene) {
-    init(gameScene);
+Unit::Unit(int unitType) : AnimatedSprite() {
+    init(unitType);
 }
 
-Unit::Unit(TileGridScene* gameScene, int startX, int startY) : AnimatedSprite(gameScene) {
-    init(gameScene);
+Unit::Unit(int unitType, TileGridScene* gameScene) : AnimatedSprite(gameScene) {
+    init(unitType, gameScene);
+}
+
+Unit::Unit(int unitType, TileGridScene* gameScene, int startX, int startY) : AnimatedSprite(gameScene) {
+    init(unitType, gameScene);
     setStartLocation(startX, startY);
 }
 
 void Unit::init() {
+    type = -1;
     name = "";
     tileLocation = { 0, 0 };
     tileDestination = { 0, 0 };
@@ -36,8 +41,13 @@ void Unit::init() {
     setUnitState(UNIT_IDLE);
 }
 
-void Unit::init(TileGridScene* gameScene) {
+void Unit::init(int unitType) {
     init();
+    type = unitType;
+}
+
+void Unit::init(int unitType, TileGridScene* gameScene) {
+    init(unitType);
     scene = gameScene;
 }
 
@@ -52,7 +62,6 @@ Unit::~Unit() {
 }
 
 void Unit::startMovement(int direction) {
-    leftToMove = 1;
     directionFacing = direction;
 
     switch (direction)
@@ -61,24 +70,28 @@ void Unit::startMovement(int direction) {
         if (scene->isTilePassable(tileLocation[0], tileLocation[1] - 1))
         {
             tileDestination[1] = tileLocation[1] - 1;
+            leftToMove = 1;
         }
         break;
     case DOWN:
         if (scene->isTilePassable(tileLocation[0], tileLocation[1] + 1))
         {
             tileDestination[1] = tileLocation[1] + 1;
+            leftToMove = 1;
         }            
         break;
     case RIGHT:
         if (scene->isTilePassable(tileLocation[0] + 1, tileLocation[1]))
         {
             tileDestination[0] = tileLocation[0] + 1;
+            leftToMove = 1;
         }
         break;
     case LEFT:
         if (scene->isTilePassable(tileLocation[0] - 1, tileLocation[1]))
         {
             tileDestination[0] = tileLocation[0] - 1;
+            leftToMove = 1;
         }
         break;
     default:
@@ -237,25 +250,25 @@ void Unit::faceCoords(int x, int y) {
     {
         directionFacing = UP_LEFT;
     }
-    else if (x >= xpos && x <= xpos + width && y < ypos) {
+    else if (x >= xpos && x < xpos + width && y < ypos) {
         directionFacing = UP;
     }
-    else if (x > xpos + width && y < ypos) {
+    else if (x >= xpos + width && y < ypos) {
         directionFacing = UP_RIGHT;
     }
-    else if (x > xpos + width && y > ypos && y < ypos + height) {
+    else if (x >= xpos + width && y >= ypos && y < ypos + height) {
         directionFacing = RIGHT;
     }
-    else if (x > xpos + width && y > ypos + height) {
+    else if (x >= xpos + width && y >= ypos + height) {
         directionFacing = DOWN_RIGHT;
     }
-    else if (x >= xpos && x <= xpos + width && y > ypos + height) {
+    else if (x >= xpos && x <= xpos + width && y >= ypos + height) {
         directionFacing = DOWN;
     }
-    else if (x < xpos && y > ypos + height) {
+    else if (x < xpos && y >= ypos + height) {
         directionFacing = DOWN_LEFT;
     }
-    else if (x < xpos && y > ypos && y < ypos + height) {
+    else if (x < xpos && y >= ypos && y <= ypos + height) {
         directionFacing = LEFT;
     }
 }

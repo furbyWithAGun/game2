@@ -22,6 +22,7 @@ class RpgOverWorldScene : public TileGridScene
 public:
     //attributes
     int frames = 0;
+    Player* player;
 
     //constructora
     RpgOverWorldScene();
@@ -35,7 +36,6 @@ public:
 
 private:
     //attributes
-    Player* player;
     AiUnit enemy;
     AiUnit enemy2;
     bool wKeyDown, sKeyDown, dKeyDown, aKeyDown;

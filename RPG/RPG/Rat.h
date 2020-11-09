@@ -10,8 +10,9 @@ public:
 
     //constructors
     Rat();
-    Rat(TileGridScene* gameScene);
-    Rat(TileGridScene* gameScene, int startX, int startY);
+    Rat(int unitType);
+    Rat(int unitType, TileGridScene* gameScene);
+    Rat(int unitType, TileGridScene* gameScene, int startX, int startY);
 
     //methods
     void createAnimations();
