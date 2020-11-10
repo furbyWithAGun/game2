@@ -26,7 +26,6 @@ BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     mainWindow = NULL;
     mainRenderer = NULL;
     mainFont = NULL;
-    mainFontColor = { 0, 0, 0 };
     currentScene = NULL;
     nextScene = NULL;
     sceneRunning = false;
@@ -65,7 +64,6 @@ void BaseGameEngine::free() {
     mainWindow= NULL;
     mainRenderer = NULL;
     mainFont = NULL;
-    mainFontColor = {0, 0, 0};
     currentScene = NULL;
     nextScene = NULL;
     scenes.clear();
@@ -211,9 +209,9 @@ bool BaseGameEngine::loadTextureImage(Texture* texture) {
     return true;
 }
 
-SDL_Texture* BaseGameEngine::loadTextureFromText(std::string text) {
+SDL_Texture* BaseGameEngine::loadTextureFromText(std::string text, SDL_Color colour) {
     SDL_Texture* textTexture;
-    SDL_Surface* textSurface = TTF_RenderText_Solid(mainFont, text.c_str(), mainFontColor);
+    SDL_Surface* textSurface = TTF_RenderText_Solid(mainFont, text.c_str(), colour);
     if (textSurface == NULL)
     {
         printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
@@ -245,18 +243,18 @@ int BaseGameEngine::createImageTexture(int textureKey, std::string imagePath) {
     return textureKey;
 }
 
-int BaseGameEngine::createTextTexture(std::string text) {
+int BaseGameEngine::createTextTexture(std::string text, SDL_Color colour) {
     int textureKey = auto_texturekey;
     textures[textureKey] = Texture();
-    textures[textureKey].texture = loadTextureFromText(text);
+    textures[textureKey].texture = loadTextureFromText(text, colour);
     SDL_QueryTexture(textures[textureKey].texture, NULL, NULL, &textures[textureKey].width, &textures[textureKey].height);
     auto_texturekey++;
     return textureKey;
 }
 
-int BaseGameEngine::createTextTexture(int textureKey, std::string text) {
+int BaseGameEngine::createTextTexture(int textureKey, std::string text, SDL_Color colour) {
     textures[textureKey] = Texture();
-    textures[textureKey].texture = loadTextureFromText(text);
+    textures[textureKey].texture = loadTextureFromText(text, colour);
     SDL_QueryTexture(textures[textureKey].texture, NULL, NULL, &textures[textureKey].width, &textures[textureKey].height);
     return textureKey;
 }
@@ -289,24 +287,26 @@ void BaseGameEngine::renderTexture(int textureKey, int x, int y, int width, int 
     renderTexture(&textures[textureKey], x, y, width, height);
 }
 
-void BaseGameEngine::renderText(std::string textToRender, int x, int y)
+void BaseGameEngine::renderText(std::string textToRender, int x, int y, SDL_Color colour)
 {
-    if (textTextures.find(textToRender) == textTextures.end())
+    std::string key = textToRender + std::to_string(colour.a) + std::to_string(colour.r) + std::to_string(colour.g) + std::to_string(colour.b);
+    if (textTextures.find(key) == textTextures.end())
     {
-        textTextures[textToRender] = createTextTexture(textToRender);
+        textTextures[key] = createTextTexture(textToRender, colour);
     }
 
-    renderTexture(&textures[textTextures[textToRender]], x, y);
+    renderTexture(&textures[textTextures[key]], x, y);
 }
 
-void BaseGameEngine::renderText(std::string textToRender, int x, int y, int width, int height)
+void BaseGameEngine::renderText(std::string textToRender, int x, int y, int width, int height, SDL_Color colour)
 {
-    if (textTextures.find(textToRender) == textTextures.end())
+    std::string key = textToRender + std::to_string(colour.a) + std::to_string(colour.r) + std::to_string(colour.g) + std::to_string(colour.b);
+    if (textTextures.find(key) == textTextures.end())
     {
-        textTextures[textToRender] = createTextTexture(textToRender);
+        textTextures[key] = createTextTexture(textToRender, colour);
     }
 
-    renderTexture(&textures[textTextures[textToRender]], x, y, width, height);
+    renderTexture(&textures[textTextures[key]], x, y, width, height);
 }
 
 

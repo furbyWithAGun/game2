@@ -59,7 +59,7 @@ void BasicMeleeAttack::processHit(Unit* targetUnit) {
     if (owningUnit->scene->engine->getProbFromSigmoid(owningUnit->dex, targetUnit->agi) > owningUnit->scene->engine->randomDouble())
     {
         targetUnit->assignDamage(BASIC_MELEE_ATTACK_BASE_DMG);
-        owningUnit->scene->addCombatMessage(std::to_string(BASIC_MELEE_ATTACK_BASE_DMG), targetUnit->tileLocation[0], targetUnit->tileLocation[1]);
+        owningUnit->scene->addCombatMessage(std::to_string(BASIC_MELEE_ATTACK_BASE_DMG), SDL_Color {255, 0, 0, 0}, targetUnit->tileLocation[0], targetUnit->tileLocation[1]);
     }
     else {
         owningUnit->scene->addCombatMessage("MISS", targetUnit->tileLocation[0], targetUnit->tileLocation[1]);

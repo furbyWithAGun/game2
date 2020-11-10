@@ -163,6 +163,7 @@
     <ClCompile Include="InputMessage.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="MenuButton.cpp" />
+    <ClCompile Include="MenuText.cpp" />
     <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rat.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileGridScene.cpp" />
+    <ClCompile Include="UiPanel.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitState.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
@@ -198,6 +200,7 @@
     <ClInclude Include="InputMessage.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="MenuButton.h" />
+    <ClInclude Include="MenuText.h" />
     <ClInclude Include="MovingState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rat.h" />
@@ -211,6 +214,7 @@
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileGridScene.h" />
+    <ClInclude Include="UiPanel.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitState.h" />
     <ClInclude Include="ZoneMap.h" />

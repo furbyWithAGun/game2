@@ -68,6 +68,10 @@ void ZoneMap::assignNewTileMap(std::vector< std::vector<int> > tiles) {
 	}
 }
 
+void ZoneMap::addZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords) {
+	portals.push_back(ZonePortal(newId, newTileCoords, newExitZoneId, newExitTileCoords));
+}
+
 std::string ZoneMap::toSaveString() {
 	std::string saveString;
 	int uniqueObjectId = getUniqueId();

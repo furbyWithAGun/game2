@@ -54,6 +54,11 @@ void GameMenu::draw() {
     {
         buttons[i]->draw();
     }
+
+    for (size_t i = 0; i < texts.size(); i++)
+    {
+        texts[i]->draw();
+    }
 }
 
 void GameMenu::handleEvent(SDL_Event * e) {
@@ -78,6 +83,7 @@ void GameMenu::handleEvent(SDL_Event * e) {
         default:
             break;
         }
+        break;
     default:
         break;
     }

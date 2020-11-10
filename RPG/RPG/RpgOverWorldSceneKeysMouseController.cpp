@@ -23,7 +23,7 @@ void RpgOverWorldSceneKeysMouseController::populateMessageQueue() {
             {
             case SDL_BUTTON_LEFT:
                 SDL_GetMouseState(&xpos, &ypos);
-                addMessage(InputMessage(PERFORM_MAIN_ATTACK,xpos, ypos));
+                addMessage(InputMessage(PERFORM_MAIN_ATTACK, xpos, ypos));
                 break;
             default:
                 break;

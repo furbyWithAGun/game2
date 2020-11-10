@@ -43,6 +43,7 @@ void TileGridScene::declareSceneAssets()
 void TileGridScene::setUpScene()
 {
     createTiles();
+    zonePortalImages.push_back(ENCAMPMENT);
 }
 
 void TileGridScene::handleInput()
@@ -76,6 +77,10 @@ void TileGridScene::renderScene()
         for (int j = 0; j < currentZone.tileMap[i].size(); j++) {
             renderTexture(mapTiles[currentZone.tileMap[i][j]].textureKey, (tileWidth * j) + mainCanvasStartX + xOffset, tileHeight * i + yOffset, tileWidth, tileHeight);
         }
+    }
+
+    for (auto portal : currentZone.portals) {
+        renderTexture(portal.textureId, (tileWidth * portal.tileCoords[0]) + mainCanvasStartX + xOffset, tileHeight * portal.tileCoords[1] + yOffset, tileWidth, tileHeight);
     }
 
     //draw units
@@ -112,6 +117,14 @@ void TileGridScene::addCombatMessage(std::string text, int tileX, int tileY) {
 
 void TileGridScene::addCombatMessage(std::string text, int tileX, int tileY, int duration) {
     combatMessages.push_back(CombatText(text, tileX, tileY, duration));
+}
+
+void TileGridScene::addCombatMessage(std::string text, SDL_Color colour, int tileX, int tileY) {
+    combatMessages.push_back(CombatText(text, colour, tileX, tileY));
+}
+
+void TileGridScene::addCombatMessage(std::string text, SDL_Color colour, int tileX, int tileY, int duration) {
+    combatMessages.push_back(CombatText(text, colour, tileX, tileY, duration));
 }
 
 //protected methods
@@ -172,8 +185,6 @@ void TileGridScene::createTiles() {
     mapTiles[TREE] = MapTile(false, TREE);
     mapTiles[WATER] = MapTile(false, WATER);
     mapTiles[MOUNTAIN] = MapTile(false, MOUNTAIN);
-    mapTiles[ENCAMPMENT] = MapTile(true, ENCAMPMENT);
-
 
     //resize tiles depending on screen size
     int tilesImpliedWidth = engine->screenWidth / desiredTilesAcross;
@@ -195,7 +206,7 @@ void TileGridScene::drawCombatMessages()
     for (CombatText combatText : combatMessages)
     {
         coordsFromTileIndex(combatText.tileX, combatText.tileY, displayCoords);
-        engine->renderText(combatText.text, displayCoords[0] + (tileWidth / 4), displayCoords[1] + (tileHeight / 4) - combatText.tickCount * combatText.ySpeed);
+        engine->renderText(combatText.text, displayCoords[0] + (tileWidth / 4), displayCoords[1] + (tileHeight / 4) - combatText.tickCount * combatText.ySpeed, combatText.colour);
     }
 }
 

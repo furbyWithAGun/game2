@@ -23,6 +23,8 @@ void RpgWorldBuilderScene::init() {
     tileBeingPlaced = NULL;
     leftButtonClicked = false;
     placingTile = false;
+    placingPortal = false;
+    portalBeingPlaced = -1;
 }
 
 void RpgWorldBuilderScene::declareSceneAssets() {
@@ -33,7 +35,7 @@ void RpgWorldBuilderScene::declareSceneAssets() {
 void RpgWorldBuilderScene::setUpScene() {
     TileGridScene::setUpScene();
     backDropTileKey = WATER;
-    SaveFile firstZoneFile = SaveFile("startEncampment.txt");
+    SaveFile firstZoneFile = SaveFile("zoneOne.txt");
     firstZoneFile.loadFile();
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 
@@ -90,6 +92,14 @@ void RpgWorldBuilderScene::handleInput() {
                         currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
                     }
                 }
+                if (placingPortal)
+                {
+                    if (coordsAreOnDisplayedMapTile(x, y))
+                    {
+                        getTileIndexFromScreenCoords(x, y, k);
+                        currentZone.addZonePortal(portalBeingPlaced, { k[0], k[1] }, 0, {0, 0});
+                    }
+                }
                 break;
             default:
                 break;
@@ -114,6 +124,14 @@ void RpgWorldBuilderScene::handleInput() {
                 {
                     getTileIndexFromScreenCoords(x, y, k);
                     currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
+                }
+            }
+            if (placingPortal)
+            {
+                if (coordsAreOnDisplayedMapTile(x, y) && leftButtonClicked)
+                {
+                    getTileIndexFromScreenCoords(x, y, k);
+                    currentZone.addZonePortal(portalBeingPlaced, { k[0], k[1] }, 0, { 0, 0 });
                 }
             }
             break;
@@ -163,6 +181,19 @@ void RpgWorldBuilderScene::renderScene() {
         coordsFromTileIndex(k[0], k[1], l);
         if (coordsAreOnDisplayedMapTile(x, y)) {
             renderTexture(tileBeingPlaced->textureKey, l[0], l[1], tileWidth, tileHeight);
+        }
+    }
+
+    //draw portal being placed
+    if (placingPortal)
+    {
+        int x, y;
+        int k[2], l[2];
+        SDL_GetMouseState(&x, &y);
+        getTileIndexFromScreenCoords(x, y, k);
+        coordsFromTileIndex(k[0], k[1], l);
+        if (coordsAreOnDisplayedMapTile(x, y)) {
+            renderTexture(portalBeingPlaced, l[0], l[1], tileWidth, tileHeight);
         }
     }
 }

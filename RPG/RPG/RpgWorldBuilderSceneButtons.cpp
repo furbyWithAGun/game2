@@ -39,6 +39,43 @@ public:
     }
 };
 
+class MapBuilderPortalButton : public MenuButton {
+public:
+    //constants
+    static const int WIDTH_ADJUSTOR = 38;
+    static const int HEIGHT_ADJUSTOR = 20;
+    //attributes
+    RpgWorldBuilderScene* scene;
+    BaseGameEngine* engine;
+    int portalKey;
+
+    //constructors
+    MapBuilderPortalButton() : MenuButton() {
+        engine = NULL;
+        portalKey = -1;
+        scene = NULL;
+    }
+
+    MapBuilderPortalButton(int newPortalKey, RpgWorldBuilderScene* gameScene) : MenuButton(newPortalKey, gameScene) {
+        scene = gameScene;
+        engine = gameScene->engine;
+        portalKey = newPortalKey;
+        width = engine->screenWidth / WIDTH_ADJUSTOR;
+        height = engine->screenHeight / HEIGHT_ADJUSTOR;
+    }
+
+    //destructor
+    //~MapBuilderTileButton() {
+
+    //}
+
+    //methods
+    void onClick() {
+        scene->placingPortal = true;
+        scene->portalBeingPlaced = portalKey;
+    }
+};
+
 class SaveMapBuilderButton : public MenuButton {
 public:
     //attributes
@@ -57,7 +94,7 @@ public:
     }
 
     void onClick() {
-        SaveFile firstZoneFile = SaveFile("startEncampment.txt");
+        SaveFile firstZoneFile = SaveFile("zoneOne.txt");
         firstZoneFile.addSaveObjectString(scene->currentZone.toSaveString());
         firstZoneFile.saveFile();
     }

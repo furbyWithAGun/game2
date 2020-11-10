@@ -2,12 +2,14 @@
 #include "Sprite.h"
 #include "BaseGameEngine.h"
 #include "MenuButton.h"
+#include "MenuText.h"
 
 class GameMenu
 {
 public:
     //attributes
     std::vector<MenuButton*> buttons;
+    std::vector<MenuText*> texts;
     bool isActive;
     
     //constructors

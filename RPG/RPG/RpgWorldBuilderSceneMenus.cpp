@@ -14,6 +14,8 @@ public:
         scene = gameScene;
         engine = gameScene->engine;
         buildButtons();
+        texts.push_back(new MenuText(scene, "Tiles", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
+        texts.push_back(new MenuText(scene, "Portals", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.4));
     }
 
     //methods
@@ -27,6 +29,7 @@ public:
                 break;
             case SDL_BUTTON_RIGHT:
                 scene->placingTile = false;
+                scene->placingPortal = false;
                 break;
             default:
                 break;
@@ -52,6 +55,17 @@ private:
             button = new MapBuilderTileButton(&i->second, scene);
             button->xpos = button->width / 2 + button->width * (x % 2) + button->width * (x % 2);
             button->ypos = (button->height * floor(x / 2) + button->height * floor(x / 2)) + engine->screenHeight * 0.05;
+            buttons.push_back(button);
+            x++;
+        }
+
+        x = 0;
+        for (int i = 0; i < scene->zonePortalImages.size(); i++)
+        {
+            MapBuilderPortalButton* button;
+            button = new MapBuilderPortalButton(scene->zonePortalImages[i], scene);
+            button->xpos = button->width / 2 + button->width * (x % 2) + button->width * (x % 2);
+            button->ypos = (button->height * floor(x / 2) + button->height * floor(x / 2)) + engine->screenHeight * 0.45;
             buttons.push_back(button);
             x++;
         }

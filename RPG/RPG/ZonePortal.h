@@ -4,7 +4,7 @@
 #include "SaveFile.h"
 
 enum ZONE_PORTAL_ATTRIBUTES {
-    ZONE_PORTAL_ID,
+    ZONE_PORTAL_TEXTURE_ID,
     TILE_COORDS,
     EXIT_ZONE_ID,
     EXIT_TILE_COORDS
@@ -13,15 +13,15 @@ enum ZONE_PORTAL_ATTRIBUTES {
 class ZonePortal
 {
 public:
-    //attributes
-    int id;
+    //attributestexture
+    int textureId;
     std::vector <int> tileCoords;
     int exitZoneId;
     std::vector <int> exitTileCoords;
 
     //constructors
     ZonePortal();
-    ZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
+    ZonePortal(int newTextureId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
     ZonePortal(SaveObject saveObject);
 
     //destructor

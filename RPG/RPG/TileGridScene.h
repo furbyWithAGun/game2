@@ -15,9 +15,11 @@ class TileGridScene : public GameScene
 {
 public:
     //attributes
+    int mainCanvasStartX;
     int xOffset, yOffset;
     ZoneMap currentZone;
     std::unordered_map<int, MapTile> mapTiles;
+    std::vector<int> zonePortalImages;
     int tileHeight;
     int tileWidth;
     Player* player;
@@ -37,11 +39,12 @@ public:
     bool isTilePassable(int x, int y);
     void addCombatMessage(std::string text, int tileX, int tileY);
     void addCombatMessage(std::string text, int tileX, int tileY, int duration);
+    void addCombatMessage(std::string text, SDL_Color colour, int tileX, int tileY);
+    void addCombatMessage(std::string text, SDL_Color colour, int tileX, int tileY, int duration);
     
 
 protected:
     //attributes
-    int mainCanvasStartX;
     int backDropTileKey;
     int desiredTilesAcross;
     int desiredTilesDown;

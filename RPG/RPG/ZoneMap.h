@@ -30,6 +30,7 @@ class ZoneMap {
 
         //methods
         void assignNewTileMap(std::vector< std::vector<int> > tiles);
+        void addZonePortal(int newId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
         std::string toSaveString();
 
     private:

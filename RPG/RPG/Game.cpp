@@ -5,15 +5,21 @@
 #include "RpgGameConstants.h"
 
 //TODO:
-//attack animation
+// create panel UI class
+// create scrollbox UI class
+// create text input UI class
+//rework the input rework XD. Need to have 2 layers.. One to translate SDL events into generic events, and another to translate events into commands. 
+//      - layer one is specific to input type. (keyboard/mouse, gamepad, etc)
+//      - layer two is specific to each scene
+// finish Portal creation of world builder scene
+// rework how scenes track and load scenes (need a map of <id, zoneMap*>)
+// implement zone swiching via portals
 //make button accept call back functions
-//improve attack functionality
-//colour code text feedback for combat
-//display player health in menu
+//refactor worldbuilding scene menus. (Create proper classes for the menus and buttons)
 //town
 //basic game loop - enemy spawn / combat / loot and exp / town and healing
 //pathfinding
-//make "teams" to determine hostile / neutral / friendly
+//make "teams" to determine hostile / neutral / friendly (AI units can be on different teams, hostile to player, hostile to each other etc)
 //make the game client/server
 //rework asset loading strategy
 //add a cleanup method to GameScene and have the engine call it when scene is over (units are a memory leak when changing scenes)
@@ -23,6 +29,10 @@
 //ranged combat
 //inventory system
 //experience and leveling system
+//improve attack functionality
+//attack animation
+//colour code text feedback for combat
+//display player health in menu
 
 int main(int argc, char* args[])
 {

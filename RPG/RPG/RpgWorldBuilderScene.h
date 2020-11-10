@@ -17,6 +17,8 @@ public:
     bool placingTile;
     bool leftButtonClicked;
     MapTile* tileBeingPlaced;
+    bool placingPortal;
+    int portalBeingPlaced;
 
     //constructor
     RpgWorldBuilderScene();
