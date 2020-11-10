@@ -1,6 +1,2 @@
-﻿  TileGridScene.cpp
-D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(28,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(69,193): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(118,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\TileGridScene.cpp(119,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  Game.cpp
+  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe

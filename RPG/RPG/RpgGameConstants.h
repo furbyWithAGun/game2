@@ -65,6 +65,7 @@ enum TEXTURE_NAMES
     TREE,
     WATER,
     MOUNTAIN,
+    ENCAMPMENT,
     //------------button----------------------
     BUTTON_BACKGROUND,
     //------------player---------------------

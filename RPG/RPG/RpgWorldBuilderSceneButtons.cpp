@@ -57,7 +57,7 @@ public:
     }
 
     void onClick() {
-        SaveFile firstZoneFile = SaveFile("zoneOne.txt");
+        SaveFile firstZoneFile = SaveFile("startEncampment.txt");
         firstZoneFile.addSaveObjectString(scene->currentZone.toSaveString());
         firstZoneFile.saveFile();
     }

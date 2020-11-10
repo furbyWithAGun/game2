@@ -33,7 +33,7 @@ void RpgWorldBuilderScene::declareSceneAssets() {
 void RpgWorldBuilderScene::setUpScene() {
     TileGridScene::setUpScene();
     backDropTileKey = WATER;
-    SaveFile firstZoneFile = SaveFile("zoneOne.txt");
+    SaveFile firstZoneFile = SaveFile("startEncampment.txt");
     firstZoneFile.loadFile();
     currentZone = ZoneMap(firstZoneFile.objects[0].rawString);
 

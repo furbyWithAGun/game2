@@ -8,9 +8,10 @@
 //attack animation
 //make button accept call back functions
 //improve attack functionality
-//text feedback for combat
+//colour code text feedback for combat
 //display player health in menu
-//enemies fight back
+//town
+//basic game loop - enemy spawn / combat / loot and exp / town and healing
 //pathfinding
 //make "teams" to determine hostile / neutral / friendly
 //make the game client/server
@@ -19,6 +20,7 @@
 //create destructors for units (Attack pointers are a memory leak, as are the unit states)
 //make semi-not-terrible player animations ***DO IT YOU SLACKER***
 //game message system
+//ranged combat
 //inventory system
 //experience and leveling system
 

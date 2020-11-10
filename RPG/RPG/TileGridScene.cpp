@@ -37,6 +37,7 @@ void TileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TREE, "images/tree.png" });
     texturesToLoad.insert({ GRASS, "images/grass.png" });
     texturesToLoad.insert({ MOUNTAIN, "images/mountain.png" });
+    texturesToLoad.insert({ ENCAMPMENT, "images/encampment.png" });
 }
 
 void TileGridScene::setUpScene()
@@ -171,6 +172,7 @@ void TileGridScene::createTiles() {
     mapTiles[TREE] = MapTile(false, TREE);
     mapTiles[WATER] = MapTile(false, WATER);
     mapTiles[MOUNTAIN] = MapTile(false, MOUNTAIN);
+    mapTiles[ENCAMPMENT] = MapTile(true, ENCAMPMENT);
 
 
     //resize tiles depending on screen size
@@ -193,7 +195,7 @@ void TileGridScene::drawCombatMessages()
     for (CombatText combatText : combatMessages)
     {
         coordsFromTileIndex(combatText.tileX, combatText.tileY, displayCoords);
-        engine->renderText(combatText.text, displayCoords[0], displayCoords[1]);
+        engine->renderText(combatText.text, displayCoords[0] + (tileWidth / 4), displayCoords[1] + (tileHeight / 4) - combatText.tickCount * combatText.ySpeed);
     }
 }
 
