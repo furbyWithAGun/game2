@@ -1,17 +1,18 @@
 #pragma once
 #include <vector>
 
-
 class MenuButton;
 class MenuText;
 class BaseGameEngine;
 class InputMessage;
+class UiElement;
 
 class GameMenu
 {
 public:
     //attributes
     std::vector<MenuButton*> buttons;
+    std::vector<UiElement*> elements;
     std::vector<MenuText*> texts;
     bool isActive;
     

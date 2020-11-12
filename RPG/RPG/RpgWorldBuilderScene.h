@@ -16,7 +16,6 @@ public:
     //attributes
     BaseGameEngine* engine;
     bool placingTile;
-    bool selectOn;
     MapTile* tileBeingPlaced;
     bool placingPortal;
     int portalBeingPlaced;

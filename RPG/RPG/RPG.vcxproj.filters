@@ -79,6 +79,12 @@
     <Filter Include="Header Files\RpgGame\units\unitStates">
       <UniqueIdentifier>{aaf20559-a89f-4907-88e1-bacc48f9bd48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\gameEngine\UI">
+      <UniqueIdentifier>{99ccbb86-eb38-4835-a570-94ac1934f3ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gameEngine\UI">
+      <UniqueIdentifier>{c58614c4-19ba-41fb-afa9-d9db0af1d7d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -90,13 +96,7 @@
     <ClCompile Include="BaseGameEngine.cpp">
       <Filter>Source Files\gameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="GameMenu.cpp">
-      <Filter>Source Files\gameEngine</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>Source Files\gameEngine</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuButton.cpp">
       <Filter>Source Files\gameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
@@ -127,12 +127,6 @@
       <Filter>Source Files\RpgGame\scenes\tileGridScene</Filter>
     </ClCompile>
     <ClCompile Include="RpgWorldBuilderScene.cpp">
-      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClCompile>
-    <ClCompile Include="RpgWorldBuilderSceneButtons.cpp">
-      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClCompile>
-    <ClCompile Include="RpgWorldBuilderSceneMenus.cpp">
       <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
     </ClCompile>
     <ClCompile Include="RpgOverWorldScene.cpp">
@@ -180,14 +174,38 @@
     <ClCompile Include="CombatText.cpp">
       <Filter>Source Files\RpgGame</Filter>
     </ClCompile>
-    <ClCompile Include="MenuText.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UiPanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RpgKeysMouseController.cpp">
       <Filter>Source Files\RpgGame</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuText.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UiPanel.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilderPortalButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilderTileButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveMapBuilderButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneBuilderMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="UiElement.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollBox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,13 +218,7 @@
     <ClInclude Include="Animation.h">
       <Filter>Header Files\gameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="GameMenu.h">
-      <Filter>Header Files\gameEngine</Filter>
-    </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>Header Files\gameEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuButton.h">
       <Filter>Header Files\gameEngine</Filter>
     </ClInclude>
     <ClInclude Include="SaveAttribute.h">
@@ -284,14 +296,38 @@
     <ClInclude Include="CombatText.h">
       <Filter>Header Files\RpgGame</Filter>
     </ClInclude>
-    <ClInclude Include="MenuText.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UiPanel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RpgKeysMouseController.h">
       <Filter>Header Files\RpgGame</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButton.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuText.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UiPanel.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderTileButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderPortalButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveMapBuilderButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneBuilderMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UiElement.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollBox.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

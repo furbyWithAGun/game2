@@ -1,8 +1,6 @@
 #include "RpgWorldBuilderScene.h"
 #include "BaseGameEngine.h"
-#include "RpgWorldBuilderSceneMenus.cpp"
-
-
+#include "ZoneBuilderMenu.h"
 
 //constants
 const int DEFAULT_DESIRED_TILES_DOWN = 10;
@@ -22,7 +20,6 @@ RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : TileGr
 void RpgWorldBuilderScene::init() {
     engine = NULL;
     tileBeingPlaced = NULL;
-    selectOn = false;
     placingTile = false;
     placingPortal = false;
     portalBeingPlaced = -1;
@@ -60,10 +57,8 @@ void RpgWorldBuilderScene::handleInput() {
             {
             case END_SCENE:
                 endScene();
-                return;
                 break;
             case SELECT_ON:
-                selectOn = true;
                 if (placingTile && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
@@ -76,15 +71,14 @@ void RpgWorldBuilderScene::handleInput() {
                 }
                 break;
             case SELECT_OFF:
-                selectOn = false;
                 break;
             case POINTER_MOVEMENT:
-                if (placingTile && coordsAreOnDisplayedMapTile(message->x, message->y) && selectOn)
+                if (placingTile && coordsAreOnDisplayedMapTile(message->x, message->y) && controllerInterface->selectOn)
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                     addCommand(InputMessage(PLACE_TILE, tileCoords[0], tileCoords[1], tileBeingPlaced->textureKey));
                 }
-                if (placingPortal && coordsAreOnDisplayedMapTile(message->x, message->y) && selectOn)
+                if (placingPortal && coordsAreOnDisplayedMapTile(message->x, message->y) && controllerInterface->selectOn)
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                     addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));

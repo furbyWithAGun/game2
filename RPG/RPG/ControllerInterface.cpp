@@ -4,6 +4,7 @@
 //constructors
 ControllerInterface::ControllerInterface() {
     latestXpos = latestYpos = 0;
+    selectOn = false;
 }
 
 //public methods
@@ -73,7 +74,21 @@ void ControllerInterface::populateTextInputQueue()
             addTextInput(InputMessage(END_SCENE, xpos, ypos));
             break;
         case SDL_MOUSEBUTTONDOWN:
+            selectOn = true;
             addTextInput(InputMessage(SELECT_ON, xpos, ypos));
+            break;
+        case SDL_MOUSEBUTTONUP:
+            selectOn = false;
+            addTextInput(InputMessage(SELECT_OFF, xpos, ypos));
+            break;
+        case SDL_MOUSEWHEEL:
+            if (e.wheel.y > 0) {
+                addTextInput(InputMessage(SCROLL_UP, xpos, ypos));
+            }
+            else if (e.wheel.y < 0)
+            {
+                addTextInput(InputMessage(SCROLL_DOWN, xpos, ypos));
+            }
             break;
         case SDL_KEYDOWN:
             addTextInput(InputMessage(KEY_INPUT, xpos, ypos, e.text.text));

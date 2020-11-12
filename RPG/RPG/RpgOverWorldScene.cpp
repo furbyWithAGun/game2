@@ -61,82 +61,43 @@ void RpgOverWorldScene::setUpScene()
 void RpgOverWorldScene::handleInput()
 {
     InputMessage* message = new InputMessage();
-    if (gettingTextInput)
-    {
-        controllerInterface->populateTextInputQueue();
-        while (controllerInterface->getNextTextInput(message)) {
-            switch (message->id)
-            {
-            case END_SCENE:
-                endScene();
-                return;
-                break;
-            case K_ESC:
-                gettingTextInput = false;
-                return;
-                break;
-            case KEY_INPUT:
-                for (auto menu : menus)
-                {
-                    if (menu.second->isActive)
-                    {
-                        menu.second->handleInput(message);
-                    }
-                }
-                break;
-            case SELECT_ON:
-                for (auto menu : menus)
-                {
-                    if (menu.second->isActive)
-                    {
-                        menu.second->handleInput(message);
-                    }
-                }
-                break;
-            default:
-                break;
-            }
-        }
-    }
-    else {
-        controllerInterface->populateMessageQueue();
-        while (controllerInterface->getNextMessage(message)) {
-            switch (message->id)
-            {
-            case END_SCENE:
-                endScene();
-                return;
-                break;
-            case SELECT_ON:
-                addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
-                break;
-            case BUTTON_1_ON:
-                addCommand(InputMessage(START_MOVE_UP, message->x, message->y));
-                break;
-            case BUTTON_2_ON:
-                addCommand(InputMessage(START_MOVE_DOWN, message->x, message->y));
-                break;
-            case BUTTON_3_ON:
-                addCommand(InputMessage(START_MOVE_LEFT, message->x, message->y));
-                break;
-            case BUTTON_4_ON:
-                addCommand(InputMessage(START_MOVE_RIGHT, message->x, message->y));
-                break;
-            case BUTTON_1_OFF:
-                addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
-                break;
-            case BUTTON_2_OFF:
-                addCommand(InputMessage(STOP_MOVE_DOWN, message->x, message->y));
-                break;
-            case BUTTON_3_OFF:
-                addCommand(InputMessage(STOP_MOVE_LEFT, message->x, message->y));
-                break;
-            case BUTTON_4_OFF:
-                addCommand(InputMessage(STOP_MOVE_RIGHT, message->x, message->y));
-                break;
-            default:
-                break;
-            }
+    
+    controllerInterface->populateMessageQueue();
+    while (controllerInterface->getNextMessage(message)) {
+        switch (message->id)
+        {
+        case END_SCENE:
+            endScene();
+            break;
+        case SELECT_ON:
+            addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
+            break;
+        case BUTTON_2_ON:
+            addCommand(InputMessage(START_MOVE_UP, message->x, message->y));
+            break;
+        case BUTTON_3_ON:
+            addCommand(InputMessage(START_MOVE_DOWN, message->x, message->y));
+            break;
+        case BUTTON_4_ON:
+            addCommand(InputMessage(START_MOVE_LEFT, message->x, message->y));
+            break;
+        case BUTTON_5_ON:
+            addCommand(InputMessage(START_MOVE_RIGHT, message->x, message->y));
+            break;
+        case BUTTON_2_OFF:
+            addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
+            break;
+        case BUTTON_3_OFF:
+            addCommand(InputMessage(STOP_MOVE_DOWN, message->x, message->y));
+            break;
+        case BUTTON_4_OFF:
+            addCommand(InputMessage(STOP_MOVE_LEFT, message->x, message->y));
+            break;
+        case BUTTON_5_OFF:
+            addCommand(InputMessage(STOP_MOVE_RIGHT, message->x, message->y));
+            break;
+        default:
+            break;
         }
     }
     delete message;

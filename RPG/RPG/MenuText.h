@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
 #include "GameScene.h"
+#include "UiElement.h"
 
-class MenuText
+class MenuText : public UiElement
 {
 public:
     //attributes

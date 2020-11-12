@@ -1,10 +1,10 @@
 #include "MenuButton.h"
 
-MenuButton::MenuButton() : Sprite() {
+MenuButton::MenuButton() : UiElement() {
     init();
 }
 
-MenuButton::MenuButton(int spriteTextureKey, GameScene* gameScene) : Sprite(spriteTextureKey, gameScene){
+MenuButton::MenuButton(int spriteTextureKey, GameScene* gameScene) : UiElement(spriteTextureKey, gameScene){
     init();
     scene = gameScene;
 }
@@ -16,14 +16,19 @@ void MenuButton::init() {
     textTextureKey = -1;
 }
 
-//MenuButton::~MenuButton() {
-//    scene = NULL;
-//    text = "";
-//    textXoffset = textYoffset = 0;
-//}
+//public methods
+bool MenuButton::handleInput(InputMessage* message) {
+    bool messageConsumed = false;
+    if (pointCollision(message->x, message->y))
+    {
+        messageConsumed = true;
+        onClick();        
+    }
+    return messageConsumed;
+}
 
 void MenuButton::draw() {
-    Sprite::draw();
+    UiElement::draw();
     if (!textTextureKey != -1)
     {
         scene->renderTexture(textTextureKey, xpos + textXoffset, ypos + textYoffset, textWidth, textHeight);

@@ -54,33 +54,29 @@ void GameMenu::draw() {
     SDL_SetRenderDrawColor(engine->getMainRenderer(), r, g, b, a);
     SDL_RenderFillRect(engine->getMainRenderer(), &fillRect);
 
-    for (size_t i = 0; i < buttons.size(); i++)
+    for (size_t i = 0; i < elements.size(); i++)
     {
-        buttons[i]->draw();
-    }
-
-    for (size_t i = 0; i < texts.size(); i++)
-    {
-        texts[i]->draw();
+        elements[i]->draw();
     }
 }
 
 bool GameMenu::handleInput(InputMessage* message) {
+    bool messageConsumed = false;
     switch (message->id)
     {
     case SELECT_ON:
-        for (size_t i = 0; i < buttons.size(); i++)
+        for (size_t i = 0; i < elements.size(); i++)
         {
-            if (buttons[i]->pointCollision(message->x, message->y)) {
-                buttons[i]->onClick();
-                return true;
+            if (elements[i]->handleInput(message))
+            {
+                messageConsumed = true;
             }
         }
         break;
     default:
         break;
     }
-    return false;
+    return messageConsumed;
 }
 
 

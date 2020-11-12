@@ -27,10 +27,11 @@ void RpgKeysMouseController::populateMessageQueue() {
             switch (e.button.button)
             {
             case SDL_BUTTON_LEFT:
+                selectOn = true;
                 addMessage(InputMessage(SELECT_ON, x, y));
                 break;
             case SDL_BUTTON_RIGHT:
-                addMessage(InputMessage(BUTTON_5_ON, x, y));
+                addMessage(InputMessage(BUTTON_1_ON, x, y));
                 break;
             default:
                 break;
@@ -40,10 +41,11 @@ void RpgKeysMouseController::populateMessageQueue() {
             switch (e.button.button)
             {
             case SDL_BUTTON_LEFT:
+                selectOn = false;
                 addMessage(InputMessage(SELECT_OFF, x, y));
                 break;
             case SDL_BUTTON_RIGHT:
-                addMessage(InputMessage(BUTTON_5_OFF, x, y));
+                addMessage(InputMessage(BUTTON_1_OFF, x, y));
                 break;
             default:
                 break;
@@ -52,35 +54,44 @@ void RpgKeysMouseController::populateMessageQueue() {
         case SDL_MOUSEMOTION:
             addMessage(InputMessage(POINTER_MOVEMENT, x, y));
             break;
+        case SDL_MOUSEWHEEL:
+            if (e.wheel.y > 0) {
+                addTextInput(InputMessage(SCROLL_UP, x, y));
+            }
+            else if (e.wheel.y < 0)
+            {
+                addTextInput(InputMessage(SCROLL_DOWN, x, y));
+            }
+            break;
         case SDL_KEYDOWN:
             switch (e.key.keysym.sym) {
             case SDLK_w:
-                addMessage(InputMessage(BUTTON_1_ON));
+                addMessage(InputMessage(BUTTON_2_ON, x, y));
                 break;
             case SDLK_s:
-                addMessage(InputMessage(BUTTON_2_ON));
+                addMessage(InputMessage(BUTTON_3_ON, x, y));
                 break;
             case SDLK_a:
-                addMessage(InputMessage(BUTTON_3_ON));
+                addMessage(InputMessage(BUTTON_4_ON, x, y));
                 break;
             case SDLK_d:
-                addMessage(InputMessage(BUTTON_4_ON));
+                addMessage(InputMessage(BUTTON_5_ON, x, y));
                 break;
             }
             break;
         case SDL_KEYUP:
             switch (e.key.keysym.sym) {
             case SDLK_w:
-                addMessage(InputMessage(BUTTON_1_OFF));
+                addMessage(InputMessage(BUTTON_2_OFF, x, y));
                 break;
             case SDLK_s:
-                addMessage(InputMessage(BUTTON_2_OFF));
+                addMessage(InputMessage(BUTTON_3_OFF, x, y));
                 break;
             case SDLK_a:
-                addMessage(InputMessage(BUTTON_3_OFF));
+                addMessage(InputMessage(BUTTON_4_OFF, x, y));
                 break;
             case SDLK_d:
-                addMessage(InputMessage(BUTTON_4_OFF));
+                addMessage(InputMessage(BUTTON_5_OFF, x, y));
                 break;
             }
             break;

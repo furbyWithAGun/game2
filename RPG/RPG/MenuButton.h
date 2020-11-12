@@ -1,10 +1,10 @@
 #pragma once
-#include "Sprite.h"
+#include "UiElement.h"
 #include "GameScene.h"
 
 //class BaseGameEngine;
 
-class MenuButton: public Sprite
+class MenuButton: public UiElement
 {
 public:
     //attributes
@@ -21,6 +21,7 @@ public:
     //~MenuButton();
 
     //methods
+    bool handleInput(InputMessage* message);
     virtual void onClick() {};
     void draw();
     void setText(std::string newText);

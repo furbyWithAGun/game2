@@ -6,22 +6,22 @@ MenuText::MenuText()
     init();
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos) {
+MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos) : UiElement() {
     init(newScene, newText, xpos, ypos);
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos)
+MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos): UiElement()
 {
     init(newScene, newText, xpos, ypos);
     colour = textColour;
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight)
+MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight) : UiElement(SDL_Color {0, 0, 0}, newScene, xpos, ypos, newWidth, newHeight)
 {
     init(newScene, newText, xpos, ypos, newWidth, newHeight);
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight)
+MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight) : UiElement(textColour, newScene, xpos, ypos, newWidth, newHeight)
 {
     init(newScene, newText, xpos, ypos, newWidth, newHeight);
     colour = textColour;
@@ -63,9 +63,9 @@ void MenuText::draw()
 {
     if (width != -1 && height != -1)
     {
-        scene->engine->renderText(text, x, y, width, height, colour);
+        scene->engine->renderText(text, xpos, ypos, width, height, colour);
     }
     else {
-        scene->engine->renderText(text, x, y, colour);
+        scene->engine->renderText(text, xpos, ypos, colour);
     }
 }

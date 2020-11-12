@@ -5,6 +5,7 @@
 #include "RpgGameConstants.h"
 
 //TODO:
+//create UiElement class - all UI Elements will inherit from it
 // create panel UI class
 // create scrollbox UI class
 // create text input UI class

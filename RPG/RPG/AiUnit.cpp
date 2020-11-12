@@ -39,8 +39,28 @@ void AiUnit::update() {
 void AiUnit::randomMovement() {
     if (leftToMove == 0 && scene->engine->randomDouble() <= chanceToMoveEachTick)
     {
-        startMovement(scene->engine->randomInt(UP, RIGHT));
-        setUnitState(UNIT_MOVING);
+        int randomDirection = scene->engine->randomInt(UP, RIGHT);
+        switch (randomDirection)
+        {
+        case UP:
+            handleInput(&InputMessage(START_MOVE_UP));
+            handleInput(&InputMessage(STOP_MOVE_UP));
+            break;
+        case DOWN:
+            handleInput(&InputMessage(START_MOVE_DOWN));
+            handleInput(&InputMessage(STOP_MOVE_DOWN));
+            break;
+        case LEFT:
+            handleInput(&InputMessage(START_MOVE_LEFT));
+            handleInput(&InputMessage(STOP_MOVE_LEFT));
+            break;
+        case RIGHT:
+            handleInput(&InputMessage(START_MOVE_RIGHT));
+            handleInput(&InputMessage(STOP_MOVE_RIGHT));
+            break;
+        default:
+            break;
+        }
     }
 }
 

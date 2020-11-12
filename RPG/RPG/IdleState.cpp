@@ -29,18 +29,22 @@ int IdleState::handleInput(InputMessage* message) {
         break;
     case START_MOVE_UP:
         unit->movingUp = true;
+        unit->startMovement(UP);
         return UNIT_MOVING;
         break;
     case START_MOVE_DOWN:
         unit->movingDown = true;
+        unit->startMovement(DOWN);
         return UNIT_MOVING;
         break;
     case START_MOVE_LEFT:
         unit->movingLeft = true;
+        unit->startMovement(LEFT);
         return UNIT_MOVING;
         break;
     case START_MOVE_RIGHT:
         unit->movingRight = true;
+        unit->startMovement(RIGHT);
         return UNIT_MOVING;
         break;
     default:

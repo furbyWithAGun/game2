@@ -9,6 +9,8 @@ enum BASIC_INPUT_MESSAGES {
     SELECT_OFF,
     KEY_INPUT,
     POINTER_STATE,
+    SCROLL_UP,
+    SCROLL_DOWN,
     NUM_BASIC_MESSAGES
 };
 
@@ -19,6 +21,7 @@ public:
     std::vector<InputMessage*> messageQueue;
     std::vector<InputMessage*> textInputQueue;
     int latestXpos, latestYpos;
+    bool selectOn;
 
     //constructors
     ControllerInterface();

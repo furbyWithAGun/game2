@@ -161,6 +161,8 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InputMessage.cpp" />
+    <ClCompile Include="MapBuilderPortalButton.cpp" />
+    <ClCompile Include="MapBuilderTileButton.cpp" />
     <ClCompile Include="MapTile.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="MenuText.cpp" />
@@ -170,17 +172,19 @@
     <ClCompile Include="RpgKeysMouseController.cpp" />
     <ClCompile Include="RpgOverWorldScene.cpp" />
     <ClCompile Include="RpgWorldBuilderScene.cpp" />
-    <ClCompile Include="RpgWorldBuilderSceneMenus.cpp" />
     <ClCompile Include="SaveAttribute.cpp" />
+    <ClCompile Include="SaveMapBuilderButton.cpp" />
     <ClCompile Include="SaveObject.cpp" />
     <ClCompile Include="SaveFile.cpp" />
-    <ClCompile Include="RpgWorldBuilderSceneButtons.cpp" />
+    <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileGridScene.cpp" />
+    <ClCompile Include="UiElement.cpp" />
     <ClCompile Include="UiPanel.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitState.cpp" />
+    <ClCompile Include="ZoneBuilderMenu.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
     <ClCompile Include="ZonePortal.cpp" />
   </ItemGroup>
@@ -198,6 +202,8 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InputMessage.h" />
+    <ClInclude Include="MapBuilderPortalButton.h" />
+    <ClInclude Include="MapBuilderTileButton.h" />
     <ClInclude Include="MapTile.h" />
     <ClInclude Include="MenuButton.h" />
     <ClInclude Include="MenuText.h" />
@@ -209,14 +215,18 @@
     <ClInclude Include="RpgOverWorldScene.h" />
     <ClInclude Include="RpgWorldBuilderScene.h" />
     <ClInclude Include="SaveAttribute.h" />
+    <ClInclude Include="SaveMapBuilderButton.h" />
     <ClInclude Include="SaveObject.h" />
     <ClInclude Include="SaveFile.h" />
+    <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileGridScene.h" />
+    <ClInclude Include="UiElement.h" />
     <ClInclude Include="UiPanel.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitState.h" />
+    <ClInclude Include="ZoneBuilderMenu.h" />
     <ClInclude Include="ZoneMap.h" />
     <ClInclude Include="ZonePortal.h" />
   </ItemGroup>

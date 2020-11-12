@@ -55,7 +55,10 @@ bool GameScene::sendMessageToMenus(InputMessage* message)
 {
     bool messageConsumed = false;
     for (auto menu : menus){
-        messageConsumed = menu.second->handleInput(message);
+        if (!messageConsumed)
+        {
+            messageConsumed = menu.second->handleInput(message);
+        }
     }
     return messageConsumed;
 }
