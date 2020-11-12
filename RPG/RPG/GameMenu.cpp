@@ -1,4 +1,8 @@
 #include "GameMenu.h"
+#include "MenuButton.h"
+#include "Sprite.h"
+#include "BaseGameEngine.h"
+#include "MenuText.h"
 
 GameMenu::GameMenu() {
     init();
@@ -61,32 +65,22 @@ void GameMenu::draw() {
     }
 }
 
-void GameMenu::handleEvent(SDL_Event * e) {
-    //handle event based on type
-    switch (e->type)
+bool GameMenu::handleInput(InputMessage* message) {
+    switch (message->id)
     {
-    case SDL_MOUSEBUTTONDOWN:
-        switch (e->button.button) 
+    case SELECT_ON:
+        for (size_t i = 0; i < buttons.size(); i++)
         {
-        case SDL_BUTTON_LEFT:
-            int x, y;
-            SDL_GetMouseState(&x, &y);
-            for (size_t i = 0; i < buttons.size(); i++)
-            {
-                if (buttons[i]->pointCollision(x, y)) {
-                    buttons[i]->onClick();
-                }
+            if (buttons[i]->pointCollision(message->x, message->y)) {
+                buttons[i]->onClick();
+                return true;
             }
-            break;
-        case SDL_BUTTON_RIGHT:
-            break;
-        default:
-            break;
         }
         break;
     default:
         break;
     }
+    return false;
 }
 
 

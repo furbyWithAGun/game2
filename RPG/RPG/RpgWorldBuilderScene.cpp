@@ -7,6 +7,7 @@
 //constants
 const int DEFAULT_DESIRED_TILES_DOWN = 10;
 const int DEFAULT_DESIRED_TILES_ACROSS = 19;
+const int SCROLL_SPEED = 4;
 
 //constructor
 RpgWorldBuilderScene::RpgWorldBuilderScene() : TileGridScene(){
@@ -21,10 +22,11 @@ RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : TileGr
 void RpgWorldBuilderScene::init() {
     engine = NULL;
     tileBeingPlaced = NULL;
-    leftButtonClicked = false;
+    selectOn = false;
     placingTile = false;
     placingPortal = false;
     portalBeingPlaced = -1;
+    controllerInterface = new RpgKeysMouseController();
 }
 
 void RpgWorldBuilderScene::declareSceneAssets() {
@@ -46,154 +48,110 @@ void RpgWorldBuilderScene::setUpScene() {
 }
 
 void RpgWorldBuilderScene::handleInput() {
-    SDL_Event e;
-    int x, y;
-    int k[2];
-
-    SDL_GetMouseState(&x, &y);
-    if (x < engine->screenWidth * 0.01) {
-        xOffset += 2;
-    }
-    if (x > engine->screenWidth * 0.99) {
-        xOffset -= 2;
-    }
-    if (y < engine->screenHeight * 0.01) {
-        yOffset += 2;
-    }
-    if (y > engine->screenHeight * 0.99) {
-        yOffset -= 2;
-    }
-
-    //Handle events on queue
-    while (SDL_PollEvent(&e) != 0)
-    {
-        for (auto menu : menus)
+    TileGridScene::handleInput();
+    int tileCoords[2];
+    InputMessage* message = new InputMessage();
+    controllerInterface->populateMessageQueue();
+    bool messageConsumedByMenus = false;
+    while (controllerInterface->getNextMessage(message)) {
+        if (!sendMessageToMenus(message))
         {
-            if (menu.second->isActive)
+            switch (message->id)
             {
-                menu.second->handleEvent(&e);
+            case END_SCENE:
+                endScene();
+                return;
+                break;
+            case SELECT_ON:
+                selectOn = true;
+                if (placingTile && coordsAreOnDisplayedMapTile(message->x, message->y))
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    addCommand(InputMessage(PLACE_TILE, tileCoords[0], tileCoords[1], tileBeingPlaced->textureKey));
+                }
+                if (placingPortal && coordsAreOnDisplayedMapTile(message->x, message->y))
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));
+                }
+                break;
+            case SELECT_OFF:
+                selectOn = false;
+                break;
+            case POINTER_MOVEMENT:
+                if (placingTile && coordsAreOnDisplayedMapTile(message->x, message->y) && selectOn)
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    addCommand(InputMessage(PLACE_TILE, tileCoords[0], tileCoords[1], tileBeingPlaced->textureKey));
+                }
+                if (placingPortal && coordsAreOnDisplayedMapTile(message->x, message->y) && selectOn)
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));
+                }
+                break;
+            default:
+                break;
             }
         }
-        switch (e.type)
-        {
-        case SDL_QUIT:
-            endScene();
-            break;
-        case SDL_MOUSEBUTTONDOWN:
-            switch (e.button.button)
-            {
-            case SDL_BUTTON_LEFT:
-                leftButtonClicked = true;
-                if (placingTile)
-                {
-                    if (coordsAreOnDisplayedMapTile(x, y))
-                    {
-                        getTileIndexFromScreenCoords(x, y, k);
-                        currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
-                    }
-                }
-                if (placingPortal)
-                {
-                    if (coordsAreOnDisplayedMapTile(x, y))
-                    {
-                        getTileIndexFromScreenCoords(x, y, k);
-                        currentZone.addZonePortal(portalBeingPlaced, { k[0], k[1] }, 0, {0, 0});
-                    }
-                }
-                break;
-            default:
-                break;
-            }
+    }
+    delete message;
+}
 
+void RpgWorldBuilderScene::sceneLogic() {
+    //handle commands
+    InputMessage* message = new InputMessage();
+    while (getNextCommand(message)) {
+        switch (message->id)
+        {
+        case PLACE_TILE:
+            currentZone.tileMap[message->y][message->x] = message->misc;
             break;
-        case SDL_MOUSEBUTTONUP:
-            switch (e.button.button)
-            {
-            case SDL_BUTTON_LEFT:
-                leftButtonClicked = false;
-                break;
-            default:
-                break;
-            }
-            break;
-        case SDL_MOUSEMOTION:
-            SDL_GetMouseState(&x, &y);
-            if (placingTile)
-            {
-                if (coordsAreOnDisplayedMapTile(x, y) && leftButtonClicked)
-                {
-                    getTileIndexFromScreenCoords(x, y, k);
-                    currentZone.tileMap[k[1]][k[0]] = tileBeingPlaced->textureKey;
-                }
-            }
-            if (placingPortal)
-            {
-                if (coordsAreOnDisplayedMapTile(x, y) && leftButtonClicked)
-                {
-                    getTileIndexFromScreenCoords(x, y, k);
-                    currentZone.addZonePortal(portalBeingPlaced, { k[0], k[1] }, 0, { 0, 0 });
-                }
-            }
-            break;
-        case SDL_KEYDOWN:
-            switch (e.key.keysym.sym) {
-            case SDLK_w:
-                break;
-            case SDLK_s:
-                break;
-            case SDLK_a:
-                break;
-            case SDLK_d:
-                break;
-            }
-            break;
-        case SDL_KEYUP:
-            switch (e.key.keysym.sym) {
-            case SDLK_w:
-                break;
-            case SDLK_s:
-                break;
-            case SDLK_a:
-                break;
-            case SDLK_d:
-                break;
-            }
+        case PLACE_PORTAL:
+            currentZone.addZonePortal(message->misc, { message->x, message->y }, 0, { 0, 0 });
             break;
         default:
             break;
         }
     }
-}
-
-void RpgWorldBuilderScene::sceneLogic() {
+    delete message;
 }
 
 void RpgWorldBuilderScene::renderScene() {
+    scrollCamera();
+    int tileCoords[2], screenCoords[2];
     TileGridScene::renderScene();
 
-    //draw tile being placed
-    if (placingTile)
+    if (placingTile && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos))
     {
-        int x, y;
-        int k[2], l[2];
-        SDL_GetMouseState(&x, &y);
-        getTileIndexFromScreenCoords(x, y, k);
-        coordsFromTileIndex(k[0], k[1], l);
-        if (coordsAreOnDisplayedMapTile(x, y)) {
-            renderTexture(tileBeingPlaced->textureKey, l[0], l[1], tileWidth, tileHeight);
-        }
+        getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
+        coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
+        renderTexture(tileBeingPlaced->textureKey, screenCoords[0], screenCoords[1], tileWidth, tileHeight);
     }
 
-    //draw portal being placed
-    if (placingPortal)
+    if (placingPortal && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos))
     {
-        int x, y;
-        int k[2], l[2];
-        SDL_GetMouseState(&x, &y);
-        getTileIndexFromScreenCoords(x, y, k);
-        coordsFromTileIndex(k[0], k[1], l);
-        if (coordsAreOnDisplayedMapTile(x, y)) {
-            renderTexture(portalBeingPlaced, l[0], l[1], tileWidth, tileHeight);
-        }
+        getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
+        coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
+        renderTexture(portalBeingPlaced, screenCoords[0], screenCoords[1], tileWidth, tileHeight);
+    }
+}
+
+void RpgWorldBuilderScene::scrollCamera() {
+    int x, y;
+    x = controllerInterface->latestXpos;
+    y = controllerInterface->latestYpos;
+
+    if (x < engine->screenWidth * 0.01) {
+        xOffset += SCROLL_SPEED;
+    }
+    if (x > engine->screenWidth * 0.99) {
+        xOffset -= SCROLL_SPEED;
+    }
+    if (y < engine->screenHeight * 0.01) {
+        yOffset += SCROLL_SPEED;
+    }
+    if (y > engine->screenHeight * 0.99) {
+        yOffset -= SCROLL_SPEED;
     }
 }

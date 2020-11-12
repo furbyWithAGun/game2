@@ -1,2 +1,10 @@
-﻿  Game.cpp
-  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  RpgWorldBuilderScene.cpp
+D:\coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(18,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(19,125): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(50,92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(61,92): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(67,30): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\RpgWorldBuilderSceneMenus.cpp(68,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  RpgWorldBuilderSceneButtons.cpp
+  Generating Code...
+  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe

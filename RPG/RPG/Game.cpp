@@ -11,6 +11,7 @@
 //rework the input rework XD. Need to have 2 layers.. One to translate SDL events into generic events, and another to translate events into commands. 
 //      - layer one is specific to input type. (keyboard/mouse, gamepad, etc)
 //      - layer two is specific to each scene
+// have controller interface track button states (have buttonPressed be a bool attribute)
 // finish Portal creation of world builder scene
 // rework how scenes track and load scenes (need a map of <id, zoneMap*>)
 // implement zone swiching via portals
@@ -44,8 +45,8 @@ int main(int argc, char* args[])
     RpgOverWorldScene ows = RpgOverWorldScene(&engine);
     engine.addScene(WORLD_BUILDER, &wbs);
     engine.addScene(OVERWORLD, &ows);
-    //engine.setNextScene(WORLD_BUILDER);
-    engine.setNextScene(OVERWORLD);
+    engine.setNextScene(WORLD_BUILDER);
+    //engine.setNextScene(OVERWORLD);
     engine.startMainGameLoop();
 
     //terminate the engine

@@ -6,6 +6,7 @@
 #include "GameMenu.h"
 #include "ZoneMap.h"
 #include "RpgGameConstants.h"
+#include "RpgKeysMouseController.h"
 
 class BaseGameEngine;
 
@@ -15,7 +16,7 @@ public:
     //attributes
     BaseGameEngine* engine;
     bool placingTile;
-    bool leftButtonClicked;
+    bool selectOn;
     MapTile* tileBeingPlaced;
     bool placingPortal;
     int portalBeingPlaced;
@@ -36,5 +37,6 @@ private:
 
     //methods
     void init();
+    void scrollCamera();
 };
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "ControllerInterface.h"
 
 //constants
 const std::string GAME_TITLE = "RPG";
@@ -103,6 +104,38 @@ enum DIRECTIONS {
 enum SCENES {
     WORLD_BUILDER,
     OVERWORLD
+};
+
+enum RPG_INPUTS {
+    BUTTON_1_ON = NUM_BASIC_MESSAGES + 1,
+    BUTTON_1_OFF,
+    BUTTON_2_ON,
+    BUTTON_2_OFF,
+    BUTTON_3_ON,
+    BUTTON_3_OFF,
+    BUTTON_4_ON,
+    BUTTON_4_OFF,
+    BUTTON_5_ON,
+    BUTTON_5_OFF,
+    POINTER_MOVEMENT,
+    NUM_RPG_INPUTS
+};
+
+enum WORLD_BUILDER_INPUT_COMMANDS {
+    PLACE_TILE = NUM_RPG_INPUTS + 1,
+    PLACE_PORTAL,
+};
+
+enum OVERWORLD_INPUT_COMMANDS {
+    PERFORM_MAIN_ATTACK = NUM_RPG_INPUTS + 1,
+    START_MOVE_UP,
+    START_MOVE_DOWN,
+    START_MOVE_RIGHT,
+    START_MOVE_LEFT,
+    STOP_MOVE_UP,
+    STOP_MOVE_DOWN,
+    STOP_MOVE_RIGHT,
+    STOP_MOVE_LEFT
 };
 
 enum UNIT_TYPES {

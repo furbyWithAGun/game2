@@ -177,9 +177,6 @@
     <ClCompile Include="ControllerInterface.cpp">
       <Filter>Source Files\gameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="RpgOverWorldSceneKeysMouseController.cpp">
-      <Filter>Source Files\RpgGame\scenes\overWorldScene</Filter>
-    </ClCompile>
     <ClCompile Include="CombatText.cpp">
       <Filter>Source Files\RpgGame</Filter>
     </ClCompile>
@@ -188,6 +185,9 @@
     </ClCompile>
     <ClCompile Include="UiPanel.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgKeysMouseController.cpp">
+      <Filter>Source Files\RpgGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -281,9 +281,6 @@
     <ClInclude Include="ControllerInterface.h">
       <Filter>Header Files\gameEngine</Filter>
     </ClInclude>
-    <ClInclude Include="RpgOverWorldSceneKeysMouseController.h">
-      <Filter>Header Files\RpgGame\scenes\overWorldScene</Filter>
-    </ClInclude>
     <ClInclude Include="CombatText.h">
       <Filter>Header Files\RpgGame</Filter>
     </ClInclude>
@@ -292,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="UiPanel.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgKeysMouseController.h">
+      <Filter>Header Files\RpgGame</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

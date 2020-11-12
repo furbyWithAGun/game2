@@ -13,8 +13,7 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene
 }
 
 void RpgOverWorldScene::init() {
-    wKeyDown = sKeyDown = dKeyDown = aKeyDown = false;
-    controllerInterface = new RpgOverWorldSceneKeysMouseController();
+    controllerInterface = new RpgKeysMouseController();
 }
 
 void RpgOverWorldScene::declareSceneAssets()
@@ -62,16 +61,82 @@ void RpgOverWorldScene::setUpScene()
 void RpgOverWorldScene::handleInput()
 {
     InputMessage* message = new InputMessage();
-    controllerInterface->populateMessageQueue();
-    while (controllerInterface->getNextMessage(message)) {
-        switch (message->id)
-        {
-        case END_SCENE:
-            endScene();
-            break;
-        default:
-            player->handleInput(message);
-            break;
+    if (gettingTextInput)
+    {
+        controllerInterface->populateTextInputQueue();
+        while (controllerInterface->getNextTextInput(message)) {
+            switch (message->id)
+            {
+            case END_SCENE:
+                endScene();
+                return;
+                break;
+            case K_ESC:
+                gettingTextInput = false;
+                return;
+                break;
+            case KEY_INPUT:
+                for (auto menu : menus)
+                {
+                    if (menu.second->isActive)
+                    {
+                        menu.second->handleInput(message);
+                    }
+                }
+                break;
+            case SELECT_ON:
+                for (auto menu : menus)
+                {
+                    if (menu.second->isActive)
+                    {
+                        menu.second->handleInput(message);
+                    }
+                }
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    else {
+        controllerInterface->populateMessageQueue();
+        while (controllerInterface->getNextMessage(message)) {
+            switch (message->id)
+            {
+            case END_SCENE:
+                endScene();
+                return;
+                break;
+            case SELECT_ON:
+                addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
+                break;
+            case BUTTON_1_ON:
+                addCommand(InputMessage(START_MOVE_UP, message->x, message->y));
+                break;
+            case BUTTON_2_ON:
+                addCommand(InputMessage(START_MOVE_DOWN, message->x, message->y));
+                break;
+            case BUTTON_3_ON:
+                addCommand(InputMessage(START_MOVE_LEFT, message->x, message->y));
+                break;
+            case BUTTON_4_ON:
+                addCommand(InputMessage(START_MOVE_RIGHT, message->x, message->y));
+                break;
+            case BUTTON_1_OFF:
+                addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
+                break;
+            case BUTTON_2_OFF:
+                addCommand(InputMessage(STOP_MOVE_DOWN, message->x, message->y));
+                break;
+            case BUTTON_3_OFF:
+                addCommand(InputMessage(STOP_MOVE_LEFT, message->x, message->y));
+                break;
+            case BUTTON_4_OFF:
+                addCommand(InputMessage(STOP_MOVE_RIGHT, message->x, message->y));
+                break;
+            default:
+                break;
+            }
         }
     }
     delete message;
@@ -81,6 +146,13 @@ void RpgOverWorldScene::sceneLogic()
 {
     //call base class logic
     TileGridScene::sceneLogic();
+
+    //handle commands
+    InputMessage* message = new InputMessage();
+    while (getNextCommand(message)) {
+        player->handleInput(message);
+    }
+    delete message;
 }
 
 void RpgOverWorldScene::renderScene()

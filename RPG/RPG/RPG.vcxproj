@@ -167,8 +167,8 @@
     <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Rat.cpp" />
+    <ClCompile Include="RpgKeysMouseController.cpp" />
     <ClCompile Include="RpgOverWorldScene.cpp" />
-    <ClCompile Include="RpgOverWorldSceneKeysMouseController.cpp" />
     <ClCompile Include="RpgWorldBuilderScene.cpp" />
     <ClCompile Include="RpgWorldBuilderSceneMenus.cpp" />
     <ClCompile Include="SaveAttribute.cpp" />
@@ -205,8 +205,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Rat.h" />
     <ClInclude Include="RpgGameConstants.h" />
+    <ClInclude Include="RpgKeysMouseController.h" />
     <ClInclude Include="RpgOverWorldScene.h" />
-    <ClInclude Include="RpgOverWorldSceneKeysMouseController.h" />
     <ClInclude Include="RpgWorldBuilderScene.h" />
     <ClInclude Include="SaveAttribute.h" />
     <ClInclude Include="SaveObject.h" />

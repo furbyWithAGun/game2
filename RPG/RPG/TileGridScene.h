@@ -48,7 +48,6 @@ protected:
     int backDropTileKey;
     int desiredTilesAcross;
     int desiredTilesDown;
-    std::unordered_map<int, GameMenu *> menus;
     std::vector<Unit *> units;
 
     //methods

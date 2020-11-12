@@ -1,6 +1,7 @@
 #pragma once
 #include "RpgWorldBuilderScene.h"
 #include "BaseGameEngine.h"
+#include "MenuButton.h"
 
 class MapBuilderTileButton : public MenuButton {
 public:
@@ -35,6 +36,7 @@ public:
     //methods
     void onClick() {
         scene->placingTile = true;
+        scene->placingPortal = false;
         scene->tileBeingPlaced = tile;
     }
 };
@@ -72,6 +74,7 @@ public:
     //methods
     void onClick() {
         scene->placingPortal = true;
+        scene->placingTile = false;
         scene->portalBeingPlaced = portalKey;
     }
 };

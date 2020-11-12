@@ -1,5 +1,6 @@
 #pragma once
 #include "RpgWorldBuilderSceneButtons.cpp"
+#include "MenuText.h"
 
 
 class ZoneBuilderMenu : public GameMenu {
@@ -19,26 +20,18 @@ public:
     }
 
     //methods
-    void handleEvent(SDL_Event* e) {
-        switch (e->type)
+    bool handleInput(InputMessage* message) {
+        switch (message->id)
         {
-        case SDL_MOUSEBUTTONDOWN:
-            switch (e->button.button)
-            {
-            case SDL_BUTTON_LEFT:
-                break;
-            case SDL_BUTTON_RIGHT:
-                scene->placingTile = false;
-                scene->placingPortal = false;
-                break;
-            default:
-                break;
-            }
+        case BUTTON_5_ON:
+            scene->placingTile = false;
+            scene->placingPortal = false;
             break;
         default:
             break;
         }
-        GameMenu::handleEvent(e);
+        
+        return GameMenu::handleInput(message);
     }
 
 private:

@@ -1,8 +1,11 @@
 #pragma once
-#include "Sprite.h"
-#include "BaseGameEngine.h"
-#include "MenuButton.h"
-#include "MenuText.h"
+#include <vector>
+
+
+class MenuButton;
+class MenuText;
+class BaseGameEngine;
+class InputMessage;
 
 class GameMenu
 {
@@ -22,7 +25,7 @@ public:
     //methods
     void setRGBA(int newR, int newG, int newB, int newA);
     virtual void draw();
-    virtual void handleEvent(SDL_Event * e);
+    virtual bool handleInput(InputMessage* message);
 
 protected:
     //attributes

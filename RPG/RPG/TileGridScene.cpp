@@ -48,7 +48,7 @@ void TileGridScene::setUpScene()
 
 void TileGridScene::handleInput()
 {
-
+    GameScene::handleInput();
 }
 
 void TileGridScene::sceneLogic()
