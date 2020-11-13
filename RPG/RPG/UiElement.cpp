@@ -8,6 +8,14 @@ UiElement::UiElement(int spriteTextureKey, GameScene* gameScene) : Sprite(sprite
 {
 }
 
+UiElement::UiElement(int spriteTextureKey, GameScene* gameScene, int xpos, int ypos) : Sprite(spriteTextureKey, gameScene, xpos, ypos)
+{
+}
+
+UiElement::UiElement(SDL_Color textColour, GameScene* gameScene, int xpos, int ypos) : Sprite(textColour, gameScene, xpos, ypos)
+{
+}
+
 UiElement::UiElement(int spriteTextureKey, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(spriteTextureKey, gameScene, xpos, ypos, elementWidth, elementHeight)
 {
 }

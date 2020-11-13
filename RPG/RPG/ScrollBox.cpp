@@ -20,10 +20,10 @@ void ScrollBox::init()
     displayIndex = 0;
     arrowMoreColour = DEFAULT_ARROW_MORE_COLOUR;
     arrowEndColour = DEFAULT_ARROW_END_COLOUR;
-    upArrowEnd = Sprite(arrowEndColour, scene, xpos + width / 2, ypos, width * scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
-    upArrowMore = Sprite(arrowMoreColour, scene, xpos + width / 2, ypos, width * scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
-    downArrowEnd = Sprite(arrowEndColour, scene, xpos + width / 2, ypos + height - scene->engine->screenHeight * 0.02, width * scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
-    downArrowMore = Sprite(arrowMoreColour, scene, xpos + width / 2, ypos + height - scene->engine->screenHeight * 0.02, width * scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
+    upArrowEnd = Sprite(arrowEndColour, scene, xpos + (width - scene->engine->screenWidth * 0.02) / 2, ypos, scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
+    upArrowMore = Sprite(arrowMoreColour, scene, xpos + (width - scene->engine->screenWidth * 0.02) / 2, ypos, scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
+    downArrowEnd = Sprite(arrowEndColour, scene, xpos + (width - scene->engine->screenWidth * 0.02) / 2, ypos + height - scene->engine->screenHeight * 0.02, scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
+    downArrowMore = Sprite(arrowMoreColour, scene, xpos + (width - scene->engine->screenWidth * 0.02) / 2, ypos + height - scene->engine->screenHeight * 0.02, scene->engine->screenWidth * 0.02, scene->engine->screenHeight * 0.02);
 }
 
 void ScrollBox::addElement(UiElement* newElement)
@@ -99,8 +99,8 @@ void ScrollBox::draw()
     {
         z += 1;
         if (i < subElements.size()) {
-            subElements[i]->xpos = xpos + scene->engine->screenWidth * 0.01;
-            subElements[i]->ypos = ypos + upArrowEnd.height + z * (height / (numElementsToDisplay + 2));
+            subElements[i]->xpos = xpos + scene->engine->screenWidth * 0.025;
+            subElements[i]->ypos = (ypos + upArrowEnd.height + z * (height / (numElementsToDisplay + 0.5)) - scene->engine->screenHeight * 0.05);
             subElements[i]->draw();
         }
     }

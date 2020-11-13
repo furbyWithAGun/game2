@@ -7,23 +7,23 @@ MenuText::MenuText()
 }
 
 MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos) : UiElement() {
-    init(newScene, newText, xpos, ypos);
+    init(newScene, newText);
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos): UiElement()
+MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos): UiElement(textColour, newScene, xpos, ypos)
 {
-    init(newScene, newText, xpos, ypos);
+    init(newScene, newText);
     colour = textColour;
 }
 
 MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight) : UiElement(SDL_Color {0, 0, 0}, newScene, xpos, ypos, newWidth, newHeight)
 {
-    init(newScene, newText, xpos, ypos, newWidth, newHeight);
+    init(newScene, newText);
 }
 
 MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight) : UiElement(textColour, newScene, xpos, ypos, newWidth, newHeight)
 {
-    init(newScene, newText, xpos, ypos, newWidth, newHeight);
+    init(newScene, newText);
     colour = textColour;
 }
 
@@ -31,22 +31,14 @@ void MenuText::init() {
     scene = NULL;
     text = "";
     colour = { 0, 0, 0 };
-    x = y = width = height = -1;
 }
 
-void MenuText::init(GameScene* newScene, std::string newText, int xpos, int ypos) {
+void MenuText::init(GameScene* newScene, std::string newText) {
     init();
     scene = newScene;
     text = newText;
-    x = xpos;
-    y = ypos;
 }
 
-void MenuText::init(GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight) {
-    init(newScene, newText, xpos, ypos);
-    width = newWidth;
-    height = newHeight;
-}
 
 void MenuText::setText(std::string newText)
 {
@@ -55,8 +47,8 @@ void MenuText::setText(std::string newText)
 
 void MenuText::setPos(int newX, int newY)
 {
-    x = newX;
-    y = newY;
+    xpos = newX;
+    ypos = newY;
 }
 
 void MenuText::draw()

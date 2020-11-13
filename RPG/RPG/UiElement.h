@@ -8,6 +8,8 @@ public:
     //constructors
     UiElement();
     UiElement(int spriteTextureKey, GameScene* gameScene);
+    UiElement(SDL_Color textColour, GameScene* gameScene, int xpos, int ypos);
+    UiElement(int spriteTextureKey, GameScene* gameScene, int xpos, int ypos);
     UiElement(int spriteTextureKey, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight);
     UiElement(SDL_Color spriteBackgroundColour, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight);
 

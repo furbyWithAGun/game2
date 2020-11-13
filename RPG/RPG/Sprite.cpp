@@ -19,6 +19,19 @@ Sprite::Sprite(SDL_Color spriteBackgroundColour, GameScene* gameScene) {
     init(spriteBackgroundColour, gameScene);
 }
 
+Sprite::Sprite(SDL_Color spriteBackgroundColour, GameScene* gameScene, int x, int y) {
+    init(spriteBackgroundColour, gameScene);
+    xpos = x;
+    ypos = y;
+}
+
+Sprite::Sprite(int spriteTextureKey, GameScene* gameScene, int x, int y) {
+    init(spriteTextureKey, gameScene);
+    xpos = x;
+    ypos = y;
+}
+
+
 Sprite::Sprite(SDL_Color spriteBackgroundColour, GameScene* gameScene, int x, int y, int spriteWidth, int spriteHeight) {
     init(spriteBackgroundColour, gameScene);
     xpos = x;
@@ -37,8 +50,8 @@ Sprite::Sprite(int spriteTextureKey, GameScene* gameScene, int x, int y, int spr
 
 void Sprite::init() {
     textureKey = -1;
-    width = 0;
-    height = 0;
+    width = -1;
+    height = -1;
     xpos = 0;
     ypos = 0;
     scene = NULL;
