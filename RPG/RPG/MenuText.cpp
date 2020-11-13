@@ -53,11 +53,14 @@ void MenuText::setPos(int newX, int newY)
 
 void MenuText::draw()
 {
-    if (width != -1 && height != -1)
+    if (active)
     {
-        scene->engine->renderText(text, xpos, ypos, width, height, colour);
-    }
-    else {
-        scene->engine->renderText(text, xpos, ypos, colour);
+        if (width != -1 && height != -1)
+        {
+            scene->engine->renderText(text, xpos, ypos, width, height, colour);
+        }
+        else {
+            scene->engine->renderText(text, xpos, ypos, colour);
+        }
     }
 }

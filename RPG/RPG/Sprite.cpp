@@ -81,13 +81,15 @@ bool Sprite::pointCollision(int x, int y) {
 }
 
 void Sprite::draw() {
-    if (drawBackground)
-    {
-        scene->engine->renderRectangle(xpos, ypos, width, height, backgroundColour.r, backgroundColour.g, backgroundColour.b);
-    }
+    if (active) {
+        if (drawBackground)
+        {
+            scene->engine->renderRectangle(xpos, ypos, width, height, backgroundColour.r, backgroundColour.g, backgroundColour.b);
+        }
 
-    if (textureKey != -1)
-    {
-        scene->renderTexture(textureKey, xpos, ypos, width, height);
+        if (textureKey != -1)
+        {
+            scene->renderTexture(textureKey, xpos, ypos, width, height);
+        }
     }
 }

@@ -204,8 +204,14 @@
     <ClCompile Include="UiElement.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
-    <ClCompile Include="ScrollBox.cpp">
+    <ClCompile Include="PortalPropertiesMenu.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollBox.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -311,22 +317,28 @@
     <ClInclude Include="UiPanel.h">
       <Filter>Header Files\gameEngine\UI</Filter>
     </ClInclude>
-    <ClInclude Include="MapBuilderTileButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapBuilderPortalButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveMapBuilderButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoneBuilderMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UiElement.h">
       <Filter>Header Files\gameEngine\UI</Filter>
     </ClInclude>
     <ClInclude Include="ScrollBox.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderPortalButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderTileButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveMapBuilderButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneBuilderMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalPropertiesMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

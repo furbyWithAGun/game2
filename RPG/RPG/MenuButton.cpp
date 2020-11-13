@@ -19,19 +19,25 @@ void MenuButton::init() {
 //public methods
 bool MenuButton::handleInput(InputMessage* message) {
     bool messageConsumed = false;
-    if (pointCollision(message->x, message->y))
+    if (active)
     {
-        messageConsumed = true;
-        onClick();        
+        if (message->id == SELECT_ON && pointCollision(message->x, message->y))
+        {
+            messageConsumed = true;
+            onClick();
+        }
     }
     return messageConsumed;
 }
 
 void MenuButton::draw() {
-    UiElement::draw();
-    if (!textTextureKey != -1)
+    if (active)
     {
-        scene->renderTexture(textTextureKey, xpos + textXoffset, ypos + textYoffset, textWidth, textHeight);
+        UiElement::draw();
+        if (!textTextureKey != -1)
+        {
+            scene->renderTexture(textTextureKey, xpos + textXoffset, ypos + textYoffset, textWidth, textHeight);
+        }
     }
 }
 

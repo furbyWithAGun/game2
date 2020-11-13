@@ -25,5 +25,6 @@ public:
 
 private:
     void init();
+    void updateElementsStatus();
 };
 

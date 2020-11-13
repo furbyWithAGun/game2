@@ -1,7 +1,7 @@
 #include "ScrollBox.h"
 
-const SDL_Color DEFAULT_ARROW_MORE_COLOUR = { 0, 0, 125 };
-const SDL_Color DEFAULT_ARROW_END_COLOUR = { 0, 0, 255 };
+const SDL_Color DEFAULT_ARROW_MORE_COLOUR = { 0, 0, 255 };
+const SDL_Color DEFAULT_ARROW_END_COLOUR = { 150, 150, 150 };
 
 ScrollBox::ScrollBox() : UiElement()
 {
@@ -34,76 +34,100 @@ void ScrollBox::addElement(UiElement* newElement)
 bool ScrollBox::handleInput(InputMessage* message)
 {
     bool messageConsumed = false;
-    for (auto element : subElements) {
+    if (active)
+    {
+        for (auto element : subElements) {
+            if (!messageConsumed)
+            {
+                messageConsumed = element->handleInput(message);
+            }
+        }
         if (!messageConsumed)
         {
-            messageConsumed = element->handleInput(message);
+            switch (message->id)
+            {
+            case SELECT_ON:
+                if (displayIndex > 0 && upArrowMore.pointCollision(message->x, message->y))
+                {
+                    displayIndex -= 1;
+                    messageConsumed = true;
+                }
+                else if (displayIndex + numElementsToDisplay < subElements.size() && downArrowMore.pointCollision(message->x, message->y)) {
+                    displayIndex += 1;
+                    messageConsumed = true;
+                }
+                break;
+            case SCROLL_UP:
+                if (displayIndex > 0 && pointCollision(message->x, message->y))
+                {
+                    displayIndex -= 1;
+                    messageConsumed = true;
+                }
+                break;
+            case SCROLL_DOWN:
+                if (displayIndex + numElementsToDisplay < subElements.size() && pointCollision(message->x, message->y)) {
+                    displayIndex += 1;
+                    messageConsumed = true;
+                }
+                break;
+            default:
+                break;
+            }
         }
     }
-    if (!messageConsumed)
-    {
-        switch (message->id)
-        {
-        case SELECT_ON:
-            if (displayIndex > 0 && upArrowMore.pointCollision(message->x, message->y))
-            {
-                displayIndex -= 1;
-                messageConsumed = true;
-            }
-            else if (displayIndex + numElementsToDisplay < subElements.size() && downArrowMore.pointCollision(message->x, message->y)) {
-                displayIndex += 1;
-                messageConsumed = true;
-            }
-            break;
-        case SCROLL_UP:
-            if (displayIndex > 0 && pointCollision(message->x, message->y))
-            {
-                displayIndex -= 1;
-                messageConsumed = true;
-            }
-            break;
-        case SCROLL_DOWN:
-            if (displayIndex + numElementsToDisplay < subElements.size() && pointCollision(message->x, message->y)) {
-                displayIndex += 1;
-                messageConsumed = true;
-            }
-            break;
-        default:
-            break;
-        }
-    }
-    
+    updateElementsStatus();
     return messageConsumed;
 }
 
 void ScrollBox::draw()
 {
-    UiElement::draw();
-    if (displayIndex == 0)
+    if (active)
     {
-        upArrowEnd.draw();
-    }
-    else {
-        upArrowMore.draw();
-    }
+        UiElement::draw();
+        if (displayIndex == 0)
+        {
+            upArrowEnd.draw();
+        }
+        else {
+            upArrowMore.draw();
+        }
 
-    if (displayIndex + numElementsToDisplay < subElements.size())
-    {
-        downArrowMore.draw();
-    }
-    else {
-        downArrowEnd.draw();
-    }
-    int z = 0;
-    for (size_t i = displayIndex; i < numElementsToDisplay + displayIndex; i++)
-    {
-        z += 1;
-        if (i < subElements.size()) {
-            subElements[i]->xpos = xpos + scene->engine->screenWidth * 0.025;
-            subElements[i]->ypos = (ypos + upArrowEnd.height + z * (height / (numElementsToDisplay + 0.5)) - scene->engine->screenHeight * 0.05);
-            subElements[i]->draw();
+        if (displayIndex + numElementsToDisplay < subElements.size())
+        {
+            downArrowMore.draw();
+        }
+        else {
+            downArrowEnd.draw();
+        }
+        int z = 0;
+        for (size_t i = displayIndex; i < numElementsToDisplay + displayIndex; i++)
+        {
+            z += 1;
+            if (i < subElements.size()) {
+                if (subElements[i]->width != -1 && subElements[i]->height != -1)
+                {
+                    subElements[i]->xpos = xpos + (width - subElements[i]->width) / 2;
+                    subElements[i]->ypos = (ypos + upArrowEnd.height + z * (height / (numElementsToDisplay + 0.5)) - height * 0.3);
+                }
+                else {
+                    subElements[i]->xpos = xpos + scene->engine->screenWidth * 0.025;
+                    subElements[i]->ypos = (ypos + upArrowEnd.height + z * (height / (numElementsToDisplay + 0.5)) - height * 0.3);
+                }
+                subElements[i]->draw();
+            }
         }
     }
-    
+}
+
+void ScrollBox::updateElementsStatus() {
+    for (size_t i = 0; i < subElements.size(); i++)
+    {
+        if (i <= displayIndex + numElementsToDisplay && i >= displayIndex) {
+            subElements[i]->active = true;
+        }
+        else {
+            subElements[i]->active = false;
+        }
+    }
 }
 

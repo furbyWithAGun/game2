@@ -1,18 +1,2 @@
-﻿  ScrollBox.cpp
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(23,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(23,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(23,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(24,175): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(24,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(24,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(25,221): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(25,185): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(25,120): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(25,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(26,223): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(26,187): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(26,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(26,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(102,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(103,108): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  ControllerInterface.cpp
+  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe

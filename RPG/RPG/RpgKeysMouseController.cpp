@@ -56,11 +56,11 @@ void RpgKeysMouseController::populateMessageQueue() {
             break;
         case SDL_MOUSEWHEEL:
             if (e.wheel.y > 0) {
-                addTextInput(InputMessage(SCROLL_UP, x, y));
+                addMessage(InputMessage(SCROLL_UP, x, y));
             }
             else if (e.wheel.y < 0)
             {
-                addTextInput(InputMessage(SCROLL_DOWN, x, y));
+                addMessage(InputMessage(SCROLL_DOWN, x, y));
             }
             break;
         case SDL_KEYDOWN:

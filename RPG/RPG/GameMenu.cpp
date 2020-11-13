@@ -62,19 +62,12 @@ void GameMenu::draw() {
 
 bool GameMenu::handleInput(InputMessage* message) {
     bool messageConsumed = false;
-    switch (message->id)
+    for (size_t i = 0; i < elements.size(); i++)
     {
-    case SELECT_ON:
-        for (size_t i = 0; i < elements.size(); i++)
+        if (elements[i]->handleInput(message))
         {
-            if (elements[i]->handleInput(message))
-            {
-                messageConsumed = true;
-            }
+            messageConsumed = true;
         }
-        break;
-    default:
-        break;
     }
     return messageConsumed;
 }

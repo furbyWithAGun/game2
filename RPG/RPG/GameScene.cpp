@@ -14,7 +14,7 @@ GameScene::GameScene(BaseGameEngine * newEngine) {
 void GameScene::init() {
     engine = NULL;
     sceneRunning = true;
-    gettingTextInput = false;
+    gettingTextInput = true;
     controllerInterface = NULL;
 }
 
@@ -103,15 +103,13 @@ void GameScene::handleTextInput()
                 endScene();
                 break;
             case K_ESC:
-                gettingTextInput = false;
-                break;
-            case KEY_INPUT:
-                sendMessageToMenus(message);
-                break;
+            case K_BACKSPACE:
+            case K_ENTER:
+            case TEXT_INPUT:
             case SELECT_ON:
-                sendMessageToMenus(message);
-                break;
             case SELECT_OFF:
+            case SCROLL_UP:
+            case SCROLL_DOWN:
                 sendMessageToMenus(message);
                 break;
             default:

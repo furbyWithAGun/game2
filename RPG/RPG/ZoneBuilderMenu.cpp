@@ -12,16 +12,9 @@ ZoneBuilderMenu::ZoneBuilderMenu(RpgWorldBuilderScene* gameScene, int newId, int
     buildButtons();
     elements.push_back(new MenuText(scene, "Tiles", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
     elements.push_back(new MenuText(scene, "Portals", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.4));
-
-    ScrollBox* scroller;
-    scroller = new ScrollBox({ 100, 100, 100 }, scene, 300, 300, 200, 200);
-    scroller->numElementsToDisplay = 3;
-    scroller->addElement(new MenuText(scene, "Tiles1", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
-    scroller->addElement(new MenuText(scene, "Tiles2", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
-    scroller->addElement(new MenuText(scene, "Tiles3", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
-    scroller->addElement(new MenuText(scene, "Tiles4", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
-
-    elements.push_back(scroller);
+    TextBox* textBox = new TextBox(scene, 300, 300, 300, 300);
+    textBox->textColour = { 100, 123, 200 };
+    elements.push_back(textBox);
 }
 
 //public methods
@@ -42,17 +35,26 @@ bool ZoneBuilderMenu::handleInput(InputMessage* message) {
 
 //private methods
 void ZoneBuilderMenu::buildButtons() {
+    ScrollBox* scroller;
+    scroller = new ScrollBox({ 100, 100, 100 }, scene, engine->screenWidth * 0.01 ,engine->screenHeight * 0.05, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
+    scroller->numElementsToDisplay = 2;
+
+
     int x = 0;
     for (auto i = scene->mapTiles.begin(); i != scene->mapTiles.end(); i++)
     {
         MapBuilderTileButton* button;
         button = new MapBuilderTileButton(&i->second, scene);
-        button->xpos = button->width / 2 + button->width * (x % 2) + button->width * (x % 2);
-        button->ypos = (button->height * floor(x / 2) + button->height * floor(x / 2)) + engine->screenHeight * 0.05;
-        buttons.push_back(button);
-        elements.push_back(button);
+        button->xpos =0;
+        //button->xpos = button->width / 2 + button->width * (x % 2) + button->width * (x % 2);
+        //button->ypos = (button->height * floor(x / 2) + button->height * floor(x / 2)) + engine->screenHeight * 0.05;
+        button->ypos = 0;
+        scroller->addElement(button);
         x++;
     }
+
+
+    elements.push_back(scroller);
 
     x = 0;
     for (int i = 0; i < scene->zonePortalImages.size(); i++)
@@ -61,7 +63,6 @@ void ZoneBuilderMenu::buildButtons() {
         button = new MapBuilderPortalButton(scene->zonePortalImages[i], scene);
         button->xpos = button->width / 2 + button->width * (x % 2) + button->width * (x % 2);
         button->ypos = (button->height * floor(x / 2) + button->height * floor(x / 2)) + engine->screenHeight * 0.45;
-        buttons.push_back(button);
         elements.push_back(button);
         x++;
     }
@@ -70,6 +71,6 @@ void ZoneBuilderMenu::buildButtons() {
     button->xpos = width * 0.2;
     button->ypos = height * 0.7;
     button->setText("Save Map");
-    buttons.push_back(button);
     elements.push_back(button);
+
 }

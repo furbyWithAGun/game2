@@ -168,6 +168,7 @@
     <ClCompile Include="MenuText.cpp" />
     <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PortalPropertiesMenu.cpp" />
     <ClCompile Include="Rat.cpp" />
     <ClCompile Include="RpgKeysMouseController.cpp" />
     <ClCompile Include="RpgOverWorldScene.cpp" />
@@ -178,6 +179,7 @@
     <ClCompile Include="SaveFile.cpp" />
     <ClCompile Include="ScrollBox.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileGridScene.cpp" />
     <ClCompile Include="UiElement.cpp" />
@@ -209,6 +211,7 @@
     <ClInclude Include="MenuText.h" />
     <ClInclude Include="MovingState.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PortalPropertiesMenu.h" />
     <ClInclude Include="Rat.h" />
     <ClInclude Include="RpgGameConstants.h" />
     <ClInclude Include="RpgKeysMouseController.h" />
@@ -220,6 +223,7 @@
     <ClInclude Include="SaveFile.h" />
     <ClInclude Include="ScrollBox.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TextBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileGridScene.h" />
     <ClInclude Include="UiElement.h" />
