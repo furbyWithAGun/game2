@@ -4,6 +4,8 @@
 #include "BaseGameEngine.h"
 #include "MenuText.h"
 
+const int NEXT_ELEMENT_ID_DEFAULT = 50000;
+
 GameMenu::GameMenu() {
     init();
 }
@@ -28,6 +30,7 @@ void GameMenu::init() {
     id = -1;
     r = g = b = 0x00;
     a = 0xFF;
+    nextElementId = NEXT_ELEMENT_ID_DEFAULT;
 }
 
 GameMenu::~GameMenu() {
@@ -41,6 +44,14 @@ GameMenu::~GameMenu() {
     id = r = g = b = a = 0;
 }
 
+void GameMenu::open() {
+    isActive = true;
+}
+
+void GameMenu::close() {
+    isActive = false;
+}
+
 void GameMenu::setRGBA(int newR, int newG, int newB, int newA) {
     r = newR;
     g = newG;
@@ -50,26 +61,46 @@ void GameMenu::setRGBA(int newR, int newG, int newB, int newA) {
 
 void GameMenu::draw() {
     //draw recangle on screen
-    SDL_Rect fillRect = { 0, 0, width, height};
+    SDL_Rect fillRect = { xpos, ypos, width, height};
     SDL_SetRenderDrawColor(engine->getMainRenderer(), r, g, b, a);
     SDL_RenderFillRect(engine->getMainRenderer(), &fillRect);
 
-    for (size_t i = 0; i < elements.size(); i++)
+    for (auto element : elements)
     {
-        elements[i]->draw();
+        element.second->draw();
     }
 }
 
 bool GameMenu::handleInput(InputMessage* message) {
     bool messageConsumed = false;
-    for (size_t i = 0; i < elements.size(); i++)
+    for (auto element : elements)
     {
-        if (elements[i]->handleInput(message))
+        if (element.second->handleInput(message))
         {
             messageConsumed = true;
         }
     }
     return messageConsumed;
+}
+
+int GameMenu::addElement(UiElement* newElement) {
+    while (elements.find(nextElementId) != elements.end())
+    {
+        nextElementId++;
+    }
+    elements[nextElementId] = newElement;
+    return nextElementId;
+}
+
+int GameMenu::addElement(int elementId, UiElement* newElement) {
+    if (elements.find(elementId) != elements.end())
+    {
+        elements[elementId] = newElement;
+        return elementId;
+    }
+    else {
+        return -1;
+    }
 }
 
 

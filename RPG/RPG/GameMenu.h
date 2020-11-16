@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <unordered_map>
 
 class MenuButton;
 class MenuText;
@@ -12,7 +13,7 @@ class GameMenu
 public:
     //attributes
     std::vector<MenuButton*> buttons;
-    std::vector<UiElement*> elements;
+    std::unordered_map<int, UiElement*> elements;
     std::vector<MenuText*> texts;
     bool isActive;
     
@@ -25,6 +26,10 @@ public:
 
     //methods
     void setRGBA(int newR, int newG, int newB, int newA);
+    int addElement(UiElement* element);
+    int addElement(int elementId, UiElement* element);
+    virtual void open();
+    virtual void close();
     virtual void draw();
     virtual bool handleInput(InputMessage* message);
 
@@ -38,6 +43,9 @@ protected:
     int id, r, g, b, a;
 
 private:
+    //attributes
+    int nextElementId;
+
     //methods
     void init();
 };

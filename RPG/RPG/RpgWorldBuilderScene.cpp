@@ -1,6 +1,7 @@
 #include "RpgWorldBuilderScene.h"
 #include "BaseGameEngine.h"
 #include "ZoneBuilderMenu.h"
+#include "PortalPropertiesMenu.h"
 
 //constants
 const int DEFAULT_DESIRED_TILES_DOWN = 10;
@@ -42,6 +43,11 @@ void RpgWorldBuilderScene::setUpScene() {
     zoneBuildMenu->isActive = true;
 
     menus[BUILD_MENU] = zoneBuildMenu;
+
+    PortalPropertiesMenu* portalMenu = new PortalPropertiesMenu(this, 100, 300, 300, 300, 300);
+    portalMenu->isActive = true;
+
+    menus[100] = portalMenu;
 }
 
 void RpgWorldBuilderScene::handleInput() {

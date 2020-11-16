@@ -19,7 +19,6 @@ public:
 
 private:
     //attributes
-    BaseGameEngine* engine;
     RpgWorldBuilderScene* scene;
 
     //methods

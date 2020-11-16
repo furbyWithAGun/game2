@@ -19,6 +19,7 @@ void TextBox::init()
     textColour = DEFAULT_TEXT_BOX_TEXT_COLOUR;
     numCharsToDisplay = DEFAULT_NUM_CHARS_TO_DISPLAY;
     gettingText = false;
+    backgroundColour = { 255, 255, 255 };
 }
 
 void TextBox::draw() {
@@ -50,7 +51,7 @@ bool TextBox::handleInput(InputMessage* message) {
             }
             else {
                 gettingText = false;
-                scene->gettingTextInput = false;
+                //scene->gettingTextInput = false;
             }
             break;
         case K_BACKSPACE:

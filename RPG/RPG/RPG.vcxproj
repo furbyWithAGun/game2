@@ -169,6 +169,7 @@
     <ClCompile Include="MovingState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PortalPropertiesMenu.cpp" />
+    <ClCompile Include="PortalPropertiesOkButton.cpp" />
     <ClCompile Include="Rat.cpp" />
     <ClCompile Include="RpgKeysMouseController.cpp" />
     <ClCompile Include="RpgOverWorldScene.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="MovingState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PortalPropertiesMenu.h" />
+    <ClInclude Include="PortalPropertiesOkButton.h" />
     <ClInclude Include="Rat.h" />
     <ClInclude Include="RpgGameConstants.h" />
     <ClInclude Include="RpgKeysMouseController.h" />

@@ -13,7 +13,7 @@ enum ZONE_PORTAL_ATTRIBUTES {
 class ZonePortal
 {
 public:
-    //attributestexture
+    //attributes
     int textureId;
     std::vector <int> tileCoords;
     int exitZoneId;

@@ -85,6 +85,12 @@
     <Filter Include="Source Files\gameEngine\UI">
       <UniqueIdentifier>{c58614c4-19ba-41fb-afa9-d9db0af1d7d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu">
+      <UniqueIdentifier>{ca22183f-69f5-44b1-9e04-d71ec82843e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu">
+      <UniqueIdentifier>{f9c1121f-f2fa-4840-b6cd-c851a1356ad1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -189,29 +195,32 @@
     <ClCompile Include="UiPanel.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
-    <ClCompile Include="MapBuilderPortalButton.cpp">
-      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClCompile>
-    <ClCompile Include="MapBuilderTileButton.cpp">
-      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClCompile>
-    <ClCompile Include="SaveMapBuilderButton.cpp">
-      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClCompile>
-    <ClCompile Include="ZoneBuilderMenu.cpp">
-      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClCompile>
     <ClCompile Include="UiElement.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
     <ClCompile Include="PortalPropertiesMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TextBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ScrollBox.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilderPortalButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilderTileButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveMapBuilderButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneBuilderMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PortalPropertiesOkButton.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,23 +332,26 @@
     <ClInclude Include="ScrollBox.h">
       <Filter>Header Files\gameEngine\UI</Filter>
     </ClInclude>
-    <ClInclude Include="MapBuilderPortalButton.h">
-      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClInclude>
-    <ClInclude Include="MapBuilderTileButton.h">
-      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveMapBuilderButton.h">
-      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClInclude>
-    <ClInclude Include="ZoneBuilderMenu.h">
-      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
-    </ClInclude>
     <ClInclude Include="PortalPropertiesMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TextBox.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalPropertiesOkButton.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderPortalButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderTileButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveMapBuilderButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneBuilderMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
