@@ -83,12 +83,16 @@ bool GameMenu::handleInput(InputMessage* message) {
     return messageConsumed;
 }
 
-int GameMenu::addElement(UiElement* newElement) {
+int GameMenu::getNextElementId() {
     while (elements.find(nextElementId) != elements.end())
     {
         nextElementId++;
     }
-    elements[nextElementId] = newElement;
+    return nextElementId;
+}
+
+int GameMenu::addElement(UiElement* newElement) {
+    elements[getNextElementId()] = newElement;
     return nextElementId;
 }
 
@@ -101,6 +105,19 @@ int GameMenu::addElement(int elementId, UiElement* newElement) {
     else {
         return -1;
     }
+}
+
+UiElement* GameMenu::getElementbyId(int elementId) {
+    if (elements.find(elementId) != elements.end()) {
+        return elements[elementId];
+    }
+    for (auto element : elements) {
+        if (element.second->getElementbyId(elementId) != NULL)
+        {
+            return element.second->getElementbyId(elementId);
+        }
+    }
+    return NULL;
 }
 
 

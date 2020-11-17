@@ -28,6 +28,8 @@ public:
     void setRGBA(int newR, int newG, int newB, int newA);
     int addElement(UiElement* element);
     int addElement(int elementId, UiElement* element);
+    UiElement* getElementbyId(int elementId);
+    int getNextElementId();
     virtual void open();
     virtual void close();
     virtual void draw();

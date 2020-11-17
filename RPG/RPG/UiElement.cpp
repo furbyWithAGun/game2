@@ -36,3 +36,28 @@ void UiElement::draw() {
 		Sprite::draw();
 	}
 }
+
+
+int UiElement::addElement(int elementId, UiElement* newElement) {
+    if (subElements.find(elementId) != subElements.end())
+    {
+        subElements[elementId] = newElement;
+        return elementId;
+    }
+    else {
+        return -1;
+    }
+}
+
+UiElement* UiElement::getElementbyId(int elementId) {
+    if (subElements.find(elementId) != subElements.end()) {
+        return subElements[elementId];
+    }
+    for (auto element : subElements) {
+        if (element.second->getElementbyId(elementId) != NULL)
+        {
+            return element.second->getElementbyId(elementId);
+        }
+    }
+    return NULL;
+}
