@@ -46,8 +46,8 @@ int main(int argc, char* args[])
     RpgOverWorldScene ows = RpgOverWorldScene(&engine);
     engine.addScene(WORLD_BUILDER, &wbs);
     engine.addScene(OVERWORLD, &ows);
-    //engine.setNextScene(WORLD_BUILDER);
-    engine.setNextScene(OVERWORLD);
+    engine.setNextScene(WORLD_BUILDER);
+    //engine.setNextScene(OVERWORLD);
     engine.startMainGameLoop();
 
     //terminate the engine

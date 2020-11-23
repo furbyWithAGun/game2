@@ -91,6 +91,12 @@
     <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu">
       <UniqueIdentifier>{f9c1121f-f2fa-4840-b6cd-c851a1356ad1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu">
+      <UniqueIdentifier>{43ed22d4-de1c-4d63-89cd-11547ac5aa9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu">
+      <UniqueIdentifier>{86983733-2c32-401b-a1ac-83aae1ab49a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -198,9 +204,6 @@
     <ClCompile Include="UiElement.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
-    <ClCompile Include="PortalPropertiesMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ScrollBox.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
@@ -219,8 +222,11 @@
     <ClCompile Include="TextBox.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
+    <ClCompile Include="PortalPropertiesMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
+    </ClCompile>
     <ClCompile Include="PortalPropertiesOkButton.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,14 +338,8 @@
     <ClInclude Include="ScrollBox.h">
       <Filter>Header Files\gameEngine\UI</Filter>
     </ClInclude>
-    <ClInclude Include="PortalPropertiesMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextBox.h">
       <Filter>Header Files\gameEngine\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="PortalPropertiesOkButton.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MapBuilderPortalButton.h">
       <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
@@ -352,6 +352,12 @@
     </ClInclude>
     <ClInclude Include="ZoneBuilderMenu.h">
       <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalPropertiesMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalPropertiesOkButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

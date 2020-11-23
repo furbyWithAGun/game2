@@ -7,6 +7,7 @@ class UiElement : public Sprite
 public:
     //attributes
     std::unordered_map<int, UiElement*> subElements;
+    std::string text;
 
     //constructors
     UiElement();
@@ -20,7 +21,14 @@ public:
     //methods
     virtual void draw();
     virtual bool handleInput(InputMessage* message) { return false; };
+    virtual std::string getText() { return text; };
+    virtual std::string getText(int subElementId);
+    virtual void setText(std::string newText);
+    virtual void setText(int subElementId, std::string newText);
     int addElement(int elementId, UiElement* element);
     UiElement* getElementbyId(int elementId);
+
+private:
+    void init();
 };
 

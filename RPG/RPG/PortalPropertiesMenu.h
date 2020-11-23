@@ -5,6 +5,8 @@
 #include "GameMenu.h"
 #include "PortalPropertiesOkButton.h"
 
+class RpgWorldBuilderScene;
+
 class PortalPropertiesMenu : public GameMenu
 {
 public:
@@ -14,6 +16,8 @@ public:
 
     //methods
     bool handleInput(InputMessage* message);
+    void setPortalBeingBuiltProperties();
+    void open() override;
 
 private:
     //attributes

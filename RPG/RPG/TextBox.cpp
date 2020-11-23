@@ -15,7 +15,6 @@ TextBox::TextBox(GameScene* gameScene, int xpos, int ypos, int elementWidth, int
 
 void TextBox::init()
 {
-    text = "";
     textColour = DEFAULT_TEXT_BOX_TEXT_COLOUR;
     numCharsToDisplay = DEFAULT_NUM_CHARS_TO_DISPLAY;
     gettingText = false;

@@ -19,6 +19,9 @@ public:
     MapTile* tileBeingPlaced;
     bool placingPortal;
     int portalBeingPlaced;
+    int portalBeingPlacedExitId;
+    int portalBeingPlacedExitCoordsX;
+    int portalBeingPlacedExitCoordsY;
 
     //constructor
     RpgWorldBuilderScene();

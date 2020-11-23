@@ -8,7 +8,6 @@ class MapBuilderPortalButton : public MenuButton
 public:
     //attributes
     RpgWorldBuilderScene* scene;
-    BaseGameEngine* engine;
     int portalKey;
 
     //constructors

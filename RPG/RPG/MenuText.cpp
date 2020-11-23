@@ -29,19 +29,12 @@ MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColou
 
 void MenuText::init() {
     scene = NULL;
-    text = "";
     colour = { 0, 0, 0 };
 }
 
 void MenuText::init(GameScene* newScene, std::string newText) {
     init();
     scene = newScene;
-    text = newText;
-}
-
-
-void MenuText::setText(std::string newText)
-{
     text = newText;
 }
 
@@ -55,6 +48,7 @@ void MenuText::draw()
 {
     if (active)
     {
+        UiElement::draw();
         if (width != -1 && height != -1)
         {
             scene->engine->renderText(text, xpos, ypos, width, height, colour);

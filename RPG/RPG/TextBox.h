@@ -5,7 +5,6 @@ class TextBox : public UiElement
 {
 public:
     //attributes
-    std::string text;
     SDL_Color textColour;
     int numCharsToDisplay;
     bool gettingText;

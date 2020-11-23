@@ -14,7 +14,7 @@ GameScene::GameScene(BaseGameEngine * newEngine) {
 void GameScene::init() {
     engine = NULL;
     sceneRunning = true;
-    gettingTextInput = true;
+    gettingTextInput = false;
     controllerInterface = NULL;
 }
 
@@ -49,6 +49,10 @@ void GameScene::renderTexture(int textureKey, int x, int y, int width, int heigh
 void GameScene::endScene() {
     sceneRunning = false;
     SDL_AtomicUnlock(&engine->sceneRunningLock);
+}
+
+void GameScene::openMenu(int menuId) {
+    menus[menuId]->open();
 }
 
 bool GameScene::sendMessageToMenus(InputMessage* message)

@@ -30,6 +30,7 @@ public:
     bool getNextCommand(InputMessage* message);
     void addCommand(InputMessage* message);
     void addCommand(InputMessage message);
+    void openMenu(int menuId);
 
 protected:
     //attributes

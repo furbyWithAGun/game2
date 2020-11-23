@@ -25,6 +25,9 @@ void RpgWorldBuilderScene::init() {
     placingPortal = false;
     portalBeingPlaced = -1;
     controllerInterface = new RpgKeysMouseController();
+    portalBeingPlacedExitId = 0;
+    portalBeingPlacedExitCoordsX = 0;
+    portalBeingPlacedExitCoordsY = 0;
 }
 
 void RpgWorldBuilderScene::declareSceneAssets() {
@@ -44,10 +47,7 @@ void RpgWorldBuilderScene::setUpScene() {
 
     menus[BUILD_MENU] = zoneBuildMenu;
 
-    PortalPropertiesMenu* portalMenu = new PortalPropertiesMenu(this, 100, 300, 300, 300, 300);
-    portalMenu->isActive = true;
-
-    menus[100] = portalMenu;
+    menus[PORTAL_PROPERTIES_MENU] = new PortalPropertiesMenu(this, 100, 300, 300, 300, 300);
 }
 
 void RpgWorldBuilderScene::handleInput() {

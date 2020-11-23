@@ -8,7 +8,6 @@ class MenuText : public UiElement
 public:
     //attributes
     GameScene* scene;
-    std::string text;
     SDL_Color colour;
 
     //constructors
@@ -20,7 +19,6 @@ public:
 
     //methods
     void draw();
-    void setText(std::string newText);
     void setPos(int newX, int newY);
 
 private:

@@ -27,7 +27,8 @@ enum OBJECTS {
 };
 
 enum MENUS {
-    BUILD_MENU
+    BUILD_MENU,
+    PORTAL_PROPERTIES_MENU
 };
 
 enum UNIT_STATES {
