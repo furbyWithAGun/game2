@@ -339,6 +339,26 @@ int BaseGameEngine::getTextureHeight(int textureKey) {
     return textures[textureKey].height;
 }
 
+int BaseGameEngine::getTextTextureWidth(std::string text) {
+    std::string key = text + std::to_string(0) + std::to_string(0) + std::to_string(0) + std::to_string(0);
+    if (textTextures.find(key) == textTextures.end())
+    {
+        textTextures[key] = createTextTexture(text, {0, 0, 0});
+    }
+
+    return getTextureWidth(textTextures[key]);
+}
+
+int BaseGameEngine::getTextTextureHeight(std::string text) {
+    std::string key = text + std::to_string(0) + std::to_string(0) + std::to_string(0) + std::to_string(0);
+    if (textTextures.find(key) == textTextures.end())
+    {
+        textTextures[key] = createTextTexture(text, { 0, 0, 0 });
+    }
+
+    return getTextureHeight(textTextures[key]);
+}
+
 double BaseGameEngine::getProbFromSigmoid(double skill, double difficulty)
 {
     return sigmoid(skill / difficulty);

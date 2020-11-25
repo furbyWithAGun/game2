@@ -16,6 +16,7 @@ public:
     //constructor
     Sprite();
     Sprite(GameScene* gameScene);
+    Sprite(GameScene* gameScene, int x, int y);
     Sprite(int spriteTextureKey, GameScene* gameScene);
     Sprite(SDL_Color spriteBackgroundColour, GameScene* gameScene);
     Sprite(SDL_Color spriteBackgroundColour, GameScene* gameScene, int x, int y);

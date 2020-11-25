@@ -7,6 +7,11 @@ UiElement::UiElement() : Sprite()
     init();
 }
 
+UiElement::UiElement(GameScene* newScene, int xpos, int ypos) : Sprite(newScene, xpos, ypos)
+{
+    init();
+}
+
 UiElement::UiElement(int spriteTextureKey, GameScene* gameScene) : Sprite(spriteTextureKey, gameScene)
 {
     init();
@@ -38,7 +43,16 @@ UiElement::UiElement(SDL_Color spriteBackgroundColour, GameScene* gameScene, int
 }
 
 void UiElement::init() {
+    id = -1;
     text = "";
+    dynamicPosition = dynamicSize = true;
+    layout = FLOW_LAYOUT;
+    alignment = VERTICAL;
+}
+
+void UiElement::init(int newId) {
+    init();
+    id = newId;
 }
 
 void UiElement::draw() {
@@ -49,25 +63,25 @@ void UiElement::draw() {
 }
 
 
-int UiElement::addElement(int elementId, UiElement* newElement) {
-    if (subElements.find(elementId) == subElements.end())
-    {
-        subElements[elementId] = newElement;
-        return elementId;
-    }
-    else {
-        return -1;
-    }
+void UiElement::addElement(UiElement* newElement) {
+    subElements.push_back(newElement);
 }
 
 UiElement* UiElement::getElementbyId(int elementId) {
-    if (subElements.find(elementId) == subElements.end()) {
-        return subElements[elementId];
+    if (id == elementId)
+    {
+        return this;
     }
+
     for (auto element : subElements) {
-        if (element.second->getElementbyId(elementId) != NULL)
+        if (element->id == elementId)
         {
-            return element.second->getElementbyId(elementId);
+            return element;
+        }
+
+        if (element->getElementbyId(elementId) != NULL)
+        {
+            return element->getElementbyId(elementId);
         }
     }
     return NULL;

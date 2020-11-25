@@ -84,25 +84,27 @@ void ScrollBox::draw()
     if (active)
     {
         UiElement::draw();
-        if (displayIndex == 0)
+        if (subElements.size() > numElementsToDisplay)
         {
-            upArrowEnd.draw();
-        }
-        else {
-            upArrowMore.draw();
+            if (displayIndex == 0)
+            {
+                upArrowEnd.draw();
+            }
+            else {
+                upArrowMore.draw();
+            }
+
+            if (displayIndex + numElementsToDisplay < subElements.size())
+            {
+                downArrowMore.draw();
+            }
+            else {
+                downArrowEnd.draw();
+            }
         }
 
-        if (displayIndex + numElementsToDisplay < subElements.size())
+        for (auto [i, z] = std::tuple{ displayIndex, 1 }; i < numElementsToDisplay + displayIndex; i++, z++)
         {
-            downArrowMore.draw();
-        }
-        else {
-            downArrowEnd.draw();
-        }
-        int z = 0;
-        for (size_t i = displayIndex; i < numElementsToDisplay + displayIndex; i++)
-        {
-            z += 1;
             if (i < subElements.size()) {
                 if (subElements[i]->width != -1 && subElements[i]->height != -1)
                 {

@@ -9,6 +9,13 @@ Sprite::Sprite(GameScene* gameScene) {
     init(gameScene);
 }
 
+Sprite::Sprite(GameScene* gameScene, int x, int y)
+{
+    init(gameScene);
+    xpos = x;
+    ypos = y;
+}
+
 Sprite::Sprite(int spriteTextureKey, GameScene * gameScene) {
     init(spriteTextureKey, gameScene);
     width = scene->engine->getTextureWidth(spriteTextureKey);
@@ -89,7 +96,14 @@ void Sprite::draw() {
 
         if (textureKey != -1)
         {
-            scene->renderTexture(textureKey, xpos, ypos, width, height);
+            if (width != -1 && height != -1)
+            {
+                scene->renderTexture(textureKey, xpos, ypos, width, height);
+            }
+            else {
+                scene->renderTexture(textureKey, xpos, ypos);
+            }
+            
         }
     }
 }

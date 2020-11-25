@@ -6,35 +6,33 @@ MenuText::MenuText()
     init();
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos) : UiElement() {
-    init(newScene, newText);
+MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos) : UiElement(newScene, xpos, ypos) {
+    init(newText);
 }
 
 MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos): UiElement(textColour, newScene, xpos, ypos)
 {
-    init(newScene, newText);
+    init(newText);
     colour = textColour;
 }
 
 MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight) : UiElement(SDL_Color {0, 0, 0}, newScene, xpos, ypos, newWidth, newHeight)
 {
-    init(newScene, newText);
+    init(newText);
 }
 
 MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight) : UiElement(textColour, newScene, xpos, ypos, newWidth, newHeight)
 {
-    init(newScene, newText);
+    init(newText);
     colour = textColour;
 }
 
 void MenuText::init() {
-    scene = NULL;
     colour = { 0, 0, 0 };
 }
 
-void MenuText::init(GameScene* newScene, std::string newText) {
+void MenuText::init(std::string newText) {
     init();
-    scene = newScene;
     text = newText;
 }
 

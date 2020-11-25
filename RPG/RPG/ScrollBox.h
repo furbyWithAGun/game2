@@ -4,9 +4,7 @@ class ScrollBox : public UiElement
 {
 public:
     //attributes
-    std::vector<UiElement*> subElements;
-    int numElementsToDisplay;
-    int displayIndex;
+    //std::vector<UiElement*> subElements;
     SDL_Colour arrowMoreColour;
     SDL_Colour arrowEndColour;
     Sprite upArrowMore;

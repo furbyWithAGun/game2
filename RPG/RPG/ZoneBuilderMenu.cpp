@@ -10,6 +10,14 @@ ZoneBuilderMenu::ZoneBuilderMenu(RpgWorldBuilderScene* gameScene, int newId, int
     buildButtons();
     addElement(new MenuText(scene, "Tiles", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
     addElement(new MenuText(scene, "Portals", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.4));
+
+    ScrollBox* scroller;
+    scroller = new ScrollBox({ 100, 100, 100 }, scene, engine->screenWidth * 0.1, engine->screenHeight * 0.05, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
+    scroller->numElementsToDisplay = 3;
+    scroller->addElement(new MenuText(this->scene,"test", 0, 0));
+    scroller->addElement(new MenuText(this->scene,"test2", 0, 0));
+    scroller->addElement(new MenuText(this->scene,"test3", 0, 0));
+    addElement(scroller);
 }
 
 //public methods

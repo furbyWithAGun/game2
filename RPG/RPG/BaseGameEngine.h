@@ -67,6 +67,8 @@ class BaseGameEngine
         int randomInt(int minValue, int maxValue);
         int getTextureWidth(int textureKey);
         int getTextureHeight(int textureKey);
+        int getTextTextureWidth(std::string text);
+        int getTextTextureHeight(std::string text);
         double getProbFromSigmoid(double skill, double difficulty);
         void setSigmoidFunction(double omega, double alpha);
         double sigmoid(double x);
