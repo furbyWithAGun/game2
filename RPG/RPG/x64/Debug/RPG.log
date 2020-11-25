@@ -1,2 +1,23 @@
-﻿  RpgWorldBuilderScene.cpp
+﻿  PortalPropertiesMenu.cpp
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(52,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(52,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(53,131): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(53,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,145): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(55,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(55,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,174): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,174): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  PortalPropertiesOkButton.cpp
+  RpgWorldBuilderScene.cpp
+  Generating Code...
   RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe

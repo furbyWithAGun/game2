@@ -1,6 +1,5 @@
 #pragma once
 #include "MenuButton.h"
-//#include "RpgWorldBuilderScene.h"
 #include "BaseGameEngine.h"
 
 class PortalPropertiesMenu;
@@ -9,12 +8,11 @@ class PortalPropertiesOkButton : public MenuButton
 {
 public:
     //attributes
-    //RpgWorldBuilderScene* scene;
     PortalPropertiesMenu* menu;
 
     //constructors
     PortalPropertiesOkButton();
-    PortalPropertiesOkButton(PortalPropertiesMenu* newMenu);
+    PortalPropertiesOkButton(PortalPropertiesMenu* newMenu, int xpos, int ypos);
 
     //methods
     void onClick() override;

@@ -10,9 +10,6 @@ ZoneBuilderMenu::ZoneBuilderMenu(RpgWorldBuilderScene* gameScene, int newId, int
     buildButtons();
     addElement(new MenuText(scene, "Tiles", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
     addElement(new MenuText(scene, "Portals", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.4));
-    //TextBox* textBox = new TextBox(scene, 300, 300, 300, 300);
-    //textBox->textColour = { 100, 123, 200 };
-    //addElement(textBox);
 }
 
 //public methods
@@ -44,8 +41,6 @@ void ZoneBuilderMenu::buildButtons() {
         MapBuilderTileButton* button;
         button = new MapBuilderTileButton(&i->second, scene);
         button->xpos =0;
-        //button->xpos = button->width / 2 + button->width * (x % 2) + button->width * (x % 2);
-        //button->ypos = (button->height * floor(x / 2) + button->height * floor(x / 2)) + engine->screenHeight * 0.05;
         button->ypos = 0;
         scroller->addElement(button);
         x++;

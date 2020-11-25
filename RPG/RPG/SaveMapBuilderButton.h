@@ -7,7 +7,6 @@ class SaveMapBuilderButton : public MenuButton
 public:
     //attributes
     RpgWorldBuilderScene* scene;
-    BaseGameEngine* engine;
 
     //constructors
     SaveMapBuilderButton();

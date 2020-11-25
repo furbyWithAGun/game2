@@ -8,6 +8,8 @@ enum PORTAL_PROPERTIES_MENU_IDS  {
     EXIT_ZONE_ID_TEXT,
     EXIT_COORDS_X_TEXT,
     EXIT_COORDS_Y_TEXT,
+    PORTAL_PROPERTIES_OK_BUTTON,
+    PORTAL_PROPERTIES_CANCEL_BUTTON
 };
 
 PortalPropertiesMenu::PortalPropertiesMenu() : GameMenu()
@@ -53,4 +55,5 @@ void PortalPropertiesMenu::buildElements()
     addElement(EXIT_ZONE_COORDS_LABEL, new MenuText(scene, "Exit Zone Coords", { 255, 255, 255 }, xpos + engine->screenWidth * 0.01, ypos + engine->screenHeight * 0.13));
     addElement(EXIT_COORDS_X_TEXT, new TextBox(scene, xpos + engine->screenWidth * 0.01, ypos + engine->screenHeight * 0.17, engine->screenWidth * 0.02, engine->screenWidth * 0.02));
     addElement(EXIT_COORDS_Y_TEXT, new TextBox(scene, xpos + engine->screenWidth * 0.04, ypos + engine->screenHeight * 0.17, engine->screenWidth * 0.02, engine->screenWidth * 0.02));
+    //addElement(PORTAL_PROPERTIES_OK_BUTTON, new PortalPropertiesOkButton(this));
 }
