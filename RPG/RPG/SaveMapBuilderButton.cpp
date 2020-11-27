@@ -5,7 +5,11 @@ SaveMapBuilderButton::SaveMapBuilderButton() : MenuButton() {
     scene = NULL;
 }
 
-SaveMapBuilderButton::SaveMapBuilderButton(int buttonTextureKey, RpgWorldBuilderScene* gameScene) : MenuButton(buttonTextureKey, gameScene) {
+SaveMapBuilderButton::SaveMapBuilderButton(RpgWorldBuilderScene* gameScene, int buttonTextureKey) : MenuButton(gameScene, buttonTextureKey) {
+    scene = gameScene;
+}
+
+SaveMapBuilderButton::SaveMapBuilderButton(int elementId, RpgWorldBuilderScene* gameScene, int buttonTextureKey) : MenuButton(elementId, gameScene, buttonTextureKey) {
     scene = gameScene;
 }
 

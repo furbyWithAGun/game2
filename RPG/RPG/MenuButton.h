@@ -10,12 +10,12 @@ public:
     //attributes
     GameScene* scene;
     int textTextureKey;
-    std::string text;
     int textXoffset, textYoffset, textWidth, textHeight;
 
     //constructors
     MenuButton();
-    MenuButton(int spriteTextureKey, GameScene* gamescene);
+    MenuButton(GameScene* gamescene, int spriteTextureKey);
+    MenuButton(int elementID, GameScene* gamescene, int spriteTextureKey);
 
     //destructor
     //~MenuButton();

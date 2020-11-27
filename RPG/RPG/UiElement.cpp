@@ -12,22 +12,22 @@ UiElement::UiElement(GameScene* newScene, int xpos, int ypos) : Sprite(newScene,
     init();
 }
 
-UiElement::UiElement(int spriteTextureKey, GameScene* gameScene) : Sprite(spriteTextureKey, gameScene)
+UiElement::UiElement(GameScene* gameScene, int spriteTextureKey) : Sprite(spriteTextureKey, gameScene)
 {
     init();
 }
 
-UiElement::UiElement(int spriteTextureKey, GameScene* gameScene, int xpos, int ypos) : Sprite(spriteTextureKey, gameScene, xpos, ypos)
+UiElement::UiElement(GameScene* gameScene, int spriteTextureKey, int xpos, int ypos) : Sprite(spriteTextureKey, gameScene, xpos, ypos)
 {
     init();
 }
 
-UiElement::UiElement(SDL_Color elementColour, GameScene* gameScene, int xpos, int ypos) : Sprite(elementColour, gameScene, xpos, ypos)
+UiElement::UiElement(GameScene* gameScene, SDL_Color elementColour, int xpos, int ypos) : Sprite(elementColour, gameScene, xpos, ypos)
 {
     init();
 }
 
-UiElement::UiElement(int spriteTextureKey, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(spriteTextureKey, gameScene, xpos, ypos, elementWidth, elementHeight)
+UiElement::UiElement(GameScene* gameScene, int spriteTextureKey, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(spriteTextureKey, gameScene, xpos, ypos, elementWidth, elementHeight)
 {
     init();
 }
@@ -37,9 +37,44 @@ UiElement::UiElement(GameScene* gameScene, int xpos, int ypos, int elementWidth,
     init();
 }
 
-UiElement::UiElement(SDL_Color spriteBackgroundColour, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(spriteBackgroundColour, gameScene, xpos, ypos, elementWidth, elementHeight)
+UiElement::UiElement(GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(spriteBackgroundColour, gameScene, xpos, ypos, elementWidth, elementHeight)
 {
     init();
+}
+
+UiElement::UiElement(int elementId, GameScene* newScene, int xpos, int ypos) : Sprite(newScene, xpos, ypos)
+{
+    init(elementId);
+}
+
+UiElement::UiElement(int elementId, GameScene* gameScene, int spriteTextureKey) : Sprite(spriteTextureKey, gameScene)
+{
+    init(elementId);
+}
+
+UiElement::UiElement(int elementId, GameScene* gameScene, int spriteTextureKey, int xpos, int ypos) : Sprite(spriteTextureKey, gameScene, xpos, ypos)
+{
+    init(elementId);
+}
+
+UiElement::UiElement(int elementId, GameScene* gameScene, SDL_Color elementColour, int xpos, int ypos) : Sprite(elementColour, gameScene, xpos, ypos)
+{
+    init(elementId);
+}
+
+UiElement::UiElement(int elementId, GameScene* gameScene, int spriteTextureKey, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(spriteTextureKey, gameScene, xpos, ypos, elementWidth, elementHeight)
+{
+    init(elementId);
+}
+
+UiElement::UiElement(int elementId, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(DEFAULT_UI_ELEMENT_COLOUR, gameScene, xpos, ypos, elementWidth, elementHeight)
+{
+    init(elementId);
+}
+
+UiElement::UiElement(int elementId, GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight) : Sprite(spriteBackgroundColour, gameScene, xpos, ypos, elementWidth, elementHeight)
+{
+    init(elementId);
 }
 
 void UiElement::init() {
@@ -64,6 +99,11 @@ void UiElement::draw() {
 
 
 void UiElement::addElement(UiElement* newElement) {
+    subElements.push_back(newElement);
+}
+
+void UiElement::addElement(int elementId, UiElement* newElement) {
+    newElement->id = elementId;
     subElements.push_back(newElement);
 }
 

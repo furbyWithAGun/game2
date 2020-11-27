@@ -14,7 +14,8 @@ public:
 
     //constructors
     ScrollBox();
-    ScrollBox(SDL_Color spriteBackgroundColour, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight);
+    ScrollBox(GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight);
+    ScrollBox(int elementId, GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight);
 
     //methods
     void addElement(UiElement* newElement);

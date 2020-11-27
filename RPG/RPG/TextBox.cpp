@@ -13,6 +13,11 @@ TextBox::TextBox(GameScene* gameScene, int xpos, int ypos, int elementWidth, int
     init();
 }
 
+TextBox::TextBox(int elementId, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight) : UiElement(elementId, gameScene, xpos, ypos, elementWidth, elementHeight)
+{
+    init();
+}
+
 void TextBox::init()
 {
     textColour = DEFAULT_TEXT_BOX_TEXT_COLOUR;

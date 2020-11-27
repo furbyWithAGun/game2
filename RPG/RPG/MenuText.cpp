@@ -10,18 +10,39 @@ MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos)
     init(newText);
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos): UiElement(textColour, newScene, xpos, ypos)
+MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos): UiElement(newScene, textColour, xpos, ypos)
 {
     init(newText);
     colour = textColour;
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight) : UiElement(SDL_Color {0, 0, 0}, newScene, xpos, ypos, newWidth, newHeight)
+MenuText::MenuText(GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight) : UiElement(newScene, SDL_Color {0, 0, 0},xpos, ypos, newWidth, newHeight)
 {
     init(newText);
 }
 
-MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight) : UiElement(textColour, newScene, xpos, ypos, newWidth, newHeight)
+MenuText::MenuText(GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight) : UiElement(newScene, textColour, xpos, ypos, newWidth, newHeight)
+{
+    init(newText);
+    colour = textColour;
+}
+
+MenuText::MenuText(int elementId, GameScene* newScene, std::string newText, int xpos, int ypos) : UiElement(elementId, newScene, xpos, ypos) {
+    init(newText);
+}
+
+MenuText::MenuText(int elementId, GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos) : UiElement(elementId, newScene, textColour, xpos, ypos)
+{
+    init(newText);
+    colour = textColour;
+}
+
+MenuText::MenuText(int elementId, GameScene* newScene, std::string newText, int xpos, int ypos, int newWidth, int newHeight) : UiElement(elementId, newScene, SDL_Color{ 0, 0, 0 }, xpos, ypos, newWidth, newHeight)
+{
+    init(newText);
+}
+
+MenuText::MenuText(int elementId, GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight) : UiElement(elementId, newScene, textColour, xpos, ypos, newWidth, newHeight)
 {
     init(newText);
     colour = textColour;

@@ -13,9 +13,14 @@ public:
 
     //constructors
     MapBuilderTileButton();
-    MapBuilderTileButton(MapTile* newTile, RpgWorldBuilderScene* gameScene);
+    MapBuilderTileButton(RpgWorldBuilderScene* gameScene, MapTile* newTile);
+    MapBuilderTileButton(int elementId, RpgWorldBuilderScene* gameScene, MapTile* newTile);
 
     //methods
     void onClick();
+
+private:
+    void init();
+    void init(RpgWorldBuilderScene* gameScene, MapTile* newTile);
 };
 

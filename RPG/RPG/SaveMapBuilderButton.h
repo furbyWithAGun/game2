@@ -10,7 +10,8 @@ public:
 
     //constructors
     SaveMapBuilderButton();
-    SaveMapBuilderButton(int buttonTextureKey, RpgWorldBuilderScene* gameScene);
+    SaveMapBuilderButton(RpgWorldBuilderScene* gameScene, int buttonTextureKey);
+    SaveMapBuilderButton(int elementId, RpgWorldBuilderScene* gameScene, int buttonTextureKey);
 
     //methods
     void onClick();

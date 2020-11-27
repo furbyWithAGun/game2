@@ -12,6 +12,7 @@ public:
     //constructors
     TextBox();
     TextBox(GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight);
+    TextBox(int elementId, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight);
 
     //methods
     void draw() override;

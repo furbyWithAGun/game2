@@ -8,11 +8,15 @@ ScrollBox::ScrollBox() : UiElement()
     init();
 }
 
-ScrollBox::ScrollBox(SDL_Color spriteBackgroundColour, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight) : UiElement(spriteBackgroundColour, gameScene, xpos, ypos, elementWidth, elementHeight)
+ScrollBox::ScrollBox(GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight) : UiElement(gameScene, spriteBackgroundColour, xpos, ypos, elementWidth, elementHeight)
 {
     init();
 }
 
+ScrollBox::ScrollBox(int elementId, GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight) : UiElement(elementId, gameScene, spriteBackgroundColour, xpos, ypos, elementWidth, elementHeight)
+{
+    init();
+}
 
 void ScrollBox::init()
 {

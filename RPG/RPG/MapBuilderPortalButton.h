@@ -12,9 +12,14 @@ public:
 
     //constructors
     MapBuilderPortalButton();
-    MapBuilderPortalButton(int newPortalKey, RpgWorldBuilderScene* gameScene);
+    MapBuilderPortalButton(RpgWorldBuilderScene* gameScene, int newPortalKey);
+    MapBuilderPortalButton(int elementId, RpgWorldBuilderScene* gameScene, int newPortalKey);
 
     //methods
     void onClick();
+
+private:
+    void init();
+    void init(RpgWorldBuilderScene* gameScene, int newPortalKey);
 };
 

@@ -4,7 +4,12 @@ MenuButton::MenuButton() : UiElement() {
     init();
 }
 
-MenuButton::MenuButton(int spriteTextureKey, GameScene* gameScene) : UiElement(spriteTextureKey, gameScene){
+MenuButton::MenuButton(GameScene* gameScene, int spriteTextureKey) : UiElement(gameScene, spriteTextureKey){
+    init();
+    scene = gameScene;
+}
+
+MenuButton::MenuButton(int elementId, GameScene* gameScene, int spriteTextureKey) : UiElement(elementId, gameScene, spriteTextureKey) {
     init();
     scene = gameScene;
 }
