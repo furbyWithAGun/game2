@@ -17,7 +17,7 @@ PortalPropertiesMenu::PortalPropertiesMenu() : GameMenu()
     scene = NULL;
 }
 
-PortalPropertiesMenu::PortalPropertiesMenu(RpgWorldBuilderScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos) : GameMenu(gameScene->engine, newId, newWidth, newHeight, newXPos, newYPos)
+PortalPropertiesMenu::PortalPropertiesMenu(RpgWorldBuilderScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos) : GameMenu(gameScene, newId, newWidth, newHeight, newXPos, newYPos)
 {
     scene = gameScene;
     buildElements();
@@ -55,5 +55,5 @@ void PortalPropertiesMenu::buildElements()
     addElement(EXIT_ZONE_COORDS_LABEL, new MenuText(scene, "Exit Zone Coords", { 255, 255, 255 }, xpos + engine->screenWidth * 0.01, ypos + engine->screenHeight * 0.13));
     addElement(EXIT_COORDS_X_TEXT, new TextBox(scene, xpos + engine->screenWidth * 0.01, ypos + engine->screenHeight * 0.17, engine->screenWidth * 0.02, engine->screenWidth * 0.02));
     addElement(EXIT_COORDS_Y_TEXT, new TextBox(scene, xpos + engine->screenWidth * 0.04, ypos + engine->screenHeight * 0.17, engine->screenWidth * 0.02, engine->screenWidth * 0.02));
-    //addElement(PORTAL_PROPERTIES_OK_BUTTON, new PortalPropertiesOkButton(this));
+    //addElement(PORTAL_PROPERTIES_OK_BUTTON, new PortalPropertiesOkButton(this, xpos + engine->screenWidth * 0.04, ypos + engine->screenHeight * 0.22));
 }

@@ -94,15 +94,6 @@ void TileGridScene::renderScene()
     //cover Left side
     engine->renderRectangle(0, 0, mainCanvasStartX, engine->screenHeight, 0, 0, 0);
 
-    //draw menus
-    for (auto menu : menus)
-    {
-        if (menu.second->isActive)
-        {
-            menu.second->draw();
-        }
-    }
-
     drawCombatMessages();
 }
 

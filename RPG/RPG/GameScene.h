@@ -27,10 +27,13 @@ public:
     void renderTexture(Texture* texture, int x, int y, int width, int height);
     void renderTexture(int textureKey, int x, int y);
     void renderTexture(int textureKey, int x, int y, int width, int height);
+    void renderRectangle(int x, int y, int width, int height, int r, int g, int b);
+    void renderRectangle(int x, int y, int width, int height, int r, int g, int b, int a);
     bool getNextCommand(InputMessage* message);
     void addCommand(InputMessage* message);
     void addCommand(InputMessage message);
     void openMenu(int menuId);
+    bool mouseOnAMenu();
 
 protected:
     //attributes
@@ -44,6 +47,7 @@ protected:
     virtual void declareSceneAssets() {};
     virtual void setUpScene() {};
     bool sendMessageToMenus(InputMessage* message);
+    void drawMenus();
     
 
 private:

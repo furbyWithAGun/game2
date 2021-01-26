@@ -1,15 +1,118 @@
-﻿  ZoneBuilderMenu.cpp
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(11,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(12,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,165): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(42,166): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(42,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(42,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(42,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(66,88): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(72,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(73,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  RPG.vcxproj -> D:\Coding\c++\game\RPG\x64\Debug\RPG.exe
+﻿  AiUnit.cpp
+D:\coding\c++\game\RPG\RPG\AiUnit.cpp(70,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  AnimatedSprite.cpp
+  Animation.cpp
+  Attack.cpp
+  AttackingState.cpp
+  BaseGameEngine.cpp
+D:\coding\c++\game\RPG\RPG\BaseGameEngine.cpp(115,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\coding\c++\game\RPG\RPG\BaseGameEngine.cpp(498,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\coding\c++\game\RPG\RPG\BaseGameEngine.cpp(499,31): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\coding\c++\game\RPG\RPG\BaseGameEngine.cpp(503,74): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\BaseGameEngine.cpp(508,142): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+  BasicMeleeAttack.cpp
+  ControllerInterface.cpp
+  Game.cpp
+  GameMenu.cpp
+  GameScene.cpp
+  IdleState.cpp
+  MapBuilderPortalButton.cpp
+  MapBuilderTileButton.cpp
+  MenuButton.cpp
+D:\coding\c++\game\RPG\RPG\MenuButton.cpp(42,34): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
+D:\coding\c++\game\RPG\RPG\MenuButton.cpp(52,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\MenuButton.cpp(53,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\MenuButton.cpp(54,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\MenuButton.cpp(55,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  MenuText.cpp
+  MovingState.cpp
+  Player.cpp
+D:\coding\c++\game\RPG\RPG\Player.cpp(60,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\Player.cpp(61,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  PortalPropertiesMenu.cpp
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(52,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(52,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(53,131): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(53,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,145): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(54,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(55,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(55,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,174): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(56,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,174): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\PortalPropertiesMenu.cpp(57,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  PortalPropertiesOkButton.cpp
+  Generating Code...
+  Compiling...
+  Rat.cpp
+  RpgKeysMouseController.cpp
+  RpgOverWorldScene.cpp
+  RpgWorldBuilderScene.cpp
+  SaveMapBuilderButton.cpp
+  ScrollBox.cpp
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(27,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(27,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(27,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(28,175): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(28,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(28,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(29,221): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(29,185): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(29,120): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(29,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(30,223): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(30,187): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(30,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(30,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(116,116): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(119,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ScrollBox.cpp(120,116): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Sprite.cpp
+  TextBox.cpp
+  TileGridScene.cpp
+D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(28,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(71,193): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(123,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\TileGridScene.cpp(124,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  UiElement.cpp
+  UiPanel.cpp
+  Unit.cpp
+D:\coding\c++\game\RPG\RPG\Unit.cpp(155,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\Unit.cpp(156,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\Unit.cpp(236,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\Unit.cpp(236,73): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  UnitState.cpp
+  ZoneBuilderMenu.cpp
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(11,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(12,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,165): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(15,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(43,166): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(43,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(43,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(43,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(67,88): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(73,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\coding\c++\game\RPG\RPG\ZoneBuilderMenu.cpp(74,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  ZoneMap.cpp
+  ZonePortal.cpp
+  Generating Code...
+D:\coding\c++\game\RPG\RPG\Unit.cpp(188): warning C4715: 'Unit::assignDamage': not all control paths return a value
+  RPG.vcxproj -> D:\coding\c++\game\RPG\x64\Debug\RPG.exe

@@ -1,6 +1,5 @@
 #include "GameMenu.h"
 #include "MenuButton.h"
-#include "Sprite.h"
 #include "BaseGameEngine.h"
 #include "MenuText.h"
 
@@ -10,9 +9,10 @@ GameMenu::GameMenu() {
     init();
 }
 
-GameMenu::GameMenu(BaseGameEngine* gameEngine, int newId, int newWidth, int newHeight, int newXPos, int newYPos) {
+GameMenu::GameMenu(GameScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos) {
     init();
-    engine = gameEngine;
+    scene = gameScene;
+    engine = gameScene->engine;
     width = newWidth;
     height = newHeight;
     xpos = newXPos;
@@ -21,6 +21,7 @@ GameMenu::GameMenu(BaseGameEngine* gameEngine, int newId, int newWidth, int newH
 }
 
 void GameMenu::init() {
+    scene = NULL;
     engine = NULL;
     width = 0;
     height = 0;
@@ -60,10 +61,7 @@ void GameMenu::setRGBA(int newR, int newG, int newB, int newA) {
 }
 
 void GameMenu::draw() {
-    //draw recangle on screen
-    SDL_Rect fillRect = { xpos, ypos, width, height};
-    SDL_SetRenderDrawColor(engine->getMainRenderer(), r, g, b, a);
-    SDL_RenderFillRect(engine->getMainRenderer(), &fillRect);
+    scene->renderRectangle(xpos, ypos, width, height, r, g, b);
 
     for (auto element : elements)
     {
@@ -79,6 +77,10 @@ bool GameMenu::handleInput(InputMessage* message) {
         {
             messageConsumed = true;
         }
+    }
+    if (pointCollide(message->x, message->y))
+    {
+        messageConsumed = true;
     }
     return messageConsumed;
 }
@@ -118,6 +120,10 @@ UiElement* GameMenu::getElementbyId(int elementId) {
         }
     }
     return NULL;
+}
+
+bool GameMenu::pointCollide(int x, int y) {
+    return (x >= xpos && x <= (xpos + width) && y >= ypos && y <= (ypos + height));
 }
 
 

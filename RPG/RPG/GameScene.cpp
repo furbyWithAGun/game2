@@ -46,6 +46,14 @@ void GameScene::renderTexture(int textureKey, int x, int y, int width, int heigh
     engine->renderTexture(textureKey, x, y, width, height);
 }
 
+void GameScene::renderRectangle(int x, int y, int width, int height, int r, int g, int b) {
+    engine->renderRectangle(x, y, width, height, r, g, b);
+}
+
+void GameScene::renderRectangle(int x, int y, int width, int height, int r, int g, int b, int a) {
+    engine->renderRectangle(x, y, width, height, r, g, b, a);
+}
+
 void GameScene::endScene() {
     sceneRunning = false;
     SDL_AtomicUnlock(&engine->sceneRunningLock);
@@ -53,6 +61,17 @@ void GameScene::endScene() {
 
 void GameScene::openMenu(int menuId) {
     menus[menuId]->open();
+}
+
+bool GameScene::mouseOnAMenu()
+{   
+    for (auto menu : menus) {
+        if (menu.second->pointCollide(controllerInterface->latestXpos, controllerInterface->latestYpos))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool GameScene::sendMessageToMenus(InputMessage* message)
@@ -65,6 +84,17 @@ bool GameScene::sendMessageToMenus(InputMessage* message)
         }
     }
     return messageConsumed;
+}
+
+void GameScene::drawMenus()
+{
+    for (auto menu : menus)
+    {
+        if (menu.second->isActive)
+        {
+            menu.second->draw();
+        }
+    }
 }
 
 bool GameScene::getNextCommand(InputMessage* message) {

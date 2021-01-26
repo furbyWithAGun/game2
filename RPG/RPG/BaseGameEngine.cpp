@@ -331,6 +331,13 @@ void BaseGameEngine::renderRectangle(int x, int y, int width, int height, int r,
     SDL_RenderFillRect(getMainRenderer(), &fillRect);
 }
 
+void BaseGameEngine::renderRectangle(int x, int y, int width, int height, int r, int g, int b, int a)
+{
+    SDL_Rect fillRect = { x, y, width, height };
+    SDL_SetRenderDrawColor(getMainRenderer(), r, g, b, a);
+    SDL_RenderFillRect(getMainRenderer(), &fillRect);
+}
+
 int BaseGameEngine::getTextureWidth(int textureKey) {
     return textures[textureKey].width;
 }
@@ -439,6 +446,7 @@ void BaseGameEngine::startMainGameLoop() {
             //call scene rendering
             SDL_AtomicLock(&sceneLock);
             currentScene->renderScene();
+            currentScene->drawMenus();
             SDL_AtomicUnlock(&sceneLock);
             //Update screen
             SDL_RenderPresent(getMainRenderer());

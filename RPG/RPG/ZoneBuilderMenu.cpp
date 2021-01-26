@@ -5,7 +5,7 @@ ZoneBuilderMenu::ZoneBuilderMenu() : GameMenu() {
     scene = NULL;
 }
 
-ZoneBuilderMenu::ZoneBuilderMenu(RpgWorldBuilderScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos) : GameMenu(gameScene->engine, newId, newWidth, newHeight, newXPos, newYPos) {
+ZoneBuilderMenu::ZoneBuilderMenu(RpgWorldBuilderScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos) : GameMenu(gameScene, newId, newWidth, newHeight, newXPos, newYPos) {
     scene = gameScene;
     buildButtons();
     addElement(new MenuText(scene, "Tiles", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.01));
@@ -17,6 +17,7 @@ ZoneBuilderMenu::ZoneBuilderMenu(RpgWorldBuilderScene* gameScene, int newId, int
     scroller->addElement(new MenuText(this->scene,"test", 0, 0));
     scroller->addElement(new MenuText(this->scene,"test2", 0, 0));
     scroller->addElement(new MenuText(this->scene,"test3", 0, 0));
+    scroller->addElement(new MenuText(this->scene,"test4", 0, 0));
     addElement(scroller);
 }
 
@@ -43,7 +44,7 @@ void ZoneBuilderMenu::buildButtons() {
     scroller->numElementsToDisplay = 2;
 
 
-    int x = 0;
+    //int x = 0;
     for (auto i = scene->mapTiles.begin(); i != scene->mapTiles.end(); i++)
     {
         MapBuilderTileButton* button;
@@ -51,13 +52,13 @@ void ZoneBuilderMenu::buildButtons() {
         button->xpos =0;
         button->ypos = 0;
         scroller->addElement(button);
-        x++;
+        //x++;
     }
 
 
     addElement(scroller);
 
-    x = 0;
+    int x = 0;
     for (int i = 0; i < scene->zonePortalImages.size(); i++)
     {
         MapBuilderPortalButton* button;

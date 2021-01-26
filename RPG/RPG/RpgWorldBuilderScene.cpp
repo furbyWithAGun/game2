@@ -122,19 +122,20 @@ void RpgWorldBuilderScene::renderScene() {
     int tileCoords[2], screenCoords[2];
     TileGridScene::renderScene();
 
-    if (placingTile && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos))
+    if (placingTile && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
     {
         getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
         coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
         renderTexture(tileBeingPlaced->textureKey, screenCoords[0], screenCoords[1], tileWidth, tileHeight);
     }
 
-    if (placingPortal && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos))
+    if (placingPortal && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
     {
         getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
         coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
         renderTexture(portalBeingPlaced, screenCoords[0], screenCoords[1], tileWidth, tileHeight);
     }
+
 }
 
 void RpgWorldBuilderScene::scrollCamera() {

@@ -7,6 +7,8 @@ class MenuText;
 class BaseGameEngine;
 class InputMessage;
 class UiElement;
+class GameScene;
+class GameEngine;
 
 class GameMenu
 {
@@ -16,10 +18,13 @@ public:
     std::unordered_map<int, UiElement*> elements;
     std::vector<MenuText*> texts;
     bool isActive;
+    GameScene* scene;
+    bool pointCollide(int x, int y);
+
     
     //constructors
     GameMenu();
-    GameMenu(BaseGameEngine* gameEngine, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
+    GameMenu(GameScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
 
     //destructor
     ~GameMenu();

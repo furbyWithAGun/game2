@@ -60,6 +60,7 @@ class BaseGameEngine
         void renderAnimation(Animation* animation, int x, int y);
         void renderAnimation(Animation* animation, int x, int y, int width, int height);
         void renderRectangle(int x, int y, int width, int height, int r, int g, int b);
+        void renderRectangle(int x, int y, int width, int height, int r, int g, int b, int a);
         void addScene(int sceneId, GameScene* sceneToAdd);
         void setNextScene(int sceneId);
         double randomDouble();
